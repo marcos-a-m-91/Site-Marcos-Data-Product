@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Marcos Data Product — IA & Automação para Negócios</title>
+  <meta name="description" content="Dados, produto, analytics e tudo que me faz parar para pensar." />
+
+  <!-- ═══════════════════════════════════════════════
+       DEPENDENCIES (CDN + local design system assets)
+  ═══════════════════════════════════════════════ -->
+
+  <!-- GSAP + ScrollTrigger (local — from design system) -->
+  <script src="Templates/parallax-geometry/assets/gsap_4a57399e4113.js"></script>
+  <script src="Templates/parallax-geometry/assets/ScrollTrigger_8669edfeb171.js"></script>
+
+  <!-- Tailwind CSS (local — from design system) -->
+  <script src="Templates/parallax-geometry/assets/resource_3fa48481346f.js"></script>
+
+  <!-- Lucide Icons (local — from design system) -->
+  <script src="Templates/ai-automation-17.aura.build/assets/lucide_latest_2eebd0ebe8c2.js"></script>
+
+  <!-- Fonts: Space Grotesk + Manrope (local — from design system) -->
+  <link href="Templates/parallax-geometry/assets/css2_5f62d382f7c0.css" rel="stylesheet" />
+  <link href="Templates/hu169yr/assets/css2_9b8bf743d4a8.css" rel="stylesheet" />
+
+  <!-- ═══════════════════════════════════════════════
+       DESIGN SYSTEM STYLES
+       Tokens, glass morphism, animations, components
+  ═══════════════════════════════════════════════ -->
+  <style>
+    /* ── Reset & Base ─────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Design System Tokens */
+      --void: #080810;
+      --void-rgb: 8, 8, 16;
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-blur: blur(18px);
+      --glass-strong-bg: rgba(255, 255, 255, 0.10);
+      --glass-strong-border: rgba(255, 255, 255, 0.18);
+      --glass-strong-blur: blur(28px);
+      --accent-blue: #60a5fa;
+      --accent-blue-rgb: 96, 165, 250;
+      --accent-amber: #fbbf24;
+      --accent-amber-rgb: 251, 191, 36;
+      --accent-emerald: #34d399;
+      --accent-emerald-rgb: 52, 211, 153;
+      --accent-pink: #f472b6;
+      --accent-purple: #a78bfa;
+      --text-primary: #f1f5f9;
+      --text-secondary: rgba(255, 255, 255, 0.50);
+      --text-muted: rgba(255, 255, 255, 0.30);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--void);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Three.js Canvas ─────────────────────────── */
+    #canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* ── Glass Surfaces ──────────────────────────── */
+    .glass {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+    }
+
+    .glass-strong {
+      background: var(--glass-strong-bg);
+      border: 1px solid var(--glass-strong-border);
+      backdrop-filter: var(--glass-strong-blur);
+      -webkit-backdrop-filter: var(--glass-strong-blur);
+    }
+
+    /* ── Gradient Text ───────────────────────────── */
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-blue {
+      background: linear-gradient(135deg, #60a5fa 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Reveal Animation ────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+
+    /* ── Noise Overlay ───────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.30;
+    }
+
+    /* ── Section Glow ────────────────────────────── */
+    .section-glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(120px);
+      opacity: 0.12;
+    }
+
+    /* ── Section Divider ─────────────────────────── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.25), rgba(251, 191, 36, 0.25), transparent);
+      margin: 0 auto;
+      max-width: 60rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ── Scrollbar ───────────────────────────────── */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--void);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    section {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ── Keyframes ───────────────────────────────── */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    @keyframes float-slow {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(2deg);
+      }
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: scale(1.6);
+        opacity: 0;
+      }
+    }
+
+    @keyframes morph-blob {
+
+      0%,
+      100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      }
+
+      25% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      }
+
+      50% {
+        border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+      }
+
+      75% {
+        border-radius: 60% 30% 60% 40% / 70% 40% 50% 60%;
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glow-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.25), 0 0 60px rgba(96, 165, 250, 0.08);
+      }
+
+      50% {
+        box-shadow: 0 0 35px rgba(96, 165, 250, 0.4), 0 0 80px rgba(96, 165, 250, 0.15);
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-slow {
+      animation: float-slow 8s ease-in-out infinite;
+    }
+
+    .animate-morph-blob {
+      animation: morph-blob 12s ease-in-out infinite;
+    }
+
+    .pulse-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: var(--accent-blue);
+      animation: pulse-ring 1.8s ease-out infinite;
+    }
+
+    /* ── Button — Primary ────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: white;
+      color: #0f172a;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      padding: 0.875rem 2rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(96, 165, 250, 0.25);
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: #dbeafe;
+      transform: translateY(-2px);
+      box-shadow: 0 0 60px rgba(96, 165, 250, 0.35), 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-primary .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(96, 165, 250, 0.35);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+
+    /* ── Button — Secondary ──────────────────────── */
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--glass-bg);
+      color: rgba(255, 255, 255, 0.8);
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      padding: 0.875rem 2rem;
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      backdrop-filter: var(--glass-blur);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      color: white;
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* ── Nav ──────────────────────────────────────── */
+    #navbar {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #navbar.scrolled {
+      background: rgba(8, 8, 16, 0.75);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-link {
+      position: relative;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      transition: color 0.25s;
+      text-decoration: none;
+      padding: 0.25rem 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent-blue);
+      border-radius: 1px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover {
+      color: white;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* ── Section Card ────────────────────────────── */
+    .section-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .section-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(96, 165, 250, 0.08);
+    }
+
+    .section-card:hover .card-icon-wrap {
+      transform: scale(1.1);
+    }
+
+    .section-card:hover .card-arrow {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    .section-card:hover .card-visual {
+      transform: scale(1.03);
+    }
+
+    .card-icon-wrap {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-arrow {
+      opacity: 0.4;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-visual {
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── Badge ────────────────────────────────────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .badge-blue {
+      background: rgba(96, 165, 250, 0.12);
+      color: #60a5fa;
+      border: 1px solid rgba(96, 165, 250, 0.2);
+    }
+
+    .badge-amber {
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.2);
+    }
+
+    .badge-emerald {
+      background: rgba(52, 211, 153, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    .badge-pink {
+      background: rgba(244, 114, 182, 0.12);
+      color: #f472b6;
+      border: 1px solid rgba(244, 114, 182, 0.2);
+    }
+
+    .badge-purple {
+      background: rgba(167, 139, 250, 0.12);
+      color: #a78bfa;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+    }
+
+    /* ── Mobile Menu ──────────────────────────────── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 8, 16, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu a {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      color: white;
+    }
+
+    /* ── Spec row for mini data ───────────────────── */
+    .stat-item {
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+     THREE.JS CANVAS BACKGROUND
+═══════════════════════════════════════════════════════ -->
+  <canvas id="canvas"></canvas>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     NAVIGATION — Sticky glass navbar
+═══════════════════════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group" aria-label="Home">
+        <img src="Logo.png" alt="Marcos Data Product"
+          class="w-8 h-8 sm:w-9 sm:h-9 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+        <span class="font-semibold text-sm sm:text-base tracking-tight text-white/90 hidden sm:inline">Marcos Data
+          Product</span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center gap-7" aria-label="Navegação principal">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="#blog" class="nav-link">Blog</a>
+        <a href="#materiais" class="nav-link">Materiais</a>
+        <a href="#projetos" class="nav-link">Projetos</a>
+        <a href="#biblioteca" class="nav-link">Biblioteca</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="md:hidden glass rounded-xl p-2.5 text-white/70 hover:text-white transition-colors" id="mobile-btn"
+        aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-white/70 hover:text-white" id="mobile-close"
+      aria-label="Fechar menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="#blog" class="mobile-link">Blog</a>
+    <a href="#materiais" class="mobile-link">Materiais</a>
+    <a href="#projetos" class="mobile-link">Projetos</a>
+    <a href="#biblioteca" class="mobile-link">Biblioteca</a>
+    <a href="#sobre" class="mobile-link">Sobre</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════════ -->
+  <section id="hero"
+    class="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 pt-24 pb-16 relative overflow-hidden">
+
+    <!-- Background Canvas (Image Sequence) -->
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+      style="opacity: 0.85;"></canvas>
+
+    <!-- Gradient Overlays for Readability and Blending -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#080810]/40 via-[#080810]/60 to-[#080810] z-[1]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#080810_100%)] z-[1] opacity-80">
+    </div>
+
+    <!-- Content block -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center mt-[-10vh]">
+
+      <!-- Heading -->
+      <h1 class="reveal text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-6">
+        <span class="text-white/95">Marcos</span><br />
+        <span class="gradient-text">Data Product</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="reveal text-lg sm:text-xl md:text-2xl font-semibold text-blue-400/90 mb-6 tracking-wide"
+        style="font-family:'Space Grotesk',sans-serif">
+        IA · Automação · Dados
+      </p>
+
+      <!-- Description -->
+      <p class="reveal text-base sm:text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-12"
+        style="font-family:'Manrope',sans-serif">
+        Transformando dados em decisões inteligentes. Projetos de IA generativa, automações sob medida e produtos de
+        dados que geram valor real para negócios.
+      </p>
+
+      <!-- Navigation Capsule Buttons -->
+      <div class="reveal flex flex-wrap justify-center gap-2 sm:gap-3 mb-16 max-w-3xl mx-auto">
+        
+        <a href="#blog" class="flex items-center gap-2 px-5 py-2.5 rounded-full border bg-blue-500/10 border-blue-400/20 text-white/90 hover:bg-blue-500/20 hover:border-blue-400/40 transition-all shadow-[0_0_15px_rgba(96,165,250,0.05)] hover:shadow-[0_0_25px_rgba(96,165,250,0.25)] hover:-translate-y-1">
+          <i data-lucide="pen-tool" class="w-4 h-4 text-blue-400"></i>
+          <span class="text-sm font-medium tracking-wide">Blog</span>
+        </a>
+        
+        <a href="#materiais" class="flex items-center gap-2 px-5 py-2.5 rounded-full border bg-amber-500/10 border-amber-400/20 text-white/90 hover:bg-amber-500/20 hover:border-amber-400/40 transition-all shadow-[0_0_15px_rgba(251,191,36,0.05)] hover:shadow-[0_0_25px_rgba(251,191,36,0.25)] hover:-translate-y-1">
+          <i data-lucide="download" class="w-4 h-4 text-amber-400"></i>
+          <span class="text-sm font-medium tracking-wide">Materiais</span>
+        </a>
+        
+        <a href="#projetos" class="flex items-center gap-2 px-5 py-2.5 rounded-full border bg-emerald-500/10 border-emerald-400/20 text-white/90 hover:bg-emerald-500/20 hover:border-emerald-400/40 transition-all shadow-[0_0_15px_rgba(52,211,153,0.05)] hover:shadow-[0_0_25px_rgba(52,211,153,0.25)] hover:-translate-y-1">
+          <i data-lucide="layers" class="w-4 h-4 text-emerald-400"></i>
+          <span class="text-sm font-medium tracking-wide">Projetos</span>
+        </a>
+        
+        <a href="#biblioteca" class="flex items-center gap-2 px-5 py-2.5 rounded-full border bg-purple-500/10 border-purple-400/20 text-white/90 hover:bg-purple-500/20 hover:border-purple-400/40 transition-all shadow-[0_0_15px_rgba(167,139,250,0.05)] hover:shadow-[0_0_25px_rgba(167,139,250,0.25)] hover:-translate-y-1">
+          <i data-lucide="book-open" class="w-4 h-4 text-purple-400"></i>
+          <span class="text-sm font-medium tracking-wide">Biblioteca</span>
+        </a>
+        
+        <a href="#sobre" class="flex items-center gap-2 px-5 py-2.5 rounded-full border bg-pink-500/10 border-pink-400/20 text-white/90 hover:bg-pink-500/20 hover:border-pink-400/40 transition-all shadow-[0_0_15px_rgba(244,114,182,0.05)] hover:shadow-[0_0_25px_rgba(244,114,182,0.25)] hover:-translate-y-1">
+          <i data-lucide="user" class="w-4 h-4 text-pink-400"></i>
+          <span class="text-sm font-medium tracking-wide">Sobre</span>
+        </a>
+        
+      </div>
+
+      <!-- Mini stats - Glass bordered layout -->
+      <div class="reveal grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10 glass rounded-3xl max-w-4xl mx-auto mb-12">
+        <div class="stat-item flex flex-col items-center justify-center py-6 md:py-8 px-4">
+          <p class="text-3xl sm:text-4xl font-bold text-white"><span class="counter" data-target="10" data-duration="2.5">0</span>+</p>
+          <p class="text-[11px] sm:text-xs text-white/40 uppercase tracking-wider mt-1.5 text-center">Anos conectando dados ao negócio</p>
+        </div>
+        <div class="stat-item flex flex-col items-center justify-center py-6 md:py-8 px-4">
+          <p class="text-3xl sm:text-4xl font-bold text-white"><span class="counter" data-target="870" data-duration="4.5" data-increment="true">0</span></p>
+          <p class="text-[11px] sm:text-xs text-white/40 uppercase tracking-wider mt-1.5 text-center">Litros de café</p>
+        </div>
+        <div class="stat-item flex flex-col items-center justify-center py-6 md:py-8 px-4">
+          <p class="text-3xl sm:text-4xl font-bold text-white"><span class="counter" data-target="5000" data-duration="6" data-increment="true">0</span></p>
+          <p class="text-[11px] sm:text-xs text-white/40 uppercase tracking-wider mt-1.5 text-center">Horas sem dormir</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal z-10">
+      <span class="text-[10px] uppercase tracking-widest text-white/30 font-medium font-mono">Scroll para
+        explorar</span>
+      <div class="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5 bg-black/20 backdrop-blur-md">
+        <div class="w-1 h-2 rounded-full bg-white/50 animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     SECTIONS — Navigation cards
+═══════════════════════════════════════════════════════ -->
+
+  <!-- ── BLOG ──────────────────────────────────────── -->
+  <section id="blog" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
+    <div class="section-glow w-[400px] h-[400px] bg-blue-500" style="top:10%;right:-10%;"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <a href="#" class="section-card reveal">
+        <div class="grid md:grid-cols-2 gap-0">
+
+          <!-- Visual side -->
+          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
+            style="min-height:220px;">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/8 to-transparent"></div>
+            <div class="relative z-10 flex flex-col items-center gap-4">
+              <div
+                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-blue-500/15 flex items-center justify-center border border-blue-400/15">
+                <i data-lucide="pen-tool" class="w-7 h-7 sm:w-9 sm:h-9 text-blue-400"></i>
+              </div>
+              <!-- Mini visual: fake article lines -->
+              <div class="w-full max-w-[200px] space-y-2 mt-2">
+                <div class="h-1.5 rounded-full bg-white/8 w-full"></div>
+                <div class="h-1.5 rounded-full bg-white/6 w-4/5"></div>
+                <div class="h-1.5 rounded-full bg-white/4 w-3/5"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content side -->
+          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
+            <span class="badge badge-blue w-max mb-4">Artigos</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Blog</h2>
+            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Artigos técnicos sobre IA, machine learning, engenharia de dados e automação — com código, exemplos
+              práticos e reflexões do dia a dia.
+            </p>
+            <div class="flex items-center gap-2 text-sm font-medium text-blue-400">
+              <span>Ver os posts</span>
+              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ── PROJETOS ──────────────────────────────────── -->
+  <section id="projetos" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
+    <div class="section-glow w-[450px] h-[450px] bg-emerald-500" style="top:5%;right:-12%;opacity:0.1;"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <a href="#" class="section-card reveal">
+        <div class="grid md:grid-cols-2 gap-0">
+
+          <!-- Visual side -->
+          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
+            style="min-height:260px;">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/8 to-transparent"></div>
+            <div class="relative z-10 flex flex-col items-center gap-4 w-full">
+              <div
+                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-emerald-500/15 flex items-center justify-center border border-emerald-400/15">
+                <i data-lucide="layers" class="w-7 h-7 sm:w-9 sm:h-9 text-emerald-400"></i>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Content side -->
+          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
+            <span class="badge badge-emerald w-max mb-4">Portfólio</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Projetos</h2>
+            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Cases reais de IA aplicada, automação de processos e produtos de dados — com resultados mensuráveis e
+              detalhes técnicos de implementação.
+            </p>
+            <div class="flex items-center gap-2 text-sm font-medium text-emerald-400">
+              <span>Explorar projetos</span>
+              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ── BIBLIOTECA ────────────────────────────────── -->
+  <section id="biblioteca" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
+    <div class="section-glow w-96 h-96 bg-purple-500" style="bottom:10%;left:-8%;opacity:0.1;"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <a href="#" class="section-card reveal">
+        <div class="grid md:grid-cols-2 gap-0">
+
+          <!-- Content side (reversed) -->
+          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
+            <span class="badge badge-purple w-max mb-4">Curadoria</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Biblioteca</h2>
+            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Curadoria pessoal de livros, papers, ferramentas e recursos selecionados sobre ciência de dados, IA e
+              produto — tudo que vale a pena guardar.
+            </p>
+            <div class="flex items-center gap-2 text-sm font-medium text-purple-400">
+              <span>Navegar biblioteca</span>
+              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Visual side -->
+          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
+            style="min-height:220px;">
+            <div class="absolute inset-0 bg-gradient-to-bl from-purple-500/8 to-transparent"></div>
+            <div class="relative z-10 flex flex-col items-center gap-4">
+              <div
+                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-purple-500/15 flex items-center justify-center border border-purple-400/15">
+                <i data-lucide="book-open" class="w-7 h-7 sm:w-9 sm:h-9 text-purple-400"></i>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ── SOBRE ─────────────────────────────────────── -->
+  <section id="sobre" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
+    <div class="section-glow w-96 h-96 bg-pink-500" style="top:10%;right:-5%;opacity:0.1;"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <a href="#" class="section-card reveal">
+        <div class="grid md:grid-cols-2 gap-0">
+
+          <!-- Visual side -->
+          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
+            style="min-height:220px;">
+            <div class="absolute inset-0 bg-gradient-to-br from-pink-500/8 to-transparent"></div>
+            <div class="relative z-10 flex flex-col items-center gap-4">
+              <div
+                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-pink-500/15 flex items-center justify-center border border-pink-400/15">
+                <i data-lucide="user" class="w-7 h-7 sm:w-9 sm:h-9 text-pink-400"></i>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Content side -->
+          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
+            <span class="badge badge-pink w-max mb-4">Quem sou</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Sobre</h2>
+            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Conheça minha trajetória, habilidades e visão. De engenharia de dados a IA generativa — o que me move é
+              resolver problemas reais com tecnologia.
+            </p>
+            <div class="flex items-center gap-2 text-sm font-medium text-pink-400">
+              <span>Saiba mais</span>
+              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+  <footer class="relative z-10 border-t border-white/5 px-5 sm:px-8 py-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/25">
+      <div class="flex items-center gap-3">
+        <img src="Logo.png" alt="" class="w-5 h-5 object-contain opacity-50" />
+        <span>© 2026 Marcos Data Product</span>
+      </div>
+      <span>Feito com dados, café e IA</span>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     THREE.JS BACKGROUND — Clean data science wireframes
+═══════════════════════════════════════════════════════ -->
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.160.0";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── Renderer ──────────────────────────────────── */
+    const canvas = document.getElementById('canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setClearColor(0x080810, 1);
+    camera.position.z = 15;
+
+    /* ── Parallax groups ───────────────────────────── */
+    const fg = new THREE.Group();
+    const mg = new THREE.Group();
+    const bg = new THREE.Group();
+    scene.add(fg, mg, bg);
+
+    /* ── Material helpers (clean, refined) ─────────── */
+    const wireMat = (c, o) => new THREE.MeshBasicMaterial({ color: c, wireframe: true, transparent: true, opacity: o * 0.6 });
+    const lineMat = (c, o) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o * 0.6 });
+    function toGeo(pts) { const g = new THREE.BufferGeometry(); g.setFromPoints(pts); return g; }
+    const V3 = (x, y, z = 0) => new THREE.Vector3(x, y, z);
+    function smoothCurve(points, segments) {
+      return new THREE.CatmullRomCurve3(points).getPoints(segments);
+    }
+
+    /* ════════════════════════════════════════════════
+       DATA SCIENCE SHAPE FACTORIES — Clean Edition
+    ════════════════════════════════════════════════ */
+
+    function createLineChart(s, col) {
+      const g = new THREE.Group();
+      const vals = [0.18, 0.35, 0.28, 0.52, 0.44, 0.65, 0.58, 0.78, 0.72, 0.92];
+      const rawPts = vals.map((v, i) => V3((i / (vals.length - 1) - 0.5) * s * 1.3, (v - 0.5) * s * 0.8));
+      g.add(new THREE.Line(toGeo(smoothCurve(rawPts, 80)), lineMat(col, 0.55)));
+      rawPts.forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.03, 12, 12), wireMat(col, 0.6)); d.position.copy(p); g.add(d); });
+      const base = -s * 0.42;
+      g.add(new THREE.Line(toGeo([V3(-s * 0.68, base), V3(s * 0.68, base)]), lineMat(col, 0.25)));
+      g.add(new THREE.Line(toGeo([V3(-s * 0.68, base), V3(-s * 0.68, s * 0.5)]), lineMat(col, 0.25)));
+      return g;
+    }
+
+    function createBarChart(s, col) {
+      const g = new THREE.Group();
+      const h = [0.30, 0.55, 0.42, 0.82, 0.50, 0.70, 0.38, 0.90];
+      const bw = s * 0.11, sp = s * 0.18, base = -s * 0.45;
+      h.forEach((v, i) => { const bh = v * s * 0.85; const bar = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, s * 0.05), wireMat(col, 0.25 + v * 0.2)); bar.position.set((i - h.length / 2 + 0.5) * sp, base + bh / 2, 0); g.add(bar); });
+      g.add(new THREE.Line(toGeo([V3(-h.length / 2 * sp - s * 0.04, base), V3(h.length / 2 * sp + s * 0.04, base)]), lineMat(col, 0.4)));
+      g.add(new THREE.Line(toGeo([V3(-h.length / 2 * sp - s * 0.04, base), V3(-h.length / 2 * sp - s * 0.04, base + s * 0.88)]), lineMat(col, 0.4)));
+      return g;
+    }
+
+    function createScatterPlot(s, col) {
+      const g = new THREE.Group();
+      const x0 = -s * 0.55, y0 = -s * 0.55;
+      g.add(new THREE.Line(toGeo([V3(x0, y0), V3(s * 0.55, y0)]), lineMat(col, 0.3)));
+      g.add(new THREE.Line(toGeo([V3(x0, y0), V3(x0, s * 0.55)]), lineMat(col, 0.3)));
+      [[0.08, 0.15], [0.15, 0.28], [0.22, 0.25], [0.30, 0.45], [0.38, 0.40], [0.45, 0.55], [0.52, 0.52], [0.60, 0.68], [0.68, 0.72], [0.75, 0.82], [0.12, 0.38], [0.42, 0.32], [0.58, 0.75], [0.82, 0.90]].forEach(([px, py]) => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.025, 10, 10), wireMat(col, 0.5)); d.position.set(x0 + px * s * 1.1, y0 + py * s * 1.1, 0); g.add(d); });
+      g.add(new THREE.Line(toGeo([V3(x0 * 0.5, y0 * 0.45), V3(s * 0.52, s * 0.52)]), lineMat(col, 0.15)));
+      return g;
+    }
+
+    function createNeuralNet(s, col) {
+      const g = new THREE.Group();
+      const layers = [3, 5, 6, 5, 2];
+      const lx = layers.map((_, i) => (i / (layers.length - 1) - 0.5) * s * 1.5);
+      const all = [];
+      layers.forEach((cnt, li) => { const pos = []; for (let n = 0; n < cnt; n++) { const y = cnt > 1 ? (n / (cnt - 1) - 0.5) * s * 0.85 : 0; const p = V3(lx[li], y); pos.push(p); const sp = new THREE.Mesh(new THREE.SphereGeometry(s * 0.04, 14, 14), wireMat(col, li === 0 || li === layers.length - 1 ? 0.55 : 0.35)); sp.position.copy(p); g.add(sp); } all.push(pos); if (li > 0) all[li - 1].forEach(pr => pos.forEach(cu => g.add(new THREE.Line(toGeo([pr, cu]), lineMat(col, 0.07))))); });
+      return g;
+    }
+
+    function createDonutChart(s, col) {
+      const g = new THREE.Group();
+      const cols = [0x60a5fa, 0xfbbf24, 0x34d399, 0xf472b6, 0xa78bfa];
+      const seg = [0.32, 0.22, 0.20, 0.15, 0.11];
+      const r1 = s * 0.28, r2 = s * 0.52;
+      let st = -Math.PI / 2;
+      seg.forEach((p, i) => { const a = p * Math.PI * 2; const steps = Math.max(12, Math.round(a * 24)); const lm = lineMat(cols[i], 0.45); const o = [], inn = []; for (let s = 0; s <= steps; s++) { const aa = st + (s / steps) * a; o.push(V3(Math.cos(aa) * r2, Math.sin(aa) * r2)); inn.push(V3(Math.cos(aa) * r1, Math.sin(aa) * r1)); } g.add(new THREE.Line(toGeo(o), lm)); g.add(new THREE.Line(toGeo(inn), lm)); g.add(new THREE.Line(toGeo([o[0], inn[0]]), lm)); g.add(new THREE.Line(toGeo([o[steps], inn[steps]]), lm)); st += a; });
+      return g;
+    }
+
+    function createROCCurve(s, col) {
+      const g = new THREE.Group();
+      const ext = s * 0.52;
+      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, -ext)]), lineMat(col, 0.25)));
+      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(-ext, ext)]), lineMat(col, 0.25)));
+      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, ext)]), lineMat(col, 0.08)));
+      const pts = []; for (let t = 0; t <= 64; t++) { const f = t / 64; pts.push(V3(-ext + f * ext * 2, -ext + (1 - Math.pow(1 - f, 3.2)) * ext * 2)); }
+      g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.5)));
+      return g;
+    }
+
+    function createDecisionTree(s, col) {
+      const g = new THREE.Group();
+      const r = s * 0.048;
+      const tree = [[0, s * 0.5, -1], [-s * 0.38, s * 0.12, 0], [s * 0.38, s * 0.12, 0], [-s * 0.58, -s * 0.22, 1], [-s * 0.18, -s * 0.22, 1], [s * 0.18, -s * 0.22, 2], [s * 0.58, -s * 0.22, 2]];
+      const pos = [];
+      tree.forEach(([x, y, pi], i) => { const p = V3(x, y); pos.push(p); const isLeaf = i >= 3; const m = isLeaf ? new THREE.Mesh(new THREE.SphereGeometry(r * 0.65, 12, 12), wireMat(col, 0.45)) : new THREE.Mesh(new THREE.OctahedronGeometry(r, 0), wireMat(col, 0.5)); m.position.copy(p); if (!isLeaf) m.rotation.z = Math.PI / 4; g.add(m); if (pi >= 0) g.add(new THREE.Line(toGeo([pos[pi], p]), lineMat(col, 0.2))); });
+      return g;
+    }
+
+    function createKMeans(s, col) {
+      const g = new THREE.Group();
+      const cc = [[0x60a5fa, -s * 0.32, s * 0.25], [0xfbbf24, s * 0.32, s * 0.28], [0x34d399, s * 0.05, -s * 0.32]];
+      cc.forEach(([c, cx, cy]) => {
+        const ct = new THREE.Mesh(new THREE.SphereGeometry(s * 0.045, 14, 14), wireMat(c, 0.6)); ct.position.set(cx, cy, 0); g.add(ct);
+        const ring = []; for (let a = 0; a <= 64; a++)ring.push(V3(cx + Math.cos(a / 64 * Math.PI * 2) * s * 0.2, cy + Math.sin(a / 64 * Math.PI * 2) * s * 0.2));
+        g.add(new THREE.Line(toGeo(ring), lineMat(c, 0.1)));
+        for (let p = 0; p < 7; p++) { const a = (p / 7) * Math.PI * 2; const r = s * 0.2 * (0.2 + Math.abs(Math.sin(p * 2.7)) * 0.6); const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.018, 8, 8), wireMat(c, 0.35)); d.position.set(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 0); g.add(d); }
+      });
+      return g;
+    }
+
+    function createRadarChart(s, col) {
+      const g = new THREE.Group();
+      const ax = 6, r = s * 0.48;
+      for (let ring = 1; ring <= 4; ring++) { const rr = r * ring / 4; const pts = []; for (let i = 0; i <= ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; pts.push(V3(Math.cos(a) * rr, Math.sin(a) * rr)); } g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.06 + ring * 0.025))); }
+      for (let i = 0; i < ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; g.add(new THREE.Line(toGeo([V3(0, 0), V3(Math.cos(a) * r, Math.sin(a) * r)]), lineMat(col, 0.12))); }
+      const dv = [0.85, 0.65, 0.90, 0.50, 0.75, 0.60]; const dp = [];
+      for (let i = 0; i <= ax; i++) { const idx = i % ax; const a = (idx / ax) * Math.PI * 2 - Math.PI / 2; dp.push(V3(Math.cos(a) * r * dv[idx], Math.sin(a) * r * dv[idx])); }
+      g.add(new THREE.Line(toGeo(dp), lineMat(col, 0.5)));
+      dp.slice(0, -1).forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.025, 10, 10), wireMat(col, 0.5)); d.position.copy(p); g.add(d); });
+      return g;
+    }
+
+    function createPipeline(s, col) {
+      const g = new THREE.Group();
+      const stages = [{ x: -s * 0.6, y: 0 }, { x: -s * 0.2, y: s * 0.22 }, { x: -s * 0.2, y: -s * 0.22 }, { x: s * 0.15, y: 0 }, { x: s * 0.5, y: s * 0.18 }, { x: s * 0.5, y: -s * 0.18 }];
+      const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [3, 5]];
+      stages.forEach(({ x, y }) => { const n = new THREE.Mesh(new THREE.BoxGeometry(s * 0.16, s * 0.08, s * 0.03), wireMat(col, 0.35)); n.position.set(x, y, 0); g.add(n); });
+      edges.forEach(([a, b]) => { const sa = stages[a], sb = stages[b]; g.add(new THREE.Line(toGeo(smoothCurve([V3(sa.x + s * 0.08, sa.y), V3((sa.x + sb.x) / 2, (sa.y + sb.y) / 2), V3(sb.x - s * 0.08, sb.y)], 16)), lineMat(col, 0.15))); });
+      return g;
+    }
+
+    function createHistogram(s, col) {
+      const g = new THREE.Group();
+      const bins = 12, base = -s * 0.38; const bw = s * 1.0 / bins;
+      for (let i = 0; i < bins; i++) { const nx = (i / (bins - 1) - 0.5) * 2; const h = Math.exp(-nx * nx * 2.5) * s * 0.75 + s * 0.02; const m = new THREE.Mesh(new THREE.BoxGeometry(bw * 0.85, h, bw * 0.25), wireMat(col, 0.18 + Math.exp(-nx * nx * 2.5) * 0.18)); m.position.set((i - (bins - 1) / 2) * bw, base + h / 2, 0); g.add(m); }
+      const cp = []; for (let t = 0; t <= 80; t++) { const x = (t / 80 - 0.5) * s * 1.1; const n = x / (s * 0.5) * 2; cp.push(V3(x, Math.exp(-n * n * 0.65) * s * 0.75 + base)); }
+      g.add(new THREE.Line(toGeo(cp), lineMat(col, 0.5)));
+      g.add(new THREE.Line(toGeo([V3(-s * 0.58, base), V3(s * 0.58, base)]), lineMat(col, 0.25)));
+      return g;
+    }
+
+    function createTimeSeries(s, col) {
+      const g = new THREE.Group();
+      const ext = s * 0.5;
+      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(ext, -ext * 0.75)]), lineMat(col, 0.2)));
+      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(-ext, ext * 0.75)]), lineMat(col, 0.2)));
+      const sc = [col, 0x60a5fa, 0xfbbf24];
+      [[0.3, 0.35, 0.28, 0.45, 0.50, 0.42, 0.55, 0.62, 0.58, 0.70, 0.75, 0.68, 0.82], [0.5, 0.48, 0.52, 0.45, 0.40, 0.38, 0.42, 0.35, 0.38, 0.32, 0.35, 0.30, 0.28], [0.1, 0.15, 0.18, 0.22, 0.20, 0.28, 0.32, 0.30, 0.38, 0.42, 0.45, 0.50, 0.55]].forEach((d, si) => { const pts = d.map((v, i) => V3(-ext + (i / (d.length - 1)) * ext * 2, -ext * 0.75 + v * ext * 1.5)); g.add(new THREE.Line(toGeo(smoothCurve(pts, 50)), lineMat(sc[si], 0.35))); });
+      return g;
+    }
+
+    /* ── Factory list & populate ───────────────────── */
+    const factories = [
+      createLineChart, createBarChart, createScatterPlot,
+      createNeuralNet, createDonutChart, createROCCurve,
+      createDecisionTree, createKMeans, createRadarChart,
+      createPipeline, createHistogram, createTimeSeries
+    ];
+
+    const fgC = [0xffffff, 0x60a5fa, 0xfbbf24, 0x34d399];
+    const mgC = [0xffffff, 0x60a5fa, 0xa78bfa];
+    const bgC = [0x3f3f50, 0x4b5563];
+    const shapeObjs = [];
+
+    function populate(group, count, colSet, sX, sY, zR, zO) {
+      for (let i = 0; i < count; i++) {
+        const s = Math.random() * 0.65 + 0.55;
+        const col = colSet[i % colSet.length];
+        const shape = factories[i % factories.length](s, col);
+        shape.position.set((Math.random() - 0.5) * sX, (Math.random() - 0.5) * sY, Math.random() * zR + zO);
+        shape.rotation.set((Math.random() - 0.5) * 0.18, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.12);
+        group.add(shape);
+        shapeObjs.push({ shape, rs: (Math.random() - 0.5) * 0.003 });
+      }
+    }
+
+    populate(fg, 5, fgC, 58, 40, 10, 4);
+    populate(mg, 8, mgC, 82, 55, 18, -6);
+    populate(bg, 12, bgC, 100, 70, 22, -18);
+
+    /* ── Scroll & mouse ────────────────────────────── */
+    let scrollP = 0, mX = 0, mY = 0;
+    ScrollTrigger.create({ trigger: "body", start: "top top", end: "bottom bottom", scrub: true, onUpdate: s => { scrollP = s.progress; } });
+    document.addEventListener('mousemove', e => { mX = (e.clientX / innerWidth) * 2 - 1; mY = -(e.clientY / innerHeight) * 2 + 1; });
+
+    /* ── GSAP reveals ──────────────────────────────── */
+    document.querySelectorAll('.reveal').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el, start: "top 88%",
+        onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }),
+        onLeaveBack: () => gsap.to(el, { opacity: 0, y: 32, duration: 0.45 })
+      });
+    });
+
+    /* ── Nav scroll effect ─────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    ScrollTrigger.create({ start: "top+=50 top", onEnter: () => navbar.classList.add('scrolled'), onLeaveBack: () => navbar.classList.remove('scrolled') });
+
+    /* ── Animate loop ──────────────────────────────── */
+    function animate() {
+      requestAnimationFrame(animate);
+      fg.position.y = scrollP * 20; mg.position.y = scrollP * 10; bg.position.y = scrollP * 5;
+      fg.rotation.x += (mY * 0.05 - fg.rotation.x) * 0.025; fg.rotation.y += (mX * 0.05 - fg.rotation.y) * 0.025;
+      mg.rotation.x += (mY * 0.025 - mg.rotation.x) * 0.018; mg.rotation.y += (mX * 0.025 - mg.rotation.y) * 0.018;
+      bg.rotation.x += (mY * 0.012 - bg.rotation.x) * 0.012; bg.rotation.y += (mX * 0.012 - bg.rotation.y) * 0.012;
+      const t = Date.now() * 0.0003;
+      shapeObjs.forEach(({ shape, rs }) => { shape.rotation.y += rs; shape.rotation.z += rs * 0.18; shape.position.y += Math.sin(t + shape.position.x * 0.25) * 0.003; });
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); });
+    animate();
+  </script>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     UTILITY SCRIPTS — Ripple, Mobile Menu, Lucide init
+═══════════════════════════════════════════════════════ -->
+  <script>
+    // Init Lucide icons
+    lucide.createIcons();
+
+    // Ripple effect
+    function createRipple(event) {
+      const btn = event.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple-effect';
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    }
+
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobile-btn');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+    });
+
+    // Staggered hero animation on load
+    window.addEventListener('load', () => {
+      const heroElements = document.querySelectorAll('#hero .reveal');
+      heroElements.forEach((el, i) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.15 + i * 0.12,
+          ease: "power3.out"
+        });
+      });
+
+      // Animated Counters
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const dur = counter.getAttribute('data-duration') ? +counter.getAttribute('data-duration') : 3.5;
+        const autoIncrement = counter.hasAttribute('data-increment');
+        const obj = { val: 0 };
+        
+        gsap.to(obj, {
+          val: target,
+          duration: dur, // customizable duration mapped via HTML 
+          ease: "power3.out",
+          delay: 0.8, // start after elements reveal
+          onUpdate: () => {
+            counter.innerText = Math.floor(obj.val).toLocaleString('pt-BR');
+          },
+          onComplete: () => {
+            if (autoIncrement) {
+              setInterval(() => {
+                const currentVal = Math.floor(obj.val);
+                gsap.to(obj, {
+                  val: currentVal + 1,
+                  duration: 0.5,
+                  ease: "power2.out",
+                  onUpdate: () => counter.innerText = Math.floor(obj.val).toLocaleString('pt-BR')
+                });
+              }, 10000); // 10 seconds
+            }
+          }
+        });
+      });
+
+      // Image Sequence / Canvas Object-Fit Trick
+      const canvas = document.getElementById("hero-canvas");
+      if (canvas) {
+        const context = canvas.getContext("2d", { alpha: false }); // alpha: false for performance if opaque background
+        const frameCount = 192; // Extracted 192 frames via python script
+        const currentFrame = index => `Templates/hero-frames/frame_${String(index).padStart(4, '0')}.webp`;
+        const images = [];
+        const imageSeq = { frame: 0 };
+
+        // Load all frames into memory
+        for (let i = 0; i < frameCount; i++) {
+          const img = new Image();
+          if (i === 0) {
+            // Setup canvas size from first frame
+            img.onload = () => {
+              canvas.width = img.width;
+              canvas.height = img.height;
+              context.drawImage(img, 0, 0);
+            };
+          }
+          img.src = currentFrame(i);
+          images.push(img);
+        }
+
+        // GSAP scrub logic for drawing images
+        // Using a slightly longer trigger range specifically for the visual sequence
+        ScrollTrigger.create({
+          trigger: "#hero",
+          start: "top top",
+          end: "+=120%", // Keep scrolling active a bit lower
+          scrub: 0.5,     // 0.5 is silky smooth 
+          animation: gsap.to(imageSeq, {
+            frame: frameCount - 1,
+            snap: "frame",
+            ease: "none",
+            onUpdate: () => {
+              if (images[imageSeq.frame] && images[imageSeq.frame].complete) {
+                context.drawImage(images[imageSeq.frame], 0, 0);
+              }
+            }
+          })
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>
