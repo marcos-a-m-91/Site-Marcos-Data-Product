@@ -12,18 +12,18 @@
   ═══════════════════════════════════════════════ -->
 
   <!-- GSAP + ScrollTrigger (local — from design system) -->
-  <script src="Templates/parallax-geometry/assets/gsap_4a57399e4113.js"></script>
-  <script src="Templates/parallax-geometry/assets/ScrollTrigger_8669edfeb171.js"></script>
+  <script src="templates/parallax-geometry/assets/gsap_4a57399e4113.js"></script>
+  <script src="templates/parallax-geometry/assets/ScrollTrigger_8669edfeb171.js"></script>
 
   <!-- Tailwind CSS (local — from design system) -->
-  <script src="Templates/parallax-geometry/assets/resource_3fa48481346f.js"></script>
+  <script src="templates/parallax-geometry/assets/resource_3fa48481346f.js"></script>
 
   <!-- Lucide Icons (local — from design system) -->
-  <script src="Templates/ai-automation-17.aura.build/assets/lucide_latest_2eebd0ebe8c2.js"></script>
+  <script src="templates/ai-automation-17.aura.build/assets/lucide_latest_2eebd0ebe8c2.js"></script>
 
   <!-- Fonts: Space Grotesk + Manrope (local — from design system) -->
-  <link href="Templates/parallax-geometry/assets/css2_5f62d382f7c0.css" rel="stylesheet" />
-  <link href="Templates/hu169yr/assets/css2_9b8bf743d4a8.css" rel="stylesheet" />
+  <link href="templates/parallax-geometry/assets/css2_5f62d382f7c0.css" rel="stylesheet" />
+  <link href="templates/hu169yr/assets/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
   <!-- ═══════════════════════════════════════════════
        DESIGN SYSTEM STYLES
@@ -551,7 +551,7 @@
 
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3 group" aria-label="Home">
-        <img src="Logo.png" alt="Marcos Data Product"
+        <img src="assets/img/Logo.png" alt="Marcos Data Product"
           class="w-8 h-8 sm:w-9 sm:h-9 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
         <span class="font-semibold text-sm sm:text-base tracking-tight text-white/90 hidden sm:inline">Marcos Data
           Product</span>
@@ -883,7 +883,7 @@
   <footer class="relative z-10 border-t border-white/5 px-5 sm:px-8 py-8">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/25">
       <div class="flex items-center gap-3">
-        <img src="Logo.png" alt="" class="w-5 h-5 object-contain opacity-50" />
+        <img src="assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-50" />
         <span>© 2026 Marcos Data Product</span>
       </div>
       <span>Feito com dados, café e IA</span>
@@ -1202,7 +1202,7 @@
       if (canvas) {
         const context = canvas.getContext("2d", { alpha: false }); // alpha: false for performance if opaque background
         const frameCount = 192; // Extracted 192 frames via python script
-        const currentFrame = index => `Templates/hero-frames/frame_${String(index).padStart(4, '0')}.webp`;
+        const currentFrame = index => `templates/hero-frames/frame_${String(index).padStart(4, '0')}.webp`;
         const images = [];
         const imageSeq = { frame: 0 };
 

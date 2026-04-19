@@ -1,6 +1,7 @@
 import os
 
-path = 'c:/Users/marco/iCloudDrive/04 - Marcos Data Product/00 - Site/DS/'
+script_dir = os.path.dirname(os.path.abspath(__file__))
+path = os.path.join(script_dir, '../')
 
 with open(path + 'index.html', 'r', encoding='utf-8') as f:
     lines = f.readlines()
@@ -49,7 +50,7 @@ sobre_body = """
       <div class="relative flex justify-center lg:justify-end reveal">
         <div class="relative w-full max-w-md aspect-[4/5] rounded-[2rem] sm:rounded-[3rem] overflow-hidden glass border-white/20 shadow-[0_0_80px_rgba(96,165,250,0.15)] group animate-float-slow">
           <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-[#080810]/40 to-transparent z-10 opacity-70"></div>
-          <img src="Foto Marcos Aurélio.png" alt="Marcos Aurélio" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
+          <img src="assets/img/Foto Marcos Aurélio.png" alt="Marcos Aurélio" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
         </div>
       </div>
     </div>
@@ -175,7 +176,7 @@ sobre_body = """
   <footer class="relative z-10 border-t border-white/5 px-5 sm:px-8 py-8 mt-12">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/25">
       <div class="flex items-center gap-3">
-        <img src="Logo.png" alt="" class="w-5 h-5 object-contain opacity-50" />
+        <img src="assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-50" />
         <span>© 2026 Marcos Data Product</span>
       </div>
       <span>Feito com dados, café e IA</span>

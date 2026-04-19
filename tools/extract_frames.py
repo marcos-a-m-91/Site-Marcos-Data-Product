@@ -2,8 +2,8 @@ import cv2
 import os
 import sys
 
-video_path = "Gerar_um_video_202604171619.mp4"
-output_dir = "Templates/hero-frames"
+video_path = "../assets/video/Gerar_um_video_202604171619.mp4"
+output_dir = "../templates/hero-frames"
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
