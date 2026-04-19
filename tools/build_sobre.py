@@ -183,132 +183,49 @@ sobre_body = """
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════════════════════
-     SCRIPTS
-  ═══════════════════════════════════════════════════════ -->
+  <!-- Professional Scripts -->
+  <script src="assets/js/main.js"></script>
+
   <script>
-    // Ripple effect script
-    function createRipple(event) {
-      const button = event.currentTarget;
-      const circle = document.createElement('span');
-      const diameter = Math.max(button.clientWidth, button.clientHeight);
-      const radius = diameter / 2;
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-      circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-      circle.classList.add('ripple-effect');
-      const existingRipple = button.querySelector('.ripple-effect');
-      if (existingRipple) {
-        existingRipple.remove();
-      }
-      button.appendChild(circle);
-    }
+    // Page-specific unique logic for About page
+    window.addEventListener('load', () => {
+      // Setup GSAP for timeline
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
 
-    lucide.createIcons();
+        // Timeline Animation logic
+        gsap.utils.toArray('.timeline-item').forEach((item, index) => {
+          const card = item.querySelector('.tl-card');
+          const dot = item.querySelectorAll('.tl-dot');
+          const year = item.querySelectorAll('.tl-year');
 
-    // Setup GSAP
-    gsap.registerPlugin(ScrollTrigger);
+          // Card enters
+          gsap.fromTo(card,
+            { opacity: 0, x: index % 2 === 0 ? 30 : -30 },
+            { 
+              opacity: 1, x: 0, duration: 1, ease: "power3.out",
+              scrollTrigger: { trigger: item, start: "top 80%" }
+            }
+          );
 
-    // Initial Reveal for Base Elements
-    gsap.utils.toArray('.reveal').forEach((elem) => {
-      gsap.fromTo(elem, 
-        { y: 30, opacity: 0 }, 
-        { 
-          y: 0, 
-          opacity: 1, 
-          duration: 1, 
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: elem,
-            start: 'top 85%',
-          }
-        }
-      );
-    });
+          // Dot flashes
+          gsap.fromTo(dot,
+            { scale: 0, opacity: 0 },
+            { 
+              scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)",
+              scrollTrigger: { trigger: item, start: "top 80%" }
+            }
+          );
 
-    // Timeline Animation
-    gsap.utils.toArray('.timeline-item').forEach((item, index) => {
-      const card = item.querySelector('.tl-card');
-      const dot = item.querySelectorAll('.tl-dot');
-      const year = item.querySelectorAll('.tl-year');
-
-      // Expand line up to the element
-      const timelineLine = document.querySelector('.timeline-line');
-
-      // Card enters
-      gsap.fromTo(card,
-        { opacity: 0, x: index % 2 === 0 ? 30 : -30 },
-        { 
-          opacity: 1, 
-          x: 0, 
-          duration: 1, 
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 80%",
-          }
-        }
-      );
-
-      // Dot flashes
-      gsap.fromTo(dot,
-        { scale: 0, opacity: 0 },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          duration: 0.5, 
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 80%",
-          }
-        }
-      );
-
-      // Year slides in slightly
-      gsap.fromTo(year,
-        { opacity: 0, x: index % 2 === 0 ? -15 : 15 },
-        { 
-          opacity: 1, 
-          x: 0, 
-          duration: 0.8, 
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 80%",
-          }
-        }
-      );
-    });
-
-    // Mobile menu toggle
-    const mobileBtn = document.getElementById('mobile-btn');
-    const mobileClose = document.getElementById('mobile-close');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    mobileBtn?.addEventListener('click', () => {
-      mobileMenu.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
-    const closeMenu = () => {
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
-    };
-
-    if (mobileClose && mobileMenu && mobileBtn) {
-      mobileClose.addEventListener('click', closeMenu);
-      mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
-    }
-
-    // Nav blur on scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+          // Year slides in
+          gsap.fromTo(year,
+            { opacity: 0, x: index % 2 === 0 ? -15 : 15 },
+            { 
+              opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
+              scrollTrigger: { trigger: item, start: "top 80%" }
+            }
+          );
+        });
       }
     });
   </script>
