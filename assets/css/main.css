@@ -419,6 +419,46 @@ section {
   color: white;
 }
 
+/* ── SVG icon color filters ───────────────────── */
+/* Converts any SVG <img> to the matching card accent colour.        */
+/* Formula: brightness(0) turns it black, then hue/sat/brightness   */
+/* shift applies the target tint.                                    */
+
+/* blue-400  (#60a5fa) */
+.icon-blue {
+  filter: brightness(0) saturate(100%)
+          invert(65%) sepia(80%) saturate(500%)
+          hue-rotate(195deg) brightness(102%) contrast(97%);
+}
+
+/* emerald-400  (#34d399) */
+.icon-emerald {
+  filter: brightness(0) saturate(100%)
+          invert(72%) sepia(55%) saturate(450%)
+          hue-rotate(116deg) brightness(95%) contrast(96%);
+}
+
+/* purple-400  (#a78bfa) */
+.icon-purple {
+  filter: brightness(0) saturate(100%)
+          invert(65%) sepia(50%) saturate(600%)
+          hue-rotate(225deg) brightness(105%) contrast(96%);
+}
+
+/* pink-400  (#f472b6) */
+.icon-pink {
+  filter: brightness(0) saturate(100%)
+          invert(58%) sepia(80%) saturate(430%)
+          hue-rotate(290deg) brightness(101%) contrast(97%);
+}
+
+/* amber-400  (#fbbf24) */
+.icon-amber {
+  filter: brightness(0) saturate(100%)
+          invert(80%) sepia(75%) saturate(600%)
+          hue-rotate(10deg) brightness(103%) contrast(97%);
+}
+
 /* ── Spec row for mini data ───────────────────── */
 .stat-item {
   text-align: center;

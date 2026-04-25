@@ -1,0 +1,30 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Faixa 1 -->
+  <path d="
+    M10 20
+    Q60 10 110 20
+    L110 40
+    Q60 30 10 40
+    Z
+  " fill="#DC322F"></path>
+
+  <!-- Faixa 2 -->
+  <path d="
+    M10 50
+    Q60 40 110 50
+    L110 70
+    Q60 60 10 70
+    Z
+  " fill="#DC322F"></path>
+
+  <!-- Faixa 3 -->
+  <path d="
+    M10 80
+    Q60 70 110 80
+    L110 100
+    Q60 90 10 100
+    Z
+  " fill="#DC322F"></path>
+
+</svg>

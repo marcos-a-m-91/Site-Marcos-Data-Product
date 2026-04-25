@@ -1,0 +1,38 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- ===== HEXÁGONO ===== -->
+    <path d="
+      M60 30
+      H196
+      Q210 30 218 44
+      L240 100
+      Q248 120 240 140
+      L218 196
+      Q210 210 196 210
+      H60
+      Q46 210 38 196
+      L16 140
+      Q8 120 16 100
+      L38 44
+      Q46 30 60 30
+      Z
+    "></path>
+
+    <!-- ===== LUPA ===== -->
+    <!-- círculo externo -->
+    <circle cx="120" cy="120" r="52"></circle>
+
+    <!-- círculo interno -->
+    <circle cx="120" cy="120" r="38"></circle>
+
+    <!-- cabo -->
+    <path d="M152 152 L182 182"></path>
+
+    <!-- ===== BARRAS ===== -->
+    <rect x="102" y="110" width="10" height="30" rx="5"></rect>
+    <rect x="118" y="95" width="12" height="45" rx="6"></rect>
+    <rect x="136" y="115" width="10" height="25" rx="5"></rect>
+
+  </g>
+</svg>
