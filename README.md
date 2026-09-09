@@ -13,7 +13,10 @@ Este é o repositório do site profissional de **Marcos Aurélio**, Senior Busin
 │   └── vendor/       # Bibliotecas externas (GSAP, Tailwind, Lucide, Fonts)
 ├── tools/            # Scripts de automação (ex: build_sobre.py)
 ├── index.html        # Página principal
-├── sobre.html        # Página "Sobre" (gerada automaticamente)
+├── playbook.html     # Página "Playbook" (templates, frameworks e cheatsheets)
+├── projetos.html     # Página de projetos e cases
+├── biblioteca.html   # Curadoria de livros, papers e recursos
+├── sobre.html        # Página "Sobre"
 ├── design_system.html # Referência visual e componentes
 └── README.md
 ```
