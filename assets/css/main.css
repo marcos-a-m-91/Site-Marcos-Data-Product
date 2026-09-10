@@ -781,3 +781,209 @@ section {
   border-color: var(--brand-blue) !important;
   box-shadow: 0 8px 24px rgba(17, 55, 110, 0.12);
 }
+
+/* ══════════════════════════════════════════════════
+   PLAYBOOK PILLAR CARDS (Power BI, IA, Dataviz)
+══════════════════════════════════════════════════ */
+.pillar-card {
+  --pillar-accent: #11376e;
+  --pillar-accent-rgb: 17, 55, 110;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(31, 35, 40, 0.06), 0 1px 2px rgba(31, 35, 40, 0.04);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pillar-card-amber {
+  --pillar-accent: #9a6700;
+  --pillar-accent-rgb: 154, 103, 0;
+}
+
+.pillar-card-blue {
+  --pillar-accent: #11376e;
+  --pillar-accent-rgb: 17, 55, 110;
+}
+
+.pillar-card-emerald {
+  --pillar-accent: #1a7f37;
+  --pillar-accent-rgb: 26, 127, 55;
+}
+
+/* Accent top bar */
+.pillar-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--pillar-accent);
+  opacity: 0.75;
+  transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+/* Soft ambient background glow */
+.pillar-card-glow {
+  position: absolute;
+  top: -25%;
+  right: -25%;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--pillar-accent-rgb), 0.16) 0%, transparent 70%);
+  filter: blur(35px);
+  opacity: 0.15;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--pillar-accent-rgb), 0.45);
+  box-shadow: 0 14px 32px rgba(var(--pillar-accent-rgb), 0.12), 0 2px 6px rgba(31, 35, 40, 0.06);
+}
+
+.pillar-card:hover .pillar-card-bar {
+  opacity: 1;
+  height: 5px;
+}
+
+.pillar-card:hover .pillar-card-glow {
+  opacity: 0.45;
+  transform: scale(1.25);
+}
+
+.pillar-icon-wrap {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 12px;
+  background: rgba(var(--pillar-accent-rgb), 0.08);
+  border: 1px solid rgba(var(--pillar-accent-rgb), 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pillar-accent);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+}
+
+.pillar-card:hover .pillar-icon-wrap {
+  transform: scale(1.08);
+  background: rgba(var(--pillar-accent-rgb), 0.14);
+}
+
+/* Topic tags inside pillar cards */
+.pillar-topic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: #f6f8fa;
+  border: 1px solid var(--border-default);
+  transition: all 0.2s ease;
+}
+
+.pillar-card:hover .pillar-topic-pill {
+  border-color: rgba(var(--pillar-accent-rgb), 0.25);
+  background: #ffffff;
+}
+
+/* Button inside pillar card */
+.pillar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  background: var(--pillar-accent);
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  box-shadow: 0 1px 0 rgba(27, 31, 36, 0.1), 0 2px 5px rgba(var(--pillar-accent-rgb), 0.2);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.pillar-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.pillar-card:hover .pillar-btn svg {
+  transform: translateX(4px);
+}
+
+/* ══════════════════════════════════════════════════
+   PLAYBOOK RESOURCE CARDS (Primer Light Style)
+══════════════════════════════════════════════════ */
+.playbook-resource-card {
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgba(31, 35, 40, 0.06);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.playbook-resource-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-blue);
+  box-shadow: 0 12px 28px rgba(17, 55, 110, 0.12), 0 2px 6px rgba(31, 35, 40, 0.06);
+}
+
+.playbook-preview-bg {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #f6f8fa;
+  border-bottom: 1px solid var(--border-default);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Category Filter Pills */
+.filter-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.15rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-pill-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--brand-blue);
+  background: #f6f8fa;
+  transform: translateY(-1px);
+}
+
+.filter-pill-btn.active {
+  color: #ffffff;
+  background: var(--brand-blue);
+  border-color: var(--brand-blue);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(17, 55, 110, 0.25);
+}
+

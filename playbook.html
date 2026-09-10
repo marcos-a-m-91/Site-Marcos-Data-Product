@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Playbook — Marcos Data Product</title>
-  <meta name="description" content="Playbooks, templates, frameworks e cheatsheets focados em dados, produto e produtividade." />
+  <title>Playbook — Marcos Data Product | Power BI, IA & Data Viz</title>
+  <meta name="description" content="O hub central de playbooks, templates, automações e frameworks práticos de Power BI, Inteligência Artificial e Data Visualization." />
 
   <!-- Vendor Libraries (Local) -->
   <script src="assets/vendor/gsap_4a57399e4113.js"></script>
@@ -23,10 +23,14 @@
 
 <body>
 
-  <!-- THREE.JS CANVAS BACKGROUND -->
+  <!-- ═══════════════════════════════════════════════════════
+     THREE.JS CANVAS BACKGROUND (Primer Light Mode)
+  ═══════════════════════════════════════════════════════ -->
   <canvas id="canvas"></canvas>
 
-  <!-- NAVIGATION — Sticky glass navbar -->
+  <!-- ═══════════════════════════════════════════════════════
+     NAVIGATION — Sticky glass navbar (Primer Light)
+  ═══════════════════════════════════════════════════════ -->
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
 
@@ -34,7 +38,7 @@
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Home">
         <img src="assets/img/Logo.png" alt="Marcos Data Product"
           class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-white/90 hidden sm:inline">Marcos Data
+        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data
           Product</span>
       </a>
 
@@ -49,7 +53,7 @@
       </nav>
 
       <!-- Mobile hamburger -->
-      <button class="md:hidden glass rounded-xl p-3 text-white/70 hover:text-white transition-colors" id="mobile-btn"
+      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn"
         aria-label="Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="4" y1="6" x2="20" y2="6" />
@@ -62,7 +66,7 @@
 
   <!-- Mobile menu overlay -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-white/70 hover:text-white" id="mobile-close"
+    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close"
       aria-label="Fechar menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M18 6L6 18M6 6l12 12" />
@@ -76,162 +80,243 @@
     <a href="sobre.html" class="mobile-link">Sobre</a>
   </div>
 
-  <!-- HERO DA PÁGINA (1ª dobra) -->
-  <section class="min-h-[50vh] flex flex-col items-center justify-center px-5 sm:px-8 pt-40 pb-16 relative overflow-hidden text-center z-10">
+  <!-- ═══════════════════════════════════════════════════════
+     HERO DA PÁGINA (1ª dobra)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="min-h-[50vh] flex flex-col items-center justify-center px-5 sm:px-8 pt-36 sm:pt-40 pb-10 relative overflow-hidden text-center z-10">
     <div class="max-w-4xl mx-auto flex flex-col items-center">
-      <span class="reveal inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-xs sm:text-sm font-medium mb-6 uppercase tracking-wider backdrop-blur-md">
-        <i data-lucide="download-cloud" class="w-4 h-4"></i>
-        Playbook & Recursos
+      
+      <!-- Badge de destaque -->
+      <span class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#9a6700]/30 bg-[#9a6700]/10 text-[#9a6700] text-xs sm:text-sm font-semibold mb-6 uppercase tracking-wider backdrop-blur-md shadow-sm">
+        <i data-lucide="book-marked" class="w-4 h-4 text-[#9a6700]"></i>
+        Hub Central de Conhecimento
       </span>
-      <h1 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-white">
-        Acelere o seu <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">fluxo de trabalho</span>
+
+      <!-- Headline Principal -->
+      <h1 class="reveal text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6 text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
+        Playbooks, Guias &amp;<br />
+        <span class="gradient-text">Soluções Práticas</span>
       </h1>
-      <p class="reveal text-lg sm:text-xl text-white/50 max-w-2xl leading-relaxed mt-4" style="font-family:'Manrope',sans-serif">
-        Um playbook com templates, frameworks e cheatsheets que criei e utilizo no meu dia a dia operando dados e produtos.
+
+      <!-- Descrição de introdução -->
+      <p class="reveal text-base sm:text-lg md:text-xl text-[#656d76] max-w-2xl mx-auto leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+        O centro estratégico onde compartilho metodologias de mercado, automações com IA, engenharia de dashboards em Power BI e boas práticas de visualização de dados que geram valor real para negócios.
       </p>
-    </div>
-  </section>
 
-  <!-- GRID DO PLAYBOOK -->
-  <section class="relative z-10 px-5 sm:px-8 pb-32">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="playbook-grid">
-
-      <!-- Playbook 1 -->
-      <div class="playbook-card reveal glass bg-black/40 backdrop-blur-2xl rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 hover:border-blue-500/30 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(59,130,246,0.1)]">
-        <div class="w-full aspect-video bg-white/5 relative overflow-hidden flex items-center justify-center">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-transparent z-10 opacity-90"></div>
-          
-          <!-- Placeholder background pattern/icon -->
-          <i data-lucide="bar-chart-2" class="w-32 h-32 text-white/5 absolute opacity-20 transform -rotate-12 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700"></i>
-          
-          <!-- Imagem real (Pode substituir o src quando tiver a capa) -->
-          <!-- <img src="assets/img/CapaPlaybook.png" alt="Capa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 relative z-0"> -->
-
-          <!-- Badges flutuantes -->
-          <div class="absolute top-5 left-5 z-20 flex gap-2">
-            <span class="px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-1.5">
-              <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div> Grátis
-            </span>
-            <span class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
-              Template
-            </span>
-          </div>
-        </div>
-        
-        <div class="p-6 sm:p-8 flex flex-col flex-1 border-t border-white/5">
-          <h3 class="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-blue-400 transition-colors" style="font-family:'Space Grotesk',sans-serif">Dashboard Master — Vendas B2B</h3>
-          <p class="text-white/60 text-base leading-relaxed mb-8 flex-1" style="font-family:'Manrope',sans-serif">
-            Template pronto em Power BI com o modelo de dados unificado que utilizo nas mentorias. Chega de sofrer modelando tabelas fato e dimensão do zero em novos projetos de vendas.
-          </p>
-
-          <div class="flex items-center justify-between mt-auto">
-            <div class="flex gap-2">
-              <div class="px-2.5 py-1 rounded-md bg-[#F2C811]/10 border border-[#F2C811]/20 text-[#F2C811] text-xs font-semibold flex items-center gap-1.5">
-                Power BI
-              </div>
-            </div>
-            
-            <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-blue-600 hover:border-blue-500 transition-all text-sm font-semibold shadow-lg hover:shadow-blue-500/20">
-              Acessar
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Playbook 2 -->
-      <div class="playbook-card reveal glass bg-black/40 backdrop-blur-2xl rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 hover:border-purple-500/30 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(168,85,247,0.1)] transition-delay-100">
-        <div class="w-full aspect-video bg-white/5 relative overflow-hidden flex items-center justify-center">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-transparent z-10 opacity-90"></div>
-          
-          <!-- Placeholder background pattern/icon -->
-          <i data-lucide="layout-template" class="w-32 h-32 text-white/5 absolute opacity-20 transform -rotate-12 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700"></i>
-          
-          <div class="absolute top-5 left-5 z-20 flex gap-2">
-            <span class="px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-1.5">
-              <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div> Grátis
-            </span>
-            <span class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
-              Framework
-            </span>
-          </div>
-        </div>
-        
-        <div class="p-6 sm:p-8 flex flex-col flex-1 border-t border-white/5">
-          <h3 class="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-purple-400 transition-colors" style="font-family:'Space Grotesk',sans-serif">Discovery de Produtos de Dados</h3>
-          <p class="text-white/60 text-base leading-relaxed mb-8 flex-1" style="font-family:'Manrope',sans-serif">
-            Um guia passo a passo em Notion de como conduzir entrevistas com stakeholders, mapear requisitos vitais e garantir aderência antes de escrever a primeira linha de SQL.
-          </p>
-
-          <div class="flex items-center justify-between mt-auto">
-            <div class="flex gap-2">
-              <div class="px-2.5 py-1 rounded-md bg-white/10 border border-white/20 text-white text-xs font-semibold flex items-center gap-1.5">
-                Notion
-              </div>
-              <div class="px-2.5 py-1 rounded-md bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold flex items-center gap-1.5">
-                Miro
-              </div>
-            </div>
-            
-            <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-purple-600 hover:border-purple-500 transition-all text-sm font-semibold shadow-lg hover:shadow-purple-500/20">
-              Acessar
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Playbook 3 -->
-      <div class="playbook-card reveal glass bg-black/40 backdrop-blur-2xl rounded-[2rem] overflow-hidden flex flex-col group hover:-translate-y-2 hover:border-amber-500/30 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(245,158,11,0.1)] transition-delay-200">
-        <div class="w-full aspect-video bg-white/5 relative overflow-hidden flex items-center justify-center">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-transparent z-10 opacity-90"></div>
-          
-          <!-- Placeholder background pattern/icon -->
-          <i data-lucide="terminal-square" class="w-32 h-32 text-white/5 absolute opacity-20 transform -rotate-12 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700"></i>
-          
-          <div class="absolute top-5 left-5 z-20 flex gap-2">
-            <span class="px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-1.5">
-              <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div> Grátis
-            </span>
-            <span class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
-              Cheatsheet
-            </span>
-          </div>
-        </div>
-        
-        <div class="p-6 sm:p-8 flex flex-col flex-1 border-t border-white/5">
-          <h3 class="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-amber-400 transition-colors" style="font-family:'Space Grotesk',sans-serif">SQL Window Functions — O Guia</h3>
-          <p class="text-white/60 text-base leading-relaxed mb-8 flex-1" style="font-family:'Manrope',sans-serif">
-            Um PDF interativo de 2 páginas que condensa tudo o que você precisa saber sobre funções de janela analíticas no SQL (ROW_NUMBER, OVER PARTITION, LAG/LEAD).
-          </p>
-
-          <div class="flex items-center justify-between mt-auto">
-            <div class="flex gap-2">
-              <div class="px-2.5 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold flex items-center gap-1.5">
-                SQL
-              </div>
-              <div class="px-2.5 py-1 rounded-md bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-semibold flex items-center gap-1.5">
-                PDF
-              </div>
-            </div>
-            
-            <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-amber-600 hover:border-amber-500 transition-all text-sm font-semibold shadow-lg hover:shadow-amber-500/20">
-              Acessar
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </a>
-          </div>
-        </div>
+      <!-- Pílulas dos 3 Grandes Pilares -->
+      <div class="reveal flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium text-[#656d76]">
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#9a6700]"></span> Power BI &amp; DAX
+        </span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#11376e]"></span> Inteligência Artificial &amp; Agentes
+        </span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#1a7f37]"></span> Data Visualization &amp; UX
+        </span>
       </div>
 
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="relative z-10 border-t border-white/5 px-5 sm:px-8 py-8 mt-12">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/70">
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     OS 3 BOXES PILARES (Power BI · IA · Data Viz)
+     Páginas de Destino Exclusivas
+  ═══════════════════════════════════════════════════════ -->
+  <section id="pilares" class="relative z-10 px-5 sm:px-8 py-16 sm:py-24 pb-28">
+    
+    <!-- Ambient background glows -->
+    <div class="section-glow w-[500px] h-[500px] bg-amber-500/5" style="top:0;left:-5%;"></div>
+    <div class="section-glow w-[500px] h-[500px] bg-blue-500/5" style="top:20%;right:-5%;"></div>
+
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
+        <span class="badge badge-blue mb-3">Navegação por Especialidade</span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#1f2328] mb-4" style="font-family:'Space Grotesk',sans-serif">
+          Escolha a sua <span class="gradient-text">Frente de Estudo</span>
+        </h2>
+        <p class="text-sm sm:text-base md:text-lg text-[#656d76] leading-relaxed font-sans" style="font-family:'Manrope',sans-serif">
+          Acesse os playbooks aprofundados, guias de melhores práticas, frameworks estruturados e modelos prontos de cada área.
+        </p>
+      </div>
+
+      <!-- 3 Pillar Gateway Boxes Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 reveal" id="pillars-grid">
+
+        <!-- ── BOX 1: POWER BI ──────────────────────────── -->
+        <a href="powerbi.html" class="pillar-card pillar-card-amber group" id="box-powerbi" aria-label="Acessar Playbook de Power BI">
+          <div class="pillar-card-bar"></div>
+          <div class="pillar-card-glow"></div>
+
+          <!-- Header do Card: Ícone + Badge -->
+          <div class="flex items-center justify-between gap-4 mb-6 relative z-10">
+            <div class="pillar-icon-wrap">
+              <i data-lucide="bar-chart-3" class="w-7 h-7"></i>
+            </div>
+            <span class="badge badge-amber">
+              <i data-lucide="zap" class="w-3 h-3"></i> Power BI Hub
+            </span>
+          </div>
+
+          <!-- Título e Descrição Principal -->
+          <div class="relative z-10 mb-6 flex-1">
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight group-hover:text-[#9a6700] transition-colors" style="font-family:'Space Grotesk',sans-serif">
+              Power BI &amp; Analytics
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed" style="font-family:'Manrope',sans-serif">
+              Modelagem dimensional Star Schema, fórmulas DAX performáticas, governança corporativa de relatórios e templates .pbix prontos para acelerar suas entregas analíticas.
+            </p>
+          </div>
+
+          <!-- Pílulas de Tópicos (Scannability / UX) -->
+          <div class="relative z-10 flex flex-wrap gap-1.5 mb-8">
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#9a6700]"></i> Star Schema
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#9a6700]"></i> DAX Otimizado
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#9a6700]"></i> Templates .PBIX
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#9a6700]"></i> Governança de BI
+            </span>
+          </div>
+
+          <!-- Rodapé do Card com CTA -->
+          <div class="relative z-10 pt-4 border-t border-[#d0d7de] flex items-center justify-between gap-4 mt-auto">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#9a6700]">
+              Página Dedicada
+            </span>
+            <span class="pillar-btn">
+              <span>Acessar Playbook</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+
+        <!-- ── BOX 2: INTELIGÊNCIA ARTIFICIAL ──────────── -->
+        <a href="ia.html" class="pillar-card pillar-card-blue group" id="box-ia" aria-label="Acessar Playbook de IA">
+          <div class="pillar-card-bar"></div>
+          <div class="pillar-card-glow"></div>
+
+          <!-- Header do Card: Ícone + Badge -->
+          <div class="flex items-center justify-between gap-4 mb-6 relative z-10">
+            <div class="pillar-icon-wrap">
+              <i data-lucide="bot" class="w-7 h-7"></i>
+            </div>
+            <span class="badge badge-blue">
+              <i data-lucide="sparkles" class="w-3 h-3"></i> IA &amp; Automação
+            </span>
+          </div>
+
+          <!-- Título e Descrição Principal -->
+          <div class="relative z-10 mb-6 flex-1">
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight group-hover:text-[#11376e] transition-colors" style="font-family:'Space Grotesk',sans-serif">
+              Inteligência Artificial &amp; Agentes
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed" style="font-family:'Manrope',sans-serif">
+              Arquitetura de agentes autônomos, integrações de APIs com LLMs, automações de fluxos com Python e padrões práticos de engenharia de prompt aplicados a produtos de dados.
+            </p>
+          </div>
+
+          <!-- Pílulas de Tópicos (Scannability / UX) -->
+          <div class="relative z-10 flex flex-wrap gap-1.5 mb-8">
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#11376e]"></i> Agentes de IA
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#11376e]"></i> Automação com APIs
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#11376e]"></i> Prompt Engineering
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#11376e]"></i> RAG para Negócios
+            </span>
+          </div>
+
+          <!-- Rodapé do Card com CTA -->
+          <div class="relative z-10 pt-4 border-t border-[#d0d7de] flex items-center justify-between gap-4 mt-auto">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#11376e]">
+              Página Dedicada
+            </span>
+            <span class="pillar-btn">
+              <span>Acessar Playbook</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+
+        <!-- ── BOX 3: DATA VISUALIZATION ───────────────── -->
+        <a href="dataviz.html" class="pillar-card pillar-card-emerald group" id="box-dataviz" aria-label="Acessar Playbook de Data Viz">
+          <div class="pillar-card-bar"></div>
+          <div class="pillar-card-glow"></div>
+
+          <!-- Header do Card: Ícone + Badge -->
+          <div class="flex items-center justify-between gap-4 mb-6 relative z-10">
+            <div class="pillar-icon-wrap">
+              <i data-lucide="pie-chart" class="w-7 h-7"></i>
+            </div>
+            <span class="badge badge-emerald">
+              <i data-lucide="layout" class="w-3 h-3"></i> Dataviz &amp; UX
+            </span>
+          </div>
+
+          <!-- Título e Descrição Principal -->
+          <div class="relative z-10 mb-6 flex-1">
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight group-hover:text-[#1a7f37] transition-colors" style="font-family:'Space Grotesk',sans-serif">
+              Data Visualization &amp; UX
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed" style="font-family:'Manrope',sans-serif">
+              Storytelling orientado à tomada de decisão executiva, psicologia da percepção visual, design de interfaces analíticas sem ruído cognitivo e seleção correta de gráficos.
+            </p>
+          </div>
+
+          <!-- Pílulas de Tópicos (Scannability / UX) -->
+          <div class="relative z-10 flex flex-wrap gap-1.5 mb-8">
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#1a7f37]"></i> Storytelling
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#1a7f37]"></i> Design Cognitivo
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#1a7f37]"></i> Guia de Gráficos
+            </span>
+            <span class="pillar-topic-pill">
+              <i data-lucide="check" class="w-3 h-3 text-[#1a7f37]"></i> UX para Dashboards
+            </span>
+          </div>
+
+          <!-- Rodapé do Card com CTA -->
+          <div class="relative z-10 pt-4 border-t border-[#d0d7de] flex items-center justify-between gap-4 mt-auto">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#1a7f37]">
+              Página Dedicada
+            </span>
+            <span class="pillar-btn">
+              <span>Acessar Playbook</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER (Primer Light Theme)
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 bg-[#f6f8fa]">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#656d76]">
       <div class="flex items-center gap-3">
-        <img src="assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-50" />
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60" />
         <span>© 2026 Marcos Data Product</span>
       </div>
       <span>Feito com dados, café e IA</span>
@@ -239,7 +324,7 @@
   </footer>
 
   <!-- ═══════════════════════════════════════════════════════
-     THREE.JS BACKGROUND — Clean data science wireframes
+     THREE.JS BACKGROUND — Primer Light Theme Wireframes
   ═══════════════════════════════════════════════════════ -->
   <script type="module">
     import * as THREE from "https://esm.sh/three@0.160.0";
@@ -253,7 +338,7 @@
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setSize(innerWidth, innerHeight);
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setClearColor(0x080810, 1);
+    renderer.setClearColor(0xf6f8fa, 1);
     camera.position.z = 15;
 
     /* ── Parallax groups ───────────────────────────── */
@@ -262,147 +347,60 @@
     const bg = new THREE.Group();
     scene.add(fg, mg, bg);
 
-    /* ── Material helpers (clean, refined) ─────────── */
+    /* ── Material helpers ──────────────────────────── */
     const wireMat = (c, o) => new THREE.MeshBasicMaterial({ color: c, wireframe: true, transparent: true, opacity: o * 0.6 });
     const lineMat = (c, o) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o * 0.6 });
+    function toGeo(pts) { const g = new THREE.BufferGeometry(); g.setFromPoints(pts); return g; }
     const V3 = (x, y, z = 0) => new THREE.Vector3(x, y, z);
-    const toGeo = pts => new THREE.BufferGeometry().setFromPoints(pts);
-
-    function smoothCurve(pts, res = 24) {
-      if (pts.length < 2) return pts;
-      const cv = new THREE.CatmullRomCurve3(pts);
-      return cv.getPoints(res);
+    function smoothCurve(points, segments) {
+      return new THREE.CatmullRomCurve3(points).getPoints(segments);
     }
 
     /* ── Factory: Data components ──────────────────── */
     function createLineChart(s, col) {
       const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(s * 0.5, -s * 0.4)]), lineMat(col, 0.3)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(-s * 0.5, s * 0.4)]), lineMat(col, 0.3)));
-      const pts = []; for (let i = 0; i <= 8; i++) pts.push(V3(-s * 0.45 + (i / 8) * s * 0.9, -s * 0.35 + Math.random() * s * 0.7));
-      g.add(new THREE.Line(toGeo(smoothCurve(pts, 32)), lineMat(col, 0.8)));
-      pts.forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.02, 8, 8), wireMat(col, 0.7)); d.position.copy(p); g.add(d); });
+      const vals = [0.18, 0.35, 0.28, 0.52, 0.44, 0.65, 0.58, 0.78, 0.72, 0.92];
+      const rawPts = vals.map((v, i) => V3((i / (vals.length - 1) - 0.5) * s * 1.3, (v - 0.5) * s * 0.8));
+      g.add(new THREE.Line(toGeo(smoothCurve(rawPts, 80)), lineMat(col, 0.55)));
+      rawPts.forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.03, 12, 12), wireMat(col, 0.6)); d.position.copy(p); g.add(d); });
+      const base = -s * 0.42;
+      g.add(new THREE.Line(toGeo([V3(-s * 0.68, base), V3(s * 0.68, base)]), lineMat(col, 0.25)));
+      g.add(new THREE.Line(toGeo([V3(-s * 0.68, base), V3(-s * 0.68, s * 0.5)]), lineMat(col, 0.25)));
       return g;
     }
 
     function createBarChart(s, col) {
       const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(s * 0.5, -s * 0.4)]), lineMat(col, 0.3)));
-      const bw = s * 0.12; const px = [-s * 0.3, -s * 0.1, s * 0.1, s * 0.3];
-      px.forEach(x => { const h = s * 0.2 + Math.random() * s * 0.5; const m = new THREE.Mesh(new THREE.BoxGeometry(bw, h, bw * 0.5), wireMat(col, 0.5)); m.position.set(x, -s * 0.4 + h / 2, 0); g.add(m); });
+      const h = [0.30, 0.55, 0.42, 0.82, 0.50, 0.70, 0.38, 0.90];
+      const bw = s * 0.11, sp = s * 0.18, base = -s * 0.45;
+      h.forEach((v, i) => { const bh = v * s * 0.85; const bar = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, s * 0.05), wireMat(col, 0.25 + v * 0.2)); bar.position.set((i - h.length / 2 + 0.5) * sp, base + bh / 2, 0); g.add(bar); });
+      g.add(new THREE.Line(toGeo([V3(-h.length / 2 * sp - s * 0.04, base), V3(h.length / 2 * sp + s * 0.04, base)]), lineMat(col, 0.4)));
       return g;
     }
 
     function createScatterPlot(s, col) {
       const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.5), V3(s * 0.5, -s * 0.5)]), lineMat(col, 0.2)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.5), V3(-s * 0.5, s * 0.5)]), lineMat(col, 0.2)));
-      for (let i = 0; i < 28; i++) { const m = new THREE.Mesh(new THREE.OctahedronGeometry(s * 0.035, 0), wireMat(col, 0.5 + Math.random() * 0.4)); m.position.set(-s * 0.4 + Math.random() * s * 0.8, -s * 0.4 + Math.random() * s * 0.8, (Math.random() - 0.5) * s * 0.2); m.rotation.set(Math.random() * 3, Math.random() * 3, 0); g.add(m); }
-      return g;
-    }
-
-    function createNeuralNet(s, col) {
-      const g = new THREE.Group();
-      const layers = [[-s * 0.4, 4], [0, 5], [s * 0.4, 2]]; const nodes = [];
-      layers.forEach(([x, c]) => { const ly = []; for (let i = 0; i < c; i++) { const y = (i - (c - 1) / 2) * s * 0.2; ly.push(V3(x, y)); const m = new THREE.Mesh(new THREE.SphereGeometry(s * 0.04, 12, 12), wireMat(col, 0.45)); m.position.set(x, y, 0); g.add(m); } nodes.push(ly); });
-      for (let l = 0; l < nodes.length - 1; l++) { nodes[l].forEach(n1 => { nodes[l + 1].forEach(n2 => { if (Math.random() > 0.25) g.add(new THREE.Line(toGeo([n1, n2]), lineMat(col, 0.12))); }); }); }
+      const x0 = -s * 0.55, y0 = -s * 0.55;
+      g.add(new THREE.Line(toGeo([V3(x0, y0), V3(s * 0.55, y0)]), lineMat(col, 0.3)));
+      g.add(new THREE.Line(toGeo([V3(x0, y0), V3(x0, s * 0.55)]), lineMat(col, 0.3)));
+      [[0.08, 0.15], [0.15, 0.28], [0.22, 0.25], [0.30, 0.45], [0.38, 0.40], [0.45, 0.55], [0.52, 0.52], [0.60, 0.68]].forEach(([px, py]) => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.025, 10, 10), wireMat(col, 0.5)); d.position.set(x0 + px * s * 1.1, y0 + py * s * 1.1, 0); g.add(d); });
       return g;
     }
 
     function createDonutChart(s, col) {
       const g = new THREE.Group();
-      const cols = [0x60a5fa, 0xfbbf24, 0x34d399, 0xf472b6, 0xa78bfa];
-      const seg = [0.32, 0.22, 0.20, 0.15, 0.11];
+      const cols = [0x11376e, 0x9a6700, 0x1a7f37, 0x8250df];
+      const seg = [0.35, 0.25, 0.22, 0.18];
       const r1 = s * 0.28, r2 = s * 0.52;
       let st = -Math.PI / 2;
       seg.forEach((p, i) => { const a = p * Math.PI * 2; const steps = Math.max(12, Math.round(a * 24)); const lm = lineMat(cols[i], 0.45); const o = [], inn = []; for (let s = 0; s <= steps; s++) { const aa = st + (s / steps) * a; o.push(V3(Math.cos(aa) * r2, Math.sin(aa) * r2)); inn.push(V3(Math.cos(aa) * r1, Math.sin(aa) * r1)); } g.add(new THREE.Line(toGeo(o), lm)); g.add(new THREE.Line(toGeo(inn), lm)); g.add(new THREE.Line(toGeo([o[0], inn[0]]), lm)); g.add(new THREE.Line(toGeo([o[steps], inn[steps]]), lm)); st += a; });
       return g;
     }
 
-    function createROCCurve(s, col) {
-      const g = new THREE.Group();
-      const ext = s * 0.52;
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, -ext)]), lineMat(col, 0.25)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(-ext, ext)]), lineMat(col, 0.25)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, ext)]), lineMat(col, 0.08)));
-      const pts = []; for (let t = 0; t <= 64; t++) { const f = t / 64; pts.push(V3(-ext + f * ext * 2, -ext + (1 - Math.pow(1 - f, 3.2)) * ext * 2)); }
-      g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.5)));
-      return g;
-    }
-
-    function createDecisionTree(s, col) {
-      const g = new THREE.Group();
-      const r = s * 0.048;
-      const tree = [[0, s * 0.5, -1], [-s * 0.38, s * 0.12, 0], [s * 0.38, s * 0.12, 0], [-s * 0.58, -s * 0.22, 1], [-s * 0.18, -s * 0.22, 1], [s * 0.18, -s * 0.22, 2], [s * 0.58, -s * 0.22, 2]];
-      const pos = [];
-      tree.forEach(([x, y, pi], i) => { const p = V3(x, y); pos.push(p); const isLeaf = i >= 3; const m = isLeaf ? new THREE.Mesh(new THREE.SphereGeometry(r * 0.65, 12, 12), wireMat(col, 0.45)) : new THREE.Mesh(new THREE.OctahedronGeometry(r, 0), wireMat(col, 0.5)); m.position.copy(p); if (!isLeaf) m.rotation.z = Math.PI / 4; g.add(m); if (pi >= 0) g.add(new THREE.Line(toGeo([pos[pi], p]), lineMat(col, 0.2))); });
-      return g;
-    }
-
-    function createKMeans(s, col) {
-      const g = new THREE.Group();
-      const cc = [[0x60a5fa, -s * 0.32, s * 0.25], [0xfbbf24, s * 0.32, s * 0.28], [0x34d399, s * 0.05, -s * 0.32]];
-      cc.forEach(([c, cx, cy]) => {
-        const ct = new THREE.Mesh(new THREE.SphereGeometry(s * 0.045, 14, 14), wireMat(c, 0.6)); ct.position.set(cx, cy, 0); g.add(ct);
-        const ring = []; for (let a = 0; a <= 64; a++)ring.push(V3(cx + Math.cos(a / 64 * Math.PI * 2) * s * 0.2, cy + Math.sin(a / 64 * Math.PI * 2) * s * 0.2));
-        g.add(new THREE.Line(toGeo(ring), lineMat(c, 0.1)));
-        for (let p = 0; p < 7; p++) { const a = (p / 7) * Math.PI * 2; const r = s * 0.2 * (0.2 + Math.abs(Math.sin(p * 2.7)) * 0.6); const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.018, 8, 8), wireMat(c, 0.35)); d.position.set(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 0); g.add(d); }
-      });
-      return g;
-    }
-
-    function createRadarChart(s, col) {
-      const g = new THREE.Group();
-      const ax = 6, r = s * 0.48;
-      for (let ring = 1; ring <= 4; ring++) { const rr = r * ring / 4; const pts = []; for (let i = 0; i <= ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; pts.push(V3(Math.cos(a) * rr, Math.sin(a) * rr)); } g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.06 + ring * 0.025))); }
-      for (let i = 0; i < ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; g.add(new THREE.Line(toGeo([V3(0, 0), V3(Math.cos(a) * r, Math.sin(a) * r)]), lineMat(col, 0.12))); }
-      const dv = [0.85, 0.65, 0.90, 0.50, 0.75, 0.60]; const dp = [];
-      for (let i = 0; i <= ax; i++) { const idx = i % ax; const a = (idx / ax) * Math.PI * 2 - Math.PI / 2; dp.push(V3(Math.cos(a) * r * dv[idx], Math.sin(a) * r * dv[idx])); }
-      g.add(new THREE.Line(toGeo(dp), lineMat(col, 0.5)));
-      dp.slice(0, -1).forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.025, 10, 10), wireMat(col, 0.5)); d.position.copy(p); g.add(d); });
-      return g;
-    }
-
-    function createPipeline(s, col) {
-      const g = new THREE.Group();
-      const stages = [{ x: -s * 0.6, y: 0 }, { x: -s * 0.2, y: s * 0.22 }, { x: -s * 0.2, y: -s * 0.22 }, { x: s * 0.15, y: 0 }, { x: s * 0.5, y: s * 0.18 }, { x: s * 0.5, y: -s * 0.18 }];
-      const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [3, 5]];
-      stages.forEach(({ x, y }) => { const n = new THREE.Mesh(new THREE.BoxGeometry(s * 0.16, s * 0.08, s * 0.03), wireMat(col, 0.35)); n.position.set(x, y, 0); g.add(n); });
-      edges.forEach(([a, b]) => { const sa = stages[a], sb = stages[b]; g.add(new THREE.Line(toGeo(smoothCurve([V3(sa.x + s * 0.08, sa.y), V3((sa.x + sb.x) / 2, (sa.y + sb.y) / 2), V3(sb.x - s * 0.08, sb.y)], 16)), lineMat(col, 0.15))); });
-      return g;
-    }
-
-    function createHistogram(s, col) {
-      const g = new THREE.Group();
-      const bins = 12, base = -s * 0.38; const bw = s * 1.0 / bins;
-      for (let i = 0; i < bins; i++) { const nx = (i / (bins - 1) - 0.5) * 2; const h = Math.exp(-nx * nx * 2.5) * s * 0.75 + s * 0.02; const m = new THREE.Mesh(new THREE.BoxGeometry(bw * 0.85, h, bw * 0.25), wireMat(col, 0.18 + Math.exp(-nx * nx * 2.5) * 0.18)); m.position.set((i - (bins - 1) / 2) * bw, base + h / 2, 0); g.add(m); }
-      const cp = []; for (let t = 0; t <= 80; t++) { const x = (t / 80 - 0.5) * s * 1.1; const n = x / (s * 0.5) * 2; cp.push(V3(x, Math.exp(-n * n * 0.65) * s * 0.75 + base)); }
-      g.add(new THREE.Line(toGeo(cp), lineMat(col, 0.5)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.58, base), V3(s * 0.58, base)]), lineMat(col, 0.25)));
-      return g;
-    }
-
-    function createTimeSeries(s, col) {
-      const g = new THREE.Group();
-      const ext = s * 0.5;
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(ext, -ext * 0.75)]), lineMat(col, 0.2)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(-ext, ext * 0.75)]), lineMat(col, 0.2)));
-      const sc = [col, 0x60a5fa, 0xfbbf24];
-      [[0.3, 0.35, 0.28, 0.45, 0.50, 0.42, 0.55, 0.62, 0.58, 0.70, 0.75, 0.68, 0.82], [0.5, 0.48, 0.52, 0.45, 0.40, 0.38, 0.42, 0.35, 0.38, 0.32, 0.35, 0.30, 0.28], [0.1, 0.15, 0.18, 0.22, 0.20, 0.28, 0.32, 0.30, 0.38, 0.42, 0.45, 0.50, 0.55]].forEach((d, si) => { const pts = d.map((v, i) => V3(-ext + (i / (d.length - 1)) * ext * 2, -ext * 0.75 + v * ext * 1.5)); g.add(new THREE.Line(toGeo(smoothCurve(pts, 50)), lineMat(sc[si], 0.35))); });
-      return g;
-    }
-
-    /* ── Factory list & populate ───────────────────── */
-    const factories = [
-      createLineChart, createBarChart, createScatterPlot,
-      createNeuralNet, createDonutChart, createROCCurve,
-      createDecisionTree, createKMeans, createRadarChart,
-      createPipeline, createHistogram, createTimeSeries
-    ];
-
-    const fgC = [0xffffff, 0x60a5fa, 0xfbbf24, 0x34d399];
-    const mgC = [0xffffff, 0x60a5fa, 0xa78bfa];
-    const bgC = [0x3f3f50, 0x4b5563];
+    const factories = [createLineChart, createBarChart, createScatterPlot, createDonutChart];
+    const fgC = [0x11376e, 0x0969da, 0x1a7f37, 0x9a6700];
+    const mgC = [0x11376e, 0x0969da, 0x8250df];
+    const bgC = [0xd0d7de, 0x8c959f];
     const shapeObjs = [];
 
     function populate(group, count, colSet, sX, sY, zR, zO) {
@@ -417,14 +415,20 @@
       }
     }
 
-    populate(fg, 5, fgC, 58, 40, 10, 4);
-    populate(mg, 8, mgC, 82, 55, 18, -6);
-    populate(bg, 12, bgC, 100, 70, 22, -18);
+    populate(fg, 4, fgC, 58, 40, 10, 4);
+    populate(mg, 7, mgC, 82, 55, 18, -6);
+    populate(bg, 10, bgC, 100, 70, 22, -18);
 
-    /* ── Scroll & mouse ────────────────────────────── */
+    /* ── Scroll & mouse (Optimized Passive Listeners) ── */
     let scrollP = 0, mX = 0, mY = 0;
-    ScrollTrigger.create({ trigger: "body", start: "top top", end: "bottom bottom", scrub: true, onUpdate: s => { scrollP = s.progress; } });
-    document.addEventListener('mousemove', e => { mX = (e.clientX / innerWidth) * 2 - 1; mY = -(e.clientY / innerHeight) * 2 + 1; });
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      scrollP = max > 0 ? window.scrollY / max : 0;
+    }, { passive: true });
+    document.addEventListener('mousemove', e => { 
+      mX = (e.clientX / innerWidth) * 2 - 1; 
+      mY = -(e.clientY / innerHeight) * 2 + 1; 
+    }, { passive: true });
 
     /* ── Animate loop ──────────────────────────────── */
     function animate() {
@@ -442,44 +446,9 @@
     animate();
   </script>
 
-  <!-- UTILITY SCRIPTS — Ripple, Mobile Menu -->
+  <!-- UTILITY SCRIPTS — Mobile Menu & Ripple -->
   <script src="assets/js/main.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Efeito de Parallax nos Cards
-      document.querySelectorAll('.playbook-card').forEach(card => {
-        const icon = card.querySelector('i[data-lucide]:not(.w-4)'); // Pega o ícone de bg gigante
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          
-          if(icon) {
-            gsap.to(icon, {
-              x: x * 30,
-              y: y * 30,
-              rotation: -12 + (x * 15),
-              duration: 1,
-              ease: "power2.out"
-            });
-          }
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          if(icon) {
-            gsap.to(icon, { x: 0, y: 0, rotation: -12, duration: 1, ease: "power2.out" });
-          }
-        });
-      });
-
-      // Inicializa os ícones
-      lucide.createIcons();
-    });
-  </script>
 
 </body>
 
 </html>
-
-

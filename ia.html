@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Playbook de IA &amp; Automação — Marcos Data Product</title>
+  <meta name="description" content="Frameworks de IA generativa, agentes autônomos de dados, engenharia de prompts e automações práticas para produtos de dados." />
+
+  <!-- Vendor Libraries (Local) -->
+  <script src="assets/vendor/gsap_4a57399e4113.js"></script>
+  <script src="assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
+  <script src="assets/vendor/resource_3fa48481346f.js"></script>
+  <script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+
+  <!-- Vendor Fonts (Local) -->
+  <link href="assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
+  <link href="assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+  <!-- THREE.JS CANVAS BACKGROUND (Primer Light Mode) -->
+  <canvas id="canvas"></canvas>
+
+  <!-- NAVIGATION — Sticky glass navbar -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Home">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product"
+          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data
+          Product</span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="https://marcosdp.notion.site/marcos-data-product" target="_blank" rel="noopener noreferrer" class="nav-link">Blog</a>
+        <a href="playbook.html" class="nav-link active">Playbook</a>
+        <a href="projetos.html" class="nav-link">Projetos</a>
+        <a href="biblioteca.html" class="nav-link">Biblioteca</a>
+        <a href="sobre.html" class="nav-link">Sobre</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn"
+        aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close"
+      aria-label="Fechar menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="https://marcosdp.notion.site/marcos-data-product" target="_blank" rel="noopener noreferrer" class="mobile-link">Blog</a>
+    <a href="playbook.html" class="mobile-link active">Playbook</a>
+    <a href="projetos.html" class="mobile-link">Projetos</a>
+    <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
+    <a href="sobre.html" class="mobile-link">Sobre</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     HERO SECTION — PLAYBOOK DE IA
+  ═══════════════════════════════════════════════════════ -->
+  <section class="min-h-[52vh] flex flex-col items-center justify-center px-5 sm:px-8 pt-36 sm:pt-40 pb-12 relative overflow-hidden z-10">
+    <div class="max-w-4xl mx-auto flex flex-col items-center text-center">
+
+      <!-- Breadcrumb / Voltar ao Playbook -->
+      <a href="playbook.html" class="reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#d0d7de] bg-white text-[#656d76] hover:text-[#11376e] hover:border-[#11376e] text-xs font-semibold mb-6 transition-all shadow-sm">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+        <span>Voltar ao Playbook</span>
+      </a>
+
+      <!-- Badge do Pilar -->
+      <span class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#11376e]/20 bg-[#11376e]/10 text-[#11376e] text-xs sm:text-sm font-semibold mb-6 uppercase tracking-wider backdrop-blur-md shadow-sm">
+        <i data-lucide="bot" class="w-4 h-4 text-[#11376e]"></i>
+        Inteligência Artificial &amp; Automação
+      </span>
+
+      <!-- Título Principal -->
+      <h1 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
+        Playbook de IA: <br />
+        <span class="gradient-text">Agentes, LLMs &amp; Automações</span>
+      </h1>
+
+      <!-- Subtítulo -->
+      <p class="reveal text-base sm:text-lg md:text-xl text-[#656d76] max-w-2xl leading-relaxed mb-8" style="font-family:'Manrope',sans-serif">
+        Metodologias práticas para orquestrar agentes autônomos, estruturar engenharia de prompts corporativa, construir soluções de RAG e automatizar tarefas manuais com Python e APIs de ponta.
+      </p>
+
+      <!-- Pílulas de Metadados -->
+      <div class="reveal flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium text-[#656d76]">
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#11376e]"></i> 4 Módulos Práticos
+        </span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <i data-lucide="terminal" class="w-3.5 h-3.5 text-[#11376e]"></i> Código Python Pronto
+        </span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <i data-lucide="database" class="w-3.5 h-3.5 text-[#11376e]"></i> RAG &amp; Bancos Vetoriais
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     CONTEÚDO & MÓDULOS DE IA
+  ═══════════════════════════════════════════════════════ -->
+  <section class="relative z-10 px-5 sm:px-8 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Title -->
+      <div class="max-w-3xl mb-12 reveal">
+        <span class="badge badge-blue mb-3">Estrutura Teórico-Prática</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
+          Frameworks &amp; Arquiteturas de <span class="gradient-text">IA Aplicada</span>
+        </h2>
+        <p class="text-sm sm:text-base text-[#656d76] mt-2 leading-relaxed" style="font-family:'Manrope',sans-serif">
+          Diretrizes aplicáveis para sair do hype dos modelos de linguagem e gerar valor produtivo mensurável para negócios.
+        </p>
+      </div>
+
+      <!-- Módulos Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+
+        <!-- Módulo 1 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 border border-[#11376e]/20 flex items-center justify-center text-[#11376e] mb-6">
+              <i data-lucide="message-square-code" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-blue mb-3">Módulo 01</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              Engenharia de Prompts Estruturados
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Como construir prompts determinísticos com schema JSON enforcement, técnicas de Few-Shot prompting e Chain-of-Thought para extração consistente de insights de dados brutos sem alucinações.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Padronização de System Instructions e persona analítica</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Outputs estruturados com validação via Pydantic</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Técnicas de auto-correção e reflexão do modelo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 2 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 border border-[#11376e]/20 flex items-center justify-center text-[#11376e] mb-6">
+              <i data-lucide="bot" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-blue mb-3">Módulo 02</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              Agentes Autônomos de Dados com Python
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Desenvolvimento de assistentes orientados a tarefas que recebem perguntas de negócio, inspecionam tabelas SQL, escrevem queries, executam em sandbox e sintetizam relatórios com gráficos.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Loop ReAct (Reasoning + Action) com Tool Calling</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Conectores seguros para DuckDB, Postgres e BigQuery</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Mecanismo de fallback e restrição de comandos DDL/DML</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 3 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 border border-[#11376e]/20 flex items-center justify-center text-[#11376e] mb-6">
+              <i data-lucide="database" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-blue mb-3">Módulo 03</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              RAG &amp; Busca Semântica Empresarial
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Arquitetura de indexação e recuperação contextualizada para conectar LLMs aos relatórios internos, documentações de produtos, PDFs e wikis proprietárias da empresa.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Estratégias de chunking semântico e metadados contextuais</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Busca híbrida (Vetorial + BM25) com reranking de relevância</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Mitigação de custos de contexto e governança de dados</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 4 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 border border-[#11376e]/20 flex items-center justify-center text-[#11376e] mb-6">
+              <i data-lucide="workflow" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-blue mb-3">Módulo 04</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              Automações com APIs &amp; Webhooks
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Integração de ponta a ponta conectando triggers de eventos (novos pedidos, anomalias de métricas, leads) ao disparo automatizado de análises e notificações executivas no Slack/Teams.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Fluxos com n8n, webhooks e microserviços em Python FastAPI</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Controle de taxa (rate limiting), retries e idempotência</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#11376e]"></i>
+                <span>Alertas em tempo real com resumos automatizados por IA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════
+         DOWNLOADS & TEMPLATES PRONTOS
+      ═══════════════════════════════════════════════════ -->
+      <div class="border-t border-[#d0d7de] pt-16">
+        <div class="max-w-2xl mb-10 reveal">
+          <span class="badge badge-blue mb-2">Assets Prontos</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
+            Templates &amp; Código para Download
+          </h3>
+          <p class="text-[#656d76] text-sm mt-1">Materiais para você clonar, adaptar e colocar para rodar no seu ambiente de trabalho.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Template 1 -->
+          <div class="p-6 rounded-2xl bg-white border border-[#d0d7de] shadow-sm hover:border-[#11376e] transition-all duration-300 reveal flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <span class="badge badge-blue">Template Prompt</span>
+                <span class="text-xs font-semibold text-[#1a7f37] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#1a7f37] animate-pulse"></span> Grátis
+                </span>
+              </div>
+              <h4 class="text-lg font-bold text-[#1f2328] mb-2" style="font-family:'Space Grotesk',sans-serif">
+                System Prompts Boilerplate para Análise de Dados
+              </h4>
+              <p class="text-[#656d76] text-sm leading-relaxed mb-6">
+                Coleção de prompts validados em produção para limpeza de dados, tradução de perguntas de negócio para SQL e criação de relatórios executivos estruturados.
+              </p>
+            </div>
+            
+            <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" class="pillar-btn w-full text-center">
+              <span>Acessar no GitHub</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- Template 2 -->
+          <div class="p-6 rounded-2xl bg-white border border-[#d0d7de] shadow-sm hover:border-[#11376e] transition-all duration-300 reveal flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <span class="badge badge-blue">Script Python</span>
+                <span class="text-xs font-semibold text-[#1a7f37] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#1a7f37] animate-pulse"></span> Grátis
+                </span>
+              </div>
+              <h4 class="text-lg font-bold text-[#1f2328] mb-2" style="font-family:'Space Grotesk',sans-serif">
+                Agente Autônomo SQL com Gemini / OpenAI
+              </h4>
+              <p class="text-[#656d76] text-sm leading-relaxed mb-6">
+                Script em Python pronto para conectar ao seu banco SQL local (SQLite ou Postgres), receber comandos em linguagem natural e responder com dados tabelados.
+              </p>
+            </div>
+            
+            <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" class="pillar-btn w-full text-center">
+              <span>Acessar no GitHub</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 bg-[#f6f8fa]">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#656d76]">
+      <div class="flex items-center gap-3">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60" />
+        <span>© 2026 Marcos Data Product</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="playbook.html" class="hover:text-[#11376e] transition-colors">Playbook Hub</a>
+        <a href="powerbi.html" class="hover:text-[#11376e] transition-colors">Power BI</a>
+        <a href="dataviz.html" class="hover:text-[#11376e] transition-colors">Data Viz</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- THREE.JS LIGHT MODE BACKGROUND SCRIPT -->
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.160.0";
+    gsap.registerPlugin(ScrollTrigger);
+
+    const canvas = document.getElementById('canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setClearColor(0xf6f8fa, 1);
+    camera.position.z = 15;
+
+    const fg = new THREE.Group();
+    const mg = new THREE.Group();
+    const bg = new THREE.Group();
+    scene.add(fg, mg, bg);
+
+    const wireMat = (c, o) => new THREE.MeshBasicMaterial({ color: c, wireframe: true, transparent: true, opacity: o * 0.6 });
+    const lineMat = (c, o) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o * 0.6 });
+    function toGeo(pts) { const g = new THREE.BufferGeometry(); g.setFromPoints(pts); return g; }
+    const V3 = (x, y, z = 0) => new THREE.Vector3(x, y, z);
+
+    function createNeuralNet(s, col) {
+      const g = new THREE.Group();
+      const layers = [3, 5, 5, 2];
+      const lx = layers.map((_, i) => (i / (layers.length - 1) - 0.5) * s * 1.5);
+      const all = [];
+      layers.forEach((cnt, li) => {
+        const pos = [];
+        for (let n = 0; n < cnt; n++) {
+          const y = cnt > 1 ? (n / (cnt - 1) - 0.5) * s * 0.85 : 0;
+          const p = V3(lx[li], y);
+          pos.push(p);
+          const sp = new THREE.Mesh(new THREE.SphereGeometry(s * 0.04, 12, 12), wireMat(col, 0.5));
+          sp.position.copy(p);
+          g.add(sp);
+        }
+        all.push(pos);
+        if (li > 0) all[li - 1].forEach(pr => pos.forEach(cu => g.add(new THREE.Line(toGeo([pr, cu]), lineMat(col, 0.08)))));
+      });
+      return g;
+    }
+
+    const fgC = [0x11376e, 0x8250df];
+    const mgC = [0x11376e, 0x0969da];
+    const bgC = [0xd0d7de, 0x8c959f];
+    const shapeObjs = [];
+
+    function populate(group, count, colSet, sX, sY, zR, zO) {
+      for (let i = 0; i < count; i++) {
+        const s = Math.random() * 0.6 + 0.6;
+        const col = colSet[i % colSet.length];
+        const shape = createNeuralNet(s, col);
+        shape.position.set((Math.random() - 0.5) * sX, (Math.random() - 0.5) * sY, Math.random() * zR + zO);
+        shape.rotation.set((Math.random() - 0.5) * 0.2, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.12);
+        group.add(shape);
+        shapeObjs.push({ shape, rs: (Math.random() - 0.5) * 0.003 });
+      }
+    }
+
+    populate(fg, 4, fgC, 58, 40, 10, 4);
+    populate(mg, 6, mgC, 82, 55, 18, -6);
+    populate(bg, 8, bgC, 100, 70, 22, -18);
+
+    /* ── Scroll & mouse (Optimized Passive Listeners) ── */
+    let scrollP = 0, mX = 0, mY = 0;
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      scrollP = max > 0 ? window.scrollY / max : 0;
+    }, { passive: true });
+    document.addEventListener('mousemove', e => { 
+      mX = (e.clientX / innerWidth) * 2 - 1; 
+      mY = -(e.clientY / innerHeight) * 2 + 1; 
+    }, { passive: true });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      fg.position.y = scrollP * 20; mg.position.y = scrollP * 10; bg.position.y = scrollP * 5;
+      fg.rotation.x += (mY * 0.04 - fg.rotation.x) * 0.02; fg.rotation.y += (mX * 0.04 - fg.rotation.y) * 0.02;
+      mg.rotation.x += (mY * 0.02 - mg.rotation.x) * 0.015; mg.rotation.y += (mX * 0.02 - mg.rotation.y) * 0.015;
+      const t = Date.now() * 0.0003;
+      shapeObjs.forEach(({ shape, rs }) => { shape.rotation.y += rs; shape.position.y += Math.sin(t + shape.position.x * 0.25) * 0.003; });
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); });
+    animate();
+  </script>
+
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

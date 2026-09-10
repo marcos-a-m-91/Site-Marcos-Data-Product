@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Playbook de Power BI &amp; Analytics — Marcos Data Product</title>
+  <meta name="description" content="Modelagem dimensional Star Schema, medidas DAX de alta performance, governança corporativa e templates prontos em Power BI." />
+
+  <!-- Vendor Libraries (Local) -->
+  <script src="assets/vendor/gsap_4a57399e4113.js"></script>
+  <script src="assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
+  <script src="assets/vendor/resource_3fa48481346f.js"></script>
+  <script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+
+  <!-- Vendor Fonts (Local) -->
+  <link href="assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
+  <link href="assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+
+  <!-- THREE.JS CANVAS BACKGROUND (Primer Light Mode) -->
+  <canvas id="canvas"></canvas>
+
+  <!-- NAVIGATION — Sticky glass navbar -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Home">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product"
+          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data
+          Product</span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="https://marcosdp.notion.site/marcos-data-product" target="_blank" rel="noopener noreferrer" class="nav-link">Blog</a>
+        <a href="playbook.html" class="nav-link active">Playbook</a>
+        <a href="projetos.html" class="nav-link">Projetos</a>
+        <a href="biblioteca.html" class="nav-link">Biblioteca</a>
+        <a href="sobre.html" class="nav-link">Sobre</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn"
+        aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close"
+      aria-label="Fechar menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="https://marcosdp.notion.site/marcos-data-product" target="_blank" rel="noopener noreferrer" class="mobile-link">Blog</a>
+    <a href="playbook.html" class="mobile-link active">Playbook</a>
+    <a href="projetos.html" class="mobile-link">Projetos</a>
+    <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
+    <a href="sobre.html" class="mobile-link">Sobre</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     HERO SECTION — PLAYBOOK DE POWER BI
+  ═══════════════════════════════════════════════════════ -->
+  <section class="min-h-[52vh] flex flex-col items-center justify-center px-5 sm:px-8 pt-36 sm:pt-40 pb-12 relative overflow-hidden z-10">
+    <div class="max-w-4xl mx-auto flex flex-col items-center text-center">
+
+      <!-- Breadcrumb / Voltar ao Playbook -->
+      <a href="playbook.html" class="reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#d0d7de] bg-white text-[#656d76] hover:text-[#9a6700] hover:border-[#9a6700] text-xs font-semibold mb-6 transition-all shadow-sm">
+        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+        <span>Voltar ao Playbook</span>
+      </a>
+
+      <!-- Badge do Pilar -->
+      <span class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#9a6700]/20 bg-[#9a6700]/10 text-[#9a6700] text-xs sm:text-sm font-semibold mb-6 uppercase tracking-wider backdrop-blur-md shadow-sm">
+        <i data-lucide="bar-chart-3" class="w-4 h-4 text-[#9a6700]"></i>
+        Power BI &amp; Analytics
+      </span>
+
+      <!-- Título Principal -->
+      <h1 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
+        Playbook de Power BI: <br />
+        <span class="gradient-text">Modelagem, DAX &amp; Performance</span>
+      </h1>
+
+      <!-- Subtítulo -->
+      <p class="reveal text-base sm:text-lg md:text-xl text-[#656d76] max-w-2xl leading-relaxed mb-8" style="font-family:'Manrope',sans-serif">
+        Diretrizes técnicas para construir modelos semânticos robustos em Star Schema, fórmulas DAX ultra-rápidas no VertiPaq e governança corporativa escalável.
+      </p>
+
+      <!-- Pílulas de Metadados -->
+      <div class="reveal flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium text-[#656d76]">
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <i data-lucide="layers" class="w-3.5 h-3.5 text-[#9a6700]"></i> Star Schema Dimensional
+        </span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#9a6700]"></i> DAX Otimizado
+        </span>
+        <span class="px-3.5 py-1.5 rounded-full bg-white border border-[#d0d7de] flex items-center gap-2 shadow-sm">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#9a6700]"></i> Governança &amp; RLS
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     CONTEÚDO & MÓDULOS DE POWER BI
+  ═══════════════════════════════════════════════════════ -->
+  <section class="relative z-10 px-5 sm:px-8 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Section Title -->
+      <div class="max-w-3xl mb-12 reveal">
+        <span class="badge badge-amber mb-3">Engenharia de Modelos</span>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
+          Boas Práticas &amp; Padrões de <span class="gradient-text">Engenharia Analítica</span>
+        </h2>
+        <p class="text-sm sm:text-base text-[#656d76] mt-2 leading-relaxed" style="font-family:'Manrope',sans-serif">
+          Do modelo relacional ao dashboard interativo: o caminho para relatórios que carregam em milissegundos e suportam milhões de linhas.
+        </p>
+      </div>
+
+      <!-- Módulos Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+
+        <!-- Módulo 1 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#9a6700]/10 border border-[#9a6700]/20 flex items-center justify-center text-[#9a6700] mb-6">
+              <i data-lucide="layout-grid" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-amber mb-3">Módulo 01</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              Modelagem Star Schema vs. Snowflake
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Por que a modelagem em estrela é inegociável no Power BI. Como estruturar tabelas fato e dimensões conformadas, eliminando relacionamentos bidirecionais e dependências circulares.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Definição de granularidade da tabela fato</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Dimensão Calendário canônica e dimensões role-playing</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Desnormalização estratégica para compressão de colunas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 2 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#9a6700]/10 border border-[#9a6700]/20 flex items-center justify-center text-[#9a6700] mb-6">
+              <i data-lucide="code-2" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-amber mb-3">Módulo 02</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              DAX de Alta Performance &amp; VertiPaq
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Domine a transição de contexto da função CALCULATE, use variáveis para congelar valores e construa cálculos de inteligência temporal (YTD, YoY, Moving Average) sem degradação de CPU.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Substituição de colunas calculadas por medidas eficientes</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Diagnóstico de queries lentas com DAX Studio</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Controle de cardinalidade e redução de consumo de RAM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 3 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#9a6700]/10 border border-[#9a6700]/20 flex items-center justify-center text-[#9a6700] mb-6">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-amber mb-3">Módulo 03</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              Governança de Workspaces &amp; RLS
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Como desacoplar o modelo semântico dos relatórios visuais (Thin Reports), aplicar Row-Level Security dinâmico via UserPrincipalName() e organizar ambientes Dev/Test/Prod.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Segurança em nível de linha (RLS) estática e dinâmica</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Golden Dataset como fonte única da verdade</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Gestão de permissões e compartilhamento corporativo seguro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 4 -->
+        <div class="playbook-resource-card p-8 reveal flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-[#9a6700]/10 border border-[#9a6700]/20 flex items-center justify-center text-[#9a6700] mb-6">
+              <i data-lucide="sliders" class="w-6 h-6"></i>
+            </div>
+            <span class="badge badge-amber mb-3">Módulo 04</span>
+            <h3 class="text-2xl font-bold text-[#1f2328] mb-3 tracking-tight" style="font-family:'Space Grotesk',sans-serif">
+              UX &amp; Interatividade Avançada
+            </h3>
+            <p class="text-[#656d76] text-sm sm:text-base leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
+              Técnicas de design de interface nativas do Power BI: painéis retráteis de filtros com marcadores (bookmarks), páginas de detalhamento (drill-through) e tooltips personalizadas.
+            </p>
+            
+            <div class="space-y-2.5 pt-4 border-t border-[#d0d7de]">
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Navegação com marcadores sem comprometer performance</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Formatação condicional dinâmica via medidas de cor</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs sm:text-sm text-[#1f2328]">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-[#9a6700]"></i>
+                <span>Layout responsivo e versão otimizada para mobile</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════
+         DOWNLOADS & TEMPLATES PRONTOS
+      ═══════════════════════════════════════════════════ -->
+      <div class="border-t border-[#d0d7de] pt-16">
+        <div class="max-w-2xl mb-10 reveal">
+          <span class="badge badge-amber mb-2">Assets Prontos</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
+            Templates .PBIX &amp; Cheatsheets
+          </h3>
+          <p class="text-[#656d76] text-sm mt-1">Arquivos prontos para você abrir no Power BI Desktop e usar como acelerador de entrega.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Template 1 -->
+          <div class="p-6 rounded-2xl bg-white border border-[#d0d7de] shadow-sm hover:border-[#9a6700] transition-all duration-300 reveal flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <span class="badge badge-amber">Template .PBIX</span>
+                <span class="text-xs font-semibold text-[#1a7f37] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#1a7f37] animate-pulse"></span> Grátis
+                </span>
+              </div>
+              <h4 class="text-lg font-bold text-[#1f2328] mb-2" style="font-family:'Space Grotesk',sans-serif">
+                Dashboard Master — Vendas B2B (.pbix)
+              </h4>
+              <p class="text-[#656d76] text-sm leading-relaxed mb-6">
+                Template completo com modelagem dimensional Star Schema, cálculo de margem, análise de cohort de clientes e layout executivo pronto para apresentações C-Level.
+              </p>
+            </div>
+            
+            <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" class="pillar-btn w-full text-center" style="background: #9a6700; border-color: #9a6700;">
+              <span>Baixar Template .PBIX</span>
+              <i data-lucide="download" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- Template 2 -->
+          <div class="p-6 rounded-2xl bg-white border border-[#d0d7de] shadow-sm hover:border-[#9a6700] transition-all duration-300 reveal flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-4">
+                <span class="badge badge-amber">Cheatsheet PDF</span>
+                <span class="text-xs font-semibold text-[#1a7f37] flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#1a7f37] animate-pulse"></span> Grátis
+                </span>
+              </div>
+              <h4 class="text-lg font-bold text-[#1f2328] mb-2" style="font-family:'Space Grotesk',sans-serif">
+                Cheatsheet de Fórmulas DAX Essenciais
+              </h4>
+              <p class="text-[#656d76] text-sm leading-relaxed mb-6">
+                Guia prático de consulta rápida contendo as 25 funções DAX mais utilizadas no dia a dia analítico com exemplos comentados de sintaxe e performance.
+              </p>
+            </div>
+            
+            <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" class="pillar-btn w-full text-center" style="background: #9a6700; border-color: #9a6700;">
+              <span>Acessar Cheatsheet</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 bg-[#f6f8fa]">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#656d76]">
+      <div class="flex items-center gap-3">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60" />
+        <span>© 2026 Marcos Data Product</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="playbook.html" class="hover:text-[#9a6700] transition-colors">Playbook Hub</a>
+        <a href="ia.html" class="hover:text-[#9a6700] transition-colors">Inteligência Artificial</a>
+        <a href="dataviz.html" class="hover:text-[#9a6700] transition-colors">Data Viz</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- THREE.JS LIGHT MODE BACKGROUND SCRIPT -->
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.160.0";
+    gsap.registerPlugin(ScrollTrigger);
+
+    const canvas = document.getElementById('canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setClearColor(0xf6f8fa, 1);
+    camera.position.z = 15;
+
+    const fg = new THREE.Group();
+    const mg = new THREE.Group();
+    const bg = new THREE.Group();
+    scene.add(fg, mg, bg);
+
+    const wireMat = (c, o) => new THREE.MeshBasicMaterial({ color: c, wireframe: true, transparent: true, opacity: o * 0.6 });
+    const lineMat = (c, o) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o * 0.6 });
+    function toGeo(pts) { const g = new THREE.BufferGeometry(); g.setFromPoints(pts); return g; }
+    const V3 = (x, y, z = 0) => new THREE.Vector3(x, y, z);
+    function smoothCurve(points, segments) { return new THREE.CatmullRomCurve3(points).getPoints(segments); }
+
+    function createBarChart(s, col) {
+      const g = new THREE.Group();
+      const h = [0.30, 0.55, 0.42, 0.82, 0.50, 0.70, 0.38, 0.90];
+      const bw = s * 0.11, sp = s * 0.18, base = -s * 0.45;
+      h.forEach((v, i) => {
+        const bh = v * s * 0.85;
+        const bar = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, s * 0.05), wireMat(col, 0.25 + v * 0.2));
+        bar.position.set((i - h.length / 2 + 0.5) * sp, base + bh / 2, 0);
+        g.add(bar);
+      });
+      g.add(new THREE.Line(toGeo([V3(-h.length / 2 * sp - s * 0.04, base), V3(h.length / 2 * sp + s * 0.04, base)]), lineMat(col, 0.4)));
+      return g;
+    }
+
+    const fgC = [0x9a6700, 0x11376e];
+    const mgC = [0x9a6700, 0x0969da];
+    const bgC = [0xd0d7de, 0x8c959f];
+    const shapeObjs = [];
+
+    function populate(group, count, colSet, sX, sY, zR, zO) {
+      for (let i = 0; i < count; i++) {
+        const s = Math.random() * 0.6 + 0.55;
+        const col = colSet[i % colSet.length];
+        const shape = createBarChart(s, col);
+        shape.position.set((Math.random() - 0.5) * sX, (Math.random() - 0.5) * sY, Math.random() * zR + zO);
+        shape.rotation.set((Math.random() - 0.5) * 0.18, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.12);
+        group.add(shape);
+        shapeObjs.push({ shape, rs: (Math.random() - 0.5) * 0.003 });
+      }
+    }
+
+    populate(fg, 4, fgC, 58, 40, 10, 4);
+    populate(mg, 6, mgC, 82, 55, 18, -6);
+    populate(bg, 8, bgC, 100, 70, 22, -18);
+
+    /* ── Scroll & mouse (Optimized Passive Listeners) ── */
+    let scrollP = 0, mX = 0, mY = 0;
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      scrollP = max > 0 ? window.scrollY / max : 0;
+    }, { passive: true });
+    document.addEventListener('mousemove', e => { 
+      mX = (e.clientX / innerWidth) * 2 - 1; 
+      mY = -(e.clientY / innerHeight) * 2 + 1; 
+    }, { passive: true });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      fg.position.y = scrollP * 20; mg.position.y = scrollP * 10; bg.position.y = scrollP * 5;
+      fg.rotation.x += (mY * 0.04 - fg.rotation.x) * 0.02; fg.rotation.y += (mX * 0.04 - fg.rotation.y) * 0.02;
+      mg.rotation.x += (mY * 0.02 - mg.rotation.x) * 0.015; mg.rotation.y += (mX * 0.02 - mg.rotation.y) * 0.015;
+      const t = Date.now() * 0.0003;
+      shapeObjs.forEach(({ shape, rs }) => { shape.rotation.y += rs; shape.rotation.z += rs * 0.18; shape.position.y += Math.sin(t + shape.position.x * 0.25) * 0.003; });
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); });
+    animate();
+  </script>
+
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

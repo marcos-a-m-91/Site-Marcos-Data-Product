@@ -7,17 +7,21 @@ Este é o repositório do site profissional de **Marcos Aurélio**, Senior Busin
 ```text
 /
 ├── assets/
-│   ├── css/          # Estilos centralizados (main.css)
-│   ├── js/           # Scripts utilitários (main.js)
-│   ├── img/          # Imagens, logotipos e frames de animação
-│   └── vendor/       # Bibliotecas externas (GSAP, Tailwind, Lucide, Fonts)
-├── tools/            # Scripts de automação (ex: build_sobre.py)
-├── index.html        # Página principal
-├── playbook.html     # Página "Playbook" (templates, frameworks e cheatsheets)
-├── projetos.html     # Página de projetos e cases
-├── biblioteca.html   # Curadoria de livros, papers e recursos
-├── sobre.html        # Página "Sobre"
-├── design_system.html # Referência visual e componentes
+│   ├── css/          # Estilos centralizados (main.css - GitHub Primer Light)
+│   ├── js/           # Scripts utilitários compartilhados (main.js)
+│   ├── img/          # Imagens, logotipos e ilustrações
+│   └── vendor/       # Bibliotecas locais (GSAP, Tailwind, Lucide, Fonts)
+├── references/       # Materiais de apoio, Brandbook e templates de referência
+├── tools/            # Scripts de automação e utilitários Python
+├── index.html        # Página principal (Home)
+├── playbook.html     # Hub central do Playbook (portal com os 3 boxes pilares)
+├── powerbi.html      # Playbook de Power BI (Modelagem Star Schema, DAX, templates .pbix)
+├── ia.html           # Playbook de IA (Agentes, Engenharia de Prompt, RAG e Automação)
+├── dataviz.html      # Playbook de Data Viz (Storytelling, Matriz de Gráficos e UX)
+├── projetos.html     # Portfólio de projetos e estudos de caso
+├── biblioteca.html   # Curadoria de livros, referências e leituras recomendadas
+├── sobre.html        # Biografia profissional, trajetória e competências
+├── design_system.html # Documentação viva de componentes e tokens visuais
 └── README.md
 ```
 
