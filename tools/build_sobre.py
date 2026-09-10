@@ -16,6 +16,12 @@ for i, l in enumerate(lines):
         break
 
 head_lines = lines[:split_idx]
+head_text = "".join(head_lines)
+head_text = head_text.replace('<a href="index.html" class="nav-link active">Home</a>', '<a href="index.html" class="nav-link">Home</a>')
+head_text = head_text.replace('<a href="sobre.html" class="nav-link">Sobre</a>', '<a href="sobre.html" class="nav-link active">Sobre</a>')
+head_text = head_text.replace('<a href="index.html" class="mobile-link active">Home</a>', '<a href="index.html" class="mobile-link">Home</a>')
+head_text = head_text.replace('<a href="sobre.html" class="mobile-link">Sobre</a>', '<a href="sobre.html" class="mobile-link active">Sobre</a>')
+head_text = head_text.replace('<title>Marcos Data Product — IA & Automação para Negócios</title>', '<title>Sobre Mim — Marcos Data Product | Senior Business Analytics</title>')
 
 sobre_body = """
   <!-- ═══════════════════════════════════════════════════════
@@ -233,7 +239,7 @@ sobre_body = """
 </html>
 """
 
-final_text = "".join(head_lines) + sobre_body
+final_text = head_text + sobre_body
 
 with open(path + 'sobre.html', 'w', encoding='utf-8') as f:
     f.write(final_text)

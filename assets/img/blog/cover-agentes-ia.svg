@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="aiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f6fc"/>
+      <stop offset="100%" stop-color="#e1ecf8"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11376e"/>
+      <stop offset="100%" stop-color="#1f6feb"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0969da"/>
+      <stop offset="100%" stop-color="#218bff"/>
+    </linearGradient>
+    <filter id="aiShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0969da" flood-opacity="0.12"/>
+    </filter>
+    <pattern id="aiGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#d0d7de" stroke-width="0.75" stroke-opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#aiBg)"/>
+  <rect width="800" height="450" fill="url(#aiGrid)"/>
+
+  <!-- Glows -->
+  <circle cx="400" cy="225" r="180" fill="#dbeafe" opacity="0.8" filter="blur(35px)"/>
+
+  <!-- Connecting Nodes / Neural lines -->
+  <path d="M 400 225 L 200 130" stroke="#0969da" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="6,4"/>
+  <path d="M 400 225 L 600 130" stroke="#0969da" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="6,4"/>
+  <path d="M 400 225 L 200 320" stroke="#0969da" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="6,4"/>
+  <path d="M 400 225 L 600 320" stroke="#0969da" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="6,4"/>
+
+  <!-- Sub Node: Data Warehouse -->
+  <g transform="translate(120, 95)" filter="url(#aiShadow)">
+    <rect width="160" height="70" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="14" y="16" width="36" height="36" rx="8" fill="#e0f2fe"/>
+    <text x="32" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="18" text-anchor="middle">🗄️</text>
+    <text x="62" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="12" font-weight="bold" fill="#0f172a">SQL / DW</text>
+    <text x="62" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="10" fill="#64748b">Snowflake • BigQuery</text>
+  </g>
+
+  <!-- Sub Node: Memory / Vector Store -->
+  <g transform="translate(520, 95)" filter="url(#aiShadow)">
+    <rect width="160" height="70" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="14" y="16" width="36" height="36" rx="8" fill="#e0f2fe"/>
+    <text x="32" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="18" text-anchor="middle">🧠</text>
+    <text x="62" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="12" font-weight="bold" fill="#0f172a">Vector DB &amp; RAG</text>
+    <text x="62" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="10" fill="#64748b">Chroma • Qdrant</text>
+  </g>
+
+  <!-- Sub Node: Tool Use / Python -->
+  <g transform="translate(120, 285)" filter="url(#aiShadow)">
+    <rect width="160" height="70" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="14" y="16" width="36" height="36" rx="8" fill="#e0f2fe"/>
+    <text x="32" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="18" text-anchor="middle">⚡</text>
+    <text x="62" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="12" font-weight="bold" fill="#0f172a">Code Execution</text>
+    <text x="62" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="10" fill="#64748b">Python Sandbox</text>
+  </g>
+
+  <!-- Sub Node: Executive Briefing -->
+  <g transform="translate(520, 285)" filter="url(#aiShadow)">
+    <rect width="160" height="70" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="14" y="16" width="36" height="36" rx="8" fill="#e0f2fe"/>
+    <text x="32" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="18" text-anchor="middle">📊</text>
+    <text x="62" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="12" font-weight="bold" fill="#0f172a">Action Dispatch</text>
+    <text x="62" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="10" fill="#64748b">Slack • Email • ERP</text>
+  </g>
+
+  <!-- Central Agent Core -->
+  <g transform="translate(300, 165)" filter="url(#aiShadow)">
+    <rect width="200" height="120" rx="20" fill="url(#blueGrad)"/>
+    <circle cx="100" cy="50" r="28" fill="#ffffff" fill-opacity="0.12"/>
+    <text x="100" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="28" text-anchor="middle">🤖</text>
+    <text x="100" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">Autonomous Agent</text>
+    <text x="100" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI'" font-size="11" fill="#bfdbfe" text-anchor="middle">Business Analytics Loop</text>
+  </g>
+</svg>

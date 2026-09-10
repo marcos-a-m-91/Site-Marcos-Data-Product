@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Marcos Data Product — IA & Automação para Negócios</title>
+  <title>Sobre Mim — Marcos Data Product | Senior Business Analytics</title>
   <meta name="description" content="Dados, produto, analytics e tudo que me faz parar para pensar." />
 
   <!-- ═══════════════════════════════════════════════
@@ -43,15 +43,14 @@
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Home">
         <img src="assets/img/Logo.png" alt="Marcos Data Product"
           class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-white/90 hidden sm:inline">Marcos Data
+        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data
           Product</span>
       </a>
 
       <!-- Desktop nav links -->
       <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="https://marcosdp.notion.site/marcos-data-product" target="_blank" rel="noopener noreferrer"
-          class="nav-link">Blog</a>
+        <a href="blog.html" class="nav-link">Blog</a>
         <a href="playbook.html" class="nav-link">Playbook</a>
         <a href="projetos.html" class="nav-link">Projetos</a>
         <a href="biblioteca.html" class="nav-link">Biblioteca</a>
@@ -59,7 +58,7 @@
       </nav>
 
       <!-- Mobile hamburger -->
-      <button class="md:hidden glass rounded-xl p-3 text-white/70 hover:text-white transition-colors" id="mobile-btn"
+      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn"
         aria-label="Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="4" y1="6" x2="20" y2="6" />
@@ -72,15 +71,14 @@
 
   <!-- Mobile menu overlay -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-white/70 hover:text-white" id="mobile-close"
+    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close"
       aria-label="Fechar menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
     <a href="index.html" class="mobile-link">Home</a>
-    <a href="https://marcosdp.notion.site/marcos-data-product" target="_blank" rel="noopener noreferrer"
-      class="mobile-link">Blog</a>
+    <a href="blog.html" class="mobile-link">Blog</a>
     <a href="playbook.html" class="mobile-link">Playbook</a>
     <a href="projetos.html" class="mobile-link">Projetos</a>
     <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
@@ -92,25 +90,22 @@
   <!-- ═══════════════════════════════════════════════════════
      SOBRE HERO (1ª Dobra)
   ═══════════════════════════════════════════════════════ -->
-  <section id="sobre-hero"
-    class="min-h-[100vh] flex flex-col justify-center px-5 sm:px-8 pt-32 pb-16 relative overflow-hidden">
+  <section id="sobre-hero" class="min-h-[100vh] flex flex-col justify-center px-5 sm:px-8 pt-32 pb-16 relative overflow-hidden">
     <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-8 items-center z-10">
-
+      
       <!-- Content Side -->
       <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
         <span class="badge badge-blue mb-6">Senior Business Analytics</span>
-        <h1
-          class="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold text-white mb-6 tracking-tight leading-[1.1] reveal">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold text-white mb-6 tracking-tight leading-[1.1] reveal">
           Conectando <span class="gradient-text">dados</span> a <span class="gradient-text">decisões estratégicas</span>
         </h1>
-        <p class="text-base sm:text-lg text-white/50 max-w-xl mb-10 leading-relaxed reveal"
-          style="font-family:'Manrope',sans-serif">
+        <p class="text-base sm:text-lg text-white/50 max-w-xl mb-10 leading-relaxed reveal" style="font-family:'Manrope',sans-serif">
           Eu ajudo a transformar dados brutos em respostas claras para negócios que não tem tempo a perder.
         </p>
-
+        
         <div class="flex flex-wrap gap-4 justify-center lg:justify-start reveal">
-          <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="btn-secondary">
-            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="btn-primary" onclick="createRipple(event)">
+            <i data-lucide="linkedin" class="w-5 h-5 text-[#0A66C2]"></i>
             LinkedIn
           </a>
           <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" class="btn-secondary">
@@ -119,47 +114,15 @@
           </a>
         </div>
       </div>
-
+      
       <!-- Visual Side (Foto) -->
       <div class="relative flex justify-center lg:justify-end reveal">
-        <div
-          class="relative w-full max-w-md aspect-[4/5] rounded-[2rem] sm:rounded-[3rem] overflow-hidden glass border-white/20 shadow-[0_0_80px_rgba(96,165,250,0.15)] group animate-float-slow">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-[#080810]/40 to-transparent z-10 opacity-70">
-          </div>
-          <img src="assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio"
-            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
+        <div class="relative w-full max-w-md aspect-[4/5] rounded-[2rem] sm:rounded-[3rem] overflow-hidden glass border-white/20 shadow-[0_0_80px_rgba(96,165,250,0.15)] group animate-float-slow">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-[#080810]/40 to-transparent z-10 opacity-70"></div>
+          <img src="assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" />
         </div>
       </div>
     </div>
-
-    <!-- Anchor Links -->
-    <div
-      class="mt-16 lg:mt-20 w-full flex flex-wrap gap-4 sm:gap-6 items-center justify-center z-20 reveal animate-float-slow"
-      style="animation-delay: 1s;">
-      <a href="#timeline"
-        class="group px-6 py-3 sm:px-8 sm:py-4 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-emerald-900/40 border border-emerald-500/30 hover:border-emerald-400 hover:shadow-[0_0_30px_rgba(52,211,153,0.3)] hover:-translate-y-1 text-white backdrop-blur-md text-sm sm:text-base font-bold transition-all duration-300 flex items-center gap-3">
-        <div class="p-1.5 rounded-xl bg-emerald-500/20 group-hover:bg-emerald-400 transition-colors">
-          <i data-lucide="milestone" class="w-5 h-5 text-emerald-400 group-hover:text-black transition-colors"></i>
-        </div>
-        Trajetória
-      </a>
-      <a href="#skills"
-        class="group px-6 py-3 sm:px-8 sm:py-4 rounded-2xl bg-gradient-to-r from-blue-500/20 to-indigo-900/40 border border-blue-500/30 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:-translate-y-1 text-white backdrop-blur-md text-sm sm:text-base font-bold transition-all duration-300 flex items-center gap-3">
-        <div class="p-1.5 rounded-xl bg-blue-500/20 group-hover:bg-blue-400 transition-colors">
-          <i data-lucide="layers" class="w-5 h-5 text-blue-400 group-hover:text-black transition-colors"></i>
-        </div>
-        Minhas Stack e skills
-      </a>
-      <a href="#depoimentos"
-        class="group px-6 py-3 sm:px-8 sm:py-4 rounded-2xl bg-gradient-to-r from-purple-500/20 to-fuchsia-900/40 border border-purple-500/30 hover:border-purple-400 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] hover:-translate-y-1 text-white backdrop-blur-md text-sm sm:text-base font-bold transition-all duration-300 flex items-center gap-3">
-        <div class="p-1.5 rounded-xl bg-purple-500/20 group-hover:bg-purple-400 transition-colors">
-          <i data-lucide="message-square-quote"
-            class="w-5 h-5 text-purple-400 group-hover:text-black transition-colors"></i>
-        </div>
-        Depoimentos
-      </a>
-    </div>
-
   </section>
 
   <div class="section-divider"></div>
@@ -169,307 +132,103 @@
   ═══════════════════════════════════════════════════════ -->
   <section id="timeline" class="py-24 sm:py-32 px-5 sm:px-8 relative overflow-hidden">
     <div class="section-glow w-[500px] h-[500px] bg-blue-500/20 pointer-events-none" style="top:20%;left:-10%;"></div>
-    <div class="section-glow w-[500px] h-[500px] bg-amber-500/10 pointer-events-none" style="bottom:20%;right:-10%;">
-    </div>
-
+    <div class="section-glow w-[500px] h-[500px] bg-amber-500/10 pointer-events-none" style="bottom:20%;right:-10%;"></div>
+    
     <div class="max-w-4xl mx-auto relative z-10">
-
+      
       <div class="text-center mb-28 reveal">
-        <h2
-          class="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight max-w-3xl mx-auto pb-2">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight max-w-3xl mx-auto pb-2">
           De números a estratégia: uma <span class="text-blue-400">trajetória</span> construída com grandes empresas.
         </h2>
       </div>
 
       <!-- GSAP Animated Timeline Container -->
       <div class="relative pl-8 md:pl-0 mt-12">
-
-        <!-- Center/Left Vertical Line with Illuminated Scroll Progress -->
-        <div class="absolute left-8 md:left-[50%] top-4 bottom-0 w-px bg-white/10 md:-translate-x-1/2 timeline-line">
-          <div id="scroll-timeline-line"
-            class="absolute top-0 left-0 w-full bg-gradient-to-b from-blue-400 via-emerald-400 to-transparent origin-top shadow-[0_0_15px_rgba(52,211,153,0.8)]"
-            style="height: 100%; transform: scaleY(0);"></div>
-        </div>
+        
+        <!-- Center/Left Vertical Line -->
+        <div class="absolute left-8 md:left-[50%] top-4 bottom-0 w-px bg-white/10 md:-translate-x-1/2 timeline-line"></div>
 
         <!-- TIMELINE ITEMS -->
         <div class="space-y-24">
-
-          <!-- Item: 2024 Nubank -->
-          <div
-            class="timeline-item relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+          
+          <!-- Item: 2020 Nubank -->
+          <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+            
+            <!-- Mobile Year (hidden on desktop) -->
             <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
-              <div
-                class="w-3 h-3 rounded-full border-2 border-[#080810] bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.6)] tl-dot">
+               <div class="w-3 h-3 rounded-full border-2 border-[#080810] bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.6)] tl-dot"></div>
+            </div>
+            <div class="md:hidden text-blue-400 font-bold mb-4 pl-4 text-2xl tl-year">2020</div>
+
+            <!-- Desktop Year (Left side) -->
+            <div class="hidden md:flex w-1/2 justify-end pr-16 tl-year">
+              <span class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-blue-400/40 transition-colors duration-500 tracking-tighter">2020</span>
+            </div>
+            
+            <!-- Desktop Node/Dot -->
+            <div class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-blue-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(96,165,250,0)] group-hover:shadow-[0_0_15px_rgba(96,165,250,0.8)]"></div>
+
+            <!-- Card (Right side) -->
+            <div class="w-full md:w-1/2 md:pl-16 tl-card">
+              <div class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 relative z-10">Nubank</h3>
+                <p class="text-white/50 leading-relaxed text-base sm:text-lg style="font-family:'Manrope',sans-serif" relative z-10">
+                  Analista de dados no time de crédito. Primeiro contato com dados em escala: milhões de transações, decisões em tempo real, cultura orientada a evidência.
+                </p>
               </div>
+            </div>
+          </div>
+
+          <!-- Item: 2022 Google -->
+          <div class="timeline-item relative flex flex-col md:flex-row-reverse items-start md:items-center justify-between group">
+            
+            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
+               <div class="w-3 h-3 rounded-full border-2 border-[#080810] bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.6)] tl-dot"></div>
+            </div>
+            <div class="md:hidden text-amber-400 font-bold mb-4 pl-4 text-2xl tl-year">2022</div>
+
+            <!-- Desktop Year (Right side) -->
+            <div class="hidden md:flex w-1/2 justify-start pl-16 tl-year">
+              <span class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-amber-400/40 transition-colors duration-500 tracking-tighter">2022</span>
+            </div>
+            
+            <div class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-amber-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(251,191,36,0)] group-hover:shadow-[0_0_15px_rgba(251,191,36,0.8)]"></div>
+
+            <!-- Card (Left side) -->
+            <div class="w-full md:w-1/2 md:pr-16 text-left md:text-right tl-card">
+              <div class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-bl from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 relative z-10">Google</h3>
+                <p class="text-white/50 leading-relaxed text-base sm:text-lg style="font-family:'Manrope',sans-serif" relative z-10">
+                  Integrou o time de analytics de produto. Trabalhou com métricas de engajamento e retenção, desenvolvendo modelos preditivos usados por squads de produto globais.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item: 2024 Asimov Academy -->
+          <div class="timeline-item relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+            
+            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
+               <div class="w-3 h-3 rounded-full border-2 border-[#080810] bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.6)] tl-dot"></div>
             </div>
             <div class="md:hidden text-emerald-400 font-bold mb-4 pl-4 text-2xl tl-year">2024</div>
 
+            <!-- Desktop Year (Left side) -->
             <div class="hidden md:flex w-1/2 justify-end pr-16 tl-year">
-              <span
-                class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-emerald-400/40 transition-colors duration-500 tracking-tighter">2024</span>
+              <span class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-emerald-400/40 transition-colors duration-500 tracking-tighter">2024</span>
             </div>
+            
+            <div class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-emerald-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(52,211,153,0)] group-hover:shadow-[0_0_15px_rgba(52,211,153,0.8)]"></div>
 
-            <div
-              class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-emerald-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(52,211,153,0)] group-hover:shadow-[0_0_15px_rgba(52,211,153,0.8)]">
-            </div>
-
+            <!-- Card (Right side) -->
             <div class="w-full md:w-1/2 md:pl-16 tl-card">
-              <div
-                class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                </div>
-                <div class="flex items-center gap-4 mb-4 relative z-10">
-                  <div class="w-14 h-14 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="assets/img/Nubank.png" alt="Nubank" class="w-full h-full object-contain rounded-md">
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white">Nubank</h3>
-                </div>
-                <p class="text-white/50 leading-relaxed text-base sm:text-lg relative z-10"
-                  style="font-family:'Manrope',sans-serif">
-                  Tinha escopo global no time de monitoramento de métricas de crédito.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item: 2022 Alelo -->
-          <div
-            class="timeline-item relative flex flex-col md:flex-row-reverse items-start md:items-center justify-between group">
-            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
-              <div
-                class="w-3 h-3 rounded-full border-2 border-[#080810] bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.6)] tl-dot">
-              </div>
-            </div>
-            <div class="md:hidden text-blue-400 font-bold mb-4 pl-4 text-2xl tl-year">2022</div>
-
-            <div class="hidden md:flex w-1/2 justify-start pl-16 tl-year">
-              <span
-                class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-blue-400/40 transition-colors duration-500 tracking-tighter">2022</span>
-            </div>
-
-            <div
-              class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-blue-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(96,165,250,0)] group-hover:shadow-[0_0_15px_rgba(96,165,250,0.8)]">
-            </div>
-
-            <div class="w-full md:w-1/2 md:pr-16 text-left md:text-right tl-card">
-              <div
-                class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                <div
-                  class="absolute inset-0 bg-gradient-to-bl from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                </div>
-                <div class="flex items-center md:flex-row-reverse gap-4 mb-4 relative z-10">
-                  <div class="w-14 h-14 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="assets/img/Alelo.png" alt="Alelo" class="w-full h-full object-contain rounded-md">
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white">Alelo</h3>
-                </div>
-                <p class="text-white/50 leading-relaxed text-base sm:text-lg relative z-10"
-                  style="font-family:'Manrope',sans-serif">
-                  Focado em problemas de governança de dados no time B2C, assumi a liderança de uma squad de prodOps,
-                  atuando na disseminação de dados para as squads e em um projeto de tagueamento do aplicativo.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item: 2021 Daltez -->
-          <div
-            class="timeline-item relative flex flex-col md:flex-row items-start md:items-center justify-between group">
-            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
-              <div
-                class="w-3 h-3 rounded-full border-2 border-[#080810] bg-purple-400 shadow-[0_0_10px_rgba(167,139,250,0.6)] tl-dot">
-              </div>
-            </div>
-            <div class="md:hidden text-purple-400 font-bold mb-4 pl-4 text-2xl tl-year">2021</div>
-
-            <div class="hidden md:flex w-1/2 justify-end pr-16 tl-year">
-              <span
-                class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-purple-400/40 transition-colors duration-500 tracking-tighter">2021</span>
-            </div>
-
-            <div
-              class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-purple-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(167,139,250,0)] group-hover:shadow-[0_0_15px_rgba(167,139,250,0.8)]">
-            </div>
-
-            <div class="w-full md:w-1/2 md:pl-16 tl-card">
-              <div
-                class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                </div>
-                <div class="flex items-center gap-4 mb-4 relative z-10">
-                  <div class="w-20 h-14 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="assets/img/Dlatex.png" alt="Daltez"
-                      class="w-full h-full object-contain rounded-md max-w-full">
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white">Daltez</h3>
-                </div>
-                <p class="text-white/50 leading-relaxed text-base sm:text-lg relative z-10"
-                  style="font-family:'Manrope',sans-serif">
-                  Conduzi projetos na área comercial e de inteligência de mercado.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item: 2020 Neoenergia -->
-          <div
-            class="timeline-item relative flex flex-col md:flex-row-reverse items-start md:items-center justify-between group">
-            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
-              <div
-                class="w-3 h-3 rounded-full border-2 border-[#080810] bg-pink-400 shadow-[0_0_10px_rgba(244,114,182,0.6)] tl-dot">
-              </div>
-            </div>
-            <div class="md:hidden text-pink-400 font-bold mb-4 pl-4 text-2xl tl-year">2020</div>
-
-            <div class="hidden md:flex w-1/2 justify-start pl-16 tl-year">
-              <span
-                class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-pink-400/40 transition-colors duration-500 tracking-tighter">2020</span>
-            </div>
-
-            <div
-              class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-pink-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(244,114,182,0)] group-hover:shadow-[0_0_15px_rgba(244,114,182,0.8)]">
-            </div>
-
-            <div class="w-full md:w-1/2 md:pr-16 text-left md:text-right tl-card">
-              <div
-                class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                <div
-                  class="absolute inset-0 bg-gradient-to-bl from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                </div>
-                <div class="flex items-center md:flex-row-reverse gap-4 mb-4 relative z-10">
-                  <div class="w-28 h-14 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="assets/img/Neoenergia.png" alt="Neoenergia"
-                      class="w-full h-full object-contain rounded-md max-w-full">
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white">Neoenergia</h3>
-                </div>
-                <p class="text-white/50 leading-relaxed text-base sm:text-lg relative z-10"
-                  style="font-family:'Manrope',sans-serif">
-                  Idealizei e desenvolvi do zero um projeto de BI da gerência de atendimento ao cliente, centralizando
-                  todos os indicadores operacionais e de qualidade.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item: 2019 Alpek -->
-          <div
-            class="timeline-item relative flex flex-col md:flex-row items-start md:items-center justify-between group">
-            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
-              <div
-                class="w-3 h-3 rounded-full border-2 border-[#080810] bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.6)] tl-dot">
-              </div>
-            </div>
-            <div class="md:hidden text-emerald-400 font-bold mb-4 pl-4 text-2xl tl-year">2019</div>
-
-            <div class="hidden md:flex w-1/2 justify-end pr-16 tl-year">
-              <span
-                class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-emerald-400/40 transition-colors duration-500 tracking-tighter">2019</span>
-            </div>
-
-            <div
-              class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-emerald-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(52,211,153,0)] group-hover:shadow-[0_0_15px_rgba(52,211,153,0.8)]">
-            </div>
-
-            <div class="w-full md:w-1/2 md:pl-16 tl-card">
-              <div
-                class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                </div>
-                <div class="flex items-center gap-4 mb-4 relative z-10">
-                  <div class="w-14 h-14 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="assets/img/Alpek.jpeg" alt="Alpek" class="w-full h-full object-contain rounded-md">
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white">Alpek</h3>
-                </div>
-                <p class="text-white/50 leading-relaxed text-base sm:text-lg relative z-10"
-                  style="font-family:'Manrope',sans-serif">
-                  Passagem mais operacional, mas que me trouxe dados de uma área que não tinha essa cultura. Estruturei
-                  indicadores de carteira, crédito e vendas, e automatizei processos que antes eram manuais.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item: 2018 Kroton -->
-          <div
-            class="timeline-item relative flex flex-col md:flex-row-reverse items-start md:items-center justify-between group">
-            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
-              <div
-                class="w-3 h-3 rounded-full border-2 border-[#080810] bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.6)] tl-dot">
-              </div>
-            </div>
-            <div class="md:hidden text-amber-400 font-bold mb-4 pl-4 text-2xl tl-year">2018</div>
-
-            <div class="hidden md:flex w-1/2 justify-start pl-16 tl-year">
-              <span
-                class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-amber-400/40 transition-colors duration-500 tracking-tighter">2018</span>
-            </div>
-
-            <div
-              class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-amber-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(251,191,36,0)] group-hover:shadow-[0_0_15px_rgba(251,191,36,0.8)]">
-            </div>
-
-            <div class="w-full md:w-1/2 md:pr-16 text-left md:text-right tl-card">
-              <div
-                class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                <div
-                  class="absolute inset-0 bg-gradient-to-bl from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                </div>
-                <div class="flex items-center md:flex-row-reverse gap-4 mb-4 relative z-10">
-                  <div class="w-14 h-14 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="assets/img/Cogna.jpeg" alt="Kroton" class="w-full h-full object-contain rounded-md">
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white">Kroton</h3>
-                </div>
-                <p class="text-white/50 leading-relaxed text-base sm:text-lg relative z-10"
-                  style="font-family:'Manrope',sans-serif">
-                  Atuei como guardião do orçamento da diretoria de infraestrutura, acompanhando CAPEX e OPEX e
-                  construindo forecasts mensais. Aqui, foi onde comecei a ter que lidar com grandes volumes de dados.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item: 2015 Bauminas -->
-          <div
-            class="timeline-item relative flex flex-col md:flex-row items-start md:items-center justify-between group">
-            <div class="md:hidden absolute -left-8 top-[28px] -translate-y-1/2 -ml-[4px] mt-0.5">
-              <div
-                class="w-3 h-3 rounded-full border-2 border-[#080810] bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.6)] tl-dot">
-              </div>
-            </div>
-            <div class="md:hidden text-blue-400 font-bold mb-4 pl-4 text-2xl tl-year">2015</div>
-
-            <div class="hidden md:flex w-1/2 justify-end pr-16 tl-year">
-              <span
-                class="text-5xl lg:text-7xl font-bold text-white/10 group-hover:text-blue-400/40 transition-colors duration-500 tracking-tighter">2015</span>
-            </div>
-
-            <div
-              class="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-[5px] border-[#080810] bg-white/20 group-hover:bg-blue-400 transition-all duration-500 z-10 tl-dot shadow-[0_0_15px_rgba(96,165,250,0)] group-hover:shadow-[0_0_15px_rgba(96,165,250,0.8)]">
-            </div>
-
-            <div class="w-full md:w-1/2 md:pl-16 tl-card">
-              <div
-                class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                </div>
-                <div class="flex items-center gap-4 mb-4 relative z-10">
-                  <div class="w-14 h-14 bg-white rounded-xl p-2 shadow-lg flex items-center justify-center shrink-0">
-                    <img src="assets/img/bauminas.png" alt="Bauminas" class="w-full h-full object-contain rounded-md">
-                  </div>
-                  <h3 class="text-2xl sm:text-3xl font-bold text-white">Bauminas</h3>
-                </div>
-                <p class="text-white/50 leading-relaxed text-base sm:text-lg relative z-10"
-                  style="font-family:'Manrope',sans-serif">
-                  Meu primeiro trabalho. Realizei análises de resultados comerciais (vendas diretas e licitações). Me
-                  tornei referência interna em Excel e fui expandindo para outras áreas da empresa, criando dashboards e
-                  automatizando processos.
+              <div class="glass hover:bg-white/[0.04] transition-colors duration-300 p-8 sm:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden">
+                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 relative z-10">Asimov Academy</h3>
+                <p class="text-white/50 leading-relaxed text-base sm:text-lg style="font-family:'Manrope',sans-serif" relative z-10">
+                  Lidera projeto de análise e automação para uma das principais edtechs de tecnologia do Brasil. Foco em performance de campanhas, comportamento de alunos e decisões de negócio baseadas em dados.
                 </p>
               </div>
             </div>
@@ -479,518 +238,12 @@
       </div>
     </div>
   </section>
-
-  <!-- ═══════════════════════════════════════════════════════
-     TECH STACK (BENTO BOX)
-  ═══════════════════════════════════════════════════════ -->
-  <section id="skills" class="relative z-10 py-20 border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8">
-
-      <div class="mb-16 text-center md:text-left">
-        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Minha <span
-            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-500">Stack & Skills</span>
-        </h2>
-        <p class="text-white/50 text-lg">As ferramentas e metodologias que compõem meu dia a dia.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- 1. Linguagens & Programação -->
-        <div
-          class="glass p-8 rounded-[2rem] border border-white/10 group relative overflow-hidden flex flex-col items-start transition-all duration-300 hover:border-blue-500/30 hover:-translate-y-1">
-          <div
-            class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <div class="relative z-10 mb-6">
-            <div
-              class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-blue-500/10 transition-colors duration-300">
-              <svg class="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Linguagens & Programação</h3>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-blue-500/20 hover:border-blue-500/40 transition-all cursor-default"><i
-                data-lucide="database" class="w-4 h-4 text-blue-400"></i> SQL</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-blue-400 hover:text-white hover:bg-blue-500/20 hover:border-blue-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Python.svg" class="w-4 h-4 object-contain shrink-0 icon-blue" alt="Python">
-              Python</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-blue-400 hover:text-white hover:bg-blue-500/20 hover:border-blue-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Scala.svg" class="w-4 h-4 object-contain shrink-0 icon-blue" alt="Scala">
-              Scala</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-blue-400 hover:text-white hover:bg-blue-500/20 hover:border-blue-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/VBA.svg" class="w-6 h-6 object-contain shrink-0 icon-blue" alt="VBA">
-              VBA</span>
-          </div>
-        </div>
-
-        <!-- 2. BI & Visualização -->
-        <div
-          class="glass p-8 rounded-[2rem] border border-white/10 group relative overflow-hidden flex flex-col items-start transition-all duration-300 hover:border-emerald-500/30 hover:-translate-y-1">
-          <div
-            class="absolute inset-0 bg-gradient-to-bl from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <div class="relative z-10 mb-6">
-            <div
-              class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-emerald-500/10 transition-colors duration-300">
-              <svg class="w-7 h-7 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-2">BI & Visualização</h3>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Power BI.svg" class="w-4 h-4 object-contain shrink-0 icon-emerald"
-                alt="Power BI"> Power BI (DAX, M)</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/looker.svg" class="w-4 h-4 object-contain shrink-0 icon-emerald"
-                alt="Looker Studio"> Looker Studio</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Qlik.svg" class="w-4 h-4 object-contain shrink-0 icon-emerald"
-                alt="Qlik Sense"> Qlik Sense</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/streamlit-icon.svg" class="w-4 h-4 object-contain shrink-0 icon-emerald"
-                alt="Streamlit"> Streamlit</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Altair.svg" class="w-4 h-4 object-contain shrink-0 icon-emerald"
-                alt="Altair"> Altair</span>
-          </div>
-        </div>
-
-        <!-- 3. Plataformas & Infraestrutura -->
-        <div
-          class="glass p-8 rounded-[2rem] border border-white/10 group relative overflow-hidden flex flex-col items-start transition-all duration-300 hover:border-purple-500/30 hover:-translate-y-1">
-          <div
-            class="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <div class="relative z-10 mb-6">
-            <div
-              class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-purple-500/10 transition-colors duration-300">
-              <svg class="w-7 h-7 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Plataformas & Infra</h3>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 transition-all cursor-default"><svg
-                class="w-6 h-6 text-purple-400 shrink-0" width="200" height="200" viewBox="0 0 100 100" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <g stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 35 L50 20 L80 35"></path>
-                  <path d="M20 45 L50 60 L80 45"></path>
-                  <path d="M20 55 L50 70 L80 55"></path>
-                  <path d="M20 65 L50 80 L80 65"></path>
-                </g>
-              </svg> Databricks</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Athena.svg" class="w-4 h-4 object-contain shrink-0 icon-purple"
-                alt="Athena"> Athena</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Big Query.svg" class="w-4 h-4 object-contain shrink-0 icon-purple"
-                alt="BigQuery"> BigQuery</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Power Query.svg" class="w-4 h-4 object-contain shrink-0 icon-purple"
-                alt="Power Query"> Power Query</span>
-          </div>
-        </div>
-
-        <!-- 4. Produto & Analytics Digital -->
-        <div
-          class="glass p-8 rounded-[2rem] border border-white/10 group relative overflow-hidden flex flex-col items-start transition-all duration-300 hover:border-pink-500/30 hover:-translate-y-1">
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <div class="relative z-10 mb-6">
-            <div
-              class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-pink-500/10 transition-colors duration-300">
-              <svg class="w-7 h-7 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Produto & Analytics</h3>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-pink-500/20 hover:border-pink-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/GA4.svg" class="w-4 h-4 object-contain shrink-0 icon-pink" alt="GA4">
-              GA4</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-pink-500/20 hover:border-pink-500/40 transition-all cursor-default"><i
-                data-lucide="tag" class="w-4 h-4 text-pink-400"></i> Tagueamento/Tracking</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-pink-500/20 hover:border-pink-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Power Apps.svg" class="w-4 h-4 object-contain shrink-0 icon-pink"
-                alt="Power Apps"> Power Apps</span>
-          </div>
-        </div>
-
-        <!-- 5. Produtividade & Gestão -->
-        <div
-          class="glass p-8 rounded-[2rem] border border-white/10 group relative overflow-hidden flex flex-col items-start transition-all duration-300 hover:border-amber-500/30 hover:-translate-y-1">
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <div class="relative z-10 mb-6">
-            <div
-              class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-amber-500/10 transition-colors duration-300">
-              <svg class="w-7 h-7 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.45" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Produtividade & Gestão</h3>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-amber-500/20 hover:border-amber-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/excel-file.svg" class="w-4 h-4 object-contain shrink-0 icon-amber"
-                alt="Excel"> Excel</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-amber-500/20 hover:border-amber-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/Totvs--Streamline-Simple-Icons.svg"
-                class="w-4 h-4 object-contain shrink-0 icon-amber" alt="Protheus"> Protheus</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-amber-500/20 hover:border-amber-500/40 transition-all cursor-default"><img
-                src="assets/img/ícone stacks/notion.svg" class="w-4 h-4 object-contain shrink-0 icon-amber"
-                alt="Notion"> Notion</span>
-          </div>
-        </div>
-
-        <!-- 6. Métodos & Estratégia -->
-        <div
-          class="glass p-8 rounded-[2rem] border border-white/10 group relative overflow-hidden flex flex-col items-start transition-all duration-300 hover:border-rose-500/30 hover:-translate-y-1">
-          <div
-            class="absolute inset-0 bg-gradient-to-l from-rose-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          </div>
-
-          <div class="relative z-10 mb-6">
-            <div
-              class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-rose-500/10 transition-colors duration-300">
-              <svg class="w-7 h-7 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.829 1.508-2.336 1.53-.909 2.492-2.541 2.492-4.472 0-2.897-2.353-5.25-5.25-5.25S7.75 8.103 7.75 11c0 1.931.962 3.563 2.492 4.472.85.507 1.508 1.353 1.508 2.336V18" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-2">Métodos & Estratégia</h3>
-          </div>
-
-          <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-rose-500/20 hover:border-rose-500/40 transition-all cursor-default"><i
-                data-lucide="git-branch" class="w-4 h-4 text-rose-400"></i> Análise de causa-raiz</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-rose-500/20 hover:border-rose-500/40 transition-all cursor-default"><i
-                data-lucide="microscope" class="w-4 h-4 text-rose-400"></i> Deep dives</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-rose-500/20 hover:border-rose-500/40 transition-all cursor-default"><i
-                data-lucide="trending-up" class="w-4 h-4 text-rose-400"></i> Benchmarking</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-rose-500/20 hover:border-rose-500/40 transition-all cursor-default"><i
-                data-lucide="shield-check" class="w-4 h-4 text-rose-400"></i> Governança de métricas</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-rose-500/20 hover:border-rose-500/40 transition-all cursor-default"><i
-                data-lucide="target" class="w-4 h-4 text-rose-400"></i> OKRs</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-rose-500/20 hover:border-rose-500/40 transition-all cursor-default"><i
-                data-lucide="list-ordered" class="w-4 h-4 text-rose-400"></i> Priorização de backlog</span>
-            <span
-              class="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-white/5 bg-white/5 text-sm font-medium text-white/70 hover:text-white hover:bg-rose-500/20 hover:border-rose-500/40 transition-all cursor-default"><i
-                data-lucide="settings" class="w-4 h-4 text-rose-400"></i> Product Operations</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════
-     TESTIMONIALS (MARQUEE)
-  ═══════════════════════════════════════════════════════ -->
-  <section id="depoimentos" class="relative z-10 py-20 overflow-hidden border-t border-white/5">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 mb-12 text-center md:text-left">
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Pessoas com quem <span
-          class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">trabalhei</span></h2>
-    </div>
-
-    <!-- Marquee Container -->
-    <div class="flex gap-8 group w-full overflow-hidden relative">
-      <!-- Gradient masks to hide edges smoothly -->
-      <div
-        class="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#080810] to-transparent z-10 pointer-events-none">
-      </div>
-      <div
-        class="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#080810] to-transparent z-10 pointer-events-none">
-      </div>
-
-      <!-- TRACK 1 -->
-      <div class="flex gap-8 shrink-0 animate-marquee items-stretch">
-        <!-- CARD 1: Viviane -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-blue-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Marcos é um profissional
-              apaixonado por Excel que está sempre em busca de melhoria contínua, inovação, de aprender novas
-              tecnologias e adquirir novos conhecimentos para transformar em soluções na sua rotina de trabalho e no
-              suporte aos outros departamentos."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/VIviane%20Vieira.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Viviane+Vieira&background=10101A&color=60A5FA&size=128';"
-              alt="Viviane Vieira" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Viviane Vieira</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1"
-                title="Gerente Comercial | Liderança de Equipes de Vendas | Estratégia B2B e Go-to-Market | Data Driven | Inteligência Comercial">
-                Gerente Comercial | Liderança de Equipes</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 2: Carolina -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-amber-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Marcos é um profissional
-              que personifica a excelência, além de ser uma das pessoas mais intraempreendedoras que conheço. Sua busca
-              por aprimoramento em Excel e Gestão de Dados é constante, além de novas ferramentas para resolver lacunas
-              e dificuldades que possa porventura encontrar..."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/Carolina%20Pazinato.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Carolina+Pazinato&background=10101A&color=FBBF24&size=128';"
-              alt="Carolina Pazinato" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Carolina Pazinato</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1"
-                title="KSD | Agilidade | Transformação Digital | Inovação | Design Organizacional | Change Management">
-                KSD | Agilidade | Transformação Digital</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 3: Leidiana -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-emerald-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Marcos tem uma rara
-              combinação de qualificação técnica e competências comportamentais. Trabalhar com ele foi um experiência de
-              trocas muitas ricas e grandes aprendizados. Liderando a estruturação de processos, organizou o fluxo e
-              elevou o patamar de entrega do time de dados."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/Leidiana%20de%20Carli.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Leidiana+de+Carli&background=10101A&color=34D399&size=128';"
-              alt="Leidiana de Carli" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Leidiana de Carli</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1"
-                title="Senior Data Analytics Specialist @ CI&T | Product Analytics | Data Insights">Senior Data
-                Analytics Specialist</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 4: Lucas -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-purple-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Recomendo demais! Marcos
-              sempre foi referência nos assuntos em que acompanhei. Profissional com alto domínio técnico, mas ao mesmo
-              tempo uma visão de negócios diferenciada. Nunca se limitou a um escopo específico, conseguindo se adaptar
-              a qualquer contexto, seja de produtos, crédito..."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/Lucas%20Sorreano.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Lucas+Sorreano&background=10101A&color=A78BFA&size=128';"
-              alt="Lucas Sorreano" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Lucas Sorreano</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1"
-                title="Especialista Prevenção à Fraude | Product Manager | IA Aplicada ao Risco">Especialista Prevenção
-                à Fraude | PM</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TRACK 2 (Duplicate for infinite seamless scroll) -->
-      <div class="flex gap-8 shrink-0 animate-marquee items-stretch" aria-hidden="true">
-        <!-- CARD 1: Viviane -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-blue-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Marcos é um profissional
-              apaixonado por Excel que está sempre em busca de melhoria contínua, inovação, de aprender novas
-              tecnologias e adquirir novos conhecimentos para transformar em soluções na sua rotina de trabalho e no
-              suporte aos outros departamentos."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/VIviane%20Vieira.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Viviane+Vieira&background=10101A&color=60A5FA&size=128';"
-              alt="Viviane Vieira" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Viviane Vieira</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1">Gerente Comercial | Liderança de Equipes</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 2: Carolina -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-amber-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Marcos é um profissional
-              que personifica a excelência, além de ser uma das pessoas mais intraempreendedoras que conheço. Sua busca
-              por aprimoramento em Excel e Gestão de Dados é constante, além de novas ferramentas para resolver lacunas
-              e dificuldades que possa porventura encontrar..."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/Carolina%20Pazinato.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Carolina+Pazinato&background=10101A&color=FBBF24&size=128';"
-              alt="Carolina Pazinato" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Carolina Pazinato</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1">KSD | Agilidade | Transformação Digital</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 3: Leidiana -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-emerald-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Marcos tem uma rara
-              combinação de qualificação técnica e competências comportamentais. Trabalhar com ele foi um experiência de
-              trocas muitas ricas e grandes aprendizados. Liderando a estruturação de processos, organizou o fluxo e
-              elevou o patamar de entrega do time de dados."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/Leidiana%20de%20Carli.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Leidiana+de+Carli&background=10101A&color=34D399&size=128';"
-              alt="Leidiana de Carli" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Leidiana de Carli</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1">Senior Data Analytics Specialist</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CARD 4: Lucas -->
-        <div
-          class="w-[320px] md:w-[450px] glass p-8 rounded-3xl border border-white/10 shrink-0 flex flex-col hover:bg-white/5 transition-colors duration-300">
-          <div class="mb-8">
-            <svg class="w-8 h-8 text-purple-400/30 mb-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-            </svg>
-            <p class="text-white/70 leading-relaxed font-light text-sm sm:text-base italic">"Recomendo demais! Marcos
-              sempre foi referência nos assuntos em que acompanhei. Profissional com alto domínio técnico, mas ao mesmo
-              tempo uma visão de negócios diferenciada. Nunca se limitou a um escopo específico, conseguindo se adaptar
-              a qualquer contexto..."</p>
-          </div>
-          <div class="flex items-center gap-4 mt-auto">
-            <img src="assets/img/Lucas%20Sorreano.jpeg"
-              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Lucas+Sorreano&background=10101A&color=A78BFA&size=128';"
-              alt="Lucas Sorreano" class="w-12 h-12 rounded-full object-cover border border-white/20 shrink-0">
-            <div>
-              <h4 class="text-white font-bold text-sm sm:text-base leading-tight">Lucas Sorreano</h4>
-              <p class="text-white/40 text-xs mt-1 line-clamp-1">Especialista Prevenção à Fraude | PM</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <style>
-    @keyframes marquee {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(calc(-100% - 2rem));
-      }
-    }
-
-    .animate-marquee {
-      animation: marquee 45s linear infinite;
-    }
-
-    .group:hover .animate-marquee {
-      animation-play-state: paused;
-    }
-  </style>
 
   <!-- ═══════════════════════════════════════════════════════
      FOOTER
   ═══════════════════════════════════════════════════════ -->
   <footer class="relative z-10 border-t border-white/5 px-5 sm:px-8 py-8 mt-12">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/70">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/25">
       <div class="flex items-center gap-3">
         <img src="assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-50" />
         <span>© 2026 Marcos Data Product</span>
@@ -1018,7 +271,7 @@
           // Card enters
           gsap.fromTo(card,
             { opacity: 0, x: index % 2 === 0 ? 30 : -30 },
-            {
+            { 
               opacity: 1, x: 0, duration: 1, ease: "power3.out",
               scrollTrigger: { trigger: item, start: "top 80%" }
             }
@@ -1027,7 +280,7 @@
           // Dot flashes
           gsap.fromTo(dot,
             { scale: 0, opacity: 0 },
-            {
+            { 
               scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)",
               scrollTrigger: { trigger: item, start: "top 80%" }
             }
@@ -1036,27 +289,14 @@
           // Year slides in
           gsap.fromTo(year,
             { opacity: 0, x: index % 2 === 0 ? -15 : 15 },
-            {
+            { 
               opacity: 1, x: 0, duration: 0.8, ease: "power2.out",
               scrollTrigger: { trigger: item, start: "top 80%" }
             }
           );
         });
-
-        // Add Progress Line Animation
-        gsap.to('#scroll-timeline-line', {
-          scaleY: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.space-y-24', // The timeline items container wrapper
-            start: 'top 50%',
-            end: 'bottom 50%',
-            scrub: 0.5
-          }
-        });
       }
     });
   </script>
 </body>
-
 </html>

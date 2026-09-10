@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção — Marcos Data Product</title>
+  <meta name="description" content="Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos." />
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção — Marcos Data Product" />
+  <meta property="og:description" content="Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/img/blog/cover-agentes-ia.svg" />
+
+  <!-- Vendor Libraries (Local) -->
+  <script src="../assets/vendor/gsap_4a57399e4113.js"></script>
+  <script src="../assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
+  <script src="../assets/vendor/resource_3fa48481346f.js"></script>
+  <script src="../assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+
+  <!-- Vendor Fonts (Local) -->
+  <link href="../assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
+  <link href="../assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+
+  <style>
+    /* Estilos específicos de leitura tipográfica do Artigo */
+    #reading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #11376e, #1f6feb);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }
+    .article-prose {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      color: #1f2328;
+      font-size: 1.075rem;
+      line-height: 1.8;
+    }
+    .article-prose h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1f2328;
+      letter-spacing: -0.02em;
+    }
+    .article-prose h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #1f2328;
+      letter-spacing: -0.01em;
+    }
+    .article-prose p {
+      margin-bottom: 1.4rem;
+      color: #24292f;
+    }
+    .article-prose ul, .article-prose ol {
+      margin-bottom: 1.4rem;
+      padding-left: 1.5rem;
+    }
+    .article-prose li {
+      margin-bottom: 0.5rem;
+    }
+    .article-prose blockquote {
+      border-left: 4px solid #d0d7de;
+      padding-left: 1rem;
+      font-style: italic;
+      color: #57606a;
+      margin: 1.5rem 0;
+    }
+    .article-prose strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+    .primer-table th, .primer-table td {
+      padding: 10px 14px;
+      border: 1px solid #d0d7de;
+    }
+    .primer-table th {
+      background: #f6f8fa;
+      font-weight: 600;
+      color: #1f2328;
+    }
+    .callout-box .callout-content p {
+      margin-bottom: 0.5rem;
+    }
+    .callout-box .callout-content p:last-child {
+      margin-bottom: 0;
+    }
+    .callout-box .callout-content ul {
+      margin-bottom: 0.5rem;
+      padding-left: 1.25rem;
+      list-style-type: disc;
+    }
+    .callout-box .callout-content li {
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="reading-bar"></div>
+
+  <!-- Three.js Canvas -->
+  <canvas id="canvas"></canvas>
+
+  <!-- ═══════════════════════════════════════════════════════
+     NAVBAR
+  ═══════════════════════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Home">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product"
+          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data Product</span>
+      </a>
+
+      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../blog.html" class="nav-link active">Blog</a>
+        <a href="../playbook.html" class="nav-link">Playbook</a>
+        <a href="../projetos.html" class="nav-link">Projetos</a>
+        <a href="../biblioteca.html" class="nav-link">Biblioteca</a>
+        <a href="../sobre.html" class="nav-link">Sobre</a>
+      </nav>
+
+      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close" aria-label="Fechar menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <a href="../index.html" class="mobile-link">Home</a>
+    <a href="../blog.html" class="mobile-link active">Blog</a>
+    <a href="../playbook.html" class="mobile-link">Playbook</a>
+    <a href="../projetos.html" class="mobile-link">Projetos</a>
+    <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
+    <a href="../sobre.html" class="mobile-link">Sobre</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     HEADER DO POST
+  ═══════════════════════════════════════════════════════ -->
+  <main class="relative z-10 pt-36 sm:pt-40 pb-20 px-5 sm:px-8">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-[#656d76] mb-8" aria-label="Breadcrumb">
+        <a href="../index.html" class="hover:text-[#11376e] transition-colors">Home</a>
+        <span>/</span>
+        <a href="../blog.html" class="hover:text-[#11376e] transition-colors">Blog</a>
+        <span>/</span>
+        <span class="text-[#1f2328] font-medium truncate max-w-xs">Inteligência Artificial</span>
+      </nav>
+
+      <!-- Category badge & Read info -->
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class="badge badge-blue text-xs">Inteligência Artificial</span>
+        <span class="text-xs text-[#656d76] flex items-center gap-1.5">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 12 de Setembro de 2026
+        </span>
+        <span class="text-[#d0d7de]">•</span>
+        <span class="text-xs text-[#656d76] flex items-center gap-1.5">
+          <i data-lucide="clock" class="w-3.5 h-3.5"></i> 8 min de leitura
+        </span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1f2328] tracking-tight leading-[1.18] mb-6" style="font-family:'Space Grotesk',sans-serif">
+        Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
+      </h1>
+
+      <!-- Excerpt -->
+      <p class="text-lg sm:text-xl text-[#57606a] leading-relaxed mb-8" style="font-family:'Manrope',sans-serif">
+        Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
+      </p>
+
+      <!-- Author Chip -->
+      <div class="flex items-center justify-between py-4 border-y border-[#d0d7de] mb-10">
+        <div class="flex items-center gap-3">
+          <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de]" />
+          <div>
+            <span class="font-bold text-sm text-[#1f2328] block">Marcos Aurélio</span>
+            <span class="text-xs text-[#656d76]">Senior Business Analytics &bull; Autor</span>
+          </div>
+        </div>
+        
+        <!-- Social share quick links -->
+        <div class="flex items-center gap-2">
+          <button onclick="shareArticle('linkedin')" class="p-2 rounded-lg glass hover:text-[#0A66C2] transition-colors" title="Compartilhar no LinkedIn">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </button>
+          <button onclick="shareArticle('whatsapp')" class="p-2 rounded-lg glass hover:text-[#25D366] transition-colors" title="Compartilhar no WhatsApp">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+          </button>
+          <button onclick="copyCurrentUrl()" class="p-2 rounded-lg glass hover:text-[#11376e] transition-colors" title="Copiar link">
+            <i data-lucide="link" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Featured Image / Cover -->
+      <div class="rounded-2xl overflow-hidden border border-[#d0d7de] shadow-sm mb-12 bg-white max-h-[440px] flex items-center justify-center"><img src="../assets/img/blog/cover-agentes-ia.svg" alt="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção" class="w-full h-full object-cover max-h-[440px]" /></div>
+
+      <!-- ═══════════════════════════════════════════════════════
+         CORPO DO ARTIGO + SIDEBAR
+      ═══════════════════════════════════════════════════════ -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Main Content -->
+        <article class="lg:col-span-8 article-prose">
+          <p>O mercado corporativo viveu nos últimos dois anos a euforia dos prompts conversacionais. Gestores começaram a colar trechos de planilhas no ChatGPT para pedir análises e resumos executivos. No entanto, esse modelo manual encontra rapidamente gargalos graves: <strong>risco de vazamento de dados confidenciais, alucinações matemáticas e incapacidade de agir proativamente sobre sistemas transacionais.</strong></p>
+<p>A virada de chave no ecossistema de dados acontece quando saímos de <em>chatbots reativos</em> e entramos na era dos <strong>Agentes Autônomos de IA orientados a Analytics</strong>.</p>
+<hr />
+<h2 id="o-que-diferencia-um-agente-de-um-simples-chatbot">O que diferencia um Agente de um Simples Chatbot?</h2>
+<p>Um agente inteligente de dados é composto por quatro pilares essenciais:</p>
+<div class="code-wrapper relative my-6 rounded-xl overflow-hidden border border-[#d0d7de] bg-[#f6f8fa]">
+  <div class="code-header flex items-center justify-between px-4 py-2 bg-[#eaeef2] border-b border-[#d0d7de] text-xs text-[#656d76] font-mono">
+    <span>CÓDIGO</span>
+    <button onclick="copyCode(this)" class="copy-btn hover:text-[#1f2328] transition-colors flex items-center gap-1">
+      <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+    </button>
+  </div>
+  <pre class="p-4 overflow-x-auto text-sm font-mono text-[#1f2328] leading-relaxed"><code>┌─────────────────────────────────────────────────────────┐
+│                     LLM Core Engine                     │
+│                  (Raciocínio &amp; Decisão)                 │
+└──────────────┬───────────────────────────┬──────────────┘
+               │                           │
+       ┌───────▼───────┐           ┌───────▼───────┐
+       │   Memória &amp;   │           │   Tools &amp;     │
+       │   Contexto    │           │   Function    │
+       │   (Vetores)   │           │   Calling     │
+       └───────────────┘           └───────┬───────┘
+                                           │
+                   ┌───────────────────────┼───────────────────────┐
+                   ▼                       ▼                       ▼
+            [Consulta SQL/DW]      [API ERP/Salesforce]    [Notificação Slack]
+</code></pre>
+</div>
+<ol>
+<li><strong>Percepção e Gatilho:</strong> Monitoramento de eventos (ex: o faturamento diário fechou 22% abaixo da meta histórica).</li>
+<li><strong>Planejamento (Reasoning loop):</strong> Capacidade de decompor um problema complexo em sub-tarefas lógicas (<em>Chain-of-Thought</em> / ReAct).</li>
+<li><strong>Uso de Ferramentas (<em>Tool Use / Function Calling</em>):</strong> Execução segura de consultas SQL em Data Warehouses (Snowflake, BigQuery), chamadas de API em ERPs e execução de código Python isolado.</li>
+<li><strong>Auto-Crítica e Refinamento:</strong> Checagem de integridade numérica antes de despachar relatórios para a diretoria.</li>
+</ol>
+<hr />
+<h2 id="caso-pratico-o-agente-investigador-de-receita">Caso Prático: O Agente Investigador de Receita</h2>
+<p>Em uma operação real, quando a margem de contribuição de uma unidade de negócio cai bruscamente, um analista humano costuma levar horas:<br />
+- Rodando queries para isolar canais;<br />
+- Conferindo se houve aumento de devoluções ou frete;<br />
+- Cruzando com reajustes de tabela de preços;<br />
+- Redigindo um e-mail com a explicação.</p>
+<p>Com um pipeline de agentes, esse processo é automatizado em segundos:</p>
+<div class="code-wrapper relative my-6 rounded-xl overflow-hidden border border-[#d0d7de] bg-[#f6f8fa]">
+  <div class="code-header flex items-center justify-between px-4 py-2 bg-[#eaeef2] border-b border-[#d0d7de] text-xs text-[#656d76] font-mono">
+    <span>PYTHON</span>
+    <button onclick="copyCode(this)" class="copy-btn hover:text-[#1f2328] transition-colors flex items-center gap-1">
+      <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+    </button>
+  </div>
+  <pre class="p-4 overflow-x-auto text-sm font-mono text-[#1f2328] leading-relaxed"><code>from dataclasses import dataclass
+from typing import List, Dict
+
+@dataclass
+class AnomalyEvent:
+    metric: str
+    variation_pct: float
+    dimension: str
+    baseline_value: float
+    current_value: float
+
+class RevenueInspectorAgent:
+    &quot;&quot;&quot;
+    Agente autônomo encarregado de investigar desvios
+    e orquestrar consultas analíticas no Data Warehouse.
+    &quot;&quot;&quot;
+    def __init__(self, db_client, llm_engine):
+        self.db = db_client
+        self.llm = llm_engine
+
+    def investigate(self, event: AnomalyEvent) -&gt; Dict[str, any]:
+        # 1. Planejar hipóteses de causa-raiz
+        hypotheses = self.llm.generate_hypotheses(event)
+
+        # 2. Executar consultas SQL seguras para cada hipótese
+        evidence = []
+        for hypo in hypotheses:
+            query = hypo.suggested_sql
+            results = self.db.execute_safe_query(query)
+            evidence.append({&quot;hypothesis&quot;: hypo.description, &quot;data&quot;: results})
+
+        # 3. Sintetizar diagnóstico com números validados
+        executive_summary = self.llm.synthesize_findings(
+            event=event,
+            evidence=evidence
+        )
+
+        return {
+            &quot;status&quot;: &quot;COMPLETED&quot;,
+            &quot;diagnosis&quot;: executive_summary,
+            &quot;actions_suggested&quot;: executive_summary.recommended_actions
+        }
+</code></pre>
+</div>
+<div class="callout-box my-6 p-4 rounded-r-xl border-l-4 border-blue-500 bg-blue-50/70 text-blue-950"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="info" class="w-4 h-4"></i> Nota Informativa</div><div class="text-sm leading-relaxed callout-content"><p><strong>Segurança em Primeiro Lugar</strong>: O agente nunca executa comandos DDL ou manipulações destrutivas (<code>DROP</code>, <code>DELETE</code>, <code>UPDATE</code>). Ele possui apenas credenciais com permissão <code>READ-ONLY</code> e opera com parâmetros estritos de validação de schemas.</p></div></div>
+
+<hr />
+<h2 id="3-licoes-para-implementar-agentes-na-sua-empresa">3 Lições para Implementar Agentes na sua Empresa</h2>
+<ol>
+<li><strong>Comece com Escopo Estrito (Narrow Agents):</strong> Não tente criar um "Analista de Dados Universal". Crie agentes especialistas: um para conciliação de faturas, outro para alertas de churn de clientes e outro para conferência de métricas de campanhas de tráfego.</li>
+<li><strong>Adicione RAG Corporativo (Dicionário de Métricas):</strong> Um dos maiores motivos de erro em agentes é a ambiguidade semântica. Se o agente não souber a regra exata de "O que é um Cliente Ativo no Q3?", ele gerará métricas divergentes do Power BI. Conecte o agente ao seu catálogo de dados ou dbt Semantic Layer.</li>
+<li><strong>Mantenha o Humano no Loop (Human-in-the-Loop):</strong> O agente gera a análise investigativa, identifica os top 3 motivos do desvio e redige a minuta. O analista sênior revisa, valida os insights e autoriza o envio. Isso reduz o trabalho operacional em 85% sem abrir mão da supervisão crítica.</li>
+</ol>
+<p>A inteligência artificial não veio para substituir o analista sênior, mas sim para libertá-lo da extração repetitiva de dados e colocá-lo no papel de estrategista de decisões.</p>
+
+          <!-- Tags & Share Footer -->
+          <div class="mt-12 pt-8 border-t border-[#d0d7de]">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Inteligência Artificial</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Agentes Autônomos</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#RAG</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Python</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Business Analytics</span> 
+              </div>
+              <div class="flex items-center gap-2 text-xs font-semibold text-[#656d76]">
+                <span>Compartilhar:</span>
+                <button onclick="shareArticle('linkedin')" class="p-2 rounded-lg glass hover:text-[#0A66C2]">
+                  <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </button>
+                <button onclick="shareArticle('whatsapp')" class="p-2 rounded-lg glass hover:text-[#25D366]">
+                  <i data-lucide="message-circle" class="w-4 h-4"></i>
+                </button>
+                <button onclick="copyCurrentUrl()" class="p-2 rounded-lg glass hover:text-[#11376e]">
+                  <i data-lucide="share-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Author Bio Card -->
+          <div class="glass p-6 sm:p-8 rounded-2xl border border-[#d0d7de] mt-10 flex flex-col sm:flex-row items-center gap-6">
+            <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-20 h-20 rounded-2xl object-cover border border-[#d0d7de] shadow-sm" />
+            <div class="text-center sm:text-left">
+              <span class="badge badge-blue text-[11px] mb-2">Sobre o Autor</span>
+              <h3 class="text-lg font-bold text-[#1f2328] mb-1">Marcos Aurélio</h3>
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-4">
+                Senior Business Analytics com passagens por Nubank, Google e Asimov Academy. Especialista em traduzir dados complexos em decisões estratégicas de produto, IA e governança.
+              </p>
+              <div class="flex items-center justify-center sm:justify-start gap-3 text-xs">
+                <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="text-[#0A66C2] font-semibold flex items-center gap-1 hover:underline">
+                  <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> Conectar no LinkedIn
+                </a>
+                <span class="text-[#d0d7de]">&bull;</span>
+                <a href="../sobre.html" class="text-[#11376e] font-semibold hover:underline">Ver Trajetória</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Back to blog button -->
+          <div class="mt-10 text-center sm:text-left">
+            <a href="../blog.html" class="btn-secondary inline-flex items-center gap-2">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para todos os artigos
+            </a>
+          </div>
+        </article>
+
+        <!-- Sidebar (Desktop TOC & Widget) -->
+        <aside class="hidden lg:block lg:col-span-4">
+          
+
+          <!-- Newsletter / Connect Box -->
+          <div class="glass p-6 rounded-2xl border border-[#d0d7de]">
+            <div class="w-10 h-10 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mb-4">
+              <i data-lucide="bell" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-sm text-[#1f2328] mb-1">Acompanhe novos insights</h4>
+            <p class="text-xs text-[#656d76] leading-relaxed mb-4">
+              Publico regularmente novos artigos práticos e casos reais de Power BI, IA e Analytics no meu perfil.
+            </p>
+            <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="btn-primary w-full justify-center text-xs py-2.5">
+              <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i> Seguir no LinkedIn
+            </a>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════
+         ARTIGOS RELACIONADOS
+      ═══════════════════════════════════════════════════════ -->
+      
+      <section class="mt-20 pt-12 border-t border-[#d0d7de]">
+        <div class="flex items-center justify-between mb-8">
+          <h3 class="text-xl font-bold text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">Artigos Relacionados</h3>
+          <a href="../blog.html" class="text-xs font-semibold text-[#11376e] hover:underline flex items-center gap-1">
+            Ver todos <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+        <a href="principios-storytelling-dataviz.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="badge badge-emerald text-[11px]">Data Visualization</span>
+              <span class="text-xs text-[#656d76]">6 min</span>
+            </div>
+            <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
+              Storytelling com Dados: 5 Princípios para Transformar Dashboards em Ações
+            </h4>
+            <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
+              Dashboards bonitos que ninguém utiliza são um desperdício de investimento. Descubra como aplicar carga cognitiva reduzida, atributos pré-atentivos e Action-Driven Design em relatórios executivos.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
+            Ler artigo <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </a>
+        
+        <a href="modelagem-star-schema-powerbi.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="badge badge-amber text-[11px]">Power BI</span>
+              <span class="text-xs text-[#656d76]">7 min</span>
+            </div>
+            <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
+              Como estruturar Modelagem Star Schema no Power BI para Alta Performance
+            </h4>
+            <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
+              Aprenda por que o modelo dimensional Star Schema supera tabelas 'flat' únicas na engine VertiPaq, simplifica medidas DAX e garante relatórios corporativos escaláveis.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
+            Ler artigo <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </a>
+        
+        </div>
+      </section>
+      
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
+      <div class="flex items-center gap-3">
+        <img src="../assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-60" />
+        <span>&copy; 2026 Marcos Data Product</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="../blog.html" class="hover:text-[#11376e]">Blog</a>
+        <a href="../playbook.html" class="hover:text-[#11376e]">Playbook</a>
+        <a href="../projetos.html" class="hover:text-[#11376e]">Projetos</a>
+        <a href="../sobre.html" class="hover:text-[#11376e]">Sobre</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('reading-bar');
+      if (bar) bar.style.width = scrolled + '%';
+    });
+
+    // Copy Code snippet
+    function copyCode(btn) {
+      const wrapper = btn.closest('.code-wrapper');
+      const code = wrapper.querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Copiado!';
+        lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+
+    // Share Helpers
+    function shareArticle(network) {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+      if (network === 'linkedin') {
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+      } else if (network === 'whatsapp') {
+        window.open(`https://api.whatsapp.com/send?text=${title}%20${url}`, '_blank');
+      }
+    }
+
+    function copyCurrentUrl() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('Link copiado para a área de transferência!');
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
