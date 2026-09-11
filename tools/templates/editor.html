@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Editor de Artigos — Marcos Data Product</title>
+
+  <!-- Lucide Icons -->
+  <script src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+
+  <!-- Fonts & Main CSS -->
+  <link href="/assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
+  <link href="/assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- Markdown parser & KaTeX para Live Preview -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <style>
+    /* Estilos do Editor */
+    body {
+      background: #f6f8fa;
+      color: #1f2328;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toolbar-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #1f2328;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .toolbar-btn:hover {
+      background: #eaeef2;
+      border-color: #d0d7de;
+    }
+
+    .toolbar-btn:active {
+      background: #afb8c133;
+    }
+
+    .toolbar-separator {
+      width: 1px;
+      height: 22px;
+      background: #d0d7de;
+      margin: 0 4px;
+    }
+
+    /* Live Preview Styles matching Blog Articles */
+    .preview-body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      color: #1f2328;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .preview-body h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #d0d7de;
+      padding-bottom: 0.4rem;
+    }
+
+    .preview-body h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .preview-body h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 1.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .preview-body h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .preview-body p {
+      margin-bottom: 1.2rem;
+    }
+
+    .preview-body ul,
+    .preview-body ol {
+      margin-bottom: 1.2rem;
+      padding-left: 1.5rem;
+    }
+
+    .preview-body ul {
+      list-style-type: disc;
+    }
+
+    .preview-body ol {
+      list-style-type: decimal;
+    }
+
+    .preview-body blockquote {
+      border-left: 4px solid #d0d7de;
+      padding-left: 1rem;
+      color: #57606a;
+      font-style: italic;
+      margin: 1.2rem 0;
+    }
+
+    .preview-body hr {
+      border: 0;
+      height: 1px;
+      background: #d0d7de;
+      margin: 2rem 0;
+    }
+
+    .preview-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+
+    .preview-body th,
+    .preview-body td {
+      padding: 8px 12px;
+      border: 1px solid #d0d7de;
+    }
+
+    .preview-body th {
+      background: #f6f8fa;
+      font-weight: 600;
+    }
+
+    .preview-body pre {
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      padding: 12px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 13px;
+      margin: 1.2rem 0;
+    }
+
+    .preview-body code:not(pre code) {
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 4px;
+      padding: 2px 5px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #0969da;
+    }
+
+    .preview-body figure {
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      border: 1px solid #d0d7de;
+      background: white;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .preview-body figure img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 0 auto;
+    }
+
+    .preview-body figcaption {
+      font-size: 12px;
+      color: #656d76;
+      margin-top: 6px;
+    }
+
+    .editor-textarea {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      resize: none;
+      outline: none;
+    }
+
+    .editor-textarea:focus {
+      outline: none;
+    }
+
+    /* Modal / Drawer */
+    .drawer-overlay {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+     HEADER SUPERIOR COM AÇÕES PRINCIPAIS
+  ═══════════════════════════════════════════════════════ -->
+  <header class="bg-white border-b border-[#d0d7de] sticky top-0 z-40 px-4 sm:px-6 py-3">
+    <div class="max-w-[1600px] mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/assets/img/Logo.png" alt="Logo" class="w-8 h-8 object-contain" />
+          <div class="hidden sm:block">
+            <span class="font-bold text-sm text-[#1f2328] block leading-tight">Marcos Data Product</span>
+            <span class="text-[11px] text-[#656d76]">Editor Visual de Artigos</span>
+          </div>
+        </a>
+        <span class="text-[#d0d7de] hidden sm:inline">|</span>
+        <span id="save-status" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Pronto para publicar
+        </span>
+      </div>
+
+      <!-- Center / View switch -->
+      <div class="hidden md:flex items-center bg-[#f6f8fa] p-1 rounded-xl border border-[#d0d7de] text-xs font-medium text-[#656d76]">
+        <button id="view-split-btn" onclick="setViewMode('split')" class="px-3 py-1 rounded-lg bg-white shadow-sm text-[#1f2328] font-semibold transition-all">Lado a Lado</button>
+        <button id="view-editor-btn" onclick="setViewMode('editor')" class="px-3 py-1 rounded-lg hover:text-[#1f2328] transition-all">Apenas Editor</button>
+        <button id="view-preview-btn" onclick="setViewMode('preview')" class="px-3 py-1 rounded-lg hover:text-[#1f2328] transition-all">Apenas Preview</button>
+      </div>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-2">
+        <button onclick="openPostsDrawer()" class="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5">
+          <i data-lucide="folder-open" class="w-4 h-4"></i> Meus Artigos
+        </button>
+        <button onclick="newArticle()" class="btn-secondary text-xs py-2 px-3 flex items-center gap-1.5" title="Limpar formulário para novo artigo">
+          <i data-lucide="plus" class="w-4 h-4"></i> Novo
+        </button>
+        <button id="publish-btn" onclick="publishArticle()" class="btn-primary text-xs py-2 px-4 flex items-center gap-1.5 bg-[#11376e] text-white hover:bg-[#184a91]">
+          <i data-lucide="send" class="w-4 h-4"></i> Publicar Artigo
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+     CONTEÚDO PRINCIPAL (METADADOS + EDITOR)
+  ═══════════════════════════════════════════════════════ -->
+  <main class="flex-1 max-w-[1600px] w-full mx-auto p-4 sm:p-6 flex flex-col gap-5">
+
+    <!-- ── PAINEL DE METADADOS (YAML FRONTMATTER) ──────────── -->
+    <section class="bg-white rounded-2xl border border-[#d0d7de] shadow-sm overflow-hidden">
+      
+      <!-- Collapsible Header -->
+      <div class="px-5 py-3.5 bg-[#f6f8fa] border-b border-[#d0d7de] flex items-center justify-between cursor-pointer" onclick="toggleMetaPanel()">
+        <div class="flex items-center gap-2 font-bold text-xs uppercase tracking-wider text-[#656d76]">
+          <i data-lucide="sliders" class="w-4 h-4 text-[#11376e]"></i> Metadados do Artigo (YAML Frontmatter)
+        </div>
+        <div class="flex items-center gap-2 text-xs text-[#656d76]">
+          <span id="category-preview-badge" class="badge badge-blue text-[11px]">Business Analytics</span>
+          <i id="meta-chevron" data-lucide="chevron-up" class="w-4 h-4 transition-transform"></i>
+        </div>
+      </div>
+
+      <!-- Form Body -->
+      <div id="meta-panel-body" class="p-5 grid grid-cols-1 md:grid-cols-12 gap-4">
+        
+        <!-- Título (8 cols) -->
+        <div class="md:col-span-8">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5">
+            Título do Artigo <span class="text-rose-500">*</span>
+          </label>
+          <input type="text" id="post-title" placeholder="Ex: Como estruturar Modelagem Star Schema no Power BI"
+                 oninput="onTitleChange()"
+                 class="w-full px-3.5 py-2 text-sm rounded-xl border border-[#d0d7de] bg-white text-[#1f2328] focus:outline-none focus:border-[#11376e] focus:ring-2 focus:ring-[#11376e]/10 shadow-sm" />
+        </div>
+
+        <!-- Slug (4 cols) -->
+        <div class="md:col-span-4">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5 flex items-center justify-between">
+            <span>Slug (URL) <span class="text-rose-500">*</span></span>
+            <span class="text-[11px] text-[#656d76] font-normal" id="slug-hint">blog/meu-post.html</span>
+          </label>
+          <input type="text" id="post-slug" placeholder="meu-artigo-amigavel"
+                 class="w-full px-3.5 py-2 text-sm rounded-xl border border-[#d0d7de] bg-white text-[#1f2328] font-mono text-xs focus:outline-none focus:border-[#11376e] shadow-sm" />
+        </div>
+
+        <!-- Categoria com Seleção Visual (4 cols) -->
+        <div class="md:col-span-4">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5 flex items-center justify-between">
+            <span>Categoria <span class="text-rose-500">*</span></span>
+            <span class="text-[11px] text-[#0969da] cursor-pointer hover:underline" onclick="enableCustomCategory()">+ Nova</span>
+          </label>
+          
+          <select id="post-category-select" onchange="onCategorySelectChange()"
+                  class="w-full px-3 py-2 text-xs rounded-xl border border-[#d0d7de] bg-white text-[#1f2328] font-medium focus:outline-none focus:border-[#11376e] shadow-sm">
+            <option value="Power BI" data-color="amber">🟡 Power BI (Amber)</option>
+            <option value="Inteligência Artificial" data-color="blue">🔵 Inteligência Artificial (Blue)</option>
+            <option value="Data Visualization" data-color="emerald">🟢 Data Visualization (Emerald)</option>
+            <option value="Business Analytics" data-color="blue" selected>🔷 Business Analytics (Blue)</option>
+            <option value="Estratégia & Produto" data-color="purple">🟣 Estratégia &amp; Produto (Purple)</option>
+            <option value="__custom__">➕ Outra / Personalizada...</option>
+          </select>
+
+          <!-- Input para categoria personalizada se selecionado -->
+          <div id="custom-cat-wrapper" class="hidden mt-2 flex gap-2">
+            <input type="text" id="post-category-custom" placeholder="Nome da nova categoria"
+                   oninput="updateCategoryPreview()"
+                   class="flex-1 px-3 py-1.5 text-xs rounded-lg border border-[#d0d7de]" />
+            <select id="post-color-custom" onchange="updateCategoryPreview()" class="px-2 py-1.5 text-xs rounded-lg border border-[#d0d7de]">
+              <option value="blue">Azul</option>
+              <option value="amber">Amarelo</option>
+              <option value="emerald">Verde</option>
+              <option value="purple">Roxo</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Data (3 cols) -->
+        <div class="md:col-span-3">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5">Data de Publicação</label>
+          <input type="date" id="post-date"
+                 class="w-full px-3 py-2 text-xs rounded-xl border border-[#d0d7de] bg-white text-[#1f2328] focus:outline-none focus:border-[#11376e] shadow-sm" />
+        </div>
+
+        <!-- Tempo de Leitura (2 cols) -->
+        <div class="md:col-span-2">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5 flex items-center justify-between">
+            <span>Leitura</span>
+            <span class="text-[10px] text-[#656d76]" title="Calculado automaticamente pelo número de palavras">Auto</span>
+          </label>
+          <input type="text" id="post-read-time" value="5 min"
+                 class="w-full px-3 py-2 text-xs rounded-xl border border-[#d0d7de] bg-white text-[#1f2328] focus:outline-none focus:border-[#11376e] shadow-sm" />
+        </div>
+
+        <!-- Destaque no Feed (3 cols) -->
+        <div class="md:col-span-3 flex items-center">
+          <label class="flex items-center gap-2 cursor-pointer mt-5 p-2 rounded-xl border border-[#d0d7de] bg-[#f6f8fa] w-full text-xs font-semibold text-[#1f2328]">
+            <input type="checkbox" id="post-featured" class="rounded border-[#d0d7de] text-[#11376e] focus:ring-0" />
+            <span>⭐ Artigo em Destaque no Hub</span>
+          </label>
+        </div>
+
+        <!-- Resumo / Excerpt (7 cols) -->
+        <div class="md:col-span-7">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5 flex items-center justify-between">
+            <span>Resumo do Card (Excerpt)</span>
+            <span id="excerpt-counter" class="text-[11px] text-[#656d76]">0 / 180 caracteres</span>
+          </label>
+          <textarea id="post-excerpt" rows="2" placeholder="Resumo de 1 a 2 frases para o card do blog e compartilhamento no LinkedIn..."
+                    oninput="updateExcerptCounter()"
+                    class="w-full px-3.5 py-2 text-xs rounded-xl border border-[#d0d7de] bg-white text-[#1f2328] focus:outline-none focus:border-[#11376e] shadow-sm"></textarea>
+        </div>
+
+        <!-- Capa do Artigo (5 cols) -->
+        <div class="md:col-span-5">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5">Imagem de Capa</label>
+          <div class="flex items-center gap-3">
+            <div id="cover-preview-box" class="w-16 h-12 rounded-lg border border-[#d0d7de] bg-[#f6f8fa] flex items-center justify-center overflow-hidden flex-shrink-0">
+              <i data-lucide="image" class="w-6 h-6 text-[#8c959f]"></i>
+            </div>
+            <div class="flex-1 flex flex-col gap-1">
+              <input type="text" id="post-cover" placeholder="assets/img/blog/minha-capa.svg"
+                     oninput="updateCoverPreview()"
+                     class="w-full px-3 py-1.5 text-xs rounded-lg border border-[#d0d7de] font-mono text-[11px]" />
+              <div class="flex items-center gap-2 text-[11px]">
+                <button type="button" onclick="document.getElementById('cover-file-input').click()" class="text-[#0969da] hover:underline font-semibold flex items-center gap-1">
+                  <i data-lucide="upload" class="w-3 h-3"></i> Enviar arquivo...
+                </button>
+                <input type="file" id="cover-file-input" accept="image/*" class="hidden" onchange="uploadCoverFile(event)" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags (12 cols) -->
+        <div class="md:col-span-12">
+          <label class="block text-xs font-bold text-[#1f2328] mb-1.5">
+            Tags (Palavras-chave separadas por vírgula ou Enter)
+          </label>
+          <div id="tags-container" class="flex flex-wrap items-center gap-1.5 p-2 rounded-xl border border-[#d0d7de] bg-white min-h-[38px] shadow-sm">
+            <div id="tags-list" class="flex flex-wrap gap-1.5"></div>
+            <input type="text" id="tag-input" placeholder="Adicionar tag..."
+                   onkeydown="onTagKeydown(event)"
+                   class="flex-1 min-w-[120px] text-xs border-0 outline-none px-1 text-[#1f2328]" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── EDITOR E PREVIEW CONTAINER ─────────────────────── -->
+    <div class="flex-1 flex flex-col bg-white rounded-2xl border border-[#d0d7de] shadow-sm overflow-hidden min-h-[650px]">
+      
+      <!-- ── TOOLBAR EXATAMENTE COMO NA IMAGEM DO USUÁRIO ───── -->
+      <div class="flex flex-wrap items-center px-3 py-2 bg-[#f6f8fa] border-b border-[#d0d7de] gap-0.5 select-none" id="editor-toolbar">
+        
+        <!-- Grupo 1: Formatação Básica -->
+        <button class="toolbar-btn" onclick="insertFormat('bold')" title="Negrito (Ctrl+B)">B</button>
+        <button class="toolbar-btn" onclick="insertFormat('strikethrough')" title="Tachado"><s>S</s></button>
+        <button class="toolbar-btn italic font-serif" onclick="insertFormat('italic')" title="Itálico (Ctrl+I)">I</button>
+        <button class="toolbar-btn font-serif" onclick="insertFormat('quote')" title="Citação em bloco">“ ”</button>
+
+        <div class="toolbar-separator"></div>
+
+        <!-- Grupo 2: Headings (H1, H2, H3, H4) -->
+        <button class="toolbar-btn text-xs font-bold" onclick="insertFormat('h1')" title="Título 1">H1</button>
+        <button class="toolbar-btn text-xs font-bold" onclick="insertFormat('h2')" title="Título 2">H2</button>
+        <button class="toolbar-btn text-xs font-bold" onclick="insertFormat('h3')" title="Título 3">H3</button>
+        <button class="toolbar-btn text-xs font-bold" onclick="insertFormat('h4')" title="Título 4">H4</button>
+
+        <div class="toolbar-separator"></div>
+
+        <!-- Grupo 3: Listas e Divisor -->
+        <button class="toolbar-btn" onclick="insertFormat('ul')" title="Lista com Marcadores">
+          <i data-lucide="list" class="w-4 h-4"></i>
+        </button>
+        <button class="toolbar-btn" onclick="insertFormat('ol')" title="Lista Numerada">
+          <i data-lucide="list-ordered" class="w-4 h-4"></i>
+        </button>
+        <button class="toolbar-btn font-bold text-lg" onclick="insertFormat('hr')" title="Linha Horizontal">—</button>
+
+        <div class="toolbar-separator"></div>
+
+        <!-- Grupo 4: Links e Mídia -->
+        <button class="toolbar-btn" onclick="openLinkModal()" title="Inserir Link">
+          <i data-lucide="link" class="w-4 h-4"></i>
+        </button>
+        <button class="toolbar-btn" onclick="insertFormat('reflink')" title="Link de Referência">
+          <i data-lucide="anchor" class="w-4 h-4"></i>
+        </button>
+        <button class="toolbar-btn" onclick="document.getElementById('image-uploader-input').click()" title="Inserir Imagem (Upload)">
+          <i data-lucide="image" class="w-4 h-4"></i>
+        </button>
+        <input type="file" id="image-uploader-input" accept="image/*" class="hidden" onchange="uploadBodyImage(event)" />
+
+        <!-- Inline Code & Code Block -->
+        <button class="toolbar-btn font-mono text-xs" onclick="insertFormat('inline-code')" title="Código Inline">&lt;/&gt;</button>
+        
+        <!-- Multi-language Code Block Selector -->
+        <div class="relative inline-block" id="code-dropdown-wrapper">
+          <button class="toolbar-btn" onclick="toggleCodeDropdown()" title="Bloco de Código (Multi-Linguagens)">
+            <i data-lucide="file-code" class="w-4 h-4"></i>
+          </button>
+          <div id="code-dropdown-menu" class="hidden absolute left-0 top-full mt-1 bg-white border border-[#d0d7de] rounded-xl shadow-lg p-1.5 z-50 text-xs w-40">
+            <div class="font-bold px-2 py-1 text-[11px] text-[#656d76]">Linguagem:</div>
+            <button onclick="insertCodeBlock('dax')" class="w-full text-left px-2 py-1 rounded hover:bg-[#f6f8fa]">🟡 DAX (Power BI)</button>
+            <button onclick="insertCodeBlock('python')" class="w-full text-left px-2 py-1 rounded hover:bg-[#f6f8fa]">🐍 Python</button>
+            <button onclick="insertCodeBlock('sql')" class="w-full text-left px-2 py-1 rounded hover:bg-[#f6f8fa]">🗄️ SQL</button>
+            <button onclick="insertCodeBlock('r')" class="w-full text-left px-2 py-1 rounded hover:bg-[#f6f8fa]">📊 R</button>
+            <button onclick="insertCodeBlock('javascript')" class="w-full text-left px-2 py-1 rounded hover:bg-[#f6f8fa]">🟨 JavaScript</button>
+            <button onclick="insertCodeBlock('html')" class="w-full text-left px-2 py-1 rounded hover:bg-[#f6f8fa]">🌐 HTML</button>
+            <button onclick="insertCodeBlock('bash')" class="w-full text-left px-2 py-1 rounded hover:bg-[#f6f8fa]">💻 Bash / Terminal</button>
+          </div>
+        </div>
+
+        <!-- Tabela -->
+        <button class="toolbar-btn" onclick="insertFormat('table')" title="Inserir Tabela">
+          <i data-lucide="table" class="w-4 h-4"></i>
+        </button>
+
+        <div class="toolbar-separator"></div>
+
+        <!-- Extra: Callouts e Math -->
+        <button class="toolbar-btn" onclick="insertFormat('callout-tip')" title="Inserir Dica (Callout)">
+          <i data-lucide="lightbulb" class="w-4 h-4 text-emerald-600"></i>
+        </button>
+        <button class="toolbar-btn" onclick="insertFormat('callout-warn')" title="Inserir Alerta (Callout)">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600"></i>
+        </button>
+        <button class="toolbar-btn font-serif font-bold text-xs" onclick="insertFormat('math')" title="Inserir Fórmula Matemática (KaTeX)">
+          $$
+        </button>
+
+        <!-- Informação / Ajuda -->
+        <div class="ml-auto text-xs text-[#656d76] flex items-center gap-3">
+          <span id="word-counter">0 palavras</span>
+          <span class="hidden sm:inline text-[11px] text-[#8c959f]">Cole prints com Ctrl+V</span>
+        </div>
+
+      </div>
+
+      <!-- ── ÁREA DE EDIÇÃO SPLIT (EDITOR + PREVIEW) ─────────── -->
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#d0d7de] min-h-[500px]" id="split-container">
+        
+        <!-- Left Pane: Markdown Textarea -->
+        <div class="flex flex-col h-full bg-white relative" id="editor-pane">
+          <textarea id="markdown-editor"
+                    class="editor-textarea flex-1 p-5 text-[#1f2328] bg-transparent focus:outline-none leading-relaxed"
+                    placeholder="Escreva seu artigo aqui usando Markdown puro...
+
+Dica: você pode colar prints da tela diretamente com Ctrl + V!"
+                    oninput="onEditorInput()"></textarea>
+        </div>
+
+        <!-- Right Pane: Live HTML Preview -->
+        <div class="flex flex-col h-full bg-[#fafbfc] overflow-y-auto" id="preview-pane">
+          <div class="p-6 preview-body" id="preview-content">
+            <div class="text-[#8c959f] text-center mt-20">
+              <i data-lucide="eye" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
+              <p>A pré-visualização em tempo real aparecerá aqui.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+     GAVETA LATERAL DE POSTS EXISTENTES
+  ═══════════════════════════════════════════════════════ -->
+  <div id="posts-drawer" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 drawer-overlay" onclick="closePostsDrawer()"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col z-10 border-l border-[#d0d7de]">
+      <div class="p-4 border-b border-[#d0d7de] flex items-center justify-between bg-[#f6f8fa]">
+        <div class="flex items-center gap-2 font-bold text-sm text-[#1f2328]">
+          <i data-lucide="folder" class="w-4 h-4 text-[#11376e]"></i> Artigos Publicados no Blog
+        </div>
+        <button onclick="closePostsDrawer()" class="p-1.5 rounded-lg hover:bg-[#eaeef2] text-[#656d76]">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-3 border-b border-[#d0d7de]">
+        <input type="text" id="drawer-search" placeholder="Filtrar artigos..."
+               oninput="filterDrawerPosts()"
+               class="w-full px-3 py-1.5 text-xs rounded-lg border border-[#d0d7de]" />
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-4 space-y-3" id="drawer-posts-list">
+        <!-- Injetado dinamicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     MODAL DE INSERÇÃO DE LINK
+  ═══════════════════════════════════════════════════════ -->
+  <div id="link-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center">
+    <div class="absolute inset-0 drawer-overlay" onclick="closeLinkModal()"></div>
+    <div class="bg-white rounded-2xl border border-[#d0d7de] shadow-2xl p-6 w-full max-w-sm relative z-10">
+      <h3 class="font-bold text-sm text-[#1f2328] mb-4">Inserir Link</h3>
+      <div class="space-y-3 mb-5">
+        <div>
+          <label class="block text-xs font-semibold text-[#656d76] mb-1">Texto do Link</label>
+          <input type="text" id="modal-link-text" placeholder="Ex: Guia Completo de DAX" class="w-full px-3 py-2 text-xs rounded-xl border border-[#d0d7de]" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-[#656d76] mb-1">URL / Destino</label>
+          <input type="text" id="modal-link-url" placeholder="https://..." class="w-full px-3 py-2 text-xs rounded-xl border border-[#d0d7de]" />
+        </div>
+      </div>
+      <div class="flex justify-end gap-2">
+        <button onclick="closeLinkModal()" class="btn-secondary text-xs py-1.5 px-3">Cancelar</button>
+        <button onclick="applyLinkModal()" class="btn-primary text-xs py-1.5 px-4">Inserir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     SCRIPTS & LÓGICA DO EDITOR
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    let tagsList = [];
+    let isSlugManual = false;
+    let allLoadedPosts = [];
+
+    // Iniciar data com hoje
+    document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
+
+    // Toggle painel de metadados
+    function toggleMetaPanel() {
+      const body = document.getElementById('meta-panel-body');
+      const chevron = document.getElementById('meta-chevron');
+      if (body.classList.contains('hidden')) {
+        body.classList.remove('hidden');
+        chevron.style.transform = 'rotate(0deg)';
+      } else {
+        body.classList.add('hidden');
+        chevron.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // Geração de slug
+    function onTitleChange() {
+      const title = document.getElementById('post-title').value;
+      if (!isSlugManual) {
+        const slug = title
+          .toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^\w\s-]/g, '')
+          .trim()
+          .replace(/[\s_]+/g, '-');
+        document.getElementById('post-slug').value = slug;
+        document.getElementById('slug-hint').innerText = `blog/${slug || 'post'}.html`;
+      }
+      updateLivePreview();
+    }
+
+    document.getElementById('post-slug').addEventListener('input', () => {
+      isSlugManual = true;
+      const val = document.getElementById('post-slug').value;
+      document.getElementById('slug-hint').innerText = `blog/${val || 'post'}.html`;
+    });
+
+    // Categoria
+    function onCategorySelectChange() {
+      const select = document.getElementById('post-category-select');
+      const customWrapper = document.getElementById('custom-cat-wrapper');
+      if (select.value === '__custom__') {
+        customWrapper.classList.remove('hidden');
+      } else {
+        customWrapper.classList.add('hidden');
+      }
+      updateCategoryPreview();
+    }
+
+    function enableCustomCategory() {
+      const select = document.getElementById('post-category-select');
+      select.value = '__custom__';
+      onCategorySelectChange();
+      document.getElementById('post-category-custom').focus();
+    }
+
+    function getSelectedCategory() {
+      const select = document.getElementById('post-category-select');
+      if (select.value === '__custom__') {
+        return {
+          name: document.getElementById('post-category-custom').value.trim() || 'Geral',
+          color: document.getElementById('post-color-custom').value || 'blue'
+        };
+      }
+      const opt = select.options[select.selectedIndex];
+      return {
+        name: opt.value,
+        color: opt.getAttribute('data-color') || 'blue'
+      };
+    }
+
+    function updateCategoryPreview() {
+      const cat = getSelectedCategory();
+      const badge = document.getElementById('category-preview-badge');
+      badge.innerText = cat.name;
+      badge.className = `badge badge-${cat.color} text-[11px]`;
+      updateLivePreview();
+    }
+
+    // Excerpt counter
+    function updateExcerptCounter() {
+      const val = document.getElementById('post-excerpt').value;
+      document.getElementById('excerpt-counter').innerText = `${val.length} / 180 caracteres`;
+      updateLivePreview();
+    }
+
+    // Cover preview
+    function updateCoverPreview() {
+      const coverUrl = document.getElementById('post-cover').value.trim();
+      const box = document.getElementById('cover-preview-box');
+      if (coverUrl) {
+        const fullUrl = coverUrl.startsWith('http') ? coverUrl : `/${coverUrl.replace(/^\//, '')}`;
+        box.innerHTML = `<img src="${fullUrl}" class="w-full h-full object-cover" onerror="this.src=''; this.parentElement.innerHTML='<i data-lucide=image class=\\'w-6 h-6 text-[#8c959f]\\'></i>'; lucide.createIcons();" />`;
+      } else {
+        box.innerHTML = '<i data-lucide="image" class="w-6 h-6 text-[#8c959f]"></i>';
+        lucide.createIcons();
+      }
+      updateLivePreview();
+    }
+
+    // Upload da capa
+    async function uploadCoverFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const res = await fetch('/api/upload-image', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('post-cover').value = data.url;
+          updateCoverPreview();
+        } else {
+          alert('Erro no envio da capa: ' + (data.error || 'Falha ao salvar'));
+        }
+      } catch (err) {
+        alert('Erro ao enviar capa: ' + err.message);
+      }
+    }
+
+    // Tags Handling
+    function renderTags() {
+      const list = document.getElementById('tags-list');
+      list.innerHTML = tagsList.map((tag, idx) => `
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#f6f8fa] border border-[#d0d7de] text-[#1f2328]">
+          #${tag}
+          <button onclick="removeTag(${idx})" class="text-[#8c959f] hover:text-rose-500">&times;</button>
+        </span>
+      `).join('');
+    }
+
+    function onTagKeydown(e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const val = e.target.value.trim().replace(/^#/, '');
+        if (val && !tagsList.includes(val)) {
+          tagsList.push(val);
+          renderTags();
+        }
+        e.target.value = '';
+      }
+    }
+
+    function removeTag(idx) {
+      tagsList.splice(idx, 1);
+      renderTags();
+    }
+
+    // ── TOOLBAR FORMATTING FUNCTIONS ──────────────────────────
+    const editor = document.getElementById('markdown-editor');
+
+    function insertFormat(type) {
+      const start = editor.selectionStart;
+      const end = editor.selectionEnd;
+      const text = editor.value;
+      const selected = text.substring(start, end);
+
+      let replacement = '';
+      let cursorOffset = 0;
+
+      switch (type) {
+        case 'bold':
+          replacement = `**${selected || 'texto em negrito'}**`;
+          cursorOffset = selected ? replacement.length : 2;
+          break;
+        case 'strikethrough':
+          replacement = `~~${selected || 'texto tachado'}~~`;
+          cursorOffset = selected ? replacement.length : 2;
+          break;
+        case 'italic':
+          replacement = `*${selected || 'texto em itálico'}*`;
+          cursorOffset = selected ? replacement.length : 1;
+          break;
+        case 'quote':
+          replacement = `> ${selected || 'Citação ou frase de destaque'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'h1':
+          replacement = `# ${selected || 'Título Principal'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'h2':
+          replacement = `## ${selected || 'Subtítulo da Seção'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'h3':
+          replacement = `### ${selected || 'Tópico Específico'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'h4':
+          replacement = `#### ${selected || 'Subtópico'}\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'ul':
+          replacement = `- ${selected || 'Item de lista'}\n- Segundo item\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'ol':
+          replacement = `1. ${selected || 'Primeiro passo'}\n2. Segundo passo\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'hr':
+          replacement = `\n---\n\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'reflink':
+          replacement = `[${selected || 'Texto do link'}][ref]`;
+          cursorOffset = replacement.length;
+          break;
+        case 'inline-code':
+          replacement = `\`${selected || 'código'}\``;
+          cursorOffset = selected ? replacement.length : 1;
+          break;
+        case 'table':
+          replacement = `\n| Coluna 1 | Coluna 2 | Coluna 3 |\n| :--- | :--- | :--- |\n| Dado A | Dado B | Dado C |\n| Dado D | Dado E | Dado F |\n\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'callout-tip':
+          replacement = `\n> [!TIP]\n> **Dica Prática**:\n> ${selected || 'Insira uma dica acionável aqui.'}\n\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'callout-warn':
+          replacement = `\n> [!WARNING]\n> **Atenção**:\n> ${selected || 'Explique o ponto de alerta ou cuidado aqui.'}\n\n`;
+          cursorOffset = replacement.length;
+          break;
+        case 'math':
+          replacement = `\n$$\n\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\n$$\n\n`;
+          cursorOffset = replacement.length;
+          break;
+      }
+
+      editor.value = text.substring(0, start) + replacement + text.substring(end);
+      editor.focus();
+      editor.setSelectionRange(start + cursorOffset, start + cursorOffset);
+      onEditorInput();
+    }
+
+    function toggleCodeDropdown() {
+      const menu = document.getElementById('code-dropdown-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const wrap = document.getElementById('code-dropdown-wrapper');
+      if (wrap && !wrap.contains(e.target)) {
+        document.getElementById('code-dropdown-menu').classList.add('hidden');
+      }
+    });
+
+    function insertCodeBlock(lang) {
+      document.getElementById('code-dropdown-menu').classList.add('hidden');
+      const start = editor.selectionStart;
+      const end = editor.selectionEnd;
+      const text = editor.value;
+      const selected = text.substring(start, end) || '// Insira seu código aqui';
+
+      const replacement = `\n\`\`\`${lang}\n${selected}\n\`\`\`\n\n`;
+      editor.value = text.substring(0, start) + replacement + text.substring(end);
+      editor.focus();
+      onEditorInput();
+    }
+
+    // Modal de Link
+    function openLinkModal() {
+      const start = editor.selectionStart;
+      const end = editor.selectionEnd;
+      const selected = editor.value.substring(start, end);
+      document.getElementById('modal-link-text').value = selected || '';
+      document.getElementById('modal-link-url').value = '';
+      document.getElementById('link-modal').classList.remove('hidden');
+      document.getElementById('modal-link-url').focus();
+    }
+
+    function closeLinkModal() {
+      document.getElementById('link-modal').classList.add('hidden');
+    }
+
+    function applyLinkModal() {
+      const linkText = document.getElementById('modal-link-text').value || 'link';
+      const url = document.getElementById('modal-link-url').value || 'https://';
+      const start = editor.selectionStart;
+      const end = editor.selectionEnd;
+      const text = editor.value;
+
+      const replacement = `[${linkText}](${url})`;
+      editor.value = text.substring(0, start) + replacement + text.substring(end);
+      closeLinkModal();
+      editor.focus();
+      onEditorInput();
+    }
+
+    // Upload de Imagem no Corpo
+    async function uploadBodyImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const res = await fetch('/api/upload-image', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          insertImageTag(data.filename, data.url);
+        } else {
+          alert('Erro ao enviar imagem: ' + (data.error || 'Falha'));
+        }
+      } catch (err) {
+        alert('Erro ao enviar imagem: ' + err.message);
+      }
+      e.target.value = '';
+    }
+
+    function insertImageTag(alt, src) {
+      const start = editor.selectionStart;
+      const text = editor.value;
+      const replacement = `\n![${alt}](${src})\n\n`;
+      editor.value = text.substring(0, start) + replacement + text.substring(start);
+      editor.focus();
+      onEditorInput();
+    }
+
+    // Suporte a colar print da tela (Ctrl+V)
+    editor.addEventListener('paste', async (e) => {
+      const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+      for (let item of items) {
+        if (item.kind === 'file' && item.type.startsWith('image/')) {
+          e.preventDefault();
+          const file = item.getAsFile();
+          const reader = new FileReader();
+          reader.onload = async (event) => {
+            const base64 = event.target.result;
+            try {
+              const res = await fetch('/api/upload-image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image_data: base64 })
+              });
+              const data = await res.json();
+              if (data.success) {
+                insertImageTag('Screenshot', data.url);
+              }
+            } catch (err) {
+              console.error('Erro ao colar imagem:', err);
+            }
+          };
+          reader.readAsDataURL(file);
+          break;
+        }
+      }
+    });
+
+    // Atalhos de teclado comuns no editor
+    editor.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === 'b' || e.key === 'B') {
+          e.preventDefault();
+          insertFormat('bold');
+        } else if (e.key === 'i' || e.key === 'I') {
+          e.preventDefault();
+          insertFormat('italic');
+        } else if (e.key === 'k' || e.key === 'K') {
+          e.preventDefault();
+          openLinkModal();
+        } else if (e.key === 's' || e.key === 'S') {
+          e.preventDefault();
+          publishArticle();
+        }
+      }
+    });
+
+    // Contador de palavras e cálculo de tempo de leitura
+    function onEditorInput() {
+      const text = editor.value;
+      const words = text.trim().split(/\s+/).filter(Boolean).length;
+      document.getElementById('word-counter').innerText = `${words} palavras`;
+
+      // Atualizar read time automaticamente
+      const calcMinutes = Math.max(1, Math.ceil(words / 200));
+      document.getElementById('post-read-time').value = `${calcMinutes} min`;
+
+      updateLivePreview();
+    }
+
+    // ── LIVE PREVIEW ENGINE ───────────────────────────────────
+    function updateLivePreview() {
+      const title = document.getElementById('post-title').value.trim();
+      const excerpt = document.getElementById('post-excerpt').value.trim();
+      const cat = getSelectedCategory();
+      const dateVal = document.getElementById('post-date').value;
+      const readTime = document.getElementById('post-read-time').value;
+      const cover = document.getElementById('post-cover').value.trim();
+      const markdownRaw = editor.value;
+
+      if (!title && !markdownRaw) {
+        document.getElementById('preview-content').innerHTML = `
+          <div class="text-[#8c959f] text-center mt-20">
+            <i data-lucide="eye" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
+            <p>Comece a digitar para ver o resultado ao vivo.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      // Processar Markdown com marked.js
+      let htmlBody = marked.parse(markdownRaw);
+
+      // Tratar imagens para preview relativo
+      htmlBody = htmlBody.replace(/<img\s+([^>]*?)src="([^"]+)"([^>]*?)>/g, (match, before, src, after) => {
+        let fixedSrc = src.startsWith('http') ? src : `/${src.replace(/^\//, '')}`;
+        return `<figure><img ${before}src="${fixedSrc}"${after}></figure>`;
+      });
+
+      // Header do Post no Preview
+      let previewHtml = `
+        <div class="mb-6 pb-6 border-b border-[#d0d7de]">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="badge badge-${cat.color} text-[11px]">${cat.name}</span>
+            <span class="text-xs text-[#656d76]">${dateVal}</span>
+            <span class="text-[#d0d7de]">•</span>
+            <span class="text-xs text-[#656d76]">${readTime}</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold text-[#1f2328] mb-3 leading-tight" style="font-family:'Space Grotesk',sans-serif">
+            ${title || 'Título do Artigo'}
+          </h1>
+          ${excerpt ? `<p class="text-base text-[#57606a] leading-relaxed mb-4">${excerpt}</p>` : ''}
+          ${cover ? `<div class="rounded-xl overflow-hidden border border-[#d0d7de] bg-white max-h-[300px] flex items-center justify-center mb-4"><img src="${cover.startsWith('http') ? cover : '/' + cover.replace(/^\//, '')}" class="w-full h-full object-cover max-h-[300px]" /></div>` : ''}
+        </div>
+        <div class="prose-content">
+          ${htmlBody}
+        </div>
+      `;
+
+      document.getElementById('preview-content').innerHTML = previewHtml;
+
+      // Renderizar fórmulas KaTeX se houver
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById('preview-content'), {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false }
+          ]
+        });
+      }
+
+      lucide.createIcons();
+    }
+
+    // View modes: split, editor, preview
+    function setViewMode(mode) {
+      const editorPane = document.getElementById('editor-pane');
+      const previewPane = document.getElementById('preview-pane');
+      const splitBtn = document.getElementById('view-split-btn');
+      const editorBtn = document.getElementById('view-editor-btn');
+      const previewBtn = document.getElementById('view-preview-btn');
+
+      [splitBtn, editorBtn, previewBtn].forEach(b => {
+        b.className = 'px-3 py-1 rounded-lg hover:text-[#1f2328] transition-all';
+      });
+
+      if (mode === 'split') {
+        editorPane.classList.remove('hidden');
+        previewPane.classList.remove('hidden');
+        splitBtn.className = 'px-3 py-1 rounded-lg bg-white shadow-sm text-[#1f2328] font-semibold';
+      } else if (mode === 'editor') {
+        editorPane.classList.remove('hidden');
+        previewPane.classList.add('hidden');
+        editorBtn.className = 'px-3 py-1 rounded-lg bg-white shadow-sm text-[#1f2328] font-semibold';
+      } else if (mode === 'preview') {
+        editorPane.classList.add('hidden');
+        previewPane.classList.remove('hidden');
+        previewBtn.className = 'px-3 py-1 rounded-lg bg-white shadow-sm text-[#1f2328] font-semibold';
+      }
+    }
+
+    // ── GAVETA DE POSTS EXISTENTES ────────────────────────────
+    async function openPostsDrawer() {
+      document.getElementById('posts-drawer').classList.remove('hidden');
+      const list = document.getElementById('drawer-posts-list');
+      list.innerHTML = '<div class="text-center py-8 text-xs text-[#656d76]">Carregando artigos...</div>';
+
+      try {
+        const res = await fetch('/api/posts');
+        allLoadedPosts = await res.json();
+        renderDrawerPosts(allLoadedPosts);
+      } catch (err) {
+        list.innerHTML = '<div class="text-rose-500 text-xs text-center">Erro ao carregar artigos.</div>';
+      }
+    }
+
+    function closePostsDrawer() {
+      document.getElementById('posts-drawer').classList.add('hidden');
+    }
+
+    function renderDrawerPosts(posts) {
+      const list = document.getElementById('drawer-posts-list');
+      if (!posts.length) {
+        list.innerHTML = '<div class="text-center py-8 text-xs text-[#656d76]">Nenhum artigo encontrado.</div>';
+        return;
+      }
+
+      list.innerHTML = posts.map(p => `
+        <div onclick="loadPost('${p.slug}')" class="p-3.5 rounded-xl border border-[#d0d7de] hover:border-[#11376e] bg-white hover:bg-[#f6f8fa] cursor-pointer transition-all">
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <span class="badge badge-${p.category_color} text-[10px]">${p.category}</span>
+            <span class="text-[11px] text-[#656d76]">${p.date}</span>
+          </div>
+          <h4 class="font-bold text-xs text-[#1f2328] line-clamp-2 leading-snug mb-1">${p.title}</h4>
+          <p class="text-[11px] text-[#656d76] line-clamp-1">${p.excerpt || p.filename}</p>
+        </div>
+      `).join('');
+    }
+
+    function filterDrawerPosts() {
+      const q = document.getElementById('drawer-search').value.toLowerCase().trim();
+      const filtered = allLoadedPosts.filter(p => 
+        p.title.toLowerCase().includes(q) || 
+        p.category.toLowerCase().includes(q) ||
+        p.slug.toLowerCase().includes(q)
+      );
+      renderDrawerPosts(filtered);
+    }
+
+    async function loadPost(slug) {
+      closePostsDrawer();
+      try {
+        const res = await fetch(`/api/post/${slug}`);
+        const p = await res.json();
+        if (p.error) {
+          alert('Erro: ' + p.error);
+          return;
+        }
+
+        document.getElementById('post-title').value = p.title || '';
+        document.getElementById('post-slug').value = p.slug || '';
+        isSlugManual = true;
+        document.getElementById('slug-hint').innerText = `blog/${p.slug}.html`;
+
+        document.getElementById('post-date').value = p.date || '';
+        document.getElementById('post-read-time').value = p.read_time || '5 min';
+        document.getElementById('post-excerpt').value = p.excerpt || '';
+        document.getElementById('post-cover').value = p.cover || '';
+        document.getElementById('post-featured').checked = bool(p.featured);
+
+        // Categoria
+        const select = document.getElementById('post-category-select');
+        let found = false;
+        for (let opt of select.options) {
+          if (opt.value === p.category) {
+            select.value = p.category;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          select.value = '__custom__';
+          document.getElementById('custom-cat-wrapper').classList.remove('hidden');
+          document.getElementById('post-category-custom').value = p.category;
+          document.getElementById('post-color-custom').value = p.category_color || 'blue';
+        } else {
+          document.getElementById('custom-cat-wrapper').classList.add('hidden');
+        }
+
+        // Tags
+        tagsList = Array.isArray(p.tags) ? p.tags : [];
+        renderTags();
+
+        // Editor
+        editor.value = p.body || '';
+        onEditorInput();
+        updateCoverPreview();
+        updateCategoryPreview();
+
+        const status = document.getElementById('save-status');
+        status.innerHTML = `<span class="w-2 h-2 rounded-full bg-blue-500"></span> Editando: ${p.slug}`;
+        status.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200';
+      } catch (err) {
+        alert('Erro ao carregar artigo: ' + err.message);
+      }
+    }
+
+    function bool(v) {
+      return v === true || v === 'true';
+    }
+
+    function newArticle() {
+      if (confirm('Deseja limpar os campos para escrever um novo artigo?')) {
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-slug').value = '';
+        isSlugManual = false;
+        document.getElementById('slug-hint').innerText = 'blog/meu-post.html';
+        document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
+        document.getElementById('post-read-time').value = '5 min';
+        document.getElementById('post-excerpt').value = '';
+        document.getElementById('post-cover').value = '';
+        document.getElementById('post-featured').checked = false;
+        document.getElementById('post-category-select').value = 'Business Analytics';
+        document.getElementById('custom-cat-wrapper').classList.add('hidden');
+        tagsList = [];
+        renderTags();
+        editor.value = '';
+        onEditorInput();
+        updateCoverPreview();
+        updateCategoryPreview();
+
+        const status = document.getElementById('save-status');
+        status.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Novo Artigo`;
+        status.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
+      }
+    }
+
+    // ── PUBLICAR ARTIGO ───────────────────────────────────────
+    async function publishArticle() {
+      const title = document.getElementById('post-title').value.trim();
+      if (!title) {
+        alert('Por favor, preencha o título do artigo antes de publicar.');
+        document.getElementById('post-title').focus();
+        return;
+      }
+
+      const body = editor.value.trim();
+      if (!body) {
+        alert('O corpo do artigo está vazio. Escreva algum conteúdo antes de publicar.');
+        editor.focus();
+        return;
+      }
+
+      const slug = document.getElementById('post-slug').value.trim();
+      const date = document.getElementById('post-date').value;
+      const read_time = document.getElementById('post-read-time').value.trim();
+      const excerpt = document.getElementById('post-excerpt').value.trim();
+      const cover = document.getElementById('post-cover').value.trim();
+      const featured = document.getElementById('post-featured').checked;
+      const cat = getSelectedCategory();
+
+      const payload = {
+        title,
+        slug,
+        date,
+        author: 'Marcos Aurélio',
+        category: cat.name,
+        category_color: cat.color,
+        read_time,
+        excerpt,
+        cover,
+        featured,
+        tags: tagsList,
+        body
+      };
+
+      const btn = document.getElementById('publish-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Publicando...';
+      btn.disabled = true;
+      lucide.createIcons();
+
+      try {
+        const res = await fetch('/api/publish', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          const status = document.getElementById('save-status');
+          status.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Publicado às ${new Date().toLocaleTimeString()}`;
+          status.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
+
+          if (confirm(`${data.message}\n\nDeseja abrir o artigo publicado agora mesmo no navegador?`)) {
+            window.open(`/${data.post_url}`, '_blank');
+          }
+        } else {
+          alert('Erro ao publicar: ' + (data.error || 'Falha desconhecida'));
+        }
+      } catch (err) {
+        alert('Erro de conexão ao publicar: ' + err.message);
+      } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        lucide.createIcons();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      updateCategoryPreview();
+    });
+  </script>
+</body>
+</html>

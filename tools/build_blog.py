@@ -82,6 +82,24 @@ def convert_markdown(body):
         cls, icon, default_label, box_style = type_map.get(atype, type_map['NOTE'])
         return f'<div class="callout-box my-6 p-4 rounded-r-xl {box_style}"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="{icon}" class="w-4 h-4"></i> {default_label}</div><div class="text-sm leading-relaxed callout-content">{inner_html}</div></div>\n'
 
+    # Processar Notion style <aside> blocks
+    def aside_sub(match):
+        raw_aside = match.group(1).strip()
+        icon = "info"
+        label = "Destaque"
+        if "⚠️" in raw_aside:
+            icon = "alert-triangle"
+            label = "Leitura recomendada"
+            raw_aside = raw_aside.replace("⚠️", "").replace("Leitura recomendada", "").strip()
+        elif "💡" in raw_aside:
+            icon = "lightbulb"
+            label = "Dica"
+            raw_aside = raw_aside.replace("💡", "").strip()
+        inner = markdown.markdown(raw_aside, extensions=['extra'])
+        return f'<div class="callout-box my-6 p-4 rounded-r-xl border-l-4 border-blue-500 bg-blue-50/70 text-blue-950"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="{icon}" class="w-4 h-4"></i> {label}</div><div class="text-sm leading-relaxed callout-content">{inner}</div></div>\n'
+
+    body = re.sub(r'<aside>(.*?)</aside>', aside_sub, body, flags=re.DOTALL)
+
     alert_pattern = re.compile(r'>\s*\[!(NOTE|TIP|WARNING|IMPORTANT)\]\s*\n((?:>.*(?:\n|$))+)', re.IGNORECASE)
     body = alert_pattern.sub(alert_sub, body)
 
@@ -130,6 +148,40 @@ def convert_markdown(body):
 </div>'''
 
     html = re.sub(r'<pre><code.*?>.*?</code></pre>', wrap_code_block, html, flags=re.DOTALL)
+
+    # Processar imagens do Markdown para ficarem elegantes e com caminhos relativos corretos em blog/
+    def fix_image_tag(tag_str):
+        if isinstance(tag_str, re.Match):
+            tag_str = tag_str.group(0)
+        src_m = re.search(r'src="([^"]+)"', tag_str)
+        alt_m = re.search(r'alt="([^"]*)"', tag_str)
+        src = src_m.group(1) if src_m else ""
+        alt = alt_m.group(1) if alt_m else ""
+
+        # Mapeamento inteligente de imagens locais
+        if not src.startswith(('http://', 'https://', '//', '../', '/')):
+            clean_name = os.path.basename(src)
+            img_in_blog = os.path.join(ROOT_DIR, 'assets', 'img', 'blog', clean_name)
+            if os.path.exists(img_in_blog):
+                fixed_src = f'../assets/img/blog/{clean_name}'
+            elif clean_name.lower() == 'imagem4.png':
+                fixed_src = '../assets/img/blog/airbnb-comparacao.svg'
+            elif clean_name.lower() == 'image.png':
+                fixed_src = '../assets/img/blog/airbnb-distribuicao.svg'
+            elif src.startswith('assets/'):
+                fixed_src = '../' + src.lstrip('/')
+            else:
+                fixed_src = f'../assets/img/blog/{clean_name}'
+        else:
+            fixed_src = src
+
+        caption_html = f'<figcaption class="text-xs text-[#656d76] text-center mt-2.5">{alt}</figcaption>' if alt and not alt.lower().endswith(('.png', '.jpg', '.webp', '.svg')) else ''
+        return f'''<figure class="my-8 rounded-2xl overflow-hidden border border-[#d0d7de] bg-white p-2 sm:p-3 shadow-sm">
+  <img src="{fixed_src}" alt="{alt}" class="w-full h-auto rounded-xl object-contain max-h-[600px] mx-auto" loading="lazy" />
+  {caption_html}
+</figure>'''
+
+    html = re.sub(r'(?:<p>\s*)?<img[^>]+>(?:\s*</p>)?', fix_image_tag, html)
 
     return html, headers
 
@@ -218,6 +270,11 @@ def generate_post_page(post, all_posts):
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="../assets/css/main.css">
+
+  <!-- KaTeX for Math Formulas (LaTeX) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {{delimiters: [{{left: '$$', right: '$$', display: true}}, {{left: '$', right: '$', display: false}}]}});"></script>
 
   <style>
     /* Estilos específicos de leitura tipográfica do Artigo */

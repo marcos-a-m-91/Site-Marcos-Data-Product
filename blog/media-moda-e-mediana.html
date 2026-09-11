@@ -4,14 +4,14 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção — Marcos Data Product</title>
-  <meta name="description" content="Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos." />
+  <title>Média, Moda e Mediana: O que os números escondem — Marcos Data Product</title>
+  <meta name="description" content="Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras." />
 
   <!-- OpenGraph / Social -->
-  <meta property="og:title" content="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção — Marcos Data Product" />
-  <meta property="og:description" content="Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos." />
+  <meta property="og:title" content="Média, Moda e Mediana: O que os números escondem — Marcos Data Product" />
+  <meta property="og:description" content="Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras." />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="../assets/img/blog/cover-agentes-ia.svg" />
+  <meta property="og:image" content="../assets/img/blog/cover-media-moda-mediana.svg" />
 
   <!-- Vendor Libraries (Local) -->
   <script src="../assets/vendor/gsap_4a57399e4113.js"></script>
@@ -176,14 +176,14 @@
         <span>/</span>
         <a href="../blog.html" class="hover:text-[#11376e] transition-colors">Blog</a>
         <span>/</span>
-        <span class="text-[#1f2328] font-medium truncate max-w-xs">Inteligência Artificial</span>
+        <span class="text-[#1f2328] font-medium truncate max-w-xs">Business Analytics</span>
       </nav>
 
       <!-- Category badge & Read info -->
       <div class="flex flex-wrap items-center gap-3 mb-5">
-        <span class="badge badge-blue text-xs">Inteligência Artificial</span>
+        <span class="badge badge-blue text-xs">Business Analytics</span>
         <span class="text-xs text-[#656d76] flex items-center gap-1.5">
-          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 12 de Setembro de 2026
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 11 de Setembro de 2026
         </span>
         <span class="text-[#d0d7de]">•</span>
         <span class="text-xs text-[#656d76] flex items-center gap-1.5">
@@ -193,12 +193,12 @@
 
       <!-- Main Title -->
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1f2328] tracking-tight leading-[1.18] mb-6" style="font-family:'Space Grotesk',sans-serif">
-        Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
+        Média, Moda e Mediana: O que os números escondem
       </h1>
 
       <!-- Excerpt -->
       <p class="text-lg sm:text-xl text-[#57606a] leading-relaxed mb-8" style="font-family:'Manrope',sans-serif">
-        Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
+        Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
       </p>
 
       <!-- Author Chip -->
@@ -226,7 +226,7 @@
       </div>
 
       <!-- Featured Image / Cover -->
-      <div class="rounded-2xl overflow-hidden border border-[#d0d7de] shadow-sm mb-12 bg-white max-h-[440px] flex items-center justify-center"><img src="../assets/img/blog/cover-agentes-ia.svg" alt="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção" class="w-full h-full object-cover max-h-[440px]" /></div>
+      <div class="rounded-2xl overflow-hidden border border-[#d0d7de] shadow-sm mb-12 bg-white max-h-[440px] flex items-center justify-center"><img src="../assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-full h-full object-cover max-h-[440px]" /></div>
 
       <!-- ═══════════════════════════════════════════════════════
          CORPO DO ARTIGO + SIDEBAR
@@ -235,115 +235,79 @@
         
         <!-- Main Content -->
         <article class="lg:col-span-8 article-prose">
-          <p>O mercado corporativo viveu nos últimos dois anos a euforia dos prompts conversacionais. Gestores começaram a colar trechos de planilhas no ChatGPT para pedir análises e resumos executivos. No entanto, esse modelo manual encontra rapidamente gargalos graves: <strong>risco de vazamento de dados confidenciais, alucinações matemáticas e incapacidade de agir proativamente sobre sistemas transacionais.</strong></p>
-<p>A virada de chave no ecossistema de dados acontece quando saímos de <em>chatbots reativos</em> e entramos na era dos <strong>Agentes Autônomos de IA orientados a Analytics</strong>.</p>
+          <p>Você tem um compromisso em São Paulo e esta no Airbnb para fazer uma reserva. Depois de muito analisar a localidade e preço você fica em dúvida entre duas opções: </p>
+<figure class="my-8 rounded-2xl overflow-hidden border border-[#d0d7de] bg-white p-2 sm:p-3 shadow-sm">
+  <img src="../assets/img/blog/airbnb-comparacao.svg" alt="Imagem4.png" class="w-full h-auto rounded-xl object-contain max-h-[600px] mx-auto" loading="lazy" />
+  
+</figure>
+<p>Qual você escolhe? </p>
+<p>Se você respondeu de imediato “A opção 1, claro!” - esse post é para você. Esse exemplo simples esconde algumas das ideias mais importantes da estatística, e entendê-las pode mudar a forma como você lê qualquer dado.</p>
+<p>Inspirado no livro Naked Statistics, de Charles Wheelan - uma das leituas mais acessíveis e divertidas sobre estatística - pretendo aqui mostrar três conceitos fundamentais da estatística descritiva: média, moda e mediana. Sem fórmulas intimidadoras.</p>
 <hr />
-<h2 id="o-que-diferencia-um-agente-de-um-simples-chatbot">O que diferencia um Agente de um Simples Chatbot?</h2>
-<p>Um agente inteligente de dados é composto por quatro pilares essenciais:</p>
-<div class="code-wrapper relative my-6 rounded-xl overflow-hidden border border-[#d0d7de] bg-[#f6f8fa]">
-  <div class="code-header flex items-center justify-between px-4 py-2 bg-[#eaeef2] border-b border-[#d0d7de] text-xs text-[#656d76] font-mono">
-    <span>CÓDIGO</span>
-    <button onclick="copyCode(this)" class="copy-btn hover:text-[#1f2328] transition-colors flex items-center gap-1">
-      <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
-    </button>
-  </div>
-  <pre class="p-4 overflow-x-auto text-sm font-mono text-[#1f2328] leading-relaxed"><code>┌─────────────────────────────────────────────────────────┐
-│                     LLM Core Engine                     │
-│                  (Raciocínio &amp; Decisão)                 │
-└──────────────┬───────────────────────────┬──────────────┘
-               │                           │
-       ┌───────▼───────┐           ┌───────▼───────┐
-       │   Memória &amp;   │           │   Tools &amp;     │
-       │   Contexto    │           │   Function    │
-       │   (Vetores)   │           │   Calling     │
-       └───────────────┘           └───────┬───────┘
-                                           │
-                   ┌───────────────────────┼───────────────────────┐
-                   ▼                       ▼                       ▼
-            [Consulta SQL/DW]      [API ERP/Salesforce]    [Notificação Slack]
-</code></pre>
-</div>
-<ol>
-<li><strong>Percepção e Gatilho:</strong> Monitoramento de eventos (ex: o faturamento diário fechou 22% abaixo da meta histórica).</li>
-<li><strong>Planejamento (Reasoning loop):</strong> Capacidade de decompor um problema complexo em sub-tarefas lógicas (<em>Chain-of-Thought</em> / ReAct).</li>
-<li><strong>Uso de Ferramentas (<em>Tool Use / Function Calling</em>):</strong> Execução segura de consultas SQL em Data Warehouses (Snowflake, BigQuery), chamadas de API em ERPs e execução de código Python isolado.</li>
-<li><strong>Auto-Crítica e Refinamento:</strong> Checagem de integridade numérica antes de despachar relatórios para a diretoria.</li>
-</ol>
+<h2 id="o-problema-dos-numeros-que-mentem-sem-mentir">O problema dos números que “mentem” sem mentir</h2>
+<p>A ideia da estatística descritiva é reduzir uma quantidade enorme de dados a um punhado de números que realmente dizem algo. O problema é que qualquer simplificação abre espaço para distorções, às vezes acidentais, às vezes deliberadas.</p>
+<p>Como Wheelan diz sobre estatística descritiva:</p>
+<blockquote>
+<p>As estatísticas descritivas podem ser como perfis de namoro online: tecnicamente corretas e ainda assim bem enganosas<br />
+</p>
+</blockquote>
+<p>Isso resume tudo. Os números geralmente estão certos. O problema está em o que eles escondem.</p>
 <hr />
-<h2 id="caso-pratico-o-agente-investigador-de-receita">Caso Prático: O Agente Investigador de Receita</h2>
-<p>Em uma operação real, quando a margem de contribuição de uma unidade de negócio cai bruscamente, um analista humano costuma levar horas:<br />
-- Rodando queries para isolar canais;<br />
-- Conferindo se houve aumento de devoluções ou frete;<br />
-- Cruzando com reajustes de tabela de preços;<br />
-- Redigindo um e-mail com a explicação.</p>
-<p>Com um pipeline de agentes, esse processo é automatizado em segundos:</p>
-<div class="code-wrapper relative my-6 rounded-xl overflow-hidden border border-[#d0d7de] bg-[#f6f8fa]">
-  <div class="code-header flex items-center justify-between px-4 py-2 bg-[#eaeef2] border-b border-[#d0d7de] text-xs text-[#656d76] font-mono">
-    <span>PYTHON</span>
-    <button onclick="copyCode(this)" class="copy-btn hover:text-[#1f2328] transition-colors flex items-center gap-1">
-      <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
-    </button>
-  </div>
-  <pre class="p-4 overflow-x-auto text-sm font-mono text-[#1f2328] leading-relaxed"><code>from dataclasses import dataclass
-from typing import List, Dict
-
-@dataclass
-class AnomalyEvent:
-    metric: str
-    variation_pct: float
-    dimension: str
-    baseline_value: float
-    current_value: float
-
-class RevenueInspectorAgent:
-    &quot;&quot;&quot;
-    Agente autônomo encarregado de investigar desvios
-    e orquestrar consultas analíticas no Data Warehouse.
-    &quot;&quot;&quot;
-    def __init__(self, db_client, llm_engine):
-        self.db = db_client
-        self.llm = llm_engine
-
-    def investigate(self, event: AnomalyEvent) -&gt; Dict[str, any]:
-        # 1. Planejar hipóteses de causa-raiz
-        hypotheses = self.llm.generate_hypotheses(event)
-
-        # 2. Executar consultas SQL seguras para cada hipótese
-        evidence = []
-        for hypo in hypotheses:
-            query = hypo.suggested_sql
-            results = self.db.execute_safe_query(query)
-            evidence.append({&quot;hypothesis&quot;: hypo.description, &quot;data&quot;: results})
-
-        # 3. Sintetizar diagnóstico com números validados
-        executive_summary = self.llm.synthesize_findings(
-            event=event,
-            evidence=evidence
-        )
-
-        return {
-            &quot;status&quot;: &quot;COMPLETED&quot;,
-            &quot;diagnosis&quot;: executive_summary,
-            &quot;actions_suggested&quot;: executive_summary.recommended_actions
-        }
-</code></pre>
-</div>
-<div class="callout-box my-6 p-4 rounded-r-xl border-l-4 border-blue-500 bg-blue-50/70 text-blue-950"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="info" class="w-4 h-4"></i> Nota Informativa</div><div class="text-sm leading-relaxed callout-content"><p><strong>Segurança em Primeiro Lugar</strong>: O agente nunca executa comandos DDL ou manipulações destrutivas (<code>DROP</code>, <code>DELETE</code>, <code>UPDATE</code>). Ele possui apenas credenciais com permissão <code>READ-ONLY</code> e opera com parâmetros estritos de validação de schemas.</p></div></div>
-
+<h2 id="1-media-a-ferramenta-mais-usada-e-a-mais-mal-usada">1. Média: a ferramenta mais usada (e a mais mal usada)</h2>
+<p>A média aritmética é a operação mais básica da estatística: soma todos os valores e divide pela quantidade de elementos. </p>
+<ul>
+<li>Jeito que todo mundo entende</li>
+</ul>
+<p>$$<br />
+média =\frac{\text{soma dos valores}}{\text{número de elementos}} <br />
+$$</p>
+<ul>
+<li>Jeito na linguagem matemática</li>
+</ul>
+<p>$$<br />
+\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}<br />
+$$</p>
+<p>A história que Wheelan conta para mostrar o problema da média é muito boa. Ele fala para gente imaginar 10 pessoas sentadas no balcão de uma bar. Cada um ganha R$5 mil por mês. A média de renda dessas pessoas é R$5 mil. Até aqui faz sentido? </p>
+<p>Imagina que entra a Virginia nesse bar. Ela tem uma renda mensal de R$6 milhões (fontes da minha cabeça). Quando ela se senta na décima primeira banco do balcão, a média de renda dos frequentadores do bar sobre para R$550 mil. </p>
+<p>Nenhuma das outras 10 pessoas ficaram 1 centavo mais ricas. Mas a média diz que todos são “meio milionários”. O problema tem um nome: outlier. Um valor extremo, muito fora da curva, que distorce completamente a média. E isso não é só um problema de bares imaginários, isso acontece o tempo todo:</p>
+<ul>
+<li>A renda per capita de um país pode subir enquanto a maioria das pessoas ficam mais pobres, se os mais ricos enriqueceram muito.</li>
+<li>A nota média de uma turma pode parecer boa porque alguns alunos tiraram 10 em tudo, enquanto metade está abaixo do suficiente.</li>
+<li>A avaliação média de um produto pode ser 4.7 mesmo com muitos clientes insatisfeitos, se os entusiastas votam em massa com nota máxima.</li>
+</ul>
 <hr />
-<h2 id="3-licoes-para-implementar-agentes-na-sua-empresa">3 Lições para Implementar Agentes na sua Empresa</h2>
-<ol>
-<li><strong>Comece com Escopo Estrito (Narrow Agents):</strong> Não tente criar um "Analista de Dados Universal". Crie agentes especialistas: um para conciliação de faturas, outro para alertas de churn de clientes e outro para conferência de métricas de campanhas de tráfego.</li>
-<li><strong>Adicione RAG Corporativo (Dicionário de Métricas):</strong> Um dos maiores motivos de erro em agentes é a ambiguidade semântica. Se o agente não souber a regra exata de "O que é um Cliente Ativo no Q3?", ele gerará métricas divergentes do Power BI. Conecte o agente ao seu catálogo de dados ou dbt Semantic Layer.</li>
-<li><strong>Mantenha o Humano no Loop (Human-in-the-Loop):</strong> O agente gera a análise investigativa, identifica os top 3 motivos do desvio e redige a minuta. O analista sênior revisa, valida os insights e autoriza o envio. Isso reduz o trabalho operacional em 85% sem abrir mão da supervisão crítica.</li>
-</ol>
-<p>A inteligência artificial não veio para substituir o analista sênior, mas sim para libertá-lo da extração repetitiva de dados e colocá-lo no papel de estrategista de decisões.</p>
+<h2 id="2-mediana-o-antidoto-para-os-outliers">2. Mediana: o antídoto para os outliers</h2>
+<p>A mediana surge para resolver o problema da média. O valor que fica bem no meio de uma distribuição quando todos os dados são ordenados. Metade dos valores fica acima dela, metade abaixo.</p>
+<p>Voltando para o bar com a Virginia. As 10 pessoas ganhando R$5 mil cada, a mediana de renda é R$5 mil. Quando a Virginia chega, a mediana continua sendo R$5 mil. Se o Vini Junior aparecer e se sentar do lado da Virginia, a mediana ainda não mudará pois a mediana ignora os extremos.</p>
+<p>Uma boa prática é sempre olhar a média e a mediana e se forem muito diferentes. certamente há um outlier influenciando a média.</p>
+<hr />
+<h2 id="3-moda-o-valor-mais-frequente">3. Moda: o valor mais frequente</h2>
+<p>A moda é o conceito mais simples dos três. Ela é simplesmente o valor que aparece com mais frequência em um conjunto de dados. Ela é menos usada no cotidiano, mas incrivelmente útil em contextos específicos - especialmente quando você quer saber o que é mais comum, não o que é matematicamente central.</p>
+<p>Um bom lugar para usar a moda é em avaliação de apps. Se 70% dos usuários de um aplicativo dão nota 4, a moda é 4. Saber isso é diferente de saber que a média é 3,8, porque revela que existe um padrão claro de satisfação, e que os extremos negativos puxam a média para baixo sem representar a maioria. </p>
+<hr />
+<h2 id="voltando-ao-casa-do-airbnb">Voltando ao casa do Airbnb</h2>
+<p>A opção A tem média 5.0, mas com apenas 10 corridas. Estatisticamente, isso é quase irrelevante. Com uma amostra tão pequena, podemos inferir algumas hipóteses:</p>
+<ul>
+<li>Essas avaliações podem ter sido feita por amigos e familiares.</li>
+<li>Uma única avaliação ruim no futuro vai derrubar a nota significativamente</li>
+<li>A média não tem estabilidade - ela pode mudar muito.</li>
+</ul>
+<p>A opção B tem média 4.8 com 120 avaliações. Essa média é construída sobre uma base sólida de experiências diversas, ,em diferentes condições, com passageiros variados. Ela já sobreviveu a algumas experiências ruins e ainda assim se manteve alta.</p>
+<p>Nesse caso, trazendo para a vida real, eu procuro sempre ler os comentários que os hóspedes deixam. Por ser em São Paulo, em Pinheiros, sempre tem novos prédios em construção, então olhos principalmente os comentários mais recentes. </p>
+<p>Também olho a moda, pois se a moda é 5, isso significa que, embora algumas avaliações baixam puxem a média para baixo, a experiência mais comum é a nota 5.</p>
+<figure class="my-8 rounded-2xl overflow-hidden border border-[#d0d7de] bg-white p-2 sm:p-3 shadow-sm">
+  <img src="../assets/img/blog/airbnb-distribuicao.svg" alt="image.png" class="w-full h-auto rounded-xl object-contain max-h-[600px] mx-auto" loading="lazy" />
+  
+</figure>
+<hr />
+<div class="callout-box my-6 p-4 rounded-r-xl border-l-4 border-emerald-500 bg-emerald-50/70 text-emerald-950"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="lightbulb" class="w-4 h-4"></i> Dica Prática</div><div class="text-sm leading-relaxed callout-content"><p><strong>Leitura recomendada</strong>:
+Se você quer entender estatística de verdade, sem trauma, sem fórmulas assustadoras, o livro <strong>Estatística: O que é, para que serve, como funciona</strong> (Charles Wheelan, 2013) é o ponto de partida perfeito. Wheelan mostra que estatística não é sobre números: é sobre entender o mundo, e perceber quando os números estão te contando apenas metade da história.</p></div></div>
 
           <!-- Tags & Share Footer -->
           <div class="mt-12 pt-8 border-t border-[#d0d7de]">
             <div class="flex flex-wrap items-center justify-between gap-4">
               <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Inteligência Artificial</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Agentes Autônomos</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#RAG</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Python</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Business Analytics</span> 
+                <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Estatística</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Business Analytics</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Tomada de Decisão</span> 
               </div>
               <div class="flex items-center gap-2 text-xs font-semibold text-[#656d76]">
                 <span>Compartilhar:</span>
@@ -439,17 +403,17 @@ class RevenueInspectorAgent:
           </span>
         </a>
         
-        <a href="media-moda-e-mediana.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
+        <a href="agentes-ia-business-analytics.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
           <div>
             <div class="flex items-center gap-2 mb-3">
-              <span class="badge badge-blue text-[11px]">Business Analytics</span>
+              <span class="badge badge-blue text-[11px]">Inteligência Artificial</span>
               <span class="text-xs text-[#656d76]">8 min</span>
             </div>
             <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
-              Média, Moda e Mediana: O que os números escondem
+              Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
             </h4>
             <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
-              Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
+              Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
             </p>
           </div>
           <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">

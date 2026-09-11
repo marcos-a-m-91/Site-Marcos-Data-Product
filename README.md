@@ -40,13 +40,22 @@ Este é o repositório do site profissional de **Marcos Aurélio**, Senior Busin
 
 ## 🤖 Automações do Projeto
 
-### 1. Publicar e Atualizar o Blog
-Para compilar novos artigos escritos em Markdown (`content/posts/*.md`) para HTML e atualizar o feed:
+### 1. Aplicativo Editor de Artigos (Recomendado)
+Para redigir artigos com barra de ferramentas visual, upload automático de imagens para `assets/img/blog/`, preenchimento de YAML (título, categoria, slug, capa, etc.) e publicação em 1 clique:
+- **Windows**: Basta dar um duplo clique no arquivo `iniciar_editor.bat` na raiz do projeto.
+- **Terminal**:
+  ```bash
+  python tools/editor.py
+  ```
+O aplicativo abrirá automaticamente no seu navegador em `http://localhost:5000`. Ao clicar em **"Publicar"**, ele salva o arquivo `.md` e compila o blog na hora.
+
+### 2. Compilar o Blog Manualmente
+Caso queira compilar os arquivos `.md` existentes sem abrir o editor:
 ```bash
 python tools/build_blog.py
 ```
 
-### 2. Sincronizar Página "Sobre"
+### 3. Sincronizar Página "Sobre"
 Para manter a consistência do cabeçalho e navegação entre a Home e o `sobre.html`:
 ```bash
 python tools/build_sobre.py
@@ -55,3 +64,4 @@ python tools/build_sobre.py
 ## 🌐 Deploy
 
 O projeto está otimizado para deploy em plataformas como **GitHub Pages**, **Vercel** ou **Netlify**. Basta apontar para a raiz do repositório.
+
