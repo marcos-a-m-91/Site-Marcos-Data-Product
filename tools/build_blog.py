@@ -269,8 +269,10 @@ def generate_post_page(post, all_posts):
   <link href="../assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../assets/img/Logo.png" />
-  <link rel="apple-touch-icon" href="../assets/img/Logo.png" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png" />
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="../assets/css/main.css">
@@ -794,8 +796,10 @@ def generate_blog_hub(all_posts):
   <link href="assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/img/Logo.png" />
-  <link rel="apple-touch-icon" href="assets/img/Logo.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">

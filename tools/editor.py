@@ -43,6 +43,10 @@ def serve_blog_hub():
 def serve_index():
     return send_from_directory(ROOT_DIR, 'index.html')
 
+@app.route('/favicon.ico')
+def serve_favicon():
+    return send_from_directory(ROOT_DIR, 'favicon.ico')
+
 @app.route('/<string:page>.html')
 def serve_root_page(page):
     return send_from_directory(ROOT_DIR, f'{page}.html')
