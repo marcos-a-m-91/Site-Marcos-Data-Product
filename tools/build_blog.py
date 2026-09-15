@@ -268,6 +268,10 @@ def generate_post_page(post, all_posts):
   <link href="../assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
   <link href="../assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/img/Logo.png" />
+  <link rel="apple-touch-icon" href="../assets/img/Logo.png" />
+
   <!-- Main Styles -->
   <link rel="stylesheet" href="../assets/css/main.css">
 
@@ -401,6 +405,10 @@ def generate_post_page(post, all_posts):
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
+    <a href="../index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
+      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
+      <span class="font-semibold text-lg text-[#1f2328]">Marcos Data Product</span>
+    </a>
     <a href="../index.html" class="mobile-link">Home</a>
     <a href="../blog.html" class="mobile-link active">Blog</a>
     <a href="../playbook.html" class="mobile-link">Playbook</a>
@@ -576,10 +584,10 @@ def generate_post_page(post, all_posts):
   ═══════════════════════════════════════════════════════ -->
   <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
-      <div class="flex items-center gap-3">
-        <img src="../assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-60" />
+      <a href="../index.html" class="flex items-center gap-3 group text-inherit hover:text-[#11376e] transition-colors" aria-label="Home - Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
         <span>&copy; 2026 Marcos Data Product</span>
-      </div>
+      </a>
       <div class="flex items-center gap-4">
         <a href="../blog.html" class="hover:text-[#11376e]">Blog</a>
         <a href="../playbook.html" class="hover:text-[#11376e]">Playbook</a>
@@ -785,6 +793,10 @@ def generate_blog_hub(all_posts):
   <link href="assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
   <link href="assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/Logo.png" />
+  <link rel="apple-touch-icon" href="assets/img/Logo.png" />
+
   <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
 
@@ -840,6 +852,10 @@ def generate_blog_hub(all_posts):
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
+    <a href="index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
+      <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
+      <span class="font-semibold text-lg text-[#1f2328]">Marcos Data Product</span>
+    </a>
     <a href="index.html" class="mobile-link">Home</a>
     <a href="blog.html" class="mobile-link active">Blog</a>
     <a href="playbook.html" class="mobile-link">Playbook</a>
@@ -942,10 +958,10 @@ def generate_blog_hub(all_posts):
   ═══════════════════════════════════════════════════════ -->
   <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
-      <div class="flex items-center gap-3">
-        <img src="assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-60" />
+      <a href="index.html" class="flex items-center gap-3 group text-inherit hover:text-[#11376e] transition-colors" aria-label="Home - Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
         <span>&copy; 2026 Marcos Data Product</span>
-      </div>
+      </a>
       <div class="flex items-center gap-4">
         <a href="blog.html" class="hover:text-[#11376e]">Blog</a>
         <a href="playbook.html" class="hover:text-[#11376e]">Playbook</a>

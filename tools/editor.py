@@ -39,6 +39,14 @@ def serve_blog(filename):
 def serve_blog_hub():
     return send_from_directory(ROOT_DIR, 'blog.html')
 
+@app.route('/index.html')
+def serve_index():
+    return send_from_directory(ROOT_DIR, 'index.html')
+
+@app.route('/<string:page>.html')
+def serve_root_page(page):
+    return send_from_directory(ROOT_DIR, f'{page}.html')
+
 @app.route('/')
 def index():
     return render_template('editor.html')

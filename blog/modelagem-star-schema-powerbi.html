@@ -23,6 +23,10 @@
   <link href="../assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
   <link href="../assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/img/Logo.png" />
+  <link rel="apple-touch-icon" href="../assets/img/Logo.png" />
+
   <!-- Main Styles -->
   <link rel="stylesheet" href="../assets/css/main.css">
 
@@ -156,6 +160,10 @@
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
+    <a href="../index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
+      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
+      <span class="font-semibold text-lg text-[#1f2328]">Marcos Data Product</span>
+    </a>
     <a href="../index.html" class="mobile-link">Home</a>
     <a href="../blog.html" class="mobile-link active">Blog</a>
     <a href="../playbook.html" class="mobile-link">Playbook</a>
@@ -429,24 +437,6 @@ CALCULATE(
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           
-        <a href="principios-storytelling-dataviz.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-2 mb-3">
-              <span class="badge badge-emerald text-[11px]">Data Visualization</span>
-              <span class="text-xs text-[#656d76]">6 min</span>
-            </div>
-            <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
-              Storytelling com Dados: 5 Princípios para Transformar Dashboards em Ações
-            </h4>
-            <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
-              Dashboards bonitos que ninguém utiliza são um desperdício de investimento. Descubra como aplicar carga cognitiva reduzida, atributos pré-atentivos e Action-Driven Design em relatórios executivos.
-            </p>
-          </div>
-          <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
-            Ler artigo <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-          </span>
-        </a>
-        
         <a href="agentes-ia-business-analytics.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
           <div>
             <div class="flex items-center gap-2 mb-3">
@@ -458,6 +448,24 @@ CALCULATE(
             </h4>
             <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
               Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
+            Ler artigo <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          </span>
+        </a>
+        
+        <a href="media-moda-e-mediana.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="badge badge-blue text-[11px]">Business Analytics</span>
+              <span class="text-xs text-[#656d76]">8 min</span>
+            </div>
+            <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
+              Média, Moda e Mediana: O que os números escondem
+            </h4>
+            <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
+              Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
             </p>
           </div>
           <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
@@ -477,10 +485,10 @@ CALCULATE(
   ═══════════════════════════════════════════════════════ -->
   <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
-      <div class="flex items-center gap-3">
-        <img src="../assets/img/Logo.png" alt="" class="w-5 h-5 object-contain opacity-60" />
+      <a href="../index.html" class="flex items-center gap-3 group text-inherit hover:text-[#11376e] transition-colors" aria-label="Home - Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
         <span>&copy; 2026 Marcos Data Product</span>
-      </div>
+      </a>
       <div class="flex items-center gap-4">
         <a href="../blog.html" class="hover:text-[#11376e]">Blog</a>
         <a href="../playbook.html" class="hover:text-[#11376e]">Playbook</a>

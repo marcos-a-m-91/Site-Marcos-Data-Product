@@ -1,0 +1,30 @@
+[
+  {
+    "id": "estatistica-o-que-e",
+    "title": "Estatística",
+    "author": "Cole Nussbaumer Knaflic",
+    "amazon_link": "https://amzn.to/exemplo",
+    "cover_image": "assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp",
+    "short_desc": "Como transformar planilhas e gráficos em narrativas visuais que convencem e engajam.",
+    "desc_full": "Como transformar planilhas e gráficos em narrativas visuais que convencem e engajam. A autora ensina de forma muito prática como tirar ruídos dos seus dados e focar apenas no que comunica a mensagem central. Leitura obrigatória para qualquer analista.",
+    "tags": [
+      "dados",
+      "visualização"
+    ],
+    "created_at": "2026-09-10"
+  },
+  {
+    "id": "inspired",
+    "title": "Inspired",
+    "author": "Marty Cagan",
+    "amazon_link": "https://amzn.to/exemplo",
+    "cover_image": "assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp",
+    "short_desc": "O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia.",
+    "desc_full": "O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia. Entenda as dinâmicas entre tecnologia, design e negócio necessárias para inovar de verdade nesse mercado de criação de valor.",
+    "tags": [
+      "produto",
+      "tecnologia"
+    ],
+    "created_at": "2026-09-11"
+  }
+]
