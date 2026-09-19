@@ -1,12 +1,12 @@
 [
   {
     "id": "estatistica-o-que-e",
-    "title": "Estatística",
-    "author": "Cole Nussbaumer Knaflic",
+    "title": "Estatística: O que é, para que serve, como funciona",
+    "author": "Charles Wheelan",
     "amazon_link": "https://amzn.to/exemplo",
     "cover_image": "assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp",
-    "short_desc": "Como transformar planilhas e gráficos em narrativas visuais que convencem e engajam.",
-    "desc_full": "Como transformar planilhas e gráficos em narrativas visuais que convencem e engajam. A autora ensina de forma muito prática como tirar ruídos dos seus dados e focar apenas no que comunica a mensagem central. Leitura obrigatória para qualquer analista.",
+    "short_desc": "Como transformar dados e gráficos em respostas reais sem fórmulas intimidadoras.",
+    "desc_full": "O livro mais didático e esclarecedor sobre como a análise estatística funciona no mundo real. Ensina como pensar com dados, identificar vieses em pesquisas e entender probabilidades sem fórmulas desnecessárias.",
     "tags": [
       "dados",
       "visualização"
@@ -18,7 +18,7 @@
     "title": "Inspired",
     "author": "Marty Cagan",
     "amazon_link": "https://amzn.to/exemplo",
-    "cover_image": "assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp",
+    "cover_image": "assets/img/books/cover-inspired.svg",
     "short_desc": "O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia.",
     "desc_full": "O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia. Entenda as dinâmicas entre tecnologia, design e negócio necessárias para inovar de verdade nesse mercado de criação de valor.",
     "tags": [
@@ -26,5 +26,19 @@
       "tecnologia"
     ],
     "created_at": "2026-09-11"
+  },
+  {
+    "id": "a-logica-do-cisne-negro",
+    "title": "A Lógica do Cisne Negro",
+    "author": "Nassim Nicholas Taleb",
+    "amazon_link": "https://amzn.to/exemplo",
+    "cover_image": "assets/img/books/cover-cisne-negro.svg",
+    "short_desc": "Como eventos raros e imprevisíveis dominam a história e por que não conseguimos antecipar o que realmente importa.",
+    "desc_full": "Como eventos raros e imprevisíveis dominam a história e por que não conseguimos antecipar o que realmente importa. Este livro muda para sempre a forma como você enxerga riscos, previsões e certezas num mundo estatisticamente caótico.",
+    "tags": [
+      "negócios",
+      "comportamento"
+    ],
+    "created_at": "2026-09-12"
   }
 ]

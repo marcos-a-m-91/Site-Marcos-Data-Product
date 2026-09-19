@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" width="100%" height="100%">
+  <!-- Book Cover Background (Mint/Cyan) -->
+  <rect width="300" height="450" fill="#cce8e2" rx="4"/>
+  <rect x="0" y="0" width="300" height="450" fill="none" stroke="#b2dbd1" stroke-width="1.5"/>
+
+  <!-- Spine Shadow -->
+  <rect x="0" y="0" width="16" height="450" fill="#000" opacity="0.04"/>
+  <line x1="16" y1="0" x2="16" y2="450" stroke="#000" stroke-opacity="0.05" stroke-width="1"/>
+
+  <!-- Top Bestseller / Praise -->
+  <text x="150" y="60" fill="#1b4d45" font-family="Inter, sans-serif" font-size="8" text-anchor="middle" font-weight="700" letter-spacing="1">#1 NEW YORK TIMES BESTSELLER</text>
+
+  <!-- Title: RANGE -->
+  <text x="150" y="145" fill="#0c2b25" font-family="'Times New Roman', Georgia, serif" font-size="44" font-weight="700" text-anchor="middle" letter-spacing="4">RANGE</text>
+
+  <!-- Subtitle -->
+  <text x="150" y="180" fill="#1b4d45" font-family="Inter, sans-serif" font-size="9" text-anchor="middle" font-weight="600" letter-spacing="0.5">WHY GENERALISTS TRIUMPH IN A</text>
+  <text x="150" y="196" fill="#1b4d45" font-family="Inter, sans-serif" font-size="9" text-anchor="middle" font-weight="600" letter-spacing="0.5">SPECIALIZED WORLD</text>
+
+  <!-- Center Illustration: Dandelion seeds radiating outwards -->
+  <g transform="translate(150, 270)">
+    <circle cx="0" cy="0" r="4" fill="#0c2b25"/>
+    <!-- Radiating spokes -->
+    <g stroke="#0c2b25" stroke-width="1.2" opacity="0.8">
+      <line x1="0" y1="0" x2="0" y2="-38"/>
+      <line x1="0" y1="0" x2="27" y2="-27"/>
+      <line x1="0" y1="0" x2="38" y2="0"/>
+      <line x1="0" y1="0" x2="27" y2="27"/>
+      <line x1="0" y1="0" x2="0" y2="38"/>
+      <line x1="0" y1="0" x2="-27" y2="27"/>
+      <line x1="0" y1="0" x2="-38" y2="0"/>
+      <line x1="0" y1="0" x2="-27" y2="-27"/>
+
+      <line x1="0" y1="0" x2="14" y2="-35"/>
+      <line x1="0" y1="0" x2="35" y2="-14"/>
+      <line x1="0" y1="0" x2="35" y2="14"/>
+      <line x1="0" y1="0" x2="14" y2="35"/>
+      <line x1="0" y1="0" x2="-14" y2="35"/>
+      <line x1="0" y1="0" x2="-35" y2="14"/>
+      <line x1="0" y1="0" x2="-35" y2="-14"/>
+      <line x1="0" y1="0" x2="-14" y2="-35"/>
+    </g>
+    <!-- Tuft dots at ends -->
+    <g fill="#0c2b25" opacity="0.9">
+      <circle cx="0" cy="-38" r="2"/>
+      <circle cx="27" cy="-27" r="2"/>
+      <circle cx="38" cy="0" r="2"/>
+      <circle cx="27" cy="27" r="2"/>
+      <circle cx="0" cy="38" r="2"/>
+      <circle cx="-27" cy="27" r="2"/>
+      <circle cx="-38" cy="0" r="2"/>
+      <circle cx="-27" cy="-27" r="2"/>
+    </g>
+  </g>
+
+  <!-- Author Name -->
+  <text x="150" y="380" fill="#0c2b25" font-family="'Times New Roman', Georgia, serif" font-size="20" font-weight="700" text-anchor="middle" letter-spacing="1">DAVID EPSTEIN</text>
+  <text x="150" y="405" fill="#1b4d45" font-family="Inter, sans-serif" font-size="8" text-anchor="middle" font-style="italic">Author of The Sports Gene</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07101e"/>
+      <stop offset="100%" stop-color="#0b172a"/>
+    </linearGradient>
+    <linearGradient id="areaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="340" fill="url(#bgGrad3)"/>
+  <rect x="0" y="0" width="600" height="340" fill="none" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Top Header -->
+  <rect x="24" y="20" width="552" height="28" rx="6" fill="#0f1f38" stroke="#1e3a5f" stroke-width="1"/>
+  <circle cx="42" cy="34" r="4" fill="#38bdf8" opacity="0.8"/>
+  <text x="56" y="38" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600">CREDIT RISK INTELLIGENCE • PORTFOLIO NPL</text>
+  <rect x="478" y="26" width="82" height="16" rx="4" fill="#143e35"/>
+  <text x="488" y="38" fill="#34d399" font-family="Inter, sans-serif" font-size="9" font-weight="600">HEALTH: 98.2%</text>
+
+  <!-- Metric Badges Row -->
+  <g transform="translate(24, 60)">
+    <rect x="0" y="0" width="176" height="52" rx="6" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+    <text x="14" y="20" fill="#64748b" font-family="Inter, sans-serif" font-size="9" font-weight="600">DEFAULT RATE (NPL 90)</text>
+    <text x="14" y="42" fill="#ffffff" font-family="Inter, sans-serif" font-size="16" font-weight="700">2.14% <tspan fill="#34d399" font-size="10">-0.4%</tspan></text>
+
+    <rect x="188" y="0" width="176" height="52" rx="6" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+    <text x="202" y="20" fill="#64748b" font-family="Inter, sans-serif" font-size="9" font-weight="600">EXPECTED LOSS (EL)</text>
+    <text x="202" y="42" fill="#ffffff" font-family="Inter, sans-serif" font-size="16" font-weight="700">$420K <tspan fill="#38bdf8" font-size="10">SAFE</tspan></text>
+
+    <rect x="376" y="0" width="176" height="52" rx="6" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+    <text x="390" y="20" fill="#64748b" font-family="Inter, sans-serif" font-size="9" font-weight="600">ACTIVE EXPOSURE</text>
+    <text x="390" y="42" fill="#ffffff" font-family="Inter, sans-serif" font-size="16" font-weight="700">$28.4M <tspan fill="#38bdf8" font-size="10">A+ TIER</tspan></text>
+  </g>
+
+  <!-- Main Chart Area -->
+  <rect x="24" y="124" width="552" height="194" rx="8" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+  <text x="40" y="148" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600">RISK SEGMENTATION &amp; LOSS PROJECTION</text>
+
+  <!-- Chart axes grid -->
+  <g stroke="#1a2d47" stroke-width="1" stroke-dasharray="2 2" opacity="0.6">
+    <line x1="40" y1="170" x2="550" y2="170"/>
+    <line x1="40" y1="210" x2="550" y2="210"/>
+    <line x1="40" y1="250" x2="550" y2="250"/>
+    <line x1="40" y1="290" x2="550" y2="290"/>
+  </g>
+
+  <!-- Area Graph Curve -->
+  <path d="M40 280 Q 120 270 200 240 T 360 210 T 460 180 T 550 165 L 550 295 L 40 295 Z" fill="url(#areaGrad)"/>
+  <path d="M40 280 Q 120 270 200 240 T 360 210 T 460 180 T 550 165" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+
+  <!-- Secondary Curve (Baseline) -->
+  <path d="M40 260 Q 120 250 200 230 T 360 235 T 460 220 T 550 210" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4 3"/>
+
+  <!-- Nodes & Tooltips -->
+  <circle cx="460" cy="180" r="5" fill="#22d3ee"/>
+  <rect x="420" y="138" width="80" height="26" rx="4" fill="#0f2b48" stroke="#38bdf8" stroke-width="1"/>
+  <text x="432" y="155" fill="#38bdf8" font-family="Inter, sans-serif" font-size="10" font-weight="700">Optimal: 1.8%</text>
+</svg>

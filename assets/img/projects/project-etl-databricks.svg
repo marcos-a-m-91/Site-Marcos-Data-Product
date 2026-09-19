@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080e18"/>
+      <stop offset="100%" stop-color="#0e1726"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="340" fill="url(#bgGrad2)"/>
+  <rect x="0" y="0" width="600" height="340" fill="none" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Window Header -->
+  <rect x="24" y="20" width="552" height="28" rx="6" fill="#0f192a" stroke="#1e2d42" stroke-width="1"/>
+  <circle cx="42" cy="34" r="4" fill="#ef4444" opacity="0.8"/>
+  <circle cx="56" cy="34" r="4" fill="#eab308" opacity="0.8"/>
+  <circle cx="70" cy="34" r="4" fill="#22c55e" opacity="0.8"/>
+  <text x="90" y="38" fill="#64748b" font-family="monospace" font-size="11">etl_pipeline_deltalake.scala</text>
+  <rect x="470" y="26" width="90" height="16" rx="4" fill="#1e3a5f"/>
+  <text x="480" y="38" fill="#38bdf8" font-family="monospace" font-size="9">SPARK 3.4 • ACTIVE</text>
+
+  <!-- Code Editor Window -->
+  <g transform="translate(40, 70)" font-family="monospace" font-size="11" letter-spacing="0.2">
+    <!-- Line numbers -->
+    <text x="0" y="20" fill="#334155">01</text>
+    <text x="0" y="42" fill="#334155">02</text>
+    <text x="0" y="64" fill="#334155">03</text>
+    <text x="0" y="86" fill="#334155">04</text>
+    <text x="0" y="108" fill="#334155">05</text>
+    <text x="0" y="130" fill="#334155">06</text>
+    <text x="0" y="152" fill="#334155">07</text>
+    <text x="0" y="174" fill="#334155">08</text>
+    <text x="0" y="196" fill="#334155">09</text>
+
+    <!-- Code Text -->
+    <text x="30" y="20" fill="#f43f5e">val <tspan fill="#38bdf8">rawOrders</tspan> = spark.read.format(<tspan fill="#22c55e">"delta"</tspan>)</text>
+    <text x="30" y="42" fill="#64748b">  .load(<tspan fill="#22c55e">"s3://datalake-silver/orders/"</tspan>)</text>
+    <text x="30" y="64" fill="#f43f5e">val <tspan fill="#38bdf8">curatedDF</tspan> = rawOrders</text>
+    <text x="30" y="86" fill="#64748b">  .filter(col(<tspan fill="#22c55e">"status"</tspan>) === <tspan fill="#22c55e">"COMPLETED"</tspan>)</text>
+    <text x="30" y="108" fill="#64748b">  .groupBy(<tspan fill="#22c55e">"region_id"</tspan>, <tspan fill="#22c55e">"order_date"</tspan>)</text>
+    <text x="30" y="130" fill="#64748b">  .agg(sum(<tspan fill="#22c55e">"gmv"</tspan>).as(<tspan fill="#22c55e">"total_revenue"</tspan>))</text>
+    <text x="30" y="152" fill="#38bdf8">curatedDF.write.format(<tspan fill="#22c55e">"delta"</tspan>)</text>
+    <text x="30" y="174" fill="#64748b">  .mode(SaveMode.Overwrite)</text>
+    <text x="30" y="196" fill="#64748b">  .saveAsTable(<tspan fill="#22c55e">"gold_analytics.kpi_sales"</tspan>)</text>
+  </g>
+
+  <!-- Mini Pipeline Flow diagram at bottom -->
+  <g transform="translate(40, 276)">
+    <!-- Node Bronze -->
+    <rect x="0" y="0" width="100" height="34" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="14" y="21" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="10" font-weight="600">BRONZE (Raw)</text>
+    
+    <path d="M102 17 L140 17" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3"/>
+    
+    <!-- Node Silver -->
+    <rect x="142" y="0" width="100" height="34" rx="6" fill="#0c2d48" stroke="#0284c7" stroke-width="1"/>
+    <text x="156" y="21" fill="#38bdf8" font-family="Inter, sans-serif" font-size="10" font-weight="600">SILVER (Clean)</text>
+
+    <path d="M244 17 L282 17" stroke="#22d3ee" stroke-width="2"/>
+
+    <!-- Node Gold -->
+    <rect x="284" y="0" width="100" height="34" rx="6" fill="#143e35" stroke="#10b981" stroke-width="1"/>
+    <text x="296" y="21" fill="#34d399" font-family="Inter, sans-serif" font-size="10" font-weight="600">GOLD (Aggs)</text>
+
+    <!-- Metrics Badge -->
+    <rect x="420" y="0" width="140" height="34" rx="6" fill="#0f1f38" stroke="#1e3a5f" stroke-width="1"/>
+    <text x="432" y="21" fill="#94a3b8" font-family="monospace" font-size="10">2.4M recs / 4.1s</text>
+  </g>
+</svg>

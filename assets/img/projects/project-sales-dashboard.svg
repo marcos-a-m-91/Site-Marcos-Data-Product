@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070f1e"/>
+      <stop offset="100%" stop-color="#0b1728"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="340" fill="url(#bgGrad1)"/>
+  <rect x="0" y="0" width="600" height="340" fill="none" stroke="#1e293b" stroke-width="1"/>
+  
+  <!-- Subtle Grid Lines -->
+  <g opacity="0.15" stroke="#38bdf8" stroke-width="0.5">
+    <line x1="0" y1="68" x2="600" y2="68"/>
+    <line x1="0" y1="136" x2="600" y2="136"/>
+    <line x1="0" y1="204" x2="600" y2="204"/>
+    <line x1="0" y1="272" x2="600" y2="272"/>
+    <line x1="150" y1="0" x2="150" y2="340"/>
+    <line x1="300" y1="0" x2="300" y2="340"/>
+    <line x1="450" y1="0" x2="450" y2="340"/>
+  </g>
+
+  <!-- Mini Dashboard Top Bar -->
+  <rect x="24" y="20" width="552" height="28" rx="6" fill="#0f1f38" stroke="#1e3a5f" stroke-width="1"/>
+  <circle cx="42" cy="34" r="4" fill="#38bdf8" opacity="0.8"/>
+  <circle cx="56" cy="34" r="4" fill="#2563eb" opacity="0.6"/>
+  <circle cx="70" cy="34" r="4" fill="#64748b" opacity="0.4"/>
+  <text x="90" y="38" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="1">REGIONAL PERFORMANCE • LATAM</text>
+  <rect x="490" y="26" width="70" height="16" rx="4" fill="#1e3a5f"/>
+  <text x="502" y="38" fill="#38bdf8" font-family="Inter, sans-serif" font-size="9" font-weight="600">LIVE SYNC</text>
+
+  <!-- Left Side: Bar Charts & Metrics -->
+  <rect x="24" y="60" width="260" height="120" rx="8" fill="#0a1526" stroke="#1a2d47" stroke-width="1"/>
+  <text x="40" y="82" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600">REVENUE BY COUNTRY (M$)</text>
+  
+  <!-- Bars -->
+  <g transform="translate(40, 96)">
+    <!-- Bar 1: BR -->
+    <rect x="0" y="30" width="22" height="44" rx="3" fill="url(#barGrad)"/>
+    <text x="2" y="86" fill="#64748b" font-family="Inter, sans-serif" font-size="9">BR</text>
+    <!-- Bar 2: AR -->
+    <rect x="36" y="22" width="22" height="52" rx="3" fill="url(#barGrad)"/>
+    <text x="38" y="86" fill="#64748b" font-family="Inter, sans-serif" font-size="9">AR</text>
+    <!-- Bar 3: CL -->
+    <rect x="72" y="10" width="22" height="64" rx="3" fill="url(#barGrad)"/>
+    <text x="75" y="86" fill="#64748b" font-family="Inter, sans-serif" font-size="9">CL</text>
+    <!-- Bar 4: CO -->
+    <rect x="108" y="28" width="22" height="46" rx="3" fill="url(#barGrad)"/>
+    <text x="110" y="86" fill="#64748b" font-family="Inter, sans-serif" font-size="9">CO</text>
+    <!-- Bar 5: PE -->
+    <rect x="144" y="38" width="22" height="36" rx="3" fill="url(#barGrad)"/>
+    <text x="147" y="86" fill="#64748b" font-family="Inter, sans-serif" font-size="9">PE</text>
+    <!-- Bar 6: UY -->
+    <rect x="180" y="48" width="22" height="26" rx="3" fill="url(#barGrad)"/>
+    <text x="183" y="86" fill="#64748b" font-family="Inter, sans-serif" font-size="9">UY</text>
+  </g>
+
+  <!-- Left Bottom: Line Chart Area -->
+  <rect x="24" y="192" width="260" height="126" rx="8" fill="#0a1526" stroke="#1a2d47" stroke-width="1"/>
+  <text x="40" y="214" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600">SALES GROWTH MOM</text>
+  <path d="M40 290 Q80 270 120 260 T200 230 T260 216" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+  <path d="M40 290 Q80 270 120 260 T200 230 T260 216 L260 300 L40 300 Z" fill="#2563eb" opacity="0.12"/>
+  <circle cx="260" cy="216" r="4" fill="#22d3ee"/>
+  <circle cx="200" cy="230" r="3" fill="#38bdf8"/>
+  <circle cx="120" cy="260" r="3" fill="#38bdf8"/>
+
+  <!-- Right Side: South America Map Outline & Constellation Nodes -->
+  <rect x="296" y="60" width="280" height="258" rx="8" fill="#081424" stroke="#1a2d47" stroke-width="1"/>
+  
+  <!-- Map Silhouette of South America -->
+  <g transform="translate(340, 72) scale(0.65)" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.75">
+    <path d="M 120 20 
+             Q 180 10 240 50 
+             Q 300 90 320 150 
+             Q 310 220 270 280 
+             Q 220 360 170 420 
+             L 150 435 
+             Q 140 400 130 330 
+             Q 100 250 80 180 
+             Q 70 110 90 60 Z" 
+          fill="#112746" fill-opacity="0.35" stroke="#22d3ee" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- Network Nodes across Continent -->
+  <g transform="translate(340, 72) scale(0.65)">
+    <circle cx="110" cy="70" r="6" fill="#38bdf8"/>
+    <circle cx="110" cy="70" r="14" fill="#38bdf8" opacity="0.2"/>
+    <circle cx="95" cy="180" r="5" fill="#38bdf8"/>
+    <circle cx="250" cy="220" r="8" fill="#22d3ee"/>
+    <circle cx="250" cy="220" r="18" fill="#22d3ee" opacity="0.25"/>
+    <circle cx="230" cy="260" r="6" fill="#38bdf8"/>
+    <circle cx="130" cy="320" r="5" fill="#38bdf8"/>
+    <circle cx="180" cy="330" r="6" fill="#38bdf8"/>
+    
+    <!-- Connection lines -->
+    <line x1="110" y1="70" x2="250" y2="220" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
+    <line x1="95" y1="180" x2="250" y2="220" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
+    <line x1="250" y1="220" x2="230" y2="260" stroke="#22d3ee" stroke-width="2" opacity="0.8"/>
+    <line x1="230" y1="260" x2="180" y2="330" stroke="#38bdf8" stroke-width="1.5" opacity="0.6"/>
+    <line x1="180" y1="330" x2="130" y2="320" stroke="#38bdf8" stroke-width="1" opacity="0.4"/>
+  </g>
+
+  <!-- Stat Overlay Box inside Map card -->
+  <rect x="312" y="258" width="130" height="46" rx="6" fill="#0b1e3a" stroke="#2563eb" stroke-width="1"/>
+  <text x="322" y="274" fill="#94a3b8" font-family="Inter, sans-serif" font-size="8" font-weight="600">TOTAL LATAM</text>
+  <text x="322" y="294" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="700">$14.8M <tspan fill="#22d3ee" font-size="10">+24%</tspan></text>
+</svg>

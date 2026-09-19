@@ -384,7 +384,6 @@ def generate_post_page(post, all_posts):
       <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
         <a href="../index.html" class="nav-link">Home</a>
         <a href="../blog.html" class="nav-link active">Blog</a>
-        <a href="../playbook.html" class="nav-link">Playbook</a>
         <a href="../projetos.html" class="nav-link">Projetos</a>
         <a href="../biblioteca.html" class="nav-link">Biblioteca</a>
         <a href="../sobre.html" class="nav-link">Sobre</a>
@@ -413,7 +412,6 @@ def generate_post_page(post, all_posts):
     </a>
     <a href="../index.html" class="mobile-link">Home</a>
     <a href="../blog.html" class="mobile-link active">Blog</a>
-    <a href="../playbook.html" class="mobile-link">Playbook</a>
     <a href="../projetos.html" class="mobile-link">Projetos</a>
     <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
     <a href="../sobre.html" class="mobile-link">Sobre</a>
@@ -592,8 +590,8 @@ def generate_post_page(post, all_posts):
       </a>
       <div class="flex items-center gap-4">
         <a href="../blog.html" class="hover:text-[#11376e]">Blog</a>
-        <a href="../playbook.html" class="hover:text-[#11376e]">Playbook</a>
         <a href="../projetos.html" class="hover:text-[#11376e]">Projetos</a>
+        <a href="../biblioteca.html" class="hover:text-[#11376e]">Biblioteca</a>
         <a href="../sobre.html" class="hover:text-[#11376e]">Sobre</a>
       </div>
     </div>
@@ -833,7 +831,6 @@ def generate_blog_hub(all_posts):
       <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
         <a href="index.html" class="nav-link">Home</a>
         <a href="blog.html" class="nav-link active">Blog</a>
-        <a href="playbook.html" class="nav-link">Playbook</a>
         <a href="projetos.html" class="nav-link">Projetos</a>
         <a href="biblioteca.html" class="nav-link">Biblioteca</a>
         <a href="sobre.html" class="nav-link">Sobre</a>
@@ -862,7 +859,6 @@ def generate_blog_hub(all_posts):
     </a>
     <a href="index.html" class="mobile-link">Home</a>
     <a href="blog.html" class="mobile-link active">Blog</a>
-    <a href="playbook.html" class="mobile-link">Playbook</a>
     <a href="projetos.html" class="mobile-link">Projetos</a>
     <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
     <a href="sobre.html" class="mobile-link">Sobre</a>
@@ -968,8 +964,8 @@ def generate_blog_hub(all_posts):
       </a>
       <div class="flex items-center gap-4">
         <a href="blog.html" class="hover:text-[#11376e]">Blog</a>
-        <a href="playbook.html" class="hover:text-[#11376e]">Playbook</a>
         <a href="projetos.html" class="hover:text-[#11376e]">Projetos</a>
+        <a href="biblioteca.html" class="hover:text-[#11376e]">Biblioteca</a>
         <a href="sobre.html" class="hover:text-[#11376e]">Sobre</a>
       </div>
     </div>
