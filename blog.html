@@ -4,18 +4,22 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Blog — Marcos Data Product | Insights, Power BI & IA</title>
-  <meta name="description" content="Artigos práticos, guias e análises técnicas sobre Power BI, Inteligência Artificial, Modelagem Dimensional e Data Visualization." />
+  <title>Blog — Marcos Data Product | Ideias que conectam dados ao mundo real</title>
+  <meta name="description" content="Análises, aprendizados e reflexões sobre dados, negócios, produto e tecnologia — do conceito à aplicação no mundo real." />
 
-  <!-- Vendor Libraries (Local) -->
+  <!-- ═══════════════════════════════════════════════
+       DEPENDENCIES
+  ═══════════════════════════════════════════════ -->
+  <!-- Vendor Libraries -->
   <script src="assets/vendor/gsap_4a57399e4113.js"></script>
   <script src="assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
   <script src="assets/vendor/resource_3fa48481346f.js"></script>
   <script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
 
-  <!-- Vendor Fonts (Local) -->
-  <link href="assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
-  <link href="assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+  <!-- Google Font: Inter (Identidade Visual Oficial) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -27,414 +31,1494 @@
   <link rel="stylesheet" href="assets/css/main.css">
 
   <style>
+    /* Inter Typography & Design System Overrides */
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    /* Hero section com imagem de fundo e gradiente */
+    .blog-hero-container {
+      position: relative;
+      background-image: url('assets/img/hero_section_blog.png');
+      background-position: center right;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 460px;
+    }
+
+    /* Máscara de gradiente para contraste e legibilidade editorial */
+    .blog-hero-gradient-mask {
+      background: linear-gradient(
+        to right,
+        rgba(11, 30, 58, 0.94) 0%,
+        rgba(11, 30, 58, 0.88) 38%,
+        rgba(11, 30, 58, 0.58) 62%,
+        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.0) 100%
+      );
+    }
+
+    @media (max-width: 1024px) {
+      .blog-hero-container {
+        background-position: 70% center;
+        min-height: 400px;
+      }
+      .blog-hero-gradient-mask {
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 30, 58, 0.95) 0%,
+          rgba(11, 30, 58, 0.90) 65%,
+          rgba(11, 30, 58, 0.50) 100%
+        );
+      }
+    }
+
+    /* Active Nav Link with blue line underline */
+    .nav-item-active {
+      color: #0b1e3a !important;
+      font-weight: 600;
+      position: relative;
+    }
+    .nav-item-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #2563eb;
+      border-radius: 2px;
+    }
+
+    /* Subtle Card Elevation */
+    .card-hover-clean {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-hover-clean:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(11, 30, 58, 0.08), 0 8px 10px -6px rgba(11, 30, 58, 0.04);
+      border-color: rgba(37, 99, 235, 0.35);
+    }
+
+    /* Custom scrollbar hiding */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Category Pill Active State */
     .cat-pill.active {
-      background: #11376e;
-      color: #ffffff;
-      border-color: #11376e;
-      box-shadow: 0 2px 4px rgba(17, 55, 110, 0.2);
+      background-color: #2563eb !important;
+      color: #ffffff !important;
+      border-color: #2563eb !important;
+      font-weight: 600 !important;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+    .cat-pill.active i, .cat-pill.active svg {
+      color: #ffffff !important;
+    }
+
+    /* Smooth category fade */
+    .blog-category-section {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* ── Pastel Theme Badges ── */
+    .badge-theme-data {
+      background-color: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+    .badge-theme-dataviz {
+      background-color: #f3e8ff;
+      color: #7e22ce;
+      border: 1px solid #e9d5ff;
+    }
+    .badge-theme-analytics {
+      background-color: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+    .badge-theme-business {
+      background-color: #d1fae5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+    .badge-theme-product {
+      background-color: #ffe4e6;
+      color: #be123c;
+      border: 1px solid #fecdd3;
+    }
+    .badge-theme-ai {
+      background-color: #e0e7ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
     }
   </style>
 </head>
 
-<body>
-
-  <!-- Three.js Canvas -->
-  <canvas id="canvas"></canvas>
+<body class="bg-white text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
 
   <!-- ═══════════════════════════════════════════════════════
-     NAVBAR
+     HEADER / NAVBAR
   ═══════════════════════════════════════════════════════ -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+  <header id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 group" aria-label="Home">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product"
-          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data Product</span>
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product Logo" class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
       </a>
 
-      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="blog.html" class="nav-link active">Blog</a>
-        <a href="projetos.html" class="nav-link">Projetos</a>
-        <a href="biblioteca.html" class="nav-link">Biblioteca</a>
-        <a href="sobre.html" class="nav-link">Sobre</a>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
+        <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
+        <a href="blog.html" class="nav-item-active">Blog</a>
+        <a href="projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
+        <a href="biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
+        <a href="sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
       </nav>
 
-      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-      </button>
+      <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger" class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer" aria-label="Buscar no site">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- CTA "Vamos conversar" -->
+        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          <span>Vamos conversar</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9]" id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Mobile menu -->
+  <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close" aria-label="Fechar menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]" id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
-      <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
-      <span class="font-semibold text-lg text-[#1f2328]">Marcos Data Product</span>
+    <a href="index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
+      <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
+      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
     </a>
-    <a href="index.html" class="mobile-link">Home</a>
-    <a href="blog.html" class="mobile-link active">Blog</a>
-    <a href="projetos.html" class="mobile-link">Projetos</a>
-    <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
-    <a href="sobre.html" class="mobile-link">Sobre</a>
+    <div class="flex flex-col gap-2">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="blog.html" class="mobile-link active font-semibold text-[#2563eb]">Blog</a>
+      <a href="projetos.html" class="mobile-link">Projetos</a>
+      <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
+      <a href="sobre.html" class="mobile-link">Sobre</a>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+        <span>Vamos conversar</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
   </div>
+
 
   <!-- ═══════════════════════════════════════════════════════
      HERO SECTION
   ═══════════════════════════════════════════════════════ -->
-  <section class="min-h-[45vh] flex flex-col items-center justify-center px-5 sm:px-8 pt-36 sm:pt-40 pb-12 relative overflow-hidden text-center z-10">
-    <div class="max-w-4xl mx-auto flex flex-col items-center">
+  <section class="blog-hero-container relative overflow-hidden flex items-center">
+    <!-- Ambient Gradient Mask -->
+    <div class="blog-hero-gradient-mask absolute inset-0 z-0"></div>
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 relative z-10 w-full">
+      <div class="max-w-xl">
+
+        <!-- Eyebrow -->
+        <span class="text-xs font-bold text-[#38bdf8] uppercase tracking-widest block mb-4">
+          BLOG
+        </span>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
+          Ideias que<br />
+          conectam dados<br />
+          ao <span class="text-[#38bdf8]">mundo real.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-lg">
+          Análises, aprendizados e reflexões sobre dados, negócios, produto e tecnologia.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     CATEGORY FILTER PILLS & LIVE SEARCH (INTEGRADO AO FUNDO BRANCO)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bg-white sticky top-[61px] z-30 pt-7 pb-2 px-5 sm:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       
-      <span class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#11376e]/30 bg-[#11376e]/10 text-[#11376e] text-xs sm:text-sm font-semibold mb-6 uppercase tracking-wider backdrop-blur-md shadow-sm">
-        <i data-lucide="newspaper" class="w-4 h-4 text-[#11376e]"></i>
-        Insights & Engenharia de Dados
-      </span>
+      <!-- Pills Bar -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 w-full md:w-auto" id="category-pills">
+        <button class="cat-pill active px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer flex-shrink-0" data-filter="all">
+          Todos
+        </button>
+        <button class="cat-pill px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 transition-all cursor-pointer border border-[#e2e8f0] bg-white text-[#475569] hover:bg-slate-50 hover:text-[#0b1e3a] flex-shrink-0" data-filter="data">
+          <i data-lucide="database" class="w-3.5 h-3.5 text-[#0284c7]"></i>
+          <span>Data</span>
+        </button>
+        <button class="cat-pill px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 transition-all cursor-pointer border border-[#e2e8f0] bg-white text-[#475569] hover:bg-slate-50 hover:text-[#0b1e3a] flex-shrink-0" data-filter="dataviz">
+          <i data-lucide="pie-chart" class="w-3.5 h-3.5 text-[#7e22ce]"></i>
+          <span>DataViz</span>
+        </button>
+        <button class="cat-pill px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 transition-all cursor-pointer border border-[#e2e8f0] bg-white text-[#475569] hover:bg-slate-50 hover:text-[#0b1e3a] flex-shrink-0" data-filter="analytics">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5 text-[#b45309]"></i>
+          <span>Analytics</span>
+        </button>
+        <button class="cat-pill px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 transition-all cursor-pointer border border-[#e2e8f0] bg-white text-[#475569] hover:bg-slate-50 hover:text-[#0b1e3a] flex-shrink-0" data-filter="business">
+          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-[#047857]"></i>
+          <span>Business</span>
+        </button>
+        <button class="cat-pill px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 transition-all cursor-pointer border border-[#e2e8f0] bg-white text-[#475569] hover:bg-slate-50 hover:text-[#0b1e3a] flex-shrink-0" data-filter="product">
+          <i data-lucide="package" class="w-3.5 h-3.5 text-[#be123c]"></i>
+          <span>Product</span>
+        </button>
+        <button class="cat-pill px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 transition-all cursor-pointer border border-[#e2e8f0] bg-white text-[#475569] hover:bg-slate-50 hover:text-[#0b1e3a] flex-shrink-0" data-filter="ai">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#4338ca]"></i>
+          <span>AI</span>
+        </button>
+      </div>
 
-      <h1 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight mb-6 text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">
-        Artigos, Metodologias &amp;<br />
-        <span class="gradient-text">Visão Prática de Negócio</span>
-      </h1>
-
-      <p class="reveal text-base sm:text-lg text-[#656d76] max-w-2xl mx-auto leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
-        Conteúdo técnico aprofundado sobre arquitetura no Power BI, automações com IA generativa, governança e boas práticas de visualização de dados para tomada de decisão.
-      </p>
+      <!-- Live Search Box -->
+      <div class="relative w-full md:w-80 flex-shrink-0">
+        <i data-lucide="search" class="w-4 h-4 text-[#94a3b8] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <input type="text" id="filter-search-input" placeholder="Pesquisar por palavras-chave..." class="w-full pl-9 pr-8 py-2 rounded-full border border-[#cbd5e1] bg-white text-xs text-[#0b1e3a] placeholder-[#94a3b8] outline-none focus:border-[#2563eb] focus:ring-2 focus:ring-blue-100 transition-all shadow-xs" />
+        <button id="filter-search-clear" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-[#94a3b8] hover:text-[#0b1e3a] cursor-pointer" aria-label="Limpar pesquisa">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
 
     </div>
   </section>
 
-  <div class="section-divider"></div>
 
   <!-- ═══════════════════════════════════════════════════════
-     FEED DE ARTIGOS
+     MAIN CONTENT AREA (FEED + SIDEBAR)
   ═══════════════════════════════════════════════════════ -->
-  <main class="relative z-10 px-5 sm:px-8 py-12 pb-28">
-    <div class="max-w-7xl mx-auto">
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 pt-5 sm:pt-6 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Featured Post (Destaque) -->
-      
-        <div class="mb-14 reveal">
-          <span class="text-xs font-bold text-[#11376e] tracking-wider uppercase mb-3 block flex items-center gap-1.5">
-            <i data-lucide="sparkles" class="w-4 h-4 text-[#11376e]"></i> Artigo em Destaque
-          </span>
-          <div class="glass rounded-3xl border border-[#d0d7de] overflow-hidden hover:border-[#11376e]/50 hover:shadow-lg transition-all duration-500 group grid grid-cols-1 lg:grid-cols-12 gap-0">
-            
-            <!-- Imagem de Capa -->
-            <div class="lg:col-span-6 bg-white overflow-hidden flex items-center justify-center p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-[#d0d7de]">
-              <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-full h-full object-cover max-h-[320px] rounded-2xl group-hover:scale-[1.02] transition-transform duration-500" />
-            </div>
+      <!-- ───────────────────────────────────────────────────
+           LEFT COLUMN: FEED DE ARTIGOS (75% / 3 POR LINHA)
+      ─────────────────────────────────────────────────── -->
+      <div class="lg:col-span-9 flex flex-col" id="blog-feed-container">
 
-            <!-- Conteúdo -->
-            <div class="lg:col-span-6 p-6 sm:p-10 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="badge badge-blue text-xs">Business Analytics</span>
-                  <span class="text-xs text-[#656d76] flex items-center gap-1">
-                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 11 de Setembro de 2026
+        <!-- Header da Seção de Artigos (Alinhado ao topo com a Sidebar) -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7 pt-1">
+          <div>
+            <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">PUBLICAÇÕES</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-[#0b1e3a] tracking-tight">
+              Todos os artigos.
+            </h2>
+            <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5"></div>
+          </div>
+          <span class="text-xs text-[#64748b] hidden sm:block pb-1">Publicações organizadas por mais recentes</span>
+        </div>
+
+        <!-- Estado Vazio de Busca -->
+        <div id="empty-search-state" class="hidden text-center py-16 px-4 bg-white rounded-2xl border border-[#e2e8f0] shadow-xs mb-8">
+          <div class="w-14 h-14 rounded-2xl bg-blue-50 text-[#2563eb] flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="search-x" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-[#0b1e3a] mb-1">Nenhum artigo encontrado</h3>
+          <p class="text-xs text-[#64748b] max-w-sm mx-auto mb-5" id="empty-search-desc">
+            Não encontramos artigos com as palavras-chave pesquisadas. Tente outros termos ou limpe o filtro.
+          </p>
+          <button id="reset-search-btn" class="px-5 py-2.5 rounded-full bg-[#2563eb] text-white text-xs font-semibold hover:bg-[#1d4ed8] transition-all cursor-pointer inline-flex items-center gap-1.5 shadow-sm">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>Limpar pesquisa</span>
+          </button>
+        </div>
+
+        <!-- Unified Posts Grid: 3 Artigos por Linha em Desktop -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" id="blog-posts-grid">
+
+          <!-- Post 1: Agentes de IA (12 set 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="ai" data-date="2026-09-12">
+            <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-agentes-ia.svg" alt="Agentes de IA em Business Analytics" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    AI
                   </span>
-                  <span class="text-[#d0d7de]">&bull;</span>
-                  <span class="text-xs text-[#656d76] flex items-center gap-1">
-                    <i data-lucide="clock" class="w-3.5 h-3.5"></i> 8 min
-                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Agentes de IA em Business Analytics
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Como sair de simples prompts e implementar pipelines com múltiplos agentes autônomos para automação de relatórios.
+                  </p>
                 </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">8 min de leitura</span>
+                  </span>
+                  <span>12 set 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
 
-                <h2 class="text-2xl sm:text-3xl font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors tracking-tight leading-snug mb-4" style="font-family:'Space Grotesk',sans-serif">
-                  <a href="blog/media-moda-e-mediana.html" class="hover:underline">
+          <!-- Post 2: Média, Moda e Mediana (11 set 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="dataviz" data-date="2026-09-11">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    DataViz
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
                     Média, Moda e Mediana: O que os números escondem
-                  </a>
-                </h2>
-
-                <p class="text-sm sm:text-base text-[#57606a] leading-relaxed mb-6 line-clamp-3" style="font-family:'Manrope',sans-serif">
-                  Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
-                </p>
-              </div>
-
-              <div class="flex items-center justify-between pt-6 border-t border-[#d0d7de]">
-                <div class="flex items-center gap-2.5">
-                  <img src="assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-8 h-8 rounded-full object-cover border border-[#d0d7de]" />
-                  <span class="text-xs font-semibold text-[#1f2328]">Marcos Aurélio</span>
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Por que olhar apenas para a média pode induzir a erros graves e como usar dispersão nas análises.
+                  </p>
                 </div>
-                <a href="blog/media-moda-e-mediana.html" class="btn-primary text-xs py-2 px-4 inline-flex items-center gap-1.5">
-                  Ler artigo completo <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </a>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">8 min de leitura</span>
+                  </span>
+                  <span>11 set 2026</span>
+                </div>
               </div>
-            </div>
-
-          </div>
-        </div>
-        
-
-      <!-- Toolbar: Busca e Filtros -->
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-[#d0d7de]">
-        
-        <!-- Categorias (Pílulas) -->
-        <div class="flex flex-wrap items-center gap-2 w-full md:w-auto" id="cat-filters">
-          <button class="cat-pill active px-4 py-1.5 rounded-full text-xs font-semibold border transition-all" data-filter="all">Todos (3)</button><button class="cat-pill px-4 py-1.5 rounded-full text-xs font-semibold border border-[#d0d7de] text-[#656d76] hover:text-[#1f2328] transition-all" data-filter="Business Analytics">Business Analytics (1)</button><button class="cat-pill px-4 py-1.5 rounded-full text-xs font-semibold border border-[#d0d7de] text-[#656d76] hover:text-[#1f2328] transition-all" data-filter="Inteligência Artificial">Inteligência Artificial (1)</button><button class="cat-pill px-4 py-1.5 rounded-full text-xs font-semibold border border-[#d0d7de] text-[#656d76] hover:text-[#1f2328] transition-all" data-filter="Power BI">Power BI (1)</button>
-        </div>
-
-        <!-- Input de Busca -->
-        <div class="relative w-full md:w-80">
-          <i data-lucide="search" class="w-4 h-4 text-[#656d76] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-          <input type="text" id="search-input" placeholder="Buscar por tema, DAX, IA..."
-                 class="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-white border border-[#d0d7de] text-[#1f2328] focus:outline-none focus:border-[#11376e] focus:ring-2 focus:ring-[#11376e]/10 shadow-sm" />
-        </div>
-
-      </div>
-
-      <!-- Grid de Artigos -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="posts-grid">
-        
-        <article class="post-card glass rounded-2xl border border-[#d0d7de] overflow-hidden hover:border-[#11376e]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
-                 data-category="Inteligência Artificial"
-                 data-title="agentes autônomos de ia em business analytics: da teoria à produção"
-                 data-excerpt="como sair de simples prompts no chatgpt e implementar pipelines com múltiplos agentes autônomos e rag para detectar anomalias financeiras e automatizar relatórios executivos."
-                 data-tags="inteligência artificial agentes autônomos rag python business analytics">
-          
-          <div>
-            <!-- Capa -->
-            <div class="h-48 overflow-hidden bg-white border-b border-[#d0d7de] p-3 flex items-center justify-center"><img src="assets/img/blog/cover-agentes-ia.svg" alt="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" /></div>
-
-            <!-- Body -->
-            <div class="p-6">
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="badge badge-blue text-[11px]">Inteligência Artificial</span>
-                <span class="text-xs text-[#656d76] flex items-center gap-1">
-                  <i data-lucide="clock" class="w-3 h-3"></i> 8 min
-                </span>
-              </div>
-
-              <h3 class="text-lg font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-3 tracking-tight">
-                <a href="blog/agentes-ia-business-analytics.html">
-                  Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
-                </a>
-              </h3>
-
-              <p class="text-xs sm:text-sm text-[#656d76] line-clamp-3 leading-relaxed mb-4">
-                Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
-              </p>
-            </div>
-          </div>
-
-          <!-- Card Footer -->
-          <div class="px-6 py-4 border-t border-[#d0d7de]/60 bg-[#f6f8fa]/50 flex items-center justify-between text-xs">
-            <span class="text-[#656d76]">12 de Setembro de 2026</span>
-            <a href="blog/agentes-ia-business-analytics.html" class="font-semibold text-[#11376e] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-              Ler <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
             </a>
-          </div>
+          </article>
 
-        </article>
-        
-        <article class="post-card glass rounded-2xl border border-[#d0d7de] overflow-hidden hover:border-[#11376e]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
-                 data-category="Business Analytics"
-                 data-title="média, moda e mediana: o que os números escondem"
-                 data-excerpt="por que uma nota 5.0 no airbnb pode ser uma armadilha? entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras."
-                 data-tags="estatística business analytics tomada de decisão">
-          
-          <div>
-            <!-- Capa -->
-            <div class="h-48 overflow-hidden bg-white border-b border-[#d0d7de] p-3 flex items-center justify-center"><img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" /></div>
-
-            <!-- Body -->
-            <div class="p-6">
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="badge badge-blue text-[11px]">Business Analytics</span>
-                <span class="text-xs text-[#656d76] flex items-center gap-1">
-                  <i data-lucide="clock" class="w-3 h-3"></i> 8 min
-                </span>
+          <!-- Post 3: Star Schema Power BI (10 set 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="data" data-date="2026-09-10">
+            <a href="blog/modelagem-star-schema-powerbi.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-star-schema.svg" alt="Modelagem Star Schema no Power BI" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
               </div>
-
-              <h3 class="text-lg font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-3 tracking-tight">
-                <a href="blog/media-moda-e-mediana.html">
-                  Média, Moda e Mediana: O que os números escondem
-                </a>
-              </h3>
-
-              <p class="text-xs sm:text-sm text-[#656d76] line-clamp-3 leading-relaxed mb-4">
-                Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
-              </p>
-            </div>
-          </div>
-
-          <!-- Card Footer -->
-          <div class="px-6 py-4 border-t border-[#d0d7de]/60 bg-[#f6f8fa]/50 flex items-center justify-between text-xs">
-            <span class="text-[#656d76]">11 de Setembro de 2026</span>
-            <a href="blog/media-moda-e-mediana.html" class="font-semibold text-[#11376e] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-              Ler <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-
-        </article>
-        
-        <article class="post-card glass rounded-2xl border border-[#d0d7de] overflow-hidden hover:border-[#11376e]/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
-                 data-category="Power BI"
-                 data-title="como estruturar modelagem star schema no power bi para alta performance"
-                 data-excerpt="aprenda por que o modelo dimensional star schema supera tabelas 'flat' únicas na engine vertipaq, simplifica medidas dax e garante relatórios corporativos escaláveis."
-                 data-tags="power bi modelagem dimensional dax vertipaq">
-          
-          <div>
-            <!-- Capa -->
-            <div class="h-48 overflow-hidden bg-white border-b border-[#d0d7de] p-3 flex items-center justify-center"><img src="assets/img/blog/cover-star-schema.svg" alt="Como estruturar Modelagem Star Schema no Power BI para Alta Performance" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" /></div>
-
-            <!-- Body -->
-            <div class="p-6">
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="badge badge-amber text-[11px]">Power BI</span>
-                <span class="text-xs text-[#656d76] flex items-center gap-1">
-                  <i data-lucide="clock" class="w-3 h-3"></i> 7 min
-                </span>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Data
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Modelagem Star Schema no Power BI
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Guia prático de engenharia analítica: tabelas fato, dimensões, granularidade e performance do VertiPaq.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">7 min de leitura</span>
+                  </span>
+                  <span>10 set 2026</span>
+                </div>
               </div>
-
-              <h3 class="text-lg font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-3 tracking-tight">
-                <a href="blog/modelagem-star-schema-powerbi.html">
-                  Como estruturar Modelagem Star Schema no Power BI para Alta Performance
-                </a>
-              </h3>
-
-              <p class="text-xs sm:text-sm text-[#656d76] line-clamp-3 leading-relaxed mb-4">
-                Aprenda por que o modelo dimensional Star Schema supera tabelas 'flat' únicas na engine VertiPaq, simplifica medidas DAX e garante relatórios corporativos escaláveis.
-              </p>
-            </div>
-          </div>
-
-          <!-- Card Footer -->
-          <div class="px-6 py-4 border-t border-[#d0d7de]/60 bg-[#f6f8fa]/50 flex items-center justify-between text-xs">
-            <span class="text-[#656d76]">10 de Setembro de 2026</span>
-            <a href="blog/modelagem-star-schema-powerbi.html" class="font-semibold text-[#11376e] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-              Ler <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
             </a>
-          </div>
+          </article>
 
-        </article>
-        
-      </div>
+          <!-- Post 4: O que é um KPI? (05 set 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="data" data-date="2026-09-05">
+            <a href="blog/modelagem-star-schema-powerbi.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/thumb-kpi-mountain.webp" alt="O que é um KPI?" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Data
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    O que é um KPI? Conceitos e Métricas Essenciais
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Conceitos, exemplos práticos e como definir indicadores que impulsionam decisões reais sem vaidade.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">5 min de leitura</span>
+                  </span>
+                  <span>05 set 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
 
-      <!-- Empty State se nada for encontrado na busca -->
-      <div id="empty-state" class="hidden text-center py-20">
-        <div class="w-16 h-16 rounded-2xl bg-[#f6f8fa] border border-[#d0d7de] flex items-center justify-center mx-auto mb-4 text-[#656d76]">
-          <i data-lucide="search-x" class="w-8 h-8"></i>
+          <!-- Post 5: Dashboard não é análise (01 set 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="dataviz" data-date="2026-09-01">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/thumb-dashboard-analise.webp" alt="Dashboard não é análise" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    DataViz
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Dashboard não é análise
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Como ir além de painéis descritivos e entregar diagnósticos e recomendações estratégicas.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">8 min de leitura</span>
+                  </span>
+                  <span>01 set 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 6: Qualidade de dados (28 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="data" data-date="2026-08-28">
+            <a href="blog/modelagem-star-schema-powerbi.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/thumb-qualidade-dados-laptop.webp" alt="Qualidade de dados" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Data
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Qualidade de dados: o que realmente importa?
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Boas práticas para construir bases confiáveis antes de automatizar dashboards e relatórios.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">7 min de leitura</span>
+                  </span>
+                  <span>28 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 7: Storytelling com dados (24 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="dataviz" data-date="2026-08-24">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-dataviz-storytelling.svg" alt="Como contar uma história com dados" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    DataViz
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Como contar uma história com dados
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Princípios práticos de storytelling aplicados a visualizações analíticas de alta clareza.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">6 min de leitura</span>
+                  </span>
+                  <span>24 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 8: Funil de produto (20 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="product" data-date="2026-08-20">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/airbnb-distribuicao.svg" alt="Entendendo o funil de produto" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-product inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Product
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Entendendo o funil de produto
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Como analisar cada etapa da jornada e encontrar gargalos de conversão com dados reais.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">7 min de leitura</span>
+                  </span>
+                  <span>20 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 9: IA para analista (18 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="ai" data-date="2026-08-18">
+            <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-ia-wave.webp" alt="Onde a IA realmente ajuda um analista de dados?" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    AI
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Onde a IA realmente ajuda um analista?
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Aplicações práticas no dia a dia, automações úteis, limites e oportunidades com LLMs.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">8 min de leitura</span>
+                  </span>
+                  <span>18 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 10: Correlação vs Causalidade (15 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="analytics" data-date="2026-08-15">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/airbnb-comparacao.svg" alt="Correlação não é causalidade" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Analytics
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Correlação não é causalidade
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    O que isso significa e por que cometer esse erro custa caro na tomada de decisão estratégica.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">6 min de leitura</span>
+                  </span>
+                  <span>15 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 11: Métricas de engajamento (12 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="product" data-date="2026-08-12">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/projects/project-sales-dashboard.svg" alt="Métricas de engajamento" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-product inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Product
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Métricas de engajamento além do óbvio
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Como interpretar sinais reais de retenção e valor gerado ao usuário em vez de vaidade.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">6 min de leitura</span>
+                  </span>
+                  <span>12 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 12: Experimento A/B (08 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="analytics" data-date="2026-08-08">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/projects/project-sales-dashboard.svg" alt="Como estruturar um experimento A/B" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Analytics
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Como estruturar um experimento A/B
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Do desenho da hipótese e tamanho amostral à validação e significância estatística.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">8 min de leitura</span>
+                  </span>
+                  <span>08 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 13: Métricas de negócio (04 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="business" data-date="2026-08-04">
+            <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/projects/project-credit-portfolio.svg" alt="Métricas de negócio" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Business
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Métricas de negócio que realmente importam
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Como escapar das métricas de vaidade e focar nos números que movem a empresa.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">6 min de leitura</span>
+                  </span>
+                  <span>04 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 14: Da análise à decisão (01 ago 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="business" data-date="2026-08-01">
+            <a href="blog/modelagem-star-schema-powerbi.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/thumb-priorizar-lampada.webp" alt="Da análise à decisão" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Business
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Da análise à decisão executiva
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Como traduzir modelos analíticos avançados em planos de ação executáveis e claros.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">7 min de leitura</span>
+                  </span>
+                  <span>01 ago 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 15: Arquitetura Medalhão (25 jul 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="data" data-date="2026-07-25">
+            <a href="blog/modelagem-star-schema-powerbi.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/projects/project-etl-databricks.svg" alt="Arquitetura Medalhão no Databricks" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Data
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Arquitetura Medalhão no Lakehouse
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Padrões de engenharia para camadas Bronze, Silver e Gold em ambientes analíticos modernos.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">9 min de leitura</span>
+                  </span>
+                  <span>25 jul 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 16: Design System para Dashboards (20 jul 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="dataviz" data-date="2026-07-20">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/thumb-credito-arquitetura.webp" alt="Design System para Dashboards" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    DataViz
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Design System para Dashboards
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Como padronizar paletas, tipografia e hierarquia visual para elevar o padrão dos relatórios.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">6 min de leitura</span>
+                  </span>
+                  <span>20 jul 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 17: Análise de Cohort (15 jul 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="analytics" data-date="2026-07-15">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/airbnb-distribuicao.svg" alt="Análise de Cohort para retenção" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Analytics
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Análise de Cohort para retenção
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Metodologia prática para mapear comportamento de safras de usuários, churn e longevidade.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">7 min de leitura</span>
+                  </span>
+                  <span>15 jul 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 18: Priorização de Features (10 jul 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="product" data-date="2026-07-10">
+            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/thumb-priorizar-lampada.webp" alt="Priorização de features de dados" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-product inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Product
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Como priorizar features de dados
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Matriz Impacto vs Esforço aplicada à gestão de demandas e produto analítico.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">5 min de leitura</span>
+                  </span>
+                  <span>10 jul 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 19: Unit Economics (05 jul 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="business" data-date="2026-07-05">
+            <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/projects/project-credit-portfolio.svg" alt="Unit Economics para Analistas" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    Business
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Unit Economics para Analistas
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    LTV, CAC, Payback e margem de contribuição: métricas essenciais da economia de produto.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">8 min de leitura</span>
+                  </span>
+                  <span>05 jul 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
+          <!-- Post 20: Prompt Engineering (01 jul 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group transition-all" data-category="ai" data-date="2026-07-01">
+            <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-ia-wave.webp" alt="Prompt Engineering para dados" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                    AI
+                  </span>
+                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2 line-clamp-2">
+                    Prompt Engineering para dados
+                  </h3>
+                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                    Técnicas de few-shot e saídas estruturadas para transformar dados não estruturados com LLMs.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i>
+                    <span class="text-[#64748b]">7 min de leitura</span>
+                  </span>
+                  <span>01 jul 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
         </div>
-        <h3 class="text-lg font-bold text-[#1f2328] mb-2">Nenhum artigo encontrado</h3>
-        <p class="text-xs text-[#656d76] max-w-sm mx-auto mb-6">Tente pesquisar por outros termos como "Power BI", "IA" ou limpe o filtro de busca.</p>
-        <button onclick="resetFilters()" class="btn-secondary text-xs">Limpar filtros</button>
-      </div>
 
-      <!-- ═══════════════════════════════════════════════════════
-         BANNER LINKEDIN / NEWSLETTER
-      ═══════════════════════════════════════════════════════ -->
-      <div class="mt-20 glass rounded-3xl p-8 sm:p-12 border border-[#d0d7de] relative overflow-hidden text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-8">
-        <div class="max-w-xl">
-          <span class="badge badge-blue text-xs mb-3">Rede Profissional</span>
-          <h3 class="text-2xl sm:text-3xl font-bold text-[#1f2328] tracking-tight mb-2" style="font-family:'Space Grotesk',sans-serif">
-            Gostou dos artigos? Conecte-se comigo
-          </h3>
-          <p class="text-sm text-[#656d76] leading-relaxed">
-            Compartilho análises semanais, novidades em IA aplicada a produtos de dados e discussões sobre o ecossistema moderno de Analytics.
+        <!-- Botão "Ver mais" / Paginação Dinâmica (3 linhas = 9 artigos por clique) -->
+        <div id="load-more-container" class="mt-10 sm:mt-12 text-center flex flex-col items-center justify-center">
+          <button id="load-more-btn" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white border border-[#cbd5e1] hover:border-[#2563eb] text-[#0b1e3a] hover:text-[#2563eb] text-xs font-semibold shadow-xs hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer group">
+            <span>Ver mais artigos</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-[#64748b] group-hover:text-[#2563eb] group-hover:translate-y-0.5 transition-transform"></i>
+          </button>
+          <p id="posts-counter" class="text-[11px] text-[#94a3b8] mt-3 font-medium">
+            Mostrando <span id="displayed-count" class="font-semibold text-[#0b1e3a]">9</span> de <span id="total-count" class="font-semibold text-[#0b1e3a]">20</span> artigos
           </p>
         </div>
-        <div class="flex-shrink-0">
-          <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="btn-primary py-3 px-6 text-sm">
-            <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i> Conectar no LinkedIn
-          </a>
-        </div>
+
       </div>
+
+
+      <!-- ───────────────────────────────────────────────────
+           RIGHT COLUMN: SIDEBAR (25% / DIMINUÍDA)
+      ─────────────────────────────────────────────────── -->
+      <aside class="lg:col-span-3 space-y-6 lg:sticky lg:top-28">
+        
+        <!-- Artigos em Destaque Sidebar Widget -->
+        <div class="bg-white rounded-2xl p-5 border border-[#e2e8f0] shadow-sm card-hover-clean" id="sidebar-featured-widget">
+          <h3 class="font-bold text-base text-[#0b1e3a] mb-4 tracking-tight">
+            Artigos em destaque
+          </h3>
+          <div class="space-y-3.5" id="sidebar-featured-list">
+            <!-- FEATURED_POSTS_START -->
+            <!-- Item: Média, Moda e Mediana: O que os números escondem -->
+            <a href="blog/media-moda-e-mediana.html" class="flex items-center gap-3 group transition-all">
+              <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" />
+              <div class="flex-1 min-w-0">
+                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
+                  Média, Moda e Mediana: O que os números escondem
+                </h4>
+                <p class="text-[11px] text-[#64748b] mt-1 flex items-center gap-1 font-medium">
+                  <span>8 min</span>
+                  <span class="text-slate-300">•</span>
+                  <span>11 set 2026</span>
+                </p>
+              </div>
+            </a>
+
+            <!-- Item: Como estruturar Modelagem Star Schema no Power BI para Alta Performance -->
+            <a href="blog/modelagem-star-schema-powerbi.html" class="flex items-center gap-3 group transition-all">
+              <img src="assets/img/blog/cover-star-schema.svg" alt="Como estruturar Modelagem Star Schema no Power BI para Alta Performance" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" />
+              <div class="flex-1 min-w-0">
+                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
+                  Como estruturar Modelagem Star Schema no Power BI para Alta Performance
+                </h4>
+                <p class="text-[11px] text-[#64748b] mt-1 flex items-center gap-1 font-medium">
+                  <span>7 min</span>
+                  <span class="text-slate-300">•</span>
+                  <span>10 set 2026</span>
+                </p>
+              </div>
+            </a>
+            <!-- FEATURED_POSTS_END -->
+          </div>
+        </div>
+
+        <!-- Categorias Card -->
+        <div class="bg-white rounded-2xl p-5 border border-[#e2e8f0] shadow-sm card-hover-clean">
+          <h3 class="font-bold text-base text-[#0b1e3a] mb-4 pb-2 border-b border-slate-100">
+            Categorias
+          </h3>
+          <ul class="space-y-2.5">
+            <li>
+              <a href="#section-data" data-filter="data" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#0b1e3a] hover:text-[#2563eb] transition-colors group">
+                <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#0284c7]"></span>
+                  <span>Data</span>
+                </span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full badge-theme-data tabular-nums" id="count-data">4</span>
+              </a>
+            </li>
+            <li>
+              <a href="#section-dataviz" data-filter="dataviz" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#0b1e3a] hover:text-[#2563eb] transition-colors group">
+                <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#7e22ce]"></span>
+                  <span>Data Visualization</span>
+                </span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full badge-theme-dataviz tabular-nums" id="count-dataviz">4</span>
+              </a>
+            </li>
+            <li>
+              <a href="#section-analytics" data-filter="analytics" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#0b1e3a] hover:text-[#2563eb] transition-colors group">
+                <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#b45309]"></span>
+                  <span>Analytics</span>
+                </span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full badge-theme-analytics tabular-nums" id="count-analytics">3</span>
+              </a>
+            </li>
+            <li>
+              <a href="#section-business" data-filter="business" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#0b1e3a] hover:text-[#2563eb] transition-colors group">
+                <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#047857]"></span>
+                  <span>Business</span>
+                </span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full badge-theme-business tabular-nums" id="count-business">3</span>
+              </a>
+            </li>
+            <li>
+              <a href="#section-product" data-filter="product" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#0b1e3a] hover:text-[#2563eb] transition-colors group">
+                <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#be123c]"></span>
+                  <span>Product</span>
+                </span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full badge-theme-product tabular-nums" id="count-product">3</span>
+              </a>
+            </li>
+            <li>
+              <a href="#section-ai" data-filter="ai" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#0b1e3a] hover:text-[#2563eb] transition-colors group">
+                <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#4338ca]"></span>
+                  <span>AI</span>
+                </span>
+                <span class="text-[11px] font-bold px-2 py-0.5 rounded-full badge-theme-ai tabular-nums" id="count-ai">3</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quote Card -->
+        <div class="bg-white rounded-2xl p-5 border border-[#e2e8f0] shadow-sm relative overflow-hidden">
+          <div class="text-[#2563eb] text-3xl font-serif leading-none mb-2 select-none">“</div>
+          <blockquote class="text-xs sm:text-sm font-medium text-[#1f2937] leading-relaxed italic mb-4">
+            “Mais do que ferramentas, acredito no pensamento crítico para transformar dados em ações que geram impacto.”
+          </blockquote>
+          <div class="w-8 h-[2px] bg-[#2563eb] rounded-full mb-3"></div>
+          <div class="text-xs font-bold text-[#0b1e3a]">
+            Marcos Aurélio
+          </div>
+        </div>
+
+      </aside>
 
     </div>
   </main>
 
+
   <!-- ═══════════════════════════════════════════════════════
-     FOOTER
+     BANNER INFERIOR: VAMOS CONVERSAR?
   ═══════════════════════════════════════════════════════ -->
-  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
-      <a href="index.html" class="flex items-center gap-3 group text-inherit hover:text-[#11376e] transition-colors" aria-label="Home - Marcos Data Product">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
-        <span>&copy; 2026 Marcos Data Product</span>
-      </a>
-      <div class="flex items-center gap-4">
-        <a href="blog.html" class="hover:text-[#11376e]">Blog</a>
-        <a href="projetos.html" class="hover:text-[#11376e]">Projetos</a>
-        <a href="biblioteca.html" class="hover:text-[#11376e]">Biblioteca</a>
-        <a href="sobre.html" class="hover:text-[#11376e]">Sobre</a>
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-16">
+    <div class="bg-[#0b1e3a] text-white rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-xl">
+      
+      <!-- Background Ambient Glow -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-xl z-10">
+        <span class="text-xs font-bold text-[#38bdf8] uppercase tracking-wider block mb-2">VAMOS CONVERSAR?</span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2 leading-tight">
+          Tem uma ideia, feedback<br />
+          ou quer trocar uma ideia?
+        </h2>
+        <p class="text-xs sm:text-sm text-[#94a3b8] max-w-md mb-6 leading-relaxed">
+          Estou sempre aberto a novas conversas, oportunidades e colaborações.
+        </p>
+        <a href="mailto:contato@marcosdataproduct.com" class="px-6 py-3 rounded-full bg-white text-[#0b1e3a] hover:bg-slate-100 font-semibold text-xs inline-flex items-center gap-2 shadow-sm transition-all hover:-translate-y-0.5">
+          <span>Fale comigo</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
       </div>
+
+      <div class="flex items-center gap-4 z-10 self-start md:self-center">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-12 h-12 object-contain brightness-150" />
+        <div class="text-sm font-semibold text-white/90 leading-tight">
+          Dados. Ideias.<br />
+          Pessoas. Impacto.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER INSTITUCIONAL (DEEP NAVY)
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo e Nome da Marca -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain brightness-110" />
+        <span class="font-bold text-base tracking-tight text-white">Marcos Data Product</span>
+      </a>
+
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
+      </div>
+
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
     </div>
   </footer>
 
-  <!-- Scripts -->
+
+  <!-- ═══════════════════════════════════════════════════════
+     MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="search-modal" class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div class="bg-white rounded-2xl max-w-xl w-full border border-[#e2e8f0] shadow-2xl overflow-hidden transform scale-95 transition-transform" id="search-modal-container">
+      
+      <!-- Input Header -->
+      <div class="p-4 border-b border-[#e2e8f0] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#2563eb]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..." class="w-full text-sm outline-none text-[#0b1e3a] placeholder-[#94a3b8]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#94a3b8] hover:text-[#0b1e3a] hover:bg-slate-100 cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Quick Results / Suggestions -->
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+        <div class="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <a href="blog/agentes-ia-business-analytics.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • IA e RAG</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="blog/media-moda-e-mediana.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs"><i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Média, Moda e Mediana: O que os números escondem</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • Estatística e Negócios</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="blog/modelagem-star-schema-powerbi.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i data-lucide="database" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Modelagem Star Schema no Power BI</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • Power BI & Modelagem Dimensional</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="biblioteca.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#f1f5f9] text-[#2563eb] flex items-center justify-center text-xs"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Biblioteca de Leituras</div>
+              <div class="text-[10px] text-[#64748b]">Curadoria de livros e referências recomendadas</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     UTILITY SCRIPTS
+  ═══════════════════════════════════════════════════════ -->
   <script src="assets/js/main.js"></script>
+
   <script>
-    // Live Search & Category Filter Logic
-    let currentCategory = 'all';
-    let searchQuery = '';
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Inicialização do Lucide Icons
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
 
-    const catPills = document.querySelectorAll('.cat-pill');
-    const searchInput = document.getElementById('search-input');
-    const postCards = document.querySelectorAll('.post-card');
-    const emptyState = document.getElementById('empty-state');
+      // 2. Filtros de Categoria (Pills) & Busca Dinâmica por Palavras-chave
+      const pills = document.querySelectorAll('.cat-pill');
+      const cards = document.querySelectorAll('.blog-post-card');
+      const postsGrid = document.getElementById('blog-posts-grid');
+      const filterSearchInput = document.getElementById('filter-search-input');
+      const filterSearchClear = document.getElementById('filter-search-clear');
+      const emptySearchState = document.getElementById('empty-search-state');
+      const emptySearchDesc = document.getElementById('empty-search-desc');
+      const resetSearchBtn = document.getElementById('reset-search-btn');
 
-    function filterPosts() {
-      let visibleCount = 0;
+      const loadMoreContainer = document.getElementById('load-more-container');
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      const postsCounter = document.getElementById('posts-counter');
+      const displayedCount = document.getElementById('displayed-count');
+      const totalCount = document.getElementById('total-count');
 
-      postCards.forEach(card => {
-        const category = card.getAttribute('data-category') || '';
-        const title = card.getAttribute('data-title') || '';
-        const excerpt = card.getAttribute('data-excerpt') || '';
-        const tags = card.getAttribute('data-tags') || '';
+      const POSTS_PER_PAGE = 9; // 3 linhas x 3 colunas = 9 artigos por página
+      let visibleLimit = POSTS_PER_PAGE;
+      let matchingCards = [];
 
-        const matchesCat = (currentCategory === 'all' || category === currentCategory);
-        const matchesSearch = (!searchQuery || title.includes(searchQuery) || excerpt.includes(searchQuery) || tags.includes(searchQuery));
+      let currentCategory = 'all';
+      let currentQuery = '';
 
-        if (matchesCat && matchesSearch) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
+      function normalizeStr(str) {
+        return (str || '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .trim();
+      }
+
+      function filterFeed() {
+        const queryTerms = normalizeStr(currentQuery).split(/\s+/).filter(Boolean);
+        matchingCards = [];
+
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category') || '';
+          const categoryMatches = (currentCategory === 'all') || (cardCategory === currentCategory);
+
+          if (!categoryMatches) {
+            card.classList.add('hidden');
+            return;
+          }
+
+          if (queryTerms.length === 0) {
+            matchingCards.push(card);
+          } else {
+            const cardText = normalizeStr(card.innerText);
+            const imgAlts = Array.from(card.querySelectorAll('img'))
+              .map(img => normalizeStr(img.getAttribute('alt')))
+              .join(' ');
+            const fullSearchableContent = `${cardText} ${imgAlts}`;
+
+            const matchesQuery = queryTerms.every(term => fullSearchableContent.includes(term));
+            if (matchesQuery) {
+              matchingCards.push(card);
+            } else {
+              card.classList.add('hidden');
+            }
+          }
+        });
+
+        renderPaginatedCards();
+      }
+
+      function renderPaginatedCards() {
+        const totalMatching = matchingCards.length;
+        const currentlyDisplayed = Math.min(visibleLimit, totalMatching);
+
+        // Exibe ou oculta os cards filtrados respeitando o limite
+        matchingCards.forEach((card, index) => {
+          if (index < visibleLimit) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Gerencia botão "Ver mais" e contador
+        if (loadMoreContainer && loadMoreBtn) {
+          if (totalMatching === 0) {
+            loadMoreContainer.classList.add('hidden');
+          } else if (currentlyDisplayed < totalMatching) {
+            loadMoreContainer.classList.remove('hidden');
+            loadMoreBtn.classList.remove('hidden');
+            if (postsCounter) {
+              postsCounter.innerHTML = `Mostrando <span class="font-semibold text-[#0b1e3a]">${currentlyDisplayed}</span> de <span class="font-semibold text-[#0b1e3a]">${totalMatching}</span> artigos`;
+            }
+          } else {
+            loadMoreContainer.classList.remove('hidden');
+            loadMoreBtn.classList.add('hidden');
+            if (postsCounter) {
+              postsCounter.innerHTML = `<span class="inline-flex items-center gap-1.5 text-emerald-600 font-semibold"><i data-lucide="check" class="w-3.5 h-3.5"></i> Todos os ${totalMatching} artigos carregados</span>`;
+              if (window.lucide) window.lucide.createIcons();
+            }
+          }
+        }
+
+        // Gerencia estado vazio
+        if (emptySearchState) {
+          if (totalMatching === 0) {
+            emptySearchState.classList.remove('hidden');
+            if (postsGrid) postsGrid.classList.add('hidden');
+            if (emptySearchDesc) {
+              if (currentQuery.trim().length > 0 && currentCategory !== 'all') {
+                emptySearchDesc.textContent = `Nenhum artigo encontrado para "${currentQuery}" na categoria selecionada.`;
+              } else if (currentQuery.trim().length > 0) {
+                emptySearchDesc.textContent = `Não encontramos artigos com as palavras-chave "${currentQuery}". Tente outros termos ou limpe a busca.`;
+              } else {
+                emptySearchDesc.textContent = `Não há artigos disponíveis nesta categoria no momento.`;
+              }
+            }
+          } else {
+            emptySearchState.classList.add('hidden');
+            if (postsGrid) postsGrid.classList.remove('hidden');
+          }
+        }
+
+        if (window.lucide) window.lucide.createIcons();
+      }
+
+      // Clique no botão "Ver mais" (carrega mais 3 linhas = +9 artigos)
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+          visibleLimit += POSTS_PER_PAGE;
+          renderPaginatedCards();
+        });
+      }
+
+      function clearSearch() {
+        if (filterSearchInput) {
+          filterSearchInput.value = '';
+          currentQuery = '';
+          if (filterSearchClear) filterSearchClear.classList.add('hidden');
+          visibleLimit = POSTS_PER_PAGE;
+          filterFeed();
+          filterSearchInput.focus();
+        }
+      }
+
+      // Input de busca em tempo real
+      if (filterSearchInput) {
+        filterSearchInput.addEventListener('input', (e) => {
+          currentQuery = e.target.value;
+          visibleLimit = POSTS_PER_PAGE;
+          if (filterSearchClear) {
+            if (currentQuery.trim().length > 0) {
+              filterSearchClear.classList.remove('hidden');
+            } else {
+              filterSearchClear.classList.add('hidden');
+            }
+          }
+          filterFeed();
+        });
+
+        filterSearchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            clearSearch();
+          }
+        });
+      }
+
+      if (filterSearchClear) {
+        filterSearchClear.addEventListener('click', clearSearch);
+      }
+
+      if (resetSearchBtn) {
+        resetSearchBtn.addEventListener('click', () => {
+          clearSearch();
+          const allPill = document.querySelector('.cat-pill[data-filter="all"]');
+          if (allPill) allPill.click();
+        });
+      }
+
+      // Filtro de Categorias (Pills)
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const filter = pill.getAttribute('data-filter') || 'all';
+          currentCategory = filter;
+          visibleLimit = POSTS_PER_PAGE;
+
+          pills.forEach(p => {
+            p.classList.remove('active');
+            p.classList.add('border', 'border-[#e2e8f0]', 'bg-white', 'text-[#475569]');
+          });
+          pill.classList.add('active');
+          pill.classList.remove('border-[#e2e8f0]', 'bg-white', 'text-[#475569]');
+
+          filterFeed();
+        });
+      });
+
+      // Executa filtro inicial para exibir os primeiros 9 artigos (3 linhas)
+      filterFeed();
+
+      // Conexão dos links de Categorias da Sidebar com os Filtros
+      const sidebarLinks = document.querySelectorAll('.cat-sidebar-link');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const filter = link.getAttribute('data-filter');
+          const matchingPill = document.querySelector(`.cat-pill[data-filter="${filter}"]`);
+          if (matchingPill) {
+            matchingPill.click();
+            const filterBar = document.querySelector('section.border-y');
+            if (filterBar) {
+              filterBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+
+      // Atualização dinâmica da contagem exata de posts por categoria existente
+      function updateCategoryCounts() {
+        const counts = {
+          data: document.querySelectorAll('.blog-post-card[data-category="data"]').length,
+          dataviz: document.querySelectorAll('.blog-post-card[data-category="dataviz"]').length,
+          analytics: document.querySelectorAll('.blog-post-card[data-category="analytics"]').length,
+          business: document.querySelectorAll('.blog-post-card[data-category="business"]').length,
+          product: document.querySelectorAll('.blog-post-card[data-category="product"]').length,
+          ai: document.querySelectorAll('.blog-post-card[data-category="ai"]').length
+        };
+
+        const countData = document.getElementById('count-data');
+        const countDataviz = document.getElementById('count-dataviz');
+        const countAnalytics = document.getElementById('count-analytics');
+        const countBusiness = document.getElementById('count-business');
+        const countProduct = document.getElementById('count-product');
+        const countAi = document.getElementById('count-ai');
+
+        if (countData) countData.textContent = counts.data;
+        if (countDataviz) countDataviz.textContent = counts.dataviz;
+        if (countAnalytics) countAnalytics.textContent = counts.analytics;
+        if (countBusiness) countBusiness.textContent = counts.business;
+        if (countProduct) countProduct.textContent = counts.product;
+        if (countAi) countAi.textContent = counts.ai;
+      }
+      updateCategoryCounts();
+
+      // 4. Lógica do Modal de Busca
+      const searchTrigger = document.getElementById('search-modal-trigger');
+      const searchModal = document.getElementById('search-modal');
+      const searchClose = document.getElementById('search-modal-close');
+      const searchInput = document.getElementById('site-search-input');
+      const modalContainer = document.getElementById('search-modal-container');
+
+      function openSearch() {
+        if (!searchModal) return;
+        searchModal.classList.remove('hidden');
+        searchModal.classList.add('flex');
+        setTimeout(() => {
+          searchModal.classList.remove('opacity-0');
+          modalContainer.classList.remove('scale-95');
+          modalContainer.classList.add('scale-100');
+          if (searchInput) searchInput.focus();
+        }, 10);
+      }
+
+      function closeSearch() {
+        if (!searchModal) return;
+        searchModal.classList.add('opacity-0');
+        modalContainer.classList.remove('scale-100');
+        modalContainer.classList.add('scale-95');
+        setTimeout(() => {
+          searchModal.classList.add('hidden');
+          searchModal.classList.remove('flex');
+        }, 200);
+      }
+
+      if (searchTrigger) searchTrigger.addEventListener('click', openSearch);
+      if (searchClose) searchClose.addEventListener('click', closeSearch);
+
+      if (searchModal) {
+        searchModal.addEventListener('click', (e) => {
+          if (e.target === searchModal) closeSearch();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && searchModal && !searchModal.classList.contains('hidden')) {
+          closeSearch();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          openSearch();
         }
       });
-
-      if (emptyState) {
-        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-      }
-    }
-
-    catPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        catPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        currentCategory = pill.getAttribute('data-filter');
-        filterPosts();
-      });
-    });
-
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value.toLowerCase().trim();
-        filterPosts();
-      });
-    }
-
-    function resetFilters() {
-      if (searchInput) searchInput.value = '';
-      searchQuery = '';
-      currentCategory = 'all';
-      catPills.forEach(p => {
-        if (p.getAttribute('data-filter') === 'all') p.classList.add('active');
-        else p.classList.remove('active');
-      });
-      filterPosts();
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.lucide) lucide.createIcons();
     });
   </script>
+
 </body>
+
 </html>

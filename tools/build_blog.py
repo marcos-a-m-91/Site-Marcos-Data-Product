@@ -1042,9 +1042,67 @@ def generate_blog_hub(all_posts):
 </body>
 </html>'''
 
+    sync_blog_featured_sidebar(all_posts)
+    print("Hub blog.html preservado com o novo design system e hero section.")
+
+def sync_blog_featured_sidebar(posts):
+    """Atualiza automaticamente os artigos destacados na barra lateral do blog.html com base no frontmatter 'featured: true'"""
+    if not os.path.exists(BLOG_HUB_FILE):
+        return
+
+    with open(BLOG_HUB_FILE, 'r', encoding='utf-8') as f:
+        hub_content = f.read()
+
+    start_marker = "<!-- FEATURED_POSTS_START -->"
+    end_marker = "<!-- FEATURED_POSTS_END -->"
+
+    if start_marker not in hub_content or end_marker not in hub_content:
+        return
+
+    featured = [p for p in posts if p.get('featured') is True or str(p.get('featured')).lower() == 'true']
+    featured.sort(key=lambda x: str(x.get('date', '')), reverse=True)
+
+    items_html = []
+    meses_abrv = {1:'jan', 2:'fev', 3:'mar', 4:'abr', 5:'mai', 6:'jun', 7:'jul', 8:'ago', 9:'set', 10:'out', 11:'nov', 12:'dez'}
+
+    for p in featured:
+        title = p.get('title', 'Sem título')
+        slug = p.get('slug', '')
+        read_time = p.get('read_time', '5 min')
+        dt_str = p.get('date', '')
+        try:
+            dt = datetime.strptime(str(dt_str).strip(), '%Y-%m-%d')
+            formatted_date = f"{dt.day:02d} {meses_abrv[dt.month]} {dt.year}"
+        except Exception:
+            formatted_date = str(dt_str)
+        cover = p.get('cover', 'assets/img/blog/cover-star-schema.svg')
+
+        items_html.append(f'''            <!-- Item: {title} -->
+            <a href="blog/{slug}.html" class="flex items-center gap-3 group transition-all">
+              <img src="{cover}" alt="{title}" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" />
+              <div class="flex-1 min-w-0">
+                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
+                  {title}
+                </h4>
+                <p class="text-[11px] text-[#64748b] mt-1 flex items-center gap-1 font-medium">
+                  <span>{read_time}</span>
+                  <span class="text-slate-300">•</span>
+                  <span>{formatted_date}</span>
+                </p>
+              </div>
+            </a>''')
+
+    if not items_html:
+        new_inner = '\n            <p class="text-xs text-[#64748b]">Nenhum artigo em destaque no momento.</p>\n            '
+    else:
+        new_inner = '\n' + '\n\n'.join(items_html) + '\n            '
+
+    pattern = re.compile(f"{re.escape(start_marker)}.*?{re.escape(end_marker)}", re.DOTALL)
+    updated_content = pattern.sub(f"{start_marker}{new_inner}{end_marker}", hub_content)
+
     with open(BLOG_HUB_FILE, 'w', encoding='utf-8') as f:
-        f.write(hub_html)
-    print("Generated hub: blog.html")
+        f.write(updated_content)
+    print(f"Atualizado widget 'Artigos em destaque' em blog.html ({len(featured)} artigos destacados).")
 
 def build_all():
     files = glob.glob(os.path.join(POSTS_DIR, '*.md'))
@@ -1065,7 +1123,9 @@ def build_all():
         generate_post_page(p, posts)
 
     generate_blog_hub(posts)
+    sync_blog_featured_sidebar(posts)
     print("All blog pages generated successfully!")
 
 if __name__ == '__main__':
     build_all()
+
