@@ -4,614 +4,1424 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Biblioteca — Marcos Data Product</title>
-  <meta name="description" content="Os livros que li, citei em vídeos ou posts. Curadoria de leituras sobre dados, produto, negócios e tecnologia." />
+  <title>Biblioteca — Marcos Data Product | Livros que ampliam perspectivas</title>
+  <meta name="description" content="Curadoria dos livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida. Ideias que inspiram, provocam e geram novas conexões." />
 
-  <!-- Vendor Libraries (Local) -->
+  <!-- ═══════════════════════════════════════════════
+       DEPENDENCIES
+  ═══════════════════════════════════════════════ -->
+  <!-- Vendor Libraries -->
   <script src="assets/vendor/gsap_4a57399e4113.js"></script>
   <script src="assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
   <script src="assets/vendor/resource_3fa48481346f.js"></script>
   <script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
 
-  <!-- Vendor Fonts (Local) -->
-  <link href="assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
-  <link href="assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+  <!-- Google Font: Inter (Identidade Visual Oficial) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
 
+  <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    /* Inter Typography & Design System Overrides */
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote, label {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    /* Hero section com imagem de fundo e gradiente */
+    .biblioteca-hero-container {
+      position: relative;
+      background-image: url('assets/img/hero_section_biblioteca.png');
+      background-position: center right;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 560px;
+    }
+
+    /* Máscara de gradiente para contraste e legibilidade editorial */
+    .biblioteca-hero-gradient-mask {
+      background: linear-gradient(
+        to right,
+        rgba(8, 20, 38, 0.97) 0%,
+        rgba(8, 20, 38, 0.93) 38%,
+        rgba(8, 20, 38, 0.72) 58%,
+        rgba(8, 20, 38, 0.28) 82%,
+        rgba(8, 20, 38, 0.05) 100%
+      );
+    }
+
+    @media (max-width: 1024px) {
+      .biblioteca-hero-container {
+        background-position: 72% center;
+        min-height: auto;
+      }
+      .biblioteca-hero-gradient-mask {
+        background: linear-gradient(
+          to bottom,
+          rgba(8, 20, 38, 0.98) 0%,
+          rgba(8, 20, 38, 0.90) 65%,
+          rgba(8, 20, 38, 0.45) 100%
+        );
+      }
+    }
+
+    /* Hero Category Pills - Estilo fiel ao Mockup */
+    .hero-cat-pill {
+      background-color: rgba(11, 30, 58, 0.70) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.20) !important;
+      color: #e2e8f0 !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .hero-cat-pill:hover {
+      background-color: rgba(11, 30, 58, 0.95) !important;
+      border-color: rgba(255, 255, 255, 0.45) !important;
+      color: #ffffff !important;
+      transform: translateY(-1px);
+    }
+    .hero-cat-pill.active {
+      border: 1.5px solid #0084FF !important;
+      background-color: rgba(0, 132, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-weight: 500 !important;
+      box-shadow: 0 0 16px rgba(0, 132, 255, 0.45) !important;
+    }
+
+    /* Active Nav Link with blue line underline */
+    .nav-item-active {
+      color: #0b1e3a !important;
+      font-weight: 600;
+      position: relative;
+    }
+    .nav-item-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #2563eb;
+      border-radius: 2px;
+    }
+
+    /* Subtle Card Elevation */
+    .card-hover-clean {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-hover-clean:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
+      border-color: rgba(37, 99, 235, 0.35);
+    }
+
+    /* Custom scrollbar hiding */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Category Pill Active State - Estilo fiel à imagem de referência */
+    .cat-pill.active {
+      border: 1.5px solid #0084FF !important;
+      background-color: rgba(0, 132, 255, 0.16) !important;
+      color: #ffffff !important;
+      font-weight: 500 !important;
+      box-shadow: 0 0 16px rgba(0, 132, 255, 0.40) !important;
+    }
+
+    /* Custom Checkbox */
+    .custom-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 4px;
+      outline: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      background-color: #ffffff;
+    }
+    .custom-checkbox:checked {
+      background-color: #2563eb;
+      border-color: #2563eb;
+    }
+    .custom-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    /* Pastel Theme Badges */
+    .badge-theme-dados {
+      background-color: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+    .badge-theme-negocios {
+      background-color: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+    .badge-theme-produto {
+      background-color: #ffe4e6;
+      color: #be123c;
+      border: 1px solid #fecdd3;
+    }
+    .badge-theme-tecnologia {
+      background-color: #f3e8ff;
+      color: #7e22ce;
+      border: 1px solid #e9d5ff;
+    }
+    .badge-theme-carreira {
+      background-color: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+    .badge-theme-mentalidade {
+      background-color: #ffedd5;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+    }
+    .badge-theme-sociedade {
+      background-color: #e0e7ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
+    }
+    .badge-theme-visualizacao {
+      background-color: #d1fae5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Bookmark button styling */
+    .bookmark-btn.saved svg {
+      fill: #2563eb;
+      color: #2563eb;
+    }
+
+    /* Newsletter dark banner */
+    .newsletter-bg {
+      background: radial-gradient(circle at top right, #1e3a8a 0%, #0b1e3a 100%);
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
 
-  <!-- THREE.JS CANVAS BACKGROUND -->
-  <canvas id="canvas"></canvas>
-
-  <!-- NAVIGATION — Sticky glass navbar -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+  <!-- ═══════════════════════════════════════════════════════
+     HEADER / NAVBAR
+  ═══════════════════════════════════════════════════════ -->
+  <header id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-
+      
       <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-3 group" aria-label="Home">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product"
-          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-white/90 hidden sm:inline">Marcos Data
-          Product</span>
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product Logo" class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
       </a>
 
-      <!-- Desktop nav links -->
-      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="projetos.html" class="nav-link">Projetos</a>
-        <a href="biblioteca.html" class="nav-link active">Biblioteca</a>
-        <a href="sobre.html" class="nav-link">Sobre</a>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
+        <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
+        <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
+        <a href="projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
+        <a href="biblioteca.html" class="nav-item-active">Biblioteca</a>
+        <a href="sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
       </nav>
 
-      <!-- Mobile hamburger -->
-      <button class="md:hidden glass rounded-xl p-3 text-white/70 hover:text-white transition-colors" id="mobile-btn"
-        aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-      </button>
+      <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger" class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer" aria-label="Buscar no site">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- CTA "Vamos conversar" -->
+        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          <span>Vamos conversar</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9]" id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Mobile menu overlay -->
+  <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-white/70 hover:text-white" id="mobile-close"
-      aria-label="Fechar menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]" id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
-      <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
-      <span class="font-semibold text-lg text-white">Marcos Data Product</span>
+    <a href="index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
+      <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
+      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
     </a>
-    <a href="index.html" class="mobile-link">Home</a>
-    <a href="blog.html" class="mobile-link">Blog</a>
-    <a href="projetos.html" class="mobile-link">Projetos</a>
-    <a href="biblioteca.html" class="mobile-link active">Biblioteca</a>
-    <a href="sobre.html" class="mobile-link">Sobre</a>
+    <div class="flex flex-col gap-2">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="blog.html" class="mobile-link">Blog</a>
+      <a href="projetos.html" class="mobile-link">Projetos</a>
+      <a href="biblioteca.html" class="mobile-link active font-semibold text-[#2563eb]">Biblioteca</a>
+      <a href="sobre.html" class="mobile-link">Sobre</a>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+        <span>Vamos conversar</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
   </div>
 
-  <!-- HERO DA PÁGINA (1ª dobra) -->
-  <section class="min-h-[60vh] flex flex-col items-center justify-center px-5 sm:px-8 pt-32 pb-16 relative overflow-hidden text-center z-10">
-    <div class="max-w-4xl mx-auto flex flex-col items-center">
-      <span class="reveal inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs sm:text-sm font-medium mb-6 uppercase tracking-wider backdrop-blur-md">
-        <i data-lucide="book-open" class="w-4 h-4"></i>
-        Curadoria de leituras
-      </span>
-      <h1 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-white">
-        Os livros que moldaram <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-emerald-400">minha forma de pensar</span>
-      </h1>
-      <p class="reveal text-lg sm:text-xl text-white/50 max-w-2xl leading-relaxed mt-4" style="font-family:'Manrope',sans-serif">
-        Uma seleção dos livros que li, citei em vídeos ou recomendei em posts. Cada card leva ao lugar onde você pode comprar ou conhecer melhor.
-      </p>
+  <!-- ═══════════════════════════════════════════════════════
+     HERO SECTION
+  ═══════════════════════════════════════════════════════ -->
+  <section class="biblioteca-hero-container relative overflow-hidden flex items-center">
+    <!-- Ambient Gradient Mask -->
+    <div class="biblioteca-hero-gradient-mask absolute inset-0 z-0"></div>
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-20 relative z-10 w-full">
+      <div class="max-w-3xl">
+        
+        <!-- Eyebrow -->
+        <span class="text-xs sm:text-sm font-bold text-[#00A3FF] uppercase tracking-[0.28em] block mb-3.5">
+          BIBLIOTECA
+        </span>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-[56px] xl:text-[62px] font-extrabold text-white tracking-tight leading-[1.08] mb-4">
+          Livros que ampliam<br />
+          <span class="text-[#0084FF]">perspectivas.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed mb-7 font-normal max-w-2xl">
+          Uma seleção de livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida. Ideias que inspiram, provocam e geram novas conexões.
+        </p>
+
+        <!-- Search Bar (Pill rounded-full) -->
+        <div class="relative w-full max-w-[760px] mb-4">
+          <div class="flex items-center bg-[#0d1f38]/85 hover:bg-[#0d1f38] backdrop-blur-md border border-white/20 hover:border-white/35 rounded-full px-5 py-3.5 sm:py-4 text-white transition-all shadow-xl focus-within:border-[#0084FF] focus-within:ring-2 focus-within:ring-[#0084FF]/30">
+            <i data-lucide="search" class="w-5 h-5 text-slate-300 mr-3.5 shrink-0"></i>
+            <input 
+              type="text" 
+              id="library-search" 
+              placeholder="Buscar por título, autor ou tema..." 
+              class="bg-transparent border-none outline-none text-sm sm:text-base text-white placeholder-slate-400 w-full focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <!-- Category Buttons directly in the Hero (Organizado em duas linhas para não cortar nenhuma categoria) -->
+        <div class="flex flex-col gap-2.5 max-w-[760px] mb-8" id="hero-category-pills">
+          <!-- Linha 1: Dados, Negócios, Tecnologia, Produto -->
+          <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="dados">
+              <i data-lucide="database" class="w-3.5 h-3.5 text-sky-400"></i>
+              <span>Dados</span>
+            </button>
+            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="negocios">
+              <i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-400"></i>
+              <span>Negócios</span>
+            </button>
+            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="tecnologia">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
+              <span>Tecnologia</span>
+            </button>
+            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="produto">
+              <i data-lucide="box" class="w-3.5 h-3.5 text-rose-400"></i>
+              <span>Produto</span>
+            </button>
+          </div>
+          <!-- Linha 2: Carreira, Mentalidade, Sociedade -->
+          <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="carreira">
+              <i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-400"></i>
+              <span>Carreira</span>
+            </button>
+            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="mentalidade">
+              <i data-lucide="brain" class="w-3.5 h-3.5 text-orange-400"></i>
+              <span>Mentalidade</span>
+            </button>
+            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="sociedade">
+              <i data-lucide="globe" class="w-3.5 h-3.5 text-indigo-400"></i>
+              <span>Sociedade</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quote at Bottom Left -->
+        <div class="pt-1">
+          <p class="text-sm sm:text-base italic text-slate-200 leading-relaxed mb-1">
+            “Grandes ideias nascem de boas leituras.”
+          </p>
+          <p class="text-xs sm:text-sm text-slate-400 font-normal">
+            — Marcos Aurélio
+          </p>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- FILTRO POR TAGS -->
-  <section class="relative z-10 px-5 sm:px-8 pb-10">
-    <div class="max-w-7xl mx-auto flex flex-wrap gap-2 sm:gap-3 items-center justify-center" id="tag-filters">
-      <!-- Todos -->
-      <button class="filter-btn active cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-white/20 bg-white/5 text-white/50 hover:border-white/40 hover:text-white/80 [&.active]:border-white/50 [&.active]:bg-white/10 [&.active]:text-white [&.active]:shadow-[0_0_15px_rgba(255,255,255,0.15)] [&.active]:scale-105" data-filter="todos">
-        <i data-lucide="layout-grid" class="w-4 h-4"></i> Todos
-      </button>
-
-      <!-- Dados -->
-      <button class="filter-btn cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-blue-500/30 bg-blue-500/10 text-blue-300/60 hover:border-blue-500/50 hover:text-blue-300/90 [&.active]:border-blue-500 [&.active]:bg-blue-500/20 [&.active]:text-blue-300 [&.active]:shadow-[0_0_15px_rgba(59,130,246,0.3)] [&.active]:scale-105" data-filter="dados">
-        <i data-lucide="database" class="w-4 h-4"></i> Dados
-      </button>
-
-      <!-- Produto -->
-      <button class="filter-btn cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-purple-500/30 bg-purple-500/10 text-purple-300/60 hover:border-purple-500/50 hover:text-purple-300/90 [&.active]:border-purple-500 [&.active]:bg-purple-500/20 [&.active]:text-purple-300 [&.active]:shadow-[0_0_15px_rgba(168,85,247,0.3)] [&.active]:scale-105" data-filter="produto">
-        <i data-lucide="box" class="w-4 h-4"></i> Produto
-      </button>
-
-      <!-- Negócios -->
-      <button class="filter-btn cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-amber-500/30 bg-amber-500/10 text-amber-300/60 hover:border-amber-500/50 hover:text-amber-300/90 [&.active]:border-amber-500 [&.active]:bg-amber-500/20 [&.active]:text-amber-300 [&.active]:shadow-[0_0_15px_rgba(245,158,11,0.3)] [&.active]:scale-105" data-filter="negócios">
-        <i data-lucide="briefcase" class="w-4 h-4"></i> Negócios
-      </button>
-
-      <!-- Comportamento -->
-      <button class="filter-btn cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-orange-500/30 bg-orange-500/10 text-orange-300/60 hover:border-orange-500/50 hover:text-orange-300/90 [&.active]:border-orange-500 [&.active]:bg-orange-500/20 [&.active]:text-orange-300 [&.active]:shadow-[0_0_15px_rgba(249,115,22,0.3)] [&.active]:scale-105" data-filter="comportamento">
-        <i data-lucide="users" class="w-4 h-4"></i> Comportamento
-      </button>
-
-      <!-- Tecnologia -->
-      <button class="filter-btn cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-pink-500/30 bg-pink-500/10 text-pink-300/60 hover:border-pink-500/50 hover:text-pink-300/90 [&.active]:border-pink-500 [&.active]:bg-pink-500/20 [&.active]:text-pink-300 [&.active]:shadow-[0_0_15px_rgba(236,72,153,0.3)] [&.active]:scale-105" data-filter="tecnologia">
-        <i data-lucide="cpu" class="w-4 h-4"></i> Tecnologia
-      </button>
-
-      <!-- Visualização -->
-      <button class="filter-btn cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-emerald-500/30 bg-emerald-500/10 text-emerald-300/60 hover:border-emerald-500/50 hover:text-emerald-300/90 [&.active]:border-emerald-500 [&.active]:bg-emerald-500/20 [&.active]:text-emerald-300 [&.active]:shadow-[0_0_15px_rgba(16,185,129,0.3)] [&.active]:scale-105" data-filter="visualização">
-        <i data-lucide="pie-chart" class="w-4 h-4"></i> Visualização
-      </button>
+  <!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT AREA: 2 COLUNAS (CATÁLOGO À ESQUERDA, FILTROS À DIREITA)
+  ═══════════════════════════════════════════════════════ -->
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 py-10">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
       
-      <!-- Finanças -->
-      <button class="filter-btn cursor-pointer px-4 py-2 rounded-full border flex items-center gap-2 text-sm font-semibold transition-all duration-300 transform border-green-500/30 bg-green-500/10 text-green-300/60 hover:border-green-500/50 hover:text-green-300/90 [&.active]:border-green-500 [&.active]:bg-green-500/20 [&.active]:text-green-300 [&.active]:shadow-[0_0_15px_rgba(34,197,94,0.3)] [&.active]:scale-105" data-filter="finanças">
-        <i data-lucide="dollar-sign" class="w-4 h-4"></i> Finanças
-      </button>
+      <!-- ═════════════════════════════════════════════════
+         COLUNA PRINCIPAL: CATÁLOGO DE LIVROS (ESQUERDA)
+      ═════════════════════════════════════════════════ -->
+      <section class="flex-1 min-w-0 w-full order-1">
+
+        <!-- Barra Superior: Total de Resultados -->
+        <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#e2e8f0]">
+          <div class="text-sm font-medium text-[#64748b]">
+            <span id="results-count" class="font-bold text-[#0b1e3a]">3</span> livros encontrados
+          </div>
+        </div>
+
+        <!-- Feedback de Busca Vazia -->
+        <div id="empty-state" class="hidden py-16 text-center bg-white rounded-2xl border border-[#e2e8f0] p-8 my-6">
+          <div class="w-12 h-12 rounded-full bg-blue-50 text-[#2563eb] flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="book-x" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#0b1e3a] mb-1">Nenhum livro encontrado</h3>
+          <p class="text-sm text-[#64748b] max-w-sm mx-auto mb-5">Nenhum título corresponde aos filtros ou ao termo de busca pesquisado.</p>
+          <button id="clear-filters-empty-btn" class="px-4 py-2 bg-[#2563eb] text-white text-xs font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+            Limpar todos os filtros
+          </button>
+        </div>
+
+        <!-- CONTAINER DAS SEÇÕES -->
+        <div id="catalog-sections" class="space-y-12">
+
+          <!-- ── SEÇÃO 1: DESTAQUES (CARROSSEL) ── -->
+          <section id="section-destaques" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-amber-500 flex items-center">
+                  <i data-lucide="star" class="w-5 h-5 fill-amber-500 text-amber-500"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Destaques</h2>
+                <span id="destaques-badge-count" class="hidden sm:inline-flex items-center px-2.5 py-0.5 text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200/70 rounded-full">
+                  3 recomendações
+                </span>
+              </div>
+
+              <!-- Controles de Navegação do Carrossel -->
+              <div class="flex items-center gap-2" id="destaques-carousel-controls">
+                <button id="destaques-carousel-prev" class="w-8 h-8 rounded-full border border-[#cbd5e1] bg-white hover:bg-slate-50 text-[#0b1e3a] flex items-center justify-center transition-all shadow-xs hover:border-[#2563eb] hover:text-[#2563eb] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#cbd5e1] disabled:hover:text-[#0b1e3a]" aria-label="Livro anterior">
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+                <button id="destaques-carousel-next" class="w-8 h-8 rounded-full border border-[#cbd5e1] bg-white hover:bg-slate-50 text-[#0b1e3a] flex items-center justify-center transition-all shadow-xs hover:border-[#2563eb] hover:text-[#2563eb] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#cbd5e1] disabled:hover:text-[#0b1e3a]" aria-label="Próximo livro">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Carrossel de Livros em Destaque -->
+            <div class="relative overflow-hidden py-1">
+              <div id="destaques-grid" class="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory gap-6 pb-3 pt-1 -mx-1 px-1">
+                <!-- Renderizado via JS -->
+              </div>
+            </div>
+          </section>
+
+
+          <!-- ── SEÇÃO 2: DADOS ── -->
+          <section id="section-dados" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-[#0284c7]">
+                  <i data-lucide="database" class="w-5 h-5"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Dados</h2>
+              </div>
+              <button id="btn-view-all-dados" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="dados">
+                <span>Ver todos</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div id="dados-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <!-- Renderizado via JS -->
+            </div>
+          </section>
+
+
+          <!-- ── SEÇÃO 3: NEGÓCIOS ── -->
+          <section id="section-negocios" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-[#b45309]">
+                  <i data-lucide="briefcase" class="w-5 h-5"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Negócios</h2>
+              </div>
+              <button id="btn-view-all-negocios" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="negocios">
+                <span>Ver todos</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div id="negocios-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <!-- Renderizado via JS -->
+            </div>
+          </section>
+
+
+          <!-- ── SEÇÃO 4: PRODUTO ── -->
+          <section id="section-produto" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-[#be123c]">
+                  <i data-lucide="box" class="w-5 h-5"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Produto</h2>
+              </div>
+              <button id="btn-view-all-produto" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="produto">
+                <span>Ver todos</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div id="produto-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <!-- Renderizado via JS -->
+            </div>
+          </section>
+
+
+          <!-- ── SEÇÃO 5: TECNOLOGIA ── -->
+          <section id="section-tecnologia" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-[#7e22ce]">
+                  <i data-lucide="cpu" class="w-5 h-5"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Tecnologia</h2>
+              </div>
+              <button id="btn-view-all-tecnologia" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="tecnologia">
+                <span>Ver todos</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div id="tecnologia-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <!-- Renderizado via JS -->
+            </div>
+          </section>
+
+
+          <!-- ── SEÇÃO 6: CARREIRA ── -->
+          <section id="section-carreira" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-[#15803d]">
+                  <i data-lucide="trending-up" class="w-5 h-5"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Carreira</h2>
+              </div>
+              <button id="btn-view-all-carreira" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="carreira">
+                <span>Ver todos</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div id="carreira-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <!-- Renderizado via JS -->
+            </div>
+          </section>
+
+
+          <!-- ── SEÇÃO 7: MENTALIDADE ── -->
+          <section id="section-mentalidade" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-[#c2410c]">
+                  <i data-lucide="brain" class="w-5 h-5"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Mentalidade</h2>
+              </div>
+              <button id="btn-view-all-mentalidade" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="mentalidade">
+                <span>Ver todos</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div id="mentalidade-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <!-- Renderizado via JS -->
+            </div>
+          </section>
+
+
+          <!-- ── SEÇÃO 8: SOCIEDADE ── -->
+          <section id="section-sociedade" class="category-block">
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-[#4338ca]">
+                  <i data-lucide="globe" class="w-5 h-5"></i>
+                </span>
+                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Sociedade</h2>
+              </div>
+              <button id="btn-view-all-sociedade" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="sociedade">
+                <span>Ver todos</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div id="sociedade-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <!-- Renderizado via JS -->
+            </div>
+          </section>
+
+        </div>
+      </section>
+
+
+      <!-- ═════════════════════════════════════════════════
+         COLUNA LATERAL DIREITA: FILTROS (DIREITA)
+      ═════════════════════════════════════════════════ -->
+      <aside class="w-full lg:w-60 xl:w-64 shrink-0 sticky top-24 order-2 space-y-4">
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-4 sm:p-5 shadow-xs">
+          
+          <!-- Filtros Header -->
+          <div class="flex items-center justify-between pb-3.5 border-b border-[#e2e8f0] mb-4">
+            <h3 class="font-bold text-sm sm:text-base text-[#0b1e3a] flex items-center gap-2">
+              <i data-lucide="sliders-horizontal" class="w-4 h-4 text-[#2563eb]"></i>
+              <span>Filtros</span>
+            </h3>
+            <button id="clear-filters-btn" class="text-xs text-[#2563eb] hover:underline font-semibold cursor-pointer">
+              Limpar
+            </button>
+          </div>
+
+          <!-- GRUPO: CATEGORIA -->
+          <div>
+            <h4 class="text-xs font-bold text-[#0b1e3a] uppercase tracking-wider mb-3">
+              Categoria
+            </h4>
+            <div class="space-y-2.5 text-xs text-[#475569]">
+              <!-- Checkbox Todos -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" id="cat-check-all" class="custom-checkbox" checked />
+                  <span class="font-medium text-[#0b1e3a] group-hover:text-[#2563eb]">Todos</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-all">3</span>
+              </label>
+
+              <!-- Dados -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" class="custom-checkbox filter-cat" value="dados" />
+                  <span class="group-hover:text-[#0b1e3a]">Dados</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-dados">1</span>
+              </label>
+
+              <!-- Negócios -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" class="custom-checkbox filter-cat" value="negocios" />
+                  <span class="group-hover:text-[#0b1e3a]">Negócios</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-negocios">0</span>
+              </label>
+
+              <!-- Produto -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" class="custom-checkbox filter-cat" value="produto" />
+                  <span class="group-hover:text-[#0b1e3a]">Produto</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-produto">1</span>
+              </label>
+
+              <!-- Tecnologia -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" class="custom-checkbox filter-cat" value="tecnologia" />
+                  <span class="group-hover:text-[#0b1e3a]">Tecnologia</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-tecnologia">0</span>
+              </label>
+
+              <!-- Carreira -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" class="custom-checkbox filter-cat" value="carreira" />
+                  <span class="group-hover:text-[#0b1e3a]">Carreira</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-carreira">0</span>
+              </label>
+
+              <!-- Mentalidade -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" class="custom-checkbox filter-cat" value="mentalidade" />
+                  <span class="group-hover:text-[#0b1e3a]">Mentalidade</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-mentalidade">1</span>
+              </label>
+
+              <!-- Sociedade -->
+              <label class="flex items-center justify-between group cursor-pointer">
+                <span class="flex items-center gap-2.5">
+                  <input type="checkbox" class="custom-checkbox filter-cat" value="sociedade" />
+                  <span class="group-hover:text-[#0b1e3a]">Sociedade</span>
+                </span>
+                <span class="text-slate-400 font-mono" id="filter-count-cat-sociedade">0</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CITAÇÃO NO RODAPÉ DOS FILTROS (RENÉ DESCARTES) -->
+        <div class="bg-blue-50/50 rounded-2xl border border-blue-100 p-4 sm:p-5 shadow-xs">
+          <div class="text-[#2563eb] text-2xl font-serif leading-none mb-1.5">“</div>
+          <p class="text-xs italic leading-relaxed text-[#334155] mb-2.5">
+            Ler é conversar com as melhores mentes de outras gerações.
+          </p>
+          <div class="text-[11px] font-semibold text-[#0b1e3a]">
+            — René Descartes
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+     NEWSLETTER SECTION (DEEP NAVY COM GRADIENTE)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-16">
+    <div class="newsletter-bg rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-white/10 relative overflow-hidden">
+      <!-- Ambient light -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-xl z-10">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
+          Mais ideias, toda semana.
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Receba recomendações de livros, artigos e conteúdos sobre dados, negócios e tecnologia.
+        </p>
+      </div>
+
+      <div class="w-full md:w-auto z-10">
+        <form class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md" onsubmit="event.preventDefault(); alert('Obrigado por se inscrever na nossa curadoria semanal!');">
+          <div class="relative w-full sm:w-72">
+            <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input 
+              type="email" 
+              placeholder="Seu e-mail" 
+              required
+              class="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 focus:border-[#38bdf8] text-sm text-white placeholder-slate-400 focus:outline-none transition-all"
+            />
+          </div>
+          <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#2563eb] hover:bg-blue-500 font-semibold text-sm transition-all shadow-md shrink-0 cursor-pointer">
+            Inscrever
+          </button>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- GRID DE CARDS -->
-  <section class="relative z-10 px-5 sm:px-8 pb-32">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="books-grid">
-
-      <!-- BOOKS_GRID_START -->
-
-      <!-- Livro: Estatística: O que é, para que serve, como funciona -->
-      <div class="book-card reveal glass bg-black/50 backdrop-blur-2xl rounded-2xl overflow-hidden flex flex-col group hover:scale-[1.02] hover:border-white/20 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(96,165,250,0.15)] cursor-pointer" 
-        data-tags="dados visualização"
-        data-title="Estatística: O que é, para que serve, como funciona"
-        data-author="Charles Wheelan"
-        data-link="https://amzn.to/exemplo"
-        data-desc-full="O livro mais didático e esclarecedor sobre como a análise estatística funciona no mundo real. Ensina como pensar com dados, identificar vieses em pesquisas e entender probabilidades sem fórmulas desnecessárias.">
-        <div class="w-full aspect-[2/3] overflow-hidden bg-white/5 relative pointer-events-none">
-          <img src="assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp" alt="Estatística: O que é, para que serve, como funciona" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="p-5 sm:p-6 flex flex-col flex-1 pointer-events-none">
-          <h3 class="text-lg font-bold text-white mb-1 tracking-tight" style="font-family:'Space Grotesk',sans-serif">Estatística: O que é, para que serve, como funciona</h3>
-          <p class="text-sm text-white/50 mb-4" style="font-family:'Manrope',sans-serif">Charles Wheelan</p>
-          <p class="text-white/60 text-sm leading-relaxed mb-6 line-clamp-3" style="font-family:'Manrope',sans-serif">Como transformar dados e gráficos em respostas reais sem fórmulas intimidadoras.</p>
-          
-          <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-            <span class="px-2.5 py-1 rounded-md border border-blue-500/20 bg-blue-500/10 text-blue-400 text-[10px] font-semibold uppercase tracking-wider">Dados</span>
-            <span class="px-2.5 py-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-[10px] font-semibold uppercase tracking-wider">Visualização</span>
-          </div>
-
-          <div class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/10 text-white/80 text-sm font-medium group-hover:bg-white/10 group-hover:border-white/20 group-hover:text-white transition-all">
-            Ver detalhes
-            <i data-lucide="plus" class="w-4 h-4 text-white/50 group-hover:text-white"></i>
-          </div>
-        </div>
-      </div>
-
-      <!-- Livro: Inspired -->
-      <div class="book-card reveal glass bg-black/50 backdrop-blur-2xl rounded-2xl overflow-hidden flex flex-col group hover:scale-[1.02] hover:border-white/20 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(96,165,250,0.15)] cursor-pointer" 
-        data-tags="produto tecnologia"
-        data-title="Inspired"
-        data-author="Marty Cagan"
-        data-link="https://amzn.to/exemplo"
-        data-desc-full="O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia. Entenda as dinâmicas entre tecnologia, design e negócio necessárias para inovar de verdade nesse mercado de criação de valor.">
-        <div class="w-full aspect-[2/3] overflow-hidden bg-white/5 relative pointer-events-none">
-          <img src="assets/img/books/cover-inspired.svg" alt="Inspired" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="p-5 sm:p-6 flex flex-col flex-1 pointer-events-none">
-          <h3 class="text-lg font-bold text-white mb-1 tracking-tight" style="font-family:'Space Grotesk',sans-serif">Inspired</h3>
-          <p class="text-sm text-white/50 mb-4" style="font-family:'Manrope',sans-serif">Marty Cagan</p>
-          <p class="text-white/60 text-sm leading-relaxed mb-6 line-clamp-3" style="font-family:'Manrope',sans-serif">O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia.</p>
-          
-          <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-            <span class="px-2.5 py-1 rounded-md border border-purple-500/20 bg-purple-500/10 text-purple-400 text-[10px] font-semibold uppercase tracking-wider">Produto</span>
-            <span class="px-2.5 py-1 rounded-md border border-pink-500/20 bg-pink-500/10 text-pink-400 text-[10px] font-semibold uppercase tracking-wider">Tecnologia</span>
-          </div>
-
-          <div class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/10 text-white/80 text-sm font-medium group-hover:bg-white/10 group-hover:border-white/20 group-hover:text-white transition-all">
-            Ver detalhes
-            <i data-lucide="plus" class="w-4 h-4 text-white/50 group-hover:text-white"></i>
-          </div>
-        </div>
-      </div>
-
-      <!-- Livro: A Lógica do Cisne Negro -->
-      <div class="book-card reveal glass bg-black/50 backdrop-blur-2xl rounded-2xl overflow-hidden flex flex-col group hover:scale-[1.02] hover:border-white/20 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(96,165,250,0.15)] cursor-pointer" 
-        data-tags="negócios comportamento"
-        data-title="A Lógica do Cisne Negro"
-        data-author="Nassim Nicholas Taleb"
-        data-link="https://amzn.to/exemplo"
-        data-desc-full="Como eventos raros e imprevisíveis dominam a história e por que não conseguimos antecipar o que realmente importa. Este livro muda para sempre a forma como você enxerga riscos, previsões e certezas num mundo estatisticamente caótico.">
-        <div class="w-full aspect-[2/3] overflow-hidden bg-white/5 relative pointer-events-none">
-          <img src="assets/img/books/cover-cisne-negro.svg" alt="A Lógica do Cisne Negro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="p-5 sm:p-6 flex flex-col flex-1 pointer-events-none">
-          <h3 class="text-lg font-bold text-white mb-1 tracking-tight" style="font-family:'Space Grotesk',sans-serif">A Lógica do Cisne Negro</h3>
-          <p class="text-sm text-white/50 mb-4" style="font-family:'Manrope',sans-serif">Nassim Nicholas Taleb</p>
-          <p class="text-white/60 text-sm leading-relaxed mb-6 line-clamp-3" style="font-family:'Manrope',sans-serif">Como eventos raros e imprevisíveis dominam a história e por que não conseguimos antecipar o que realmente importa.</p>
-          
-          <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-            <span class="px-2.5 py-1 rounded-md border border-amber-500/20 bg-amber-500/10 text-amber-400 text-[10px] font-semibold uppercase tracking-wider">Negócios</span>
-            <span class="px-2.5 py-1 rounded-md border border-orange-500/20 bg-orange-500/10 text-orange-400 text-[10px] font-semibold uppercase tracking-wider">Comportamento</span>
-          </div>
-
-          <div class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/10 text-white/80 text-sm font-medium group-hover:bg-white/10 group-hover:border-white/20 group-hover:text-white transition-all">
-            Ver detalhes
-            <i data-lucide="plus" class="w-4 h-4 text-white/50 group-hover:text-white"></i>
-          </div>
-        </div>
-      </div>
-
-      <!-- BOOKS_GRID_END -->
-    </div>
-  </section>
-
-  <!-- MODAL DE DETALHES DO LIVRO -->
+  <!-- ═══════════════════════════════════════════════════════
+     MODAL DE DETALHES DO LIVRO
+  ═══════════════════════════════════════════════════════ -->
   <div id="book-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-md" id="book-modal-backdrop"></div>
     
-    <div class="relative glass bg-black/80 backdrop-blur-3xl max-w-4xl w-full max-h-[90vh] rounded-3xl sm:rounded-[2.5rem] border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-[0_0_50px_rgba(0,0,0,0.5)] transform scale-95 opacity-0 transition-all duration-300" id="book-modal-content">
+    <div class="relative bg-white rounded-3xl border border-[#e2e8f0] max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl transform scale-95 opacity-0 transition-all duration-300 z-10" id="book-modal-content">
       
-      <button id="close-modal-btn" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2.5 rounded-full bg-black/40 text-white/70 hover:text-white hover:bg-black/80 transition-colors backdrop-blur-md border border-white/10" aria-label="Fechar">
+      <!-- Close Button -->
+      <button id="close-modal-btn" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-[#64748b] hover:text-[#0b1e3a] transition-colors" aria-label="Fechar modal">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div class="w-full md:w-5/12 h-64 md:h-auto md:min-h-[500px] bg-black/40 flex flex-col justify-center items-center relative overflow-hidden shrink-0">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-transparent z-10 md:hidden opacity-80"></div>
-        <img id="modal-blur" src="" alt="" class="w-full h-full object-cover opacity-40 absolute inset-0 blur-2xl scale-110 pointer-events-none">
-        <!-- Render the crisp image on top of blurred background -->
-        <div class="relative z-10 h-[80%] max-h-[350px] md:max-h-[85%] w-full flex items-center justify-center p-4 md:p-8 mt-4 md:mt-0">
-          <img id="modal-cover" src="" alt="Capa Principal" class="max-w-full max-h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] rounded-md border border-white/10">
+      <!-- Left: Book Cover with Ambient Blur -->
+      <div class="w-full md:w-5/12 bg-slate-100 p-8 flex items-center justify-center relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-[#e2e8f0]">
+        <img id="modal-blur" src="" alt="" class="w-full h-full object-cover opacity-20 absolute inset-0 blur-xl scale-125 pointer-events-none">
+        <div class="relative z-10 max-h-[320px] w-full flex items-center justify-center">
+          <img id="modal-cover" src="" alt="Capa do Livro" class="max-w-[200px] max-h-[300px] object-contain rounded-lg drop-shadow-[0_12px_24px_rgba(0,0,0,0.2)] border border-white">
         </div>
       </div>
 
-      <div class="w-full md:w-7/12 flex flex-col flex-1 bg-gradient-to-br from-white/5 to-transparent relative z-10">
-        <div class="p-6 sm:p-8 md:p-12 overflow-y-auto flex-1 flex flex-col">
-          <div id="modal-tags" class="flex flex-wrap gap-2 mb-6">
-            <!-- Tags dynamically populated here -->
-          </div>
-          
-          <h2 id="modal-title" class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight" style="font-family:'Space Grotesk',sans-serif">Título da Obra</h2>
-          <p id="modal-author" class="text-base sm:text-lg text-white/50 mb-8" style="font-family:'Manrope',sans-serif">Autor</p>
-          
-          <div class="h-px w-full bg-gradient-to-r from-white/10 to-transparent mb-6"></div>
+      <!-- Right: Book Info & Review -->
+      <div class="w-full md:w-7/12 flex flex-col p-6 sm:p-8 overflow-y-auto max-h-[60vh] md:max-h-[90vh]">
+        <div id="modal-tags" class="flex flex-wrap gap-2 mb-3">
+          <!-- Tags populadas via JS -->
+        </div>
+        
+        <h2 id="modal-title" class="text-2xl font-bold text-[#0b1e3a] mb-1 tracking-tight">
+          Título da Obra
+        </h2>
+        <p id="modal-author" class="text-sm font-medium text-[#64748b] mb-4">
+          Autor
+        </p>
 
-          <h3 class="text-xs font-bold text-white/80 uppercase tracking-widest mb-3">Sobre o livro</h3>
-          <p id="modal-desc" class="text-white/60 text-sm sm:text-base leading-relaxed mb-8 flex-1" style="font-family:'Manrope',sans-serif">
-            <!-- Description -->
-          </p>
-
-          <div class="pt-2 mt-auto">
-            <a id="modal-link" href="#" target="_blank" class="inline-flex items-center justify-center gap-3 w-full px-6 py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:-translate-y-0.5">
-              Comprar na Amazon
-              <i data-lucide="external-link" class="w-4 h-4 text-white opacity-80 mt-0.5"></i>
-            </a>
+        <!-- Rating Bar -->
+        <div class="flex items-center gap-2 py-3 border-y border-[#e2e8f0] mb-5 text-xs text-[#64748b]">
+          <div class="flex items-center gap-1 font-bold text-amber-600">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-500 text-amber-500"></i>
+            <span id="modal-rating">4.8</span>
           </div>
+          <span class="text-slate-300">·</span>
+          <span>Curadoria Marcos Data Product</span>
+        </div>
+
+        <h3 class="text-xs font-bold text-[#0b1e3a] uppercase tracking-wider mb-2">
+          Sobre a obra &amp; notas do Marcos
+        </h3>
+        <p id="modal-desc" class="text-[#475569] text-sm leading-relaxed mb-8 flex-1">
+          <!-- Descrição Completa -->
+        </p>
+
+        <!-- Amazon Link Action Button -->
+        <div class="pt-2 mt-auto">
+          <a id="modal-link" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-sm transition-all shadow-md">
+            <span>Ver e Comprar na Amazon</span>
+            <i data-lucide="external-link" class="w-4 h-4 opacity-90"></i>
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="relative z-10 border-t border-white/5 px-5 sm:px-8 py-8 mt-12">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/70">
-      <a href="index.html" class="flex items-center gap-3 group text-inherit hover:text-white transition-colors" aria-label="Home - Marcos Data Product">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
-        <span>© 2026 Marcos Data Product</span>
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="border-t border-[#e2e8f0] bg-white px-5 sm:px-8 py-8 mt-12">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#64748b]">
+      <a href="index.html" class="flex items-center gap-3 group text-inherit hover:text-[#0b1e3a] transition-colors" aria-label="Home - Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-6 h-6 object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+        <span class="font-semibold text-sm text-[#0b1e3a]">Marcos Data Product</span>
       </a>
-      <span>Feito com dados, café e IA</span>
+      <span>© 2026 Marcos Data Product · Feito com dados, café e IA</span>
     </div>
   </footer>
 
   <!-- ═══════════════════════════════════════════════════════
-     THREE.JS BACKGROUND — Clean data science wireframes
+     SCRIPTS & INTERACTIVE LOGIC
   ═══════════════════════════════════════════════════════ -->
-  <script type="module">
-    import * as THREE from "https://esm.sh/three@0.160.0";
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    /* ── Renderer ──────────────────────────────────── */
-    const canvas = document.getElementById('canvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(innerWidth, innerHeight);
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setClearColor(0x080810, 1);
-    camera.position.z = 15;
-
-    /* ── Parallax groups ───────────────────────────── */
-    const fg = new THREE.Group();
-    const mg = new THREE.Group();
-    const bg = new THREE.Group();
-    scene.add(fg, mg, bg);
-
-    /* ── Material helpers (clean, refined) ─────────── */
-    const wireMat = (c, o) => new THREE.MeshBasicMaterial({ color: c, wireframe: true, transparent: true, opacity: o * 0.6 });
-    const lineMat = (c, o) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o * 0.6 });
-    const V3 = (x, y, z = 0) => new THREE.Vector3(x, y, z);
-    const toGeo = pts => new THREE.BufferGeometry().setFromPoints(pts);
-
-    function smoothCurve(pts, res = 24) {
-      if (pts.length < 2) return pts;
-      const cv = new THREE.CatmullRomCurve3(pts);
-      return cv.getPoints(res);
-    }
-
-    /* ── Factory: Data components ──────────────────── */
-    function createLineChart(s, col) {
-      const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(s * 0.5, -s * 0.4)]), lineMat(col, 0.3)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(-s * 0.5, s * 0.4)]), lineMat(col, 0.3)));
-      const pts = []; for (let i = 0; i <= 8; i++) pts.push(V3(-s * 0.45 + (i / 8) * s * 0.9, -s * 0.35 + Math.random() * s * 0.7));
-      g.add(new THREE.Line(toGeo(smoothCurve(pts, 32)), lineMat(col, 0.8)));
-      pts.forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.02, 8, 8), wireMat(col, 0.7)); d.position.copy(p); g.add(d); });
-      return g;
-    }
-
-    function createBarChart(s, col) {
-      const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(s * 0.5, -s * 0.4)]), lineMat(col, 0.3)));
-      const bw = s * 0.12; const px = [-s * 0.3, -s * 0.1, s * 0.1, s * 0.3];
-      px.forEach(x => { const h = s * 0.2 + Math.random() * s * 0.5; const m = new THREE.Mesh(new THREE.BoxGeometry(bw, h, bw * 0.5), wireMat(col, 0.5)); m.position.set(x, -s * 0.4 + h / 2, 0); g.add(m); });
-      return g;
-    }
-
-    function createScatterPlot(s, col) {
-      const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.5), V3(s * 0.5, -s * 0.5)]), lineMat(col, 0.2)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.5), V3(-s * 0.5, s * 0.5)]), lineMat(col, 0.2)));
-      for (let i = 0; i < 28; i++) { const m = new THREE.Mesh(new THREE.OctahedronGeometry(s * 0.035, 0), wireMat(col, 0.5 + Math.random() * 0.4)); m.position.set(-s * 0.4 + Math.random() * s * 0.8, -s * 0.4 + Math.random() * s * 0.8, (Math.random() - 0.5) * s * 0.2); m.rotation.set(Math.random() * 3, Math.random() * 3, 0); g.add(m); }
-      return g;
-    }
-
-    function createNeuralNet(s, col) {
-      const g = new THREE.Group();
-      const layers = [[-s * 0.4, 4], [0, 5], [s * 0.4, 2]]; const nodes = [];
-      layers.forEach(([x, c]) => { const ly = []; for (let i = 0; i < c; i++) { const y = (i - (c - 1) / 2) * s * 0.2; ly.push(V3(x, y)); const m = new THREE.Mesh(new THREE.SphereGeometry(s * 0.04, 12, 12), wireMat(col, 0.45)); m.position.set(x, y, 0); g.add(m); } nodes.push(ly); });
-      for (let l = 0; l < nodes.length - 1; l++) { nodes[l].forEach(n1 => { nodes[l + 1].forEach(n2 => { if (Math.random() > 0.25) g.add(new THREE.Line(toGeo([n1, n2]), lineMat(col, 0.12))); }); }); }
-      return g;
-    }
-
-    function createDonutChart(s, col) {
-      const g = new THREE.Group();
-      const cols = [0x60a5fa, 0xfbbf24, 0x34d399, 0xf472b6, 0xa78bfa];
-      const seg = [0.32, 0.22, 0.20, 0.15, 0.11];
-      const r1 = s * 0.28, r2 = s * 0.52;
-      let st = -Math.PI / 2;
-      seg.forEach((p, i) => { const a = p * Math.PI * 2; const steps = Math.max(12, Math.round(a * 24)); const lm = lineMat(cols[i], 0.45); const o = [], inn = []; for (let s = 0; s <= steps; s++) { const aa = st + (s / steps) * a; o.push(V3(Math.cos(aa) * r2, Math.sin(aa) * r2)); inn.push(V3(Math.cos(aa) * r1, Math.sin(aa) * r1)); } g.add(new THREE.Line(toGeo(o), lm)); g.add(new THREE.Line(toGeo(inn), lm)); g.add(new THREE.Line(toGeo([o[0], inn[0]]), lm)); g.add(new THREE.Line(toGeo([o[steps], inn[steps]]), lm)); st += a; });
-      return g;
-    }
-
-    function createROCCurve(s, col) {
-      const g = new THREE.Group();
-      const ext = s * 0.52;
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, -ext)]), lineMat(col, 0.25)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(-ext, ext)]), lineMat(col, 0.25)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, ext)]), lineMat(col, 0.08)));
-      const pts = []; for (let t = 0; t <= 64; t++) { const f = t / 64; pts.push(V3(-ext + f * ext * 2, -ext + (1 - Math.pow(1 - f, 3.2)) * ext * 2)); }
-      g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.5)));
-      return g;
-    }
-
-    function createDecisionTree(s, col) {
-      const g = new THREE.Group();
-      const r = s * 0.048;
-      const tree = [[0, s * 0.5, -1], [-s * 0.38, s * 0.12, 0], [s * 0.38, s * 0.12, 0], [-s * 0.58, -s * 0.22, 1], [-s * 0.18, -s * 0.22, 1], [s * 0.18, -s * 0.22, 2], [s * 0.58, -s * 0.22, 2]];
-      const pos = [];
-      tree.forEach(([x, y, pi], i) => { const p = V3(x, y); pos.push(p); const isLeaf = i >= 3; const m = isLeaf ? new THREE.Mesh(new THREE.SphereGeometry(r * 0.65, 12, 12), wireMat(col, 0.45)) : new THREE.Mesh(new THREE.OctahedronGeometry(r, 0), wireMat(col, 0.5)); m.position.copy(p); if (!isLeaf) m.rotation.z = Math.PI / 4; g.add(m); if (pi >= 0) g.add(new THREE.Line(toGeo([pos[pi], p]), lineMat(col, 0.2))); });
-      return g;
-    }
-
-    function createKMeans(s, col) {
-      const g = new THREE.Group();
-      const cc = [[0x60a5fa, -s * 0.32, s * 0.25], [0xfbbf24, s * 0.32, s * 0.28], [0x34d399, s * 0.05, -s * 0.32]];
-      cc.forEach(([c, cx, cy]) => {
-        const ct = new THREE.Mesh(new THREE.SphereGeometry(s * 0.045, 14, 14), wireMat(c, 0.6)); ct.position.set(cx, cy, 0); g.add(ct);
-        const ring = []; for (let a = 0; a <= 64; a++)ring.push(V3(cx + Math.cos(a / 64 * Math.PI * 2) * s * 0.2, cy + Math.sin(a / 64 * Math.PI * 2) * s * 0.2));
-        g.add(new THREE.Line(toGeo(ring), lineMat(c, 0.1)));
-        for (let p = 0; p < 7; p++) { const a = (p / 7) * Math.PI * 2; const r = s * 0.2 * (0.2 + Math.abs(Math.sin(p * 2.7)) * 0.6); const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.018, 8, 8), wireMat(c, 0.35)); d.position.set(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 0); g.add(d); }
-      });
-      return g;
-    }
-
-    function createRadarChart(s, col) {
-      const g = new THREE.Group();
-      const ax = 6, r = s * 0.48;
-      for (let ring = 1; ring <= 4; ring++) { const rr = r * ring / 4; const pts = []; for (let i = 0; i <= ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; pts.push(V3(Math.cos(a) * rr, Math.sin(a) * rr)); } g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.06 + ring * 0.025))); }
-      for (let i = 0; i < ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; g.add(new THREE.Line(toGeo([V3(0, 0), V3(Math.cos(a) * r, Math.sin(a) * r)]), lineMat(col, 0.12))); }
-      const dv = [0.85, 0.65, 0.90, 0.50, 0.75, 0.60]; const dp = [];
-      for (let i = 0; i <= ax; i++) { const idx = i % ax; const a = (idx / ax) * Math.PI * 2 - Math.PI / 2; dp.push(V3(Math.cos(a) * r * dv[idx], Math.sin(a) * r * dv[idx])); }
-      g.add(new THREE.Line(toGeo(dp), lineMat(col, 0.5)));
-      dp.slice(0, -1).forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.025, 10, 10), wireMat(col, 0.5)); d.position.copy(p); g.add(d); });
-      return g;
-    }
-
-    function createPipeline(s, col) {
-      const g = new THREE.Group();
-      const stages = [{ x: -s * 0.6, y: 0 }, { x: -s * 0.2, y: s * 0.22 }, { x: -s * 0.2, y: -s * 0.22 }, { x: s * 0.15, y: 0 }, { x: s * 0.5, y: s * 0.18 }, { x: s * 0.5, y: -s * 0.18 }];
-      const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [3, 5]];
-      stages.forEach(({ x, y }) => { const n = new THREE.Mesh(new THREE.BoxGeometry(s * 0.16, s * 0.08, s * 0.03), wireMat(col, 0.35)); n.position.set(x, y, 0); g.add(n); });
-      edges.forEach(([a, b]) => { const sa = stages[a], sb = stages[b]; g.add(new THREE.Line(toGeo(smoothCurve([V3(sa.x + s * 0.08, sa.y), V3((sa.x + sb.x) / 2, (sa.y + sb.y) / 2), V3(sb.x - s * 0.08, sb.y)], 16)), lineMat(col, 0.15))); });
-      return g;
-    }
-
-    function createHistogram(s, col) {
-      const g = new THREE.Group();
-      const bins = 12, base = -s * 0.38; const bw = s * 1.0 / bins;
-      for (let i = 0; i < bins; i++) { const nx = (i / (bins - 1) - 0.5) * 2; const h = Math.exp(-nx * nx * 2.5) * s * 0.75 + s * 0.02; const m = new THREE.Mesh(new THREE.BoxGeometry(bw * 0.85, h, bw * 0.25), wireMat(col, 0.18 + Math.exp(-nx * nx * 2.5) * 0.18)); m.position.set((i - (bins - 1) / 2) * bw, base + h / 2, 0); g.add(m); }
-      const cp = []; for (let t = 0; t <= 80; t++) { const x = (t / 80 - 0.5) * s * 1.1; const n = x / (s * 0.5) * 2; cp.push(V3(x, Math.exp(-n * n * 0.65) * s * 0.75 + base)); }
-      g.add(new THREE.Line(toGeo(cp), lineMat(col, 0.5)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.58, base), V3(s * 0.58, base)]), lineMat(col, 0.25)));
-      return g;
-    }
-
-    function createTimeSeries(s, col) {
-      const g = new THREE.Group();
-      const ext = s * 0.5;
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(ext, -ext * 0.75)]), lineMat(col, 0.2)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(-ext, ext * 0.75)]), lineMat(col, 0.2)));
-      const sc = [col, 0x60a5fa, 0xfbbf24];
-      [[0.3, 0.35, 0.28, 0.45, 0.50, 0.42, 0.55, 0.62, 0.58, 0.70, 0.75, 0.68, 0.82], [0.5, 0.48, 0.52, 0.45, 0.40, 0.38, 0.42, 0.35, 0.38, 0.32, 0.35, 0.30, 0.28], [0.1, 0.15, 0.18, 0.22, 0.20, 0.28, 0.32, 0.30, 0.38, 0.42, 0.45, 0.50, 0.55]].forEach((d, si) => { const pts = d.map((v, i) => V3(-ext + (i / (d.length - 1)) * ext * 2, -ext * 0.75 + v * ext * 1.5)); g.add(new THREE.Line(toGeo(smoothCurve(pts, 50)), lineMat(sc[si], 0.35))); });
-      return g;
-    }
-
-    /* ── Factory list & populate ───────────────────── */
-    const factories = [
-      createLineChart, createBarChart, createScatterPlot,
-      createNeuralNet, createDonutChart, createROCCurve,
-      createDecisionTree, createKMeans, createRadarChart,
-      createPipeline, createHistogram, createTimeSeries
-    ];
-
-    const fgC = [0xffffff, 0x60a5fa, 0xfbbf24, 0x34d399];
-    const mgC = [0xffffff, 0x60a5fa, 0xa78bfa];
-    const bgC = [0x3f3f50, 0x4b5563];
-    const shapeObjs = [];
-
-    function populate(group, count, colSet, sX, sY, zR, zO) {
-      for (let i = 0; i < count; i++) {
-        const s = Math.random() * 0.65 + 0.55;
-        const col = colSet[i % colSet.length];
-        const shape = factories[i % factories.length](s, col);
-        shape.position.set((Math.random() - 0.5) * sX, (Math.random() - 0.5) * sY, Math.random() * zR + zO);
-        shape.rotation.set((Math.random() - 0.5) * 0.18, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.12);
-        group.add(shape);
-        shapeObjs.push({ shape, rs: (Math.random() - 0.5) * 0.003 });
-      }
-    }
-
-    populate(fg, 5, fgC, 58, 40, 10, 4);
-    populate(mg, 8, mgC, 82, 55, 18, -6);
-    populate(bg, 12, bgC, 100, 70, 22, -18);
-
-    /* ── Scroll & mouse ────────────────────────────── */
-    let scrollP = 0, mX = 0, mY = 0;
-    ScrollTrigger.create({ trigger: "body", start: "top top", end: "bottom bottom", scrub: true, onUpdate: s => { scrollP = s.progress; } });
-    document.addEventListener('mousemove', e => { mX = (e.clientX / innerWidth) * 2 - 1; mY = -(e.clientY / innerHeight) * 2 + 1; });
-
-    /* ── Animate loop ──────────────────────────────── */
-    function animate() {
-      requestAnimationFrame(animate);
-      fg.position.y = scrollP * 20; mg.position.y = scrollP * 10; bg.position.y = scrollP * 5;
-      fg.rotation.x += (mY * 0.05 - fg.rotation.x) * 0.025; fg.rotation.y += (mX * 0.05 - fg.rotation.y) * 0.025;
-      mg.rotation.x += (mY * 0.025 - mg.rotation.x) * 0.018; mg.rotation.y += (mX * 0.025 - mg.rotation.y) * 0.018;
-      bg.rotation.x += (mY * 0.012 - bg.rotation.x) * 0.012; bg.rotation.y += (mX * 0.012 - bg.rotation.y) * 0.012;
-      const t = Date.now() * 0.0003;
-      shapeObjs.forEach(({ shape, rs }) => { shape.rotation.y += rs; shape.rotation.z += rs * 0.18; shape.position.y += Math.sin(t + shape.position.x * 0.25) * 0.003; });
-      renderer.render(scene, camera);
-    }
-
-    window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); });
-    animate();
-  </script>
-
-  <!-- UTILITY SCRIPTS — Ripple, Mobile Menu -->
   <script src="assets/js/main.js"></script>
 
   <script>
-    // Configurações Específicas da Página Biblioteca
-    document.addEventListener("DOMContentLoaded", () => {
-      // Navegação Glass
-      const navbar = document.getElementById('navbar');
-      ScrollTrigger.create({ 
-        start: "top+=50 top", 
-        onEnter: () => navbar.classList.add('scrolled'), 
-        onLeaveBack: () => navbar.classList.remove('scrolled') 
-      });
-
-      // Filtros por Tag
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const bookCards = document.querySelectorAll('.book-card');
-
-      function updateActiveBtn(clickedBtn) {
-        filterBtns.forEach(btn => btn.classList.remove('active'));
-        clickedBtn.classList.add('active');
+    document.addEventListener("DOMContentLoaded", async () => {
+      // 1. Carregar Dados de Livros (Suporte completo a file:// e http://)
+      const EMBEDDED_BOOKS = [
+  {
+    "id": "estatistica-o-que-e",
+    "title": "Estatística: O que é, para que serve, como funciona",
+    "author": "Charles Wheelan",
+    "rating": 4.8,
+    "amazon_link": "https://www.amazon.com.br/dp/8537815128",
+    "cover_image": "assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp",
+    "short_desc": "Como transformar dados e gráficos em respostas reais sem fórmulas intimidadoras.",
+    "desc_full": "O livro mais didático e esclarecedor sobre como a análise estatística funciona no mundo real. Ensina como pensar criticamente com dados, identificar vieses em pesquisas e entender probabilidades e correlações sem fórmulas excessivas.",
+    "tags": [
+      "Dados",
+      "Visualização"
+    ],
+    "category": "dados",
+    "destaque": true
+  },
+  {
+    "id": "inspired",
+    "title": "Inspired",
+    "author": "Marty Cagan",
+    "rating": 4.8,
+    "amazon_link": "https://www.amazon.com.br/dp/8550806471",
+    "cover_image": "assets/img/books/cover-inspired.svg",
+    "short_desc": "O guia definitivo para criar produtos digitais que os clientes amam com times empoderados.",
+    "desc_full": "O livro mais respeitado sobre gestão e liderança de produtos digitais no mundo. Marty Cagan detalha como empresas líderes como Google, Netflix e Amazon estruturam times de produto, realizam discovery contínuo e entregam valor real aos usuários.",
+    "tags": [
+      "Produto",
+      "Tecnologia"
+    ],
+    "category": "produto",
+    "destaque": true
+  },
+  {
+    "id": "a-logica-do-cisne-negro",
+    "title": "A Lógica do Cisne Negro",
+    "author": "Nassim Nicholas Taleb",
+    "rating": 4.7,
+    "amazon_link": "https://www.amazon.com.br/dp/8501115160",
+    "cover_image": "assets/img/books/cover-cisne-negro.svg",
+    "short_desc": "Como eventos raros, imprevisíveis e de alto impacto dominam o mundo e os dados.",
+    "desc_full": "Taleb desafia as noções convencionais de risco, modelagem preditiva e gaussianas. Mostra como o improvável dita os rumos da história, da tecnologia e da economia, e por que precisamos construir sistemas robustos e antifrágeis.",
+    "tags": [
+      "Negócios",
+      "Comportamento"
+    ],
+    "category": "mentalidade",
+    "destaque": true
+  }
+];
+      let allBooks = EMBEDDED_BOOKS;
+      try {
+        if (window.location.protocol.startsWith('http')) {
+          const res = await fetch('content/books.json');
+          if (res.ok) allBooks = await res.json();
+        }
+      } catch (err) {
+        console.warn('Usando catálogo embutido de livros.');
       }
 
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const filterStr = btn.getAttribute('data-filter').toLowerCase();
-          updateActiveBtn(btn);
-
-          bookCards.forEach(card => {
-            const cardTags = card.getAttribute('data-tags').toLowerCase();
-            if (filterStr === 'todos' || cardTags.includes(filterStr)) {
-              // Mostrar o cartão
-              gsap.to(card, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out", display: "flex" });
-            } else {
-              // Esconder o cartão suavemente
-              gsap.to(card, { opacity: 0, scale: 0.95, duration: 0.3, ease: "power2.in", onComplete: () => {
-                card.style.display = "none";
-              }});
-            }
-          });
-          
-          // Refresh do ScrollTrigger para recalcular as alturas
-          setTimeout(() => ScrollTrigger.refresh(), 400);
+      // Conexão do gatilho de busca do Header
+      const navSearchTrigger = document.getElementById('search-modal-trigger');
+      if (navSearchTrigger) {
+        navSearchTrigger.addEventListener('click', () => {
+          searchInput.focus();
+          searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
-      });
+      }
 
-      // Reveal inicial dos elementos
-      document.querySelectorAll('.reveal').forEach(el => {
-        ScrollTrigger.create({
-          trigger: el, start: "top 88%",
-          onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }),
-          onLeaveBack: () => gsap.to(el, { opacity: 0, y: 32, duration: 0.45 })
+      // Atualização Dinâmica dos Contadores de Categoria
+      function updateDynamicCounters(books) {
+        const catCounts = { all: books.length, dados: 0, negocios: 0, produto: 0, tecnologia: 0, carreira: 0, mentalidade: 0, sociedade: 0 };
+
+        books.forEach(b => {
+          if (catCounts[b.category] !== undefined) catCounts[b.category]++;
         });
-      });
 
-      // Lógica do Modal dos Livros
+        Object.keys(catCounts).forEach(cat => {
+          const pillEl = document.getElementById('pill-count-' + cat);
+          if (pillEl) pillEl.textContent = '(' + catCounts[cat] + ')';
+          const filterEl = document.getElementById('filter-count-cat-' + cat);
+          if (filterEl) filterEl.textContent = catCounts[cat];
+        });
+      }
+      updateDynamicCounters(allBooks);
+
+      // Estado dos Favoritos / Bookmarks no LocalStorage
+      let savedBookmarks = JSON.parse(localStorage.getItem('mdp_bookmarked_books') || '[]');
+
+      // Elementos do DOM
+      const searchInput = document.getElementById('library-search');
+      const resultsCountEl = document.getElementById('results-count');
+      const emptyState = document.getElementById('empty-state');
+      const clearFiltersBtn = document.getElementById('clear-filters-btn');
+      const clearFiltersEmptyBtn = document.getElementById('clear-filters-empty-btn');
+
+      // Checkboxes de Categoria
+      const catCheckAll = document.getElementById('cat-check-all');
+      const catCheckboxes = document.querySelectorAll('.filter-cat');
+
+      // Quick Pills Horizontais
+      const categoryPills = document.querySelectorAll('.cat-pill');
+
+      // Containers de Seções
+      const containers = {
+        destaques: document.getElementById('destaques-grid'),
+        dados: document.getElementById('dados-grid'),
+        negocios: document.getElementById('negocios-grid'),
+        produto: document.getElementById('produto-grid'),
+        tecnologia: document.getElementById('tecnologia-grid'),
+        carreira: document.getElementById('carreira-grid'),
+        mentalidade: document.getElementById('mentalidade-grid'),
+        sociedade: document.getElementById('sociedade-grid')
+      };
+
+      const sectionEls = {
+        destaques: document.getElementById('section-destaques'),
+        dados: document.getElementById('section-dados'),
+        negocios: document.getElementById('section-negocios'),
+        produto: document.getElementById('section-produto'),
+        tecnologia: document.getElementById('section-tecnologia'),
+        carreira: document.getElementById('section-carreira'),
+        mentalidade: document.getElementById('section-mentalidade'),
+        sociedade: document.getElementById('section-sociedade')
+      };
+
+      // Mapeamento de Tags para classes de badges pastéis
+      function getTagBadgeClass(tag) {
+        const t = tag.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        if (t.includes('dado') || t.includes('analise')) return 'badge-theme-dados';
+        if (t.includes('negocio') || t.includes('estrategia') || t.includes('mercado')) return 'badge-theme-negocios';
+        if (t.includes('produto')) return 'badge-theme-produto';
+        if (t.includes('tecno') || t.includes('python') || t.includes('arquitetura')) return 'badge-theme-tecnologia';
+        if (t.includes('carreira') || t.includes('lideranca') || t.includes('gestao') || t.includes('aprendizado')) return 'badge-theme-carreira';
+        if (t.includes('mentalidade') || t.includes('comportamento') || t.includes('decisao') || t.includes('risco')) return 'badge-theme-mentalidade';
+        if (t.includes('sociedade') || t.includes('etica') || t.includes('incerteza')) return 'badge-theme-sociedade';
+        if (t.includes('visualizacao') || t.includes('comunicacao')) return 'badge-theme-visualizacao';
+        return 'badge-theme-dados';
+      }
+
+      // Renderizador de Card Individual de Livro
+      function createBookCard(book) {
+        const isSaved = savedBookmarks.includes(book.id);
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl border border-[#e2e8f0] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item";
+        card.setAttribute('data-id', book.id);
+        card.setAttribute('data-category', book.category || '');
+
+        // Tags HTML
+        const tagsHtml = (book.tags || []).slice(0, 2).map(tag => {
+          const badgeClass = getTagBadgeClass(tag);
+          return `<span class="text-[10px] font-semibold px-2 py-0.5 rounded-md ${badgeClass}">${tag}</span>`;
+        }).join('');
+
+        card.innerHTML = `
+          <!-- Botão Bookmark no Canto Superior -->
+          <button class="bookmark-btn absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/80 hover:bg-white text-slate-400 hover:text-[#2563eb] transition-all shadow-xs ${isSaved ? 'saved text-[#2563eb]' : ''}" title="Salvar livro" onclick="event.stopPropagation(); toggleBookmark('${book.id}', this)">
+            <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isSaved ? 'fill-[#2563eb]' : ''}"></i>
+          </button>
+
+          <!-- Capa do Livro -->
+          <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-slate-50 flex items-center justify-center p-2 shadow-xs group-hover:shadow-md transition-all">
+            <img src="${book.cover_image}" alt="${book.title}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)] group-hover:scale-105 transition-transform duration-300" loading="lazy">
+          </div>
+
+          <!-- Título e Autor -->
+          <h3 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors line-clamp-1 mb-0.5" title="${book.title}">
+            ${book.title}
+          </h3>
+          <p class="text-[11px] text-[#64748b] mb-1 line-clamp-1 font-medium">
+            ${book.author}
+          </p>
+
+          <!-- Rating -->
+          <div class="flex items-center gap-1 text-[11px] text-amber-500 font-bold mb-2">
+            <i data-lucide="star" class="w-3 h-3 fill-amber-500 text-amber-500"></i>
+            <span>${book.rating ? book.rating.toFixed(1) : '4.8'}</span>
+          </div>
+
+          <!-- Descrição curta -->
+          <p class="text-[11px] text-[#64748b] line-clamp-2 leading-relaxed mb-3">
+            ${book.short_desc}
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-1 mb-3">
+            ${tagsHtml}
+          </div>
+
+          <!-- Rodapé com Detalhes -->
+          <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <span class="text-[11px] text-[#64748b] font-medium">Curadoria</span>
+            <span class="text-[11px] text-[#2563eb] group-hover:text-[#1d4ed8] transition-colors flex items-center font-medium">
+              Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
+            </span>
+          </div>
+        `;
+
+        // Clique no card abre o modal
+        card.addEventListener('click', () => openBookModal(book));
+
+        return card;
+      }
+
+      // Função de Salvar/Remover Bookmark
+      window.toggleBookmark = function(bookId, btn) {
+        if (savedBookmarks.includes(bookId)) {
+          savedBookmarks = savedBookmarks.filter(id => id !== bookId);
+          btn.classList.remove('saved', 'text-[#2563eb]');
+          const svg = btn.querySelector('svg');
+          if (svg) svg.classList.remove('fill-[#2563eb]');
+        } else {
+          savedBookmarks.push(bookId);
+          btn.classList.add('saved', 'text-[#2563eb]');
+          const svg = btn.querySelector('svg');
+          if (svg) svg.classList.add('fill-[#2563eb]');
+        }
+        localStorage.setItem('mdp_bookmarked_books', JSON.stringify(savedBookmarks));
+      };
+
+      // Modal Elements
       const modal = document.getElementById('book-modal');
       const modalBackdrop = document.getElementById('book-modal-backdrop');
       const modalContent = document.getElementById('book-modal-content');
-      const closeBtn = document.getElementById('close-modal-btn');
+      const closeModalBtn = document.getElementById('close-modal-btn');
 
       const modalTitle = document.getElementById('modal-title');
       const modalAuthor = document.getElementById('modal-author');
+      const modalRating = document.getElementById('modal-rating');
       const modalDesc = document.getElementById('modal-desc');
       const modalLink = document.getElementById('modal-link');
       const modalBlur = document.getElementById('modal-blur');
       const modalCover = document.getElementById('modal-cover');
-      const modalTagsContainer = document.getElementById('modal-tags');
+      const modalTags = document.getElementById('modal-tags');
 
-      function openModal(card) {
-        modalTitle.textContent = card.getAttribute('data-title');
-        modalAuthor.textContent = card.getAttribute('data-author');
-        modalLink.href = card.getAttribute('data-link');
-        modalDesc.innerHTML = card.getAttribute('data-desc-full');
-        
-        const imgSrc = card.querySelector('img').src;
-        modalBlur.src = imgSrc;
-        modalCover.src = imgSrc;
-        
-        // Copia as tags exatas do card renderizado, para manter o visual perfeitamente
-        const tagsWrap = card.querySelector('.gap-2');
-        if (tagsWrap) modalTagsContainer.innerHTML = tagsWrap.innerHTML;
+      function openBookModal(book) {
+        modalTitle.textContent = book.title;
+        modalAuthor.textContent = book.author;
+        modalRating.textContent = book.rating ? book.rating.toFixed(1) : '4.8';
+        modalDesc.textContent = book.desc_full || book.short_desc;
+        modalLink.href = book.amazon_link || '#';
+        modalBlur.src = book.cover_image;
+        modalCover.src = book.cover_image;
 
-        // Animação de entrada
+        // Tags no Modal
+        modalTags.innerHTML = (book.tags || []).map(tag => {
+          const badgeClass = getTagBadgeClass(tag);
+          return `<span class="text-xs font-semibold px-2.5 py-1 rounded-md ${badgeClass}">${tag}</span>`;
+        }).join('');
+
+        // Animação de Entrada
         modal.classList.remove('opacity-0', 'pointer-events-none');
         setTimeout(() => {
           modalContent.classList.remove('scale-95', 'opacity-0');
           modalContent.classList.add('scale-100', 'opacity-100');
         }, 10);
-        
-        // Trava o background de dar scroll enquanto lê
-        document.body.style.overflow = 'hidden'; 
+        document.body.style.overflow = 'hidden';
       }
 
-      function closeModal() {
+      function closeBookModal() {
         modalContent.classList.remove('scale-100', 'opacity-100');
         modalContent.classList.add('scale-95', 'opacity-0');
         setTimeout(() => {
           modal.classList.add('opacity-0', 'pointer-events-none');
-        }, 300);
-        
+        }, 200);
         document.body.style.overflow = '';
       }
 
-      // Conecta o evento de abrir modal em todos os cards da página
-      bookCards.forEach(card => card.addEventListener('click', () => openModal(card)));
-      
-      // Conecta os eventos de fechar modal (botão X, fundo externo, e esc)
-      closeBtn.addEventListener('click', closeModal);
-      modalBackdrop.addEventListener('click', closeModal);
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) closeModal();
+      closeModalBtn.addEventListener('click', closeBookModal);
+      modalBackdrop.addEventListener('click', closeBookModal);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+          closeBookModal();
+        }
       });
 
-      // Inicializa os ícones
+      // Atalho de Teclado Global Ctrl+K / Cmd+K para busca
+      document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          searchInput.focus();
+          searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+
+      // Estado de isolamento da seção Destaques
+      let isDestaquesIsolated = false;
+
+      // Renderizar Catálogo Completo com Filtros e Ordenação
+      function renderCatalog() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        // Categorias Selecionadas
+        let selectedCats = [];
+        if (!catCheckAll.checked) {
+          catCheckboxes.forEach(cb => {
+            if (cb.checked) selectedCats.push(cb.value);
+          });
+        }
+
+        // Se nenhuma categoria estiver marcada e não for Destaques isolado, restaura 'Todos'
+        if (!catCheckAll.checked && selectedCats.length === 0 && !isDestaquesIsolated) {
+          catCheckAll.checked = true;
+        }
+
+        // Determinar se estamos filtrando por categoria específica ou seção isolada
+        const isFilteringSpecificCategory = (!catCheckAll.checked && selectedCats.length > 0) || isDestaquesIsolated;
+        const isSingleCategory = (isFilteringSpecificCategory && selectedCats.length === 1 && !isDestaquesIsolated);
+
+        // Filtrar Livros
+        let filtered = allBooks.filter(book => {
+          // Busca textual (título, autor, descrição, tags)
+          if (searchTerm) {
+            const matchTitle = (book.title || '').toLowerCase().includes(searchTerm);
+            const matchAuthor = (book.author || '').toLowerCase().includes(searchTerm);
+            const matchDesc = (book.short_desc || '').toLowerCase().includes(searchTerm);
+            const matchTags = (book.tags || []).some(t => t.toLowerCase().includes(searchTerm));
+            if (!matchTitle && !matchAuthor && !matchDesc && !matchTags) return false;
+          }
+
+          // Filtro de Categoria (se houver categorias selecionadas e não for Destaques isolado)
+          if (!isDestaquesIsolated && selectedCats.length > 0 && !selectedCats.includes(book.category)) {
+            return false;
+          }
+
+          return true;
+        });
+
+        // Atualizar contador de resultados
+        if (isDestaquesIsolated) {
+          resultsCountEl.textContent = filtered.filter(b => b.destaque).length;
+        } else if (isSingleCategory) {
+          resultsCountEl.textContent = filtered.length;
+        } else {
+          resultsCountEl.textContent = allBooks.length;
+        }
+
+        // Feedback se estiver vazio
+        if (filtered.length === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+
+        // Limpar containers
+        Object.values(containers).forEach(container => {
+          if (container) container.innerHTML = '';
+        });
+
+        // ── 1. PREENCHER SEÇÃO DESTAQUES (CARROSSEL) ──
+        const destaquesBooks = filtered.filter(b => b.destaque);
+
+        if (!isFilteringSpecificCategory && destaquesBooks.length > 0) {
+          // Visão geral ("Todos"): EXIBIR CARROSSEL COM TODOS OS LIVROS EM DESTAQUE!
+          sectionEls.destaques.classList.remove('hidden');
+          destaquesBooks.forEach(b => {
+            const card = createBookCard(b);
+            card.classList.add('w-[85%]', 'sm:w-[calc(50%-12px)]', 'md:w-[calc(33.333%-16px)]', 'flex-shrink-0', 'snap-start');
+            containers.destaques.appendChild(card);
+          });
+          setTimeout(updateCarouselControls, 60);
+        } else {
+          // Ocultar Destaques se uma categoria específica estiver selecionada
+          sectionEls.destaques.classList.add('hidden');
+        }
+
+        // ── 2. PREENCHER SEÇÕES POR CATEGORIA ──
+        const categoriesList = ['dados', 'negocios', 'produto', 'tecnologia', 'carreira', 'mentalidade', 'sociedade'];
+
+        categoriesList.forEach(cat => {
+          const catBooks = filtered.filter(b => b.category === cat);
+          const sectionEl = sectionEls[cat];
+          const container = containers[cat];
+          const viewBtn = sectionEl ? sectionEl.querySelector('.view-all-btn') : null;
+
+          if (isDestaquesIsolated) {
+            sectionEl.classList.add('hidden');
+            return;
+          }
+
+          const shouldShowCategory = (!isFilteringSpecificCategory || selectedCats.includes(cat));
+
+          if (shouldShowCategory && catBooks.length > 0) {
+            sectionEl.classList.remove('hidden');
+            
+            // REGRA FUNDAMENTAL:
+            // Se categoria específica estiver selecionada ou houver busca textual, exibe TODOS os livros do tema!
+            // Na visão geral ("Todos"): exibe APENAS UMA LINHA (máximo 3 livros)!
+            const booksToShow = (isFilteringSpecificCategory || searchTerm) ? catBooks : catBooks.slice(0, 3);
+            
+            booksToShow.forEach(b => container.appendChild(createBookCard(b)));
+
+            // Atualizar botão "Ver todos" / "Ver todas as categorias"
+            if (viewBtn) {
+              if (isSingleCategory && selectedCats.includes(cat) && !searchTerm) {
+                viewBtn.innerHTML = `
+                  <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                  <span>Ver todas as categorias</span>
+                `;
+                viewBtn.classList.add('bg-blue-50', 'px-2.5', 'py-1', 'rounded-lg');
+              } else {
+                viewBtn.innerHTML = `
+                  <span>Ver todos</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                `;
+                viewBtn.classList.remove('bg-blue-50', 'px-2.5', 'py-1', 'rounded-lg');
+              }
+            }
+          } else {
+            sectionEl.classList.add('hidden');
+          }
+        });
+
+        // Re-criar ícones do Lucide nos novos cards e botões gerados
+        lucide.createIcons();
+      }
+
+      // Eventos dos Checkboxes de Categoria
+      catCheckAll.addEventListener('change', () => {
+        isDestaquesIsolated = false;
+        if (catCheckAll.checked) {
+          catCheckboxes.forEach(cb => cb.checked = false);
+        }
+        syncQuickPills();
+        renderCatalog();
+      });
+
+      catCheckboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+          isDestaquesIsolated = false;
+          const anyChecked = Array.from(catCheckboxes).some(c => c.checked);
+          catCheckAll.checked = !anyChecked;
+          syncQuickPills();
+          renderCatalog();
+        });
+      });
+
+      // Sincronizar pílulas do hero com checkboxes da barra lateral
+      function syncQuickPills() {
+        const checkedValues = Array.from(catCheckboxes).filter(c => c.checked).map(c => c.value);
+        categoryPills.forEach(pill => {
+          const cat = pill.getAttribute('data-cat');
+          if (checkedValues.includes(cat)) {
+            pill.classList.add('active');
+          } else {
+            pill.classList.remove('active');
+          }
+        });
+      }
+
+      // Clique nas Pílulas Rápidas do Hero
+      categoryPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const cat = pill.getAttribute('data-cat');
+          isDestaquesIsolated = false;
+
+          const isCurrentlyActive = pill.classList.contains('active');
+          if (isCurrentlyActive) {
+            // Se já estava selecionado, desseleciona e volta para todas as categorias
+            catCheckAll.checked = true;
+            catCheckboxes.forEach(cb => cb.checked = false);
+          } else {
+            // Seleciona a categoria clicada
+            catCheckAll.checked = false;
+            catCheckboxes.forEach(cb => {
+              cb.checked = (cb.value === cat);
+            });
+
+            // Rolar suavemente até o catálogo
+            const catalogStart = document.getElementById('catalog-sections');
+            if (catalogStart) {
+              const yOffset = -40;
+              const y = catalogStart.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+          }
+
+          syncQuickPills();
+          renderCatalog();
+        });
+      });
+
+      // Botão "Ver todos" de cada seção
+      document.querySelectorAll('.view-all-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-target');
+
+          if (cat === 'destaques') {
+            if (isDestaquesIsolated) {
+              // Voltar para todos
+              isDestaquesIsolated = false;
+              catCheckAll.checked = true;
+              catCheckboxes.forEach(cb => cb.checked = false);
+            } else {
+              // Isolar Destaques
+              isDestaquesIsolated = true;
+              catCheckAll.checked = false;
+              catCheckboxes.forEach(cb => cb.checked = false);
+            }
+          } else {
+            isDestaquesIsolated = false;
+            // Se já estiver isolado nesta mesma categoria, clicar no botão retorna para "Todos"
+            const currentlySelected = Array.from(catCheckboxes).filter(c => c.checked).map(c => c.value);
+            if (!catCheckAll.checked && currentlySelected.length === 1 && currentlySelected[0] === cat) {
+              catCheckAll.checked = true;
+              catCheckboxes.forEach(cb => cb.checked = false);
+            } else {
+              // Clicando em ver todos, os outros somem e aparece todos os livros do tema!
+              catCheckAll.checked = false;
+              catCheckboxes.forEach(cb => {
+                cb.checked = (cb.value === cat);
+              });
+            }
+          }
+
+          syncQuickPills();
+          renderCatalog();
+
+          // Rolar suavemente até o início das seções
+          const catalogStart = document.getElementById('catalog-sections');
+          if (catalogStart) {
+            const yOffset = -120;
+            const y = catalogStart.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Limpar todos os filtros
+      function clearAllFilters() {
+        searchInput.value = '';
+        isDestaquesIsolated = false;
+        catCheckAll.checked = true;
+        catCheckboxes.forEach(cb => cb.checked = false);
+        syncQuickPills();
+        renderCatalog();
+      }
+
+      clearFiltersBtn.addEventListener('click', clearAllFilters);
+      clearFiltersEmptyBtn.addEventListener('click', clearAllFilters);
+
+      // Evento de Busca
+      searchInput.addEventListener('input', () => {
+        isDestaquesIsolated = false;
+        renderCatalog();
+      });
+
+      // Carousel Controls para Destaques
+      const destaquesGrid = document.getElementById('destaques-grid');
+      const destaquesPrevBtn = document.getElementById('destaques-carousel-prev');
+      const destaquesNextBtn = document.getElementById('destaques-carousel-next');
+
+      function updateCarouselControls() {
+        if (!destaquesGrid || !destaquesPrevBtn || !destaquesNextBtn) return;
+        const maxScroll = Math.max(0, destaquesGrid.scrollWidth - destaquesGrid.clientWidth);
+        if (maxScroll <= 5) {
+          destaquesPrevBtn.disabled = true;
+          destaquesNextBtn.disabled = true;
+        } else {
+          destaquesPrevBtn.disabled = (destaquesGrid.scrollLeft <= 5);
+          destaquesNextBtn.disabled = (destaquesGrid.scrollLeft >= maxScroll - 5);
+        }
+      }
+
+      if (destaquesPrevBtn && destaquesNextBtn && destaquesGrid) {
+        destaquesPrevBtn.addEventListener('click', () => {
+          const firstCard = destaquesGrid.querySelector('.book-card-item');
+          const scrollStep = firstCard ? (firstCard.offsetWidth + 24) : 320;
+          destaquesGrid.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+        });
+
+        destaquesNextBtn.addEventListener('click', () => {
+          const firstCard = destaquesGrid.querySelector('.book-card-item');
+          const scrollStep = firstCard ? (firstCard.offsetWidth + 24) : 320;
+          destaquesGrid.scrollBy({ left: scrollStep, behavior: 'smooth' });
+        });
+
+        destaquesGrid.addEventListener('scroll', () => {
+          updateCarouselControls();
+        });
+
+        window.addEventListener('resize', () => {
+          updateCarouselControls();
+        });
+      }
+
+      // Renderização inicial
+      renderCatalog();
+
+      // Inicializar Ícones
       lucide.createIcons();
     });
   </script>
@@ -619,5 +1429,3 @@
 </body>
 
 </html>
-
-

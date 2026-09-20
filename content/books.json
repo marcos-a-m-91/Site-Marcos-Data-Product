@@ -3,42 +3,48 @@
     "id": "estatistica-o-que-e",
     "title": "Estatística: O que é, para que serve, como funciona",
     "author": "Charles Wheelan",
-    "amazon_link": "https://amzn.to/exemplo",
+    "rating": 4.8,
+    "amazon_link": "https://www.amazon.com.br/dp/8537815128",
     "cover_image": "assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp",
     "short_desc": "Como transformar dados e gráficos em respostas reais sem fórmulas intimidadoras.",
-    "desc_full": "O livro mais didático e esclarecedor sobre como a análise estatística funciona no mundo real. Ensina como pensar com dados, identificar vieses em pesquisas e entender probabilidades sem fórmulas desnecessárias.",
+    "desc_full": "O livro mais didático e esclarecedor sobre como a análise estatística funciona no mundo real. Ensina como pensar criticamente com dados, identificar vieses em pesquisas e entender probabilidades e correlações sem fórmulas excessivas.",
     "tags": [
-      "dados",
-      "visualização"
+      "Dados",
+      "Visualização"
     ],
-    "created_at": "2026-09-10"
+    "category": "dados",
+    "destaque": true
   },
   {
     "id": "inspired",
     "title": "Inspired",
     "author": "Marty Cagan",
-    "amazon_link": "https://amzn.to/exemplo",
+    "rating": 4.8,
+    "amazon_link": "https://www.amazon.com.br/dp/8550806471",
     "cover_image": "assets/img/books/cover-inspired.svg",
-    "short_desc": "O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia.",
-    "desc_full": "O guia definitivo para criar produtos digitais que os clientes amam, com foco em discovery e estratégia. Entenda as dinâmicas entre tecnologia, design e negócio necessárias para inovar de verdade nesse mercado de criação de valor.",
+    "short_desc": "O guia definitivo para criar produtos digitais que os clientes amam com times empoderados.",
+    "desc_full": "O livro mais respeitado sobre gestão e liderança de produtos digitais no mundo. Marty Cagan detalha como empresas líderes como Google, Netflix e Amazon estruturam times de produto, realizam discovery contínuo e entregam valor real aos usuários.",
     "tags": [
-      "produto",
-      "tecnologia"
+      "Produto",
+      "Tecnologia"
     ],
-    "created_at": "2026-09-11"
+    "category": "produto",
+    "destaque": true
   },
   {
     "id": "a-logica-do-cisne-negro",
     "title": "A Lógica do Cisne Negro",
     "author": "Nassim Nicholas Taleb",
-    "amazon_link": "https://amzn.to/exemplo",
+    "rating": 4.7,
+    "amazon_link": "https://www.amazon.com.br/dp/8501115160",
     "cover_image": "assets/img/books/cover-cisne-negro.svg",
-    "short_desc": "Como eventos raros e imprevisíveis dominam a história e por que não conseguimos antecipar o que realmente importa.",
-    "desc_full": "Como eventos raros e imprevisíveis dominam a história e por que não conseguimos antecipar o que realmente importa. Este livro muda para sempre a forma como você enxerga riscos, previsões e certezas num mundo estatisticamente caótico.",
+    "short_desc": "Como eventos raros, imprevisíveis e de alto impacto dominam o mundo e os dados.",
+    "desc_full": "Taleb desafia as noções convencionais de risco, modelagem preditiva e gaussianas. Mostra como o improvável dita os rumos da história, da tecnologia e da economia, e por que precisamos construir sistemas robustos e antifrágeis.",
     "tags": [
-      "negócios",
-      "comportamento"
+      "Negócios",
+      "Comportamento"
     ],
-    "created_at": "2026-09-12"
+    "category": "mentalidade",
+    "destaque": true
   }
 ]
