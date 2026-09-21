@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="sql-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="8" fill="#0284c7"/>
+  <text x="24" y="29" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">SQL</text>
+  <path d="M12 34 C 18 36, 30 36, 36 34" stroke="#bae6fd" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

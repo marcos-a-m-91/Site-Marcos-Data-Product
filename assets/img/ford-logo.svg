@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" width="160" height="80">
+  <defs>
+    <linearGradient id="ford-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#143e8c"/>
+      <stop offset="50%" stop-color="#0b2b68"/>
+      <stop offset="100%" stop-color="#05173b"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- Outer Oval -->
+  <ellipse cx="80" cy="40" rx="76" ry="36" fill="url(#ford-grad)" stroke="#ffffff" stroke-width="2.5" filter="url(#shadow)"/>
+  <ellipse cx="80" cy="40" rx="71" ry="32" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  <!-- Ford Cursive Text -->
+  <text x="80" y="50" font-family="'Brush Script MT', 'Alex Brush', cursive, sans-serif" font-size="44" font-weight="bold" font-style="italic" fill="#ffffff" text-anchor="middle" letter-spacing="1">Ford</text>
+</svg>

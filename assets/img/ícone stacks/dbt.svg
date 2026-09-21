@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="dbt-top" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF694B"/>
+      <stop offset="100%" stop-color="#FF5733"/>
+    </linearGradient>
+  </defs>
+  <path d="M24 6 L40 15 L24 24 L8 15 Z" fill="url(#dbt-top)"/>
+  <path d="M8 15 L24 24 L24 42 L8 33 Z" fill="#E23E1D"/>
+  <path d="M24 24 L40 15 L40 33 L24 42 Z" fill="#C92E10"/>
+  <!-- dbt center symbol cutout -->
+  <circle cx="24" cy="24" r="4" fill="#FFFFFF" opacity="0.9"/>
+</svg>
