@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradChurn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09101d"/>
+      <stop offset="100%" stop-color="#0f192b"/>
+    </linearGradient>
+    <linearGradient id="gradCurve" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="600" height="340" fill="url(#bgGradChurn)"/>
+  <rect x="0" y="0" width="600" height="340" fill="none" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Top Bar -->
+  <rect x="24" y="20" width="552" height="28" rx="6" fill="#0f1f38" stroke="#1e3a5f" stroke-width="1"/>
+  <circle cx="42" cy="34" r="4" fill="#38bdf8" opacity="0.9"/>
+  <text x="56" y="38" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600" letter-spacing="0.5">MACHINE LEARNING • CHURN PREDICTION &amp; RETENTION</text>
+  <rect x="470" y="26" width="90" height="16" rx="4" fill="#143e35"/>
+  <text x="480" y="38" fill="#34d399" font-family="Inter, sans-serif" font-size="9" font-weight="600">AUC-ROC: 0.914</text>
+
+  <!-- Metric Badges Row -->
+  <g transform="translate(24, 60)">
+    <rect x="0" y="0" width="176" height="50" rx="6" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+    <text x="14" y="20" fill="#64748b" font-family="Inter, sans-serif" font-size="9" font-weight="600">RETAINED ARR (YTD)</text>
+    <text x="14" y="40" fill="#ffffff" font-family="Inter, sans-serif" font-size="15" font-weight="700">R$ 1.2M <tspan fill="#34d399" font-size="10">+SAVE</tspan></text>
+
+    <rect x="188" y="0" width="176" height="50" rx="6" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+    <text x="202" y="20" fill="#64748b" font-family="Inter, sans-serif" font-size="9" font-weight="600">PRECISION @ TOP 10%</text>
+    <text x="202" y="40" fill="#ffffff" font-family="Inter, sans-serif" font-size="15" font-weight="700">84.6% <tspan fill="#38bdf8" font-size="10">HIGH</tspan></text>
+
+    <rect x="376" y="0" width="176" height="50" rx="6" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+    <text x="390" y="20" fill="#64748b" font-family="Inter, sans-serif" font-size="9" font-weight="600">CHURN VOLUNTÁRIO</text>
+    <text x="390" y="40" fill="#ffffff" font-family="Inter, sans-serif" font-size="15" font-weight="700">1.8% <tspan fill="#34d399" font-size="10">-2.3 p.p.</tspan></text>
+  </g>
+
+  <!-- Main Chart & Cohorts Area -->
+  <rect x="24" y="122" width="552" height="196" rx="8" fill="#091424" stroke="#1a2d47" stroke-width="1"/>
+
+  <!-- Left: ROC Curve / Lift Chart -->
+  <g transform="translate(44, 140)">
+    <text x="0" y="10" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600">CUMULATIVE GAINS / LIFT</text>
+    <!-- Axes -->
+    <line x1="0" y1="140" x2="240" y2="140" stroke="#334155" stroke-width="1"/>
+    <line x1="0" y1="20" x2="0" y2="140" stroke="#334155" stroke-width="1"/>
+    <!-- Baseline Diagonal -->
+    <line x1="0" y1="140" x2="240" y2="20" stroke="#475569" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <!-- Model Curve -->
+    <path d="M 0 140 Q 30 45 90 32 T 240 20" fill="none" stroke="url(#gradCurve)" stroke-width="2.5"/>
+    <circle cx="90" cy="32" r="4" fill="#34d399"/>
+    <text x="96" y="28" fill="#34d399" font-family="monospace" font-size="9">Top 20% = 72% Churn</text>
+  </g>
+
+  <!-- Right: Risk Cohorts Distribution -->
+  <g transform="translate(320, 140)">
+    <text x="0" y="10" fill="#94a3b8" font-family="Inter, sans-serif" font-size="10" font-weight="600">CLIENTES POR RISCO DE EVASÃO</text>
+    
+    <!-- Cohort 1: Alto Risco -->
+    <rect x="0" y="24" width="220" height="32" rx="4" fill="#1b1c2b" stroke="#f43f5e" stroke-width="1" stroke-opacity="0.6"/>
+    <rect x="0" y="24" width="55" height="32" rx="4" fill="#f43f5e" fill-opacity="0.25"/>
+    <text x="10" y="44" fill="#f43f5e" font-family="Inter, sans-serif" font-size="10" font-weight="700">ALTO RISCO (>75%)</text>
+    <text x="175" y="44" fill="#ffffff" font-family="monospace" font-size="10">142 leads</text>
+
+    <!-- Cohort 2: Médio Risco -->
+    <rect x="0" y="64" width="220" height="32" rx="4" fill="#1c2324" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.6"/>
+    <rect x="0" y="64" width="110" height="32" rx="4" fill="#f59e0b" fill-opacity="0.25"/>
+    <text x="10" y="84" fill="#f59e0b" font-family="Inter, sans-serif" font-size="10" font-weight="700">MÉDIO RISCO (40-75%)</text>
+    <text x="175" y="84" fill="#ffffff" font-family="monospace" font-size="10">388 leads</text>
+
+    <!-- Cohort 3: Baixo Risco -->
+    <rect x="0" y="104" width="220" height="32" rx="4" fill="#0f2622" stroke="#10b981" stroke-width="1" stroke-opacity="0.6"/>
+    <rect x="0" y="104" width="195" height="32" rx="4" fill="#10b981" fill-opacity="0.25"/>
+    <text x="10" y="124" fill="#10b981" font-family="Inter, sans-serif" font-size="10" font-weight="700">SEGURO (&lt;40%)</text>
+    <text x="165" y="124" fill="#ffffff" font-family="monospace" font-size="10">2.410 leads</text>
+  </g>
+</svg>

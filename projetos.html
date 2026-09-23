@@ -4,498 +4,1311 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Projetos — Marcos Data Product</title>
-  <meta name="description" content="Casos de estudo reais, automações e produtos de dados ponta a ponta desenvolvidos para gerar impacto de negócios." />
+  <title>Projetos — Marcos Data Product | Produtos de dados reais, do conceito à decisão</title>
+  <meta name="description"
+    content="Casos de estudo reais, automações, arquiteturas analíticas e produtos de dados ponta a ponta desenvolvidos por Marcos Aurélio com foco em impacto de negócios." />
 
-  <!-- Vendor Libraries (Local) -->
-  <script src="assets/vendor/gsap_4a57399e4113.js"></script>
-  <script src="assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
+  <!-- ═══════════════════════════════════════════════
+       DEPENDENCIES
+  ═══════════════════════════════════════════════ -->
+  <!-- Vendor Libraries -->
   <script src="assets/vendor/resource_3fa48481346f.js"></script>
   <script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
 
-  <!-- Vendor Fonts (Local) -->
-  <link href="assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
-  <link href="assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+  <!-- Google Font: Inter (Identidade Visual Oficial) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-    <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
 
+  <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    /* Inter Typography & Design System Overrides */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    button,
+    input,
+    span,
+    blockquote,
+    label {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    /* Hero section com imagem de fundo e gradiente */
+    .projetos-hero-container {
+      position: relative;
+      background-image: url('assets/img/hero_section_projetos.png');
+      background-position: center right;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 460px;
+    }
+
+    /* Máscara de gradiente editorial fiel às páginas de Sobre, Blog e Biblioteca */
+    .projetos-hero-gradient-mask {
+      background: linear-gradient(
+        to right,
+        rgba(11, 30, 58, 0.94) 0%,
+        rgba(11, 30, 58, 0.88) 38%,
+        rgba(11, 30, 58, 0.58) 62%,
+        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.0) 100%
+      );
+    }
+
+    @media (max-width: 1024px) {
+      .projetos-hero-container {
+        background-position: 70% center;
+        min-height: 400px;
+      }
+
+      .projetos-hero-gradient-mask {
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 30, 58, 0.95) 0%,
+          rgba(11, 30, 58, 0.90) 65%,
+          rgba(11, 30, 58, 0.50) 100%
+        );
+      }
+    }
+
+    /* Active Nav Link with blue line underline */
+    .nav-item-active {
+      color: #0b1e3a !important;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-item-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #2563eb;
+      border-radius: 2px;
+    }
+
+    /* Card Elevation & Hover Clean */
+    .card-hover-clean {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-hover-clean:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
+      border-color: rgba(37, 99, 235, 0.35);
+    }
+
+    /* Custom scrollbar hiding */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Category Pill Active State */
+    .cat-pill.active {
+      background-color: #2563eb !important;
+      color: #ffffff !important;
+      border-color: #2563eb !important;
+      font-weight: 600 !important;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+
+    .cat-pill.active i,
+    .cat-pill.active svg {
+      color: #ffffff !important;
+    }
+
+    /* ── Pastel Theme Badges ── */
+    .badge-theme-data {
+      background-color: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+
+    .badge-theme-dataviz {
+      background-color: #f3e8ff;
+      color: #7e22ce;
+      border: 1px solid #e9d5ff;
+    }
+
+    .badge-theme-analytics {
+      background-color: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .badge-theme-business {
+      background-color: #d1fae5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    .badge-theme-product {
+      background-color: #ffe4e6;
+      color: #be123c;
+      border: 1px solid #fecdd3;
+    }
+
+    .badge-theme-ai {
+      background-color: #e0e7ff;
+      color: #4338ca;
+      border: 1px solid #c7d2fe;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
 
-  <!-- THREE.JS CANVAS BACKGROUND -->
-  <canvas id="canvas"></canvas>
-
-  <!-- NAVIGATION — Sticky glass navbar -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+  <!-- ═══════════════════════════════════════════════════════
+     HEADER / NAVBAR (Oficial do Site)
+  ═══════════════════════════════════════════════════════ -->
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
 
       <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-3 group" aria-label="Home">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product"
-          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-white/90 hidden sm:inline">Marcos Data
-          Product</span>
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product Logo"
+          class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
       </a>
 
-      <!-- Desktop nav links -->
-      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="projetos.html" class="nav-link active">Projetos</a>
-        <a href="biblioteca.html" class="nav-link">Biblioteca</a>
-        <a href="sobre.html" class="nav-link">Sobre</a>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
+        <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
+        <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
+        <a href="projetos.html" class="nav-item-active">Projetos</a>
+        <a href="biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
+        <a href="sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
       </nav>
 
-      <!-- Mobile hamburger -->
-      <button class="md:hidden glass rounded-xl p-3 text-white/70 hover:text-white transition-colors" id="mobile-btn"
-        aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-      </button>
+      <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer"
+          aria-label="Buscar no site">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- CTA "Vamos conversar" -->
+        <a href="mailto:contato@marcosdataproduct.com"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          <span>Vamos conversar</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] cursor-pointer"
+          id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Mobile menu overlay -->
+  <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-white/70 hover:text-white" id="mobile-close"
-      aria-label="Fechar menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]"
+      id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
-      <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
-      <span class="font-semibold text-lg text-white">Marcos Data Product</span>
+    <a href="index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
+      <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
+      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
     </a>
-    <a href="index.html" class="mobile-link">Home</a>
-    <a href="blog.html" class="mobile-link">Blog</a>
-    <a href="projetos.html" class="mobile-link active">Projetos</a>
-    <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
-    <a href="sobre.html" class="mobile-link">Sobre</a>
+    <div class="flex flex-col gap-2">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="blog.html" class="mobile-link">Blog</a>
+      <a href="projetos.html" class="mobile-link active font-semibold text-[#2563eb]">Projetos</a>
+      <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
+      <a href="sobre.html" class="mobile-link">Sobre</a>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+      <a href="mailto:contato@marcosdataproduct.com"
+        class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+        <span>Vamos conversar</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
   </div>
 
-  <!-- HERO DA PÁGINA (1ª dobra) -->
-  <section class="min-h-[50vh] flex flex-col items-center justify-center px-5 sm:px-8 pt-40 pb-16 relative overflow-hidden text-center z-10">
-    <div class="max-w-4xl mx-auto flex flex-col items-center">
-      <span class="reveal inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-xs sm:text-sm font-medium mb-6 uppercase tracking-wider backdrop-blur-md">
-        <i data-lucide="layers" class="w-4 h-4"></i>
-        Casos de Estudo & Portfólio
-      </span>
-      <h1 class="reveal text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-white">
-        Produtos de dados reais <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">do zero à produção</span>
-      </h1>
-      <p class="reveal text-lg sm:text-xl text-white/50 max-w-2xl leading-relaxed mt-4" style="font-family:'Manrope',sans-serif">
-        Um mergulho profundo nas soluções que arquitetei. Analisando o problema, a stack tecnológica e o verdadeiro impacto gerado nos negócios.
-      </p>
+
+  <!-- ═══════════════════════════════════════════════════════
+     HERO SECTION
+  ═══════════════════════════════════════════════════════ -->
+  <section class="projetos-hero-container relative overflow-hidden flex items-center">
+    <!-- Ambient Gradient Mask -->
+    <div class="projetos-hero-gradient-mask absolute inset-0 z-0"></div>
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 relative z-10 w-full">
+      <div class="max-w-2xl">
+
+        <!-- Eyebrow -->
+        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.28em] block mb-4">
+          PROJETOS
+        </span>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
+          Produtos de dados reais,<br />
+          <span class="text-[#38bdf8]">do conceito à decisão.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl">
+          Soluções arquitetadas de ponta a ponta: governança, engenharia de dados, machine learning e inteligência de negócios gerando impacto mensurável.
+        </p>
+
+      </div>
     </div>
   </section>
 
-  <!-- GRID DE PROJETOS -->
-  <section class="relative z-10 px-5 sm:px-8 pb-32">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12" id="projects-grid">
 
-      <!-- Projeto 1 -->
-      <div class="project-card reveal glass bg-black/40 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden flex flex-col group hover:-translate-y-3 hover:border-emerald-500/30 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(52,211,153,0.15)]">
-        <div class="w-full aspect-[16/10] bg-white/5 relative overflow-hidden flex items-center justify-center">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-transparent z-10 opacity-90"></div>
-          
-          <!-- Imagem abstrata com gradiente de fundo para projeto -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-emerald-900/40 to-transparent group-hover:from-emerald-800/50 transition-colors duration-700"></div>
-          <i data-lucide="activity" class="w-40 h-40 text-emerald-500/10 absolute transform -rotate-12 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700"></i>
-          
-          <!-- <img src="assets/img/BannerProjeto.png" alt="Capa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 relative z-0"> -->
+  <!-- ═══════════════════════════════════════════════════════
+     FILTROS DE CATEGORIA & BUSCA EM TEMPO REAL
+  ═══════════════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 -mt-6 sm:-mt-8 relative z-20 mb-12">
+    <div class="bg-white rounded-2xl border border-[#e2e8f0] p-4 sm:p-5 shadow-sm">
+      
+      <!-- Linha Superior: Título de Especialidades & Barra de Pesquisa (Totalmente desacoplados contra colisão) -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 pb-3.5 border-b border-slate-100">
+        
+        <!-- Indicador de Status / Título de Filtro -->
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-blue-50 text-[#2563eb] flex items-center justify-center shrink-0">
+            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs sm:text-sm font-bold text-[#0b1e3a]">Filtrar por Especialidade</span>
+            <span class="text-xs text-[#94a3b8] hidden md:inline">•</span>
+            <span class="text-xs text-[#64748b] hidden md:inline">Selecione uma área ou pesquise por stack tecnológica</span>
+          </div>
+        </div>
 
-          <div class="absolute top-6 left-6 z-20 flex gap-2">
-            <span class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-1.5">
-              <div class="w-5 h-5 rounded-md bg-emerald-500/20 flex items-center justify-center mr-1">
-                <i data-lucide="building-2" class="w-3 h-3 text-emerald-400"></i>
-              </div>
-              B2B Fintech
+        <!-- Input de Busca em Tempo Real -->
+        <div class="relative w-full sm:w-72 md:w-80 shrink-0">
+          <i data-lucide="search" class="w-4 h-4 text-[#94a3b8] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <input type="text" id="project-search-input" placeholder="Buscar tecnologia, stack ou palavra..."
+            class="w-full pl-10 pr-9 py-2 text-xs sm:text-sm bg-slate-50 hover:bg-white focus:bg-white border border-[#e2e8f0] focus:border-[#2563eb] rounded-xl outline-none transition-all placeholder-[#94a3b8] text-[#0b1e3a] focus:ring-2 focus:ring-blue-100" />
+          <button id="project-search-clear"
+            class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-[#94a3b8] hover:text-[#0b1e3a] rounded cursor-pointer"
+            aria-label="Limpar busca">
+            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Linha Inferior: Tags com Ícones (Flex wrap limpo, 100% visível em qualquer resolução) -->
+      <div class="flex flex-wrap items-center gap-2 pt-3.5" id="category-pills">
+        <button
+          class="cat-pill active px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          data-filter="all">
+          <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-[#2563eb]"></i>
+          <span>Todos os Casos</span>
+          <span class="text-[10px] opacity-80 font-mono font-semibold" id="pill-count-all">(6)</span>
+        </button>
+
+        <button
+          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          data-filter="analytics">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5 text-[#b45309]"></i>
+          <span>Analytics & Risco</span>
+        </button>
+
+        <button
+          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          data-filter="dataviz">
+          <i data-lucide="pie-chart" class="w-3.5 h-3.5 text-[#7e22ce]"></i>
+          <span>Power BI & DataViz</span>
+        </button>
+
+        <button
+          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          data-filter="data">
+          <i data-lucide="database" class="w-3.5 h-3.5 text-[#0284c7]"></i>
+          <span>Engenharia de Dados</span>
+        </button>
+
+        <button
+          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          data-filter="ai">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#4338ca]"></i>
+          <span>Inteligência Artificial</span>
+        </button>
+
+        <button
+          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          data-filter="product">
+          <i data-lucide="package" class="w-3.5 h-3.5 text-[#be123c]"></i>
+          <span>Product Analytics</span>
+        </button>
+
+        <button
+          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          data-filter="business">
+          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-[#047857]"></i>
+          <span>Business Analytics</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     GRID PRINCIPAL DE PROJETOS & CASOS DE ESTUDO
+  ═══════════════════════════════════════════════════════ -->
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 pb-20">
+
+    <!-- Header da Lista -->
+    <div class="flex items-center justify-between mb-8 pb-3 border-b border-[#e2e8f0]">
+      <div class="flex items-center gap-2">
+        <h2 class="text-xl sm:text-2xl font-bold text-[#0b1e3a] tracking-tight">Estudos de Caso</h2>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-[#64748b]"
+          id="project-counter">6 projetos</span>
+      </div>
+      <span class="text-xs text-[#64748b] hidden sm:inline">Clique no projeto para ver a análise completa</span>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="projects-grid">
+
+      <!-- PROJETO 1: Motor de Risco & Crédito Dinâmico -->
+      <article
+        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        data-category="analytics"
+        data-href="projetos/motor-risco-credito.html"
+        data-tech="python aws athena fastapi power bi scikit-learn credit scoring analytics risco fintech">
+        <!-- Visual Header -->
+        <div class="aspect-[16/10] bg-[#07101e] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+          <img src="assets/img/projects/project-credit-portfolio.svg" alt="Credit Risk Intelligence"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
+            <span
+              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="building-2" class="w-3 h-3 text-[#38bdf8]"></i>
+              Fintech B2B
             </span>
           </div>
         </div>
-        
-        <div class="p-8 sm:p-10 flex flex-col flex-1 border-t border-white/5 relative z-20">
-          <h3 class="text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-emerald-400 transition-colors" style="font-family:'Space Grotesk',sans-serif">Motor de Risco & Crédito Dinâmico</h3>
-          <p class="text-white/60 text-base sm:text-lg leading-relaxed mb-10 flex-1" style="font-family:'Manrope',sans-serif">
-            A corporação estava aprovando crédito totalmente no manual e perdendo oportunidades com clientes rentáveis. Modelei a infraestrutura, limpei 3 bases ERPs distintas e subi um modelo preditivo servido via API interna que automatizou 80% das decisões diárias.
-          </p>
 
-          <div class="space-y-6">
-            <div class="flex flex-wrap gap-2">
-              <div class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-bold tracking-wide">Python</div>
-              <div class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-300 text-xs font-bold tracking-wide">AWS Athena</div>
-              <div class="px-3 py-1.5 rounded-lg bg-[#F2C811]/10 border border-[#F2C811]/20 text-[#F2C811] text-xs font-bold tracking-wide">Power BI</div>
-              <div class="px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 text-white text-xs font-bold tracking-wide">FastAPI</div>
+        <!-- Body -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                Analytics & Risco
+              </span>
+              <span class="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+                <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+                80% Automação
+              </span>
             </div>
-            
-            <a href="#" class="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-emerald-600 hover:border-emerald-500 transition-all text-sm font-bold tracking-wide shadow-lg hover:shadow-emerald-500/20 group/btn">
-              Ler Estudo de Caso
-              <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+
+            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+              Motor de Risco & Crédito Dinâmico
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+              Unificação de 3 bases ERPs legadas e implantação de motor preditivo servido via API interna em FastAPI, automatizando 80% das decisões diárias de crédito.
+            </p>
+
+            <!-- Callout de Métrica -->
+            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+                <i data-lucide="zap" class="w-4 h-4"></i>
+              </div>
+              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
+                Tempo de aprovação reduzido de <strong class="text-[#2563eb]">4 dias</strong> para <strong class="text-[#2563eb]">30 segundos</strong>.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer -->
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Python</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">AWS Athena</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">FastAPI</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Power BI</span>
+            </div>
+
+            <a href="projetos/motor-risco-credito.html"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              <span>Ler Estudo de Caso</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Projeto 2 -->
-      <div class="project-card reveal glass bg-black/40 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden flex flex-col group hover:-translate-y-3 hover:border-indigo-500/30 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(99,102,241,0.15)] transition-delay-100">
-        <div class="w-full aspect-[16/10] bg-white/5 relative overflow-hidden flex items-center justify-center">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-transparent z-10 opacity-90"></div>
-          
-          <!-- Imagem abstrata com gradiente de fundo para projeto -->
-          <div class="absolute inset-0 bg-gradient-to-tl from-indigo-900/40 to-transparent group-hover:from-indigo-800/50 transition-colors duration-700"></div>
-          <i data-lucide="network" class="w-40 h-40 text-indigo-500/10 absolute transform rotate-12 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700"></i>
-          
-          <div class="absolute top-6 left-6 z-20 flex gap-2">
-            <span class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-1.5">
-              <div class="w-5 h-5 rounded-md bg-indigo-500/20 flex items-center justify-center mr-1">
-                <i data-lucide="shopping-bag" class="w-3 h-3 text-indigo-400"></i>
-              </div>
-              E-commerce App
+      <!-- PROJETO 2: Sales Intelligence & Performance LATAM -->
+      <article
+        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        data-category="dataviz"
+        data-href="projetos/sales-dashboard-latam.html"
+        data-tech="power bi dax sql server star schema modelagem dimensional dataviz dashboard vendas varejo">
+        <!-- Visual Header -->
+        <div class="aspect-[16/10] bg-[#070f1e] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+          <img src="assets/img/projects/project-sales-dashboard.svg" alt="Sales Intelligence LATAM"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
+            <span
+              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="globe-2" class="w-3 h-3 text-[#38bdf8]"></i>
+              Varejo LATAM
             </span>
           </div>
         </div>
-        
-        <div class="p-8 sm:p-10 flex flex-col flex-1 border-t border-white/5 relative z-20">
-          <h3 class="text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-indigo-400 transition-colors" style="font-family:'Space Grotesk',sans-serif">Governança & Tracking de Conversão</h3>
-          <p class="text-white/60 text-base sm:text-lg leading-relaxed mb-10 flex-1" style="font-family:'Manrope',sans-serif">
-            A empresa gastava fortunas em Ads de app, mas no Google Analytics a taxa de rejeição parecia de 95% pelas perdas de sessão nativas do iOS/Android. Refizemos toda a estrutura de tracking via GTM Server-Side, estancando a perda de cookieless e aumentando o ROAS geral.
-          </p>
 
-          <div class="space-y-6">
-            <div class="flex flex-wrap gap-2">
-              <div class="px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-300 text-xs font-bold tracking-wide">GA4</div>
-              <div class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-bold tracking-wide">BigQuery</div>
-              <div class="px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold tracking-wide">GTM Server-Side</div>
-              <div class="px-3 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-bold tracking-wide">Looker Studio</div>
+        <!-- Body -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                Power BI & DataViz
+              </span>
+              <span class="text-[11px] font-semibold text-blue-600 flex items-center gap-1">
+                <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                US$ 14.8M
+              </span>
             </div>
-            
-            <a href="#" class="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-indigo-600 hover:border-indigo-500 transition-all text-sm font-bold tracking-wide shadow-lg hover:shadow-indigo-500/20 group/btn">
-              Ler Estudo de Caso
-              <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+
+            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+              Sales Intelligence & Performance LATAM
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+              Arquitetura analítica comercial completa para diretorias em 6 países. Modelagem Star Schema, DAX avançado, cálculo dinâmico de margem e conciliação cambial.
+            </p>
+
+            <!-- Callout de Métrica -->
+            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+                <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+              </div>
+              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
+                Aumento de <strong class="text-[#2563eb]">+24%</strong> na assertividade de metas operacionais.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer -->
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Power BI</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">DAX</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">SQL Server</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Star Schema</span>
+            </div>
+
+            <a href="projetos/sales-dashboard-latam.html"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              <span>Ler Estudo de Caso</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Projeto 3 -->
-      <div class="project-card reveal glass bg-black/40 backdrop-blur-2xl rounded-[2.5rem] overflow-hidden flex flex-col group hover:-translate-y-3 hover:border-fuchsia-500/30 transition-all duration-700 hover:shadow-[0_20px_50px_rgba(217,70,239,0.15)]">
-        <div class="w-full aspect-[16/10] bg-white/5 relative overflow-hidden flex items-center justify-center">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#080810] via-transparent to-transparent z-10 opacity-90"></div>
-          
-          <!-- Imagem abstrata com gradiente de fundo para projeto -->
-          <div class="absolute inset-0 bg-gradient-to-b from-fuchsia-900/40 to-transparent group-hover:from-fuchsia-800/50 transition-colors duration-700"></div>
-          <i data-lucide="zap" class="w-40 h-40 text-fuchsia-500/10 absolute transform -rotate-12 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-700"></i>
-          
-          <div class="absolute top-6 left-6 z-20 flex gap-2">
-            <span class="px-3 py-1.5 rounded-xl border border-white/10 bg-white/10 text-white/80 text-xs font-semibold uppercase tracking-wider backdrop-blur-md shadow-lg flex items-center gap-1.5">
-              <div class="w-5 h-5 rounded-md bg-fuchsia-500/20 flex items-center justify-center mr-1">
-                <i data-lucide="lightbulb" class="w-3 h-3 text-fuchsia-400"></i>
+      <!-- PROJETO 3: Lakehouse ETL & Pipelines Escaláveis -->
+      <article
+        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        data-category="data"
+        data-href="projetos/lakehouse-databricks-etl.html"
+        data-tech="databricks apache spark delta lake scala python aws s3 engenharia lakehouse etl pipeline">
+        <!-- Visual Header -->
+        <div class="aspect-[16/10] bg-[#080e18] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+          <img src="assets/img/projects/project-etl-databricks.svg" alt="Lakehouse Databricks ETL"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
+            <span
+              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="factory" class="w-3 h-3 text-[#38bdf8]"></i>
+              Indústria & Supply
+            </span>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                Engenharia de Dados
+              </span>
+              <span class="text-[11px] font-semibold text-cyan-700 flex items-center gap-1">
+                <i data-lucide="database" class="w-3.5 h-3.5"></i>
+                +15M Eventos
+              </span>
+            </div>
+
+            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+              Lakehouse ETL & Pipelines Escaláveis
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+              Migração de processos batch para arquitetura Lakehouse Medalhão (Bronze, Silver e Gold) no Databricks, garantindo conformidade ACID e alto throughput.
+            </p>
+
+            <!-- Callout de Métrica -->
+            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+                <i data-lucide="clock" class="w-4 h-4"></i>
               </div>
+              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
+                Tempo de carga reduzido de <strong class="text-[#2563eb]">4h30</strong> para <strong class="text-[#2563eb]">35 min</strong> (-65% custo cloud).
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer -->
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Databricks</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Apache Spark</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Delta Lake</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Scala</span>
+            </div>
+
+            <a href="projetos/lakehouse-databricks-etl.html"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              <span>Ler Estudo de Caso</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJETO 4: Automação com IA & Agentes RAG -->
+      <article
+        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        data-category="ai"
+        data-href="projetos/agentes-ia-rag-automacao.html"
+        data-tech="genai llm langchain databricks python vector db agentes rag inteligencia artificial automacao">
+        <!-- Visual Header -->
+        <div class="aspect-[16/10] bg-[#080e1c] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+          <img src="assets/img/projects/project-ai-agents.svg" alt="AI Agents RAG"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
+            <span
+              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="zap" class="w-3 h-3 text-[#a78bfa]"></i>
               Energy Sector
             </span>
           </div>
         </div>
-        
-        <div class="p-8 sm:p-10 flex flex-col flex-1 border-t border-white/5 relative z-20">
-          <h3 class="text-3xl font-bold text-white mb-4 tracking-tight group-hover:text-fuchsia-400 transition-colors" style="font-family:'Space Grotesk',sans-serif">Automação IA de Atendimento</h3>
-          <p class="text-white/60 text-base sm:text-lg leading-relaxed mb-10 flex-1" style="font-family:'Manrope',sans-serif">
-            Substituição de um workflow letárgico de aprovação em sistemas transacionais legados por um Agente LLM internalizado conversando via Chat e consumindo RAG nas políticas corporativas da distribuidora. Reduziu os tickets nível 1 em 40%.
-          </p>
 
-          <div class="space-y-6">
-            <div class="flex flex-wrap gap-2">
-              <div class="px-3 py-1.5 rounded-lg bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-300 text-xs font-bold tracking-wide">GenAI / LLMs</div>
-              <div class="px-3 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-300 text-xs font-bold tracking-wide">Databricks</div>
-              <div class="px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-bold tracking-wide">Python</div>
-              <div class="px-3 py-1.5 rounded-lg bg-stone-500/10 border border-stone-500/20 text-stone-300 text-xs font-bold tracking-wide">Fluig</div>
+        <!-- Body -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                Inteligência Artificial
+              </span>
+              <span class="text-[11px] font-semibold text-indigo-600 flex items-center gap-1">
+                <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                RAG 96.8%
+              </span>
             </div>
-            
-            <a href="#" class="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-fuchsia-600 hover:border-fuchsia-500 transition-all text-sm font-bold tracking-wide shadow-lg hover:shadow-fuchsia-500/20 group/btn">
-              Ler Estudo de Caso
-              <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+
+            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+              Automação com IA & Agentes RAG
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+              Substituição de um workflow manual letárgico por um Agente Autônomo de IA com RAG treinado nas normas corporativas da companhia, integrado ao chat corporativo.
+            </p>
+
+            <!-- Callout de Métrica -->
+            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+                <i data-lucide="message-square" class="w-4 h-4"></i>
+              </div>
+              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
+                Redução de <strong class="text-[#2563eb]">40%</strong> nos chamados e SLA caindo de 4h para 45s.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer -->
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">GenAI / LLMs</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">LangChain</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Databricks</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Vector DB</span>
+            </div>
+
+            <a href="projetos/agentes-ia-rag-automacao.html"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              <span>Ler Estudo de Caso</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
           </div>
         </div>
+      </article>
+
+      <!-- PROJETO 5: Governança & Tracking Server-Side -->
+      <article
+        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        data-category="product"
+        data-href="projetos/tracking-serverside-governanca.html"
+        data-tech="ga4 bigquery gtm server-side looker studio cloud run product analytics growth tracking">
+        <!-- Visual Header -->
+        <div class="aspect-[16/10] bg-[#071222] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+          <img src="assets/img/projects/project-tracking-analytics.svg" alt="Server-Side Tracking Pipeline"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
+            <span
+              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="shopping-bag" class="w-3 h-3 text-[#38bdf8]"></i>
+              E-commerce App
+            </span>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="badge-theme-product inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                Product Analytics
+              </span>
+              <span class="text-[11px] font-semibold text-rose-600 flex items-center gap-1">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                +92.4% Sinais
+              </span>
+            </div>
+
+            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+              Governança & Tracking Server-Side
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+              Infraestrutura de coleta de 1ª parte no GCP com GTM Server-Side. Eliminação de perdas decorrentes de bloqueadores e integração contínua de eventos no BigQuery.
+            </p>
+
+            <!-- Callout de Métrica -->
+            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+                <i data-lucide="target" class="w-4 h-4"></i>
+              </div>
+              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
+                Aumento de <strong class="text-[#2563eb]">+18% no ROAS</strong> de mídia por atribuição precisa.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer -->
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">GA4</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">BigQuery</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">GTM Server-Side</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Cloud Run</span>
+            </div>
+
+            <a href="projetos/tracking-serverside-governanca.html"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              <span>Ler Estudo de Caso</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJETO 6: Predição de Churn & Retenção de Clientes -->
+      <article
+        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        data-category="business"
+        data-href="projetos/churn-prediction-retencao.html"
+        data-tech="python scikit-learn xgboost postgresql metabase churn predicao machine learning business analytics saas">
+        <!-- Visual Header -->
+        <div class="aspect-[16/10] bg-[#09101d] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+          <img src="assets/img/projects/project-churn-prediction.svg" alt="Churn Prediction Machine Learning"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
+            <span
+              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              <i data-lucide="briefcase" class="w-3 h-3 text-[#34d399]"></i>
+              SaaS B2B
+            </span>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                Business Analytics
+              </span>
+              <span class="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+                <i data-lucide="dollar-sign" class="w-3.5 h-3.5"></i>
+                R$ 1.2M Salvo
+              </span>
+            </div>
+
+            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+              Predição de Churn & Retenção de Clientes
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+              Modelo preditivo em Python identificando contas com risco de cancelamento com 45 dias de antecedência a partir da telemetria de produto e suporte.
+            </p>
+
+            <!-- Callout de Métrica -->
+            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+                <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+              </div>
+              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
+                Redução de <strong class="text-[#2563eb]">4.1% para 1.8%</strong> na taxa mensal de churn voluntário.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer -->
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Python</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">XGBoost</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">PostgreSQL</span>
+              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Metabase</span>
+            </div>
+
+            <a href="projetos/churn-prediction-retencao.html"
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              <span>Ler Estudo de Caso</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Empty State de Busca -->
+    <div id="empty-search-state" class="hidden bg-white rounded-2xl border border-[#e2e8f0] p-12 text-center max-w-lg mx-auto my-12 shadow-sm">
+      <div class="w-14 h-14 rounded-2xl bg-slate-100 text-[#64748b] flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="search-x" class="w-7 h-7"></i>
+      </div>
+      <h3 class="text-base font-bold text-[#0b1e3a] mb-1.5">Nenhum projeto encontrado</h3>
+      <p class="text-xs sm:text-sm text-[#64748b] mb-6 leading-relaxed">
+        Não localizamos nenhum caso de estudo com os termos pesquisados. Tente buscar por palavras como <span class="font-mono text-[#2563eb]">Power BI</span>, <span class="font-mono text-[#2563eb]">Python</span> ou <span class="font-mono text-[#2563eb]">Databricks</span>.
+      </p>
+      <button id="reset-search-btn"
+        class="px-5 py-2.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold transition-all cursor-pointer shadow-sm">
+        Limpar filtros de busca
+      </button>
+    </div>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     CTA BANNER: CONECTAR E CONVERSAR
+  ═══════════════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-20">
+    <div
+      class="bg-gradient-to-r from-[#0b1e3a] via-[#102a52] to-[#0b1e3a] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border border-white/10 shadow-xl relative overflow-hidden">
+      <!-- Ambient light -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-xl z-10">
+        <div class="text-[11px] font-bold text-[#38bdf8] uppercase tracking-widest mb-2">VAMOS CONSTRUIR JUNTOS</div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+          Tem um desafio de dados ou quer trocar uma ideia?
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 font-normal max-w-md mb-6 leading-relaxed">
+          Estou sempre aberto a novas conversas, parcerias, oportunidades e desafios em analytics, engenharia de dados e
+          produtos de IA.
+        </p>
+        <a href="mailto:contato@marcosdataproduct.com"
+          class="px-6 py-3 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
+          <span>Iniciar conversa</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
       </div>
 
-      <!-- Outros Projetos em Breve -->
-      <div class="flex items-center justify-center min-h-[400px]">
-        <div class="text-center">
-          <div class="w-16 h-16 rounded-full border border-white/10 bg-white/5 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform cursor-pointer">
-            <i data-lucide="plus" class="w-6 h-6 text-white/40"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white mb-2" style="font-family:'Space Grotesk',sans-serif">Tem mais casos vindo aí.</h3>
-          <p class="text-white/40 text-sm" style="font-family:'Manrope',sans-serif">Acompanhe pelo meu <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="underline hover:text-white">LinkedIn</a> ou na <a href="blog.html" class="underline hover:text-white">aba Blog</a>.</p>
+      <!-- Right Side Brand Badge -->
+      <div
+        class="flex items-center gap-4 z-10 self-start md:self-center pl-0 md:pl-8 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 w-full md:w-auto">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-12 h-12 object-contain brightness-125" />
+        <div class="text-sm font-semibold text-white/90 leading-tight">
+          Dados. Ideias.<br />
+          Pessoas. Impacto.
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="relative z-10 border-t border-white/5 px-5 sm:px-8 py-8 mt-12">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/70">
-      <a href="index.html" class="flex items-center gap-3 group text-inherit hover:text-white transition-colors" aria-label="Home - Marcos Data Product">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
-        <span>© 2026 Marcos Data Product</span>
+
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER INSTITUCIONAL (DEEP NAVY)
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo e Nome da Marca -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain brightness-110" />
+        <span class="font-bold text-base tracking-tight text-white">Marcos Data Product</span>
       </a>
-      <span>Feito com dados, café e IA</span>
+
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
+      </div>
+
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
     </div>
   </footer>
 
+
   <!-- ═══════════════════════════════════════════════════════
-     THREE.JS BACKGROUND — Clean data science wireframes
+     MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
   ═══════════════════════════════════════════════════════ -->
-  <script type="module">
-    import * as THREE from "https://esm.sh/three@0.160.0";
+  <div id="search-modal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#e2e8f0] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      id="search-modal-container">
 
-    gsap.registerPlugin(ScrollTrigger);
+      <!-- Input Header -->
+      <div class="p-4 border-b border-[#e2e8f0] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#2563eb]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
+          class="w-full text-sm outline-none text-[#0b1e3a] placeholder-[#94a3b8]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#94a3b8] hover:text-[#0b1e3a] hover:bg-slate-100 cursor-pointer" aria-label="Fechar busca">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
 
-    /* ── Renderer ──────────────────────────────────── */
-    const canvas = document.getElementById('canvas');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(innerWidth, innerHeight);
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setClearColor(0x080810, 1);
-    camera.position.z = 15;
+      <!-- Quick Results / Suggestions -->
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+        <div class="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <a href="blog/agentes-ia-business-analytics.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i
+                data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • IA e RAG</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="blog/media-moda-e-mediana.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs"><i
+                data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Média, Moda e Mediana: O que os números escondem</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • Estatística e Negócios</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="blog/modelagem-star-schema-powerbi.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i
+                data-lucide="database" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Modelagem Star Schema no Power BI</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • Power BI & Modelagem Dimensional</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="biblioteca.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#f1f5f9] text-[#2563eb] flex items-center justify-center text-xs"><i
+                data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Biblioteca de Leituras</div>
+              <div class="text-[10px] text-[#64748b]">Curadoria de livros e referências recomendadas</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
 
-    /* ── Parallax groups ───────────────────────────── */
-    const fg = new THREE.Group();
-    const mg = new THREE.Group();
-    const bg = new THREE.Group();
-    scene.add(fg, mg, bg);
+    </div>
+  </div>
 
-    /* ── Material helpers (clean, refined) ─────────── */
-    const wireMat = (c, o) => new THREE.MeshBasicMaterial({ color: c, wireframe: true, transparent: true, opacity: o * 0.6 });
-    const lineMat = (c, o) => new THREE.LineBasicMaterial({ color: c, transparent: true, opacity: o * 0.6 });
-    const V3 = (x, y, z = 0) => new THREE.Vector3(x, y, z);
-    const toGeo = pts => new THREE.BufferGeometry().setFromPoints(pts);
 
-    function smoothCurve(pts, res = 24) {
-      if (pts.length < 2) return pts;
-      const cv = new THREE.CatmullRomCurve3(pts);
-      return cv.getPoints(res);
-    }
-
-    /* ── Factory: Data components ──────────────────── */
-    function createLineChart(s, col) {
-      const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(s * 0.5, -s * 0.4)]), lineMat(col, 0.3)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(-s * 0.5, s * 0.4)]), lineMat(col, 0.3)));
-      const pts = []; for (let i = 0; i <= 8; i++) pts.push(V3(-s * 0.45 + (i / 8) * s * 0.9, -s * 0.35 + Math.random() * s * 0.7));
-      g.add(new THREE.Line(toGeo(smoothCurve(pts, 32)), lineMat(col, 0.8)));
-      pts.forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.02, 8, 8), wireMat(col, 0.7)); d.position.copy(p); g.add(d); });
-      return g;
-    }
-
-    function createBarChart(s, col) {
-      const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.4), V3(s * 0.5, -s * 0.4)]), lineMat(col, 0.3)));
-      const bw = s * 0.12; const px = [-s * 0.3, -s * 0.1, s * 0.1, s * 0.3];
-      px.forEach(x => { const h = s * 0.2 + Math.random() * s * 0.5; const m = new THREE.Mesh(new THREE.BoxGeometry(bw, h, bw * 0.5), wireMat(col, 0.5)); m.position.set(x, -s * 0.4 + h / 2, 0); g.add(m); });
-      return g;
-    }
-
-    function createScatterPlot(s, col) {
-      const g = new THREE.Group();
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.5), V3(s * 0.5, -s * 0.5)]), lineMat(col, 0.2)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.5, -s * 0.5), V3(-s * 0.5, s * 0.5)]), lineMat(col, 0.2)));
-      for (let i = 0; i < 28; i++) { const m = new THREE.Mesh(new THREE.OctahedronGeometry(s * 0.035, 0), wireMat(col, 0.5 + Math.random() * 0.4)); m.position.set(-s * 0.4 + Math.random() * s * 0.8, -s * 0.4 + Math.random() * s * 0.8, (Math.random() - 0.5) * s * 0.2); m.rotation.set(Math.random() * 3, Math.random() * 3, 0); g.add(m); }
-      return g;
-    }
-
-    function createNeuralNet(s, col) {
-      const g = new THREE.Group();
-      const layers = [[-s * 0.4, 4], [0, 5], [s * 0.4, 2]]; const nodes = [];
-      layers.forEach(([x, c]) => { const ly = []; for (let i = 0; i < c; i++) { const y = (i - (c - 1) / 2) * s * 0.2; ly.push(V3(x, y)); const m = new THREE.Mesh(new THREE.SphereGeometry(s * 0.04, 12, 12), wireMat(col, 0.45)); m.position.set(x, y, 0); g.add(m); } nodes.push(ly); });
-      for (let l = 0; l < nodes.length - 1; l++) { nodes[l].forEach(n1 => { nodes[l + 1].forEach(n2 => { if (Math.random() > 0.25) g.add(new THREE.Line(toGeo([n1, n2]), lineMat(col, 0.12))); }); }); }
-      return g;
-    }
-
-    function createDonutChart(s, col) {
-      const g = new THREE.Group();
-      const cols = [0x60a5fa, 0xfbbf24, 0x34d399, 0xf472b6, 0xa78bfa];
-      const seg = [0.32, 0.22, 0.20, 0.15, 0.11];
-      const r1 = s * 0.28, r2 = s * 0.52;
-      let st = -Math.PI / 2;
-      seg.forEach((p, i) => { const a = p * Math.PI * 2; const steps = Math.max(12, Math.round(a * 24)); const lm = lineMat(cols[i], 0.45); const o = [], inn = []; for (let s = 0; s <= steps; s++) { const aa = st + (s / steps) * a; o.push(V3(Math.cos(aa) * r2, Math.sin(aa) * r2)); inn.push(V3(Math.cos(aa) * r1, Math.sin(aa) * r1)); } g.add(new THREE.Line(toGeo(o), lm)); g.add(new THREE.Line(toGeo(inn), lm)); g.add(new THREE.Line(toGeo([o[0], inn[0]]), lm)); g.add(new THREE.Line(toGeo([o[steps], inn[steps]]), lm)); st += a; });
-      return g;
-    }
-
-    function createROCCurve(s, col) {
-      const g = new THREE.Group();
-      const ext = s * 0.52;
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, -ext)]), lineMat(col, 0.25)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(-ext, ext)]), lineMat(col, 0.25)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext), V3(ext, ext)]), lineMat(col, 0.08)));
-      const pts = []; for (let t = 0; t <= 64; t++) { const f = t / 64; pts.push(V3(-ext + f * ext * 2, -ext + (1 - Math.pow(1 - f, 3.2)) * ext * 2)); }
-      g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.5)));
-      return g;
-    }
-
-    function createDecisionTree(s, col) {
-      const g = new THREE.Group();
-      const r = s * 0.048;
-      const tree = [[0, s * 0.5, -1], [-s * 0.38, s * 0.12, 0], [s * 0.38, s * 0.12, 0], [-s * 0.58, -s * 0.22, 1], [-s * 0.18, -s * 0.22, 1], [s * 0.18, -s * 0.22, 2], [s * 0.58, -s * 0.22, 2]];
-      const pos = [];
-      tree.forEach(([x, y, pi], i) => { const p = V3(x, y); pos.push(p); const isLeaf = i >= 3; const m = isLeaf ? new THREE.Mesh(new THREE.SphereGeometry(r * 0.65, 12, 12), wireMat(col, 0.45)) : new THREE.Mesh(new THREE.OctahedronGeometry(r, 0), wireMat(col, 0.5)); m.position.copy(p); if (!isLeaf) m.rotation.z = Math.PI / 4; g.add(m); if (pi >= 0) g.add(new THREE.Line(toGeo([pos[pi], p]), lineMat(col, 0.2))); });
-      return g;
-    }
-
-    function createKMeans(s, col) {
-      const g = new THREE.Group();
-      const cc = [[0x60a5fa, -s * 0.32, s * 0.25], [0xfbbf24, s * 0.32, s * 0.28], [0x34d399, s * 0.05, -s * 0.32]];
-      cc.forEach(([c, cx, cy]) => {
-        const ct = new THREE.Mesh(new THREE.SphereGeometry(s * 0.045, 14, 14), wireMat(c, 0.6)); ct.position.set(cx, cy, 0); g.add(ct);
-        const ring = []; for (let a = 0; a <= 64; a++)ring.push(V3(cx + Math.cos(a / 64 * Math.PI * 2) * s * 0.2, cy + Math.sin(a / 64 * Math.PI * 2) * s * 0.2));
-        g.add(new THREE.Line(toGeo(ring), lineMat(c, 0.1)));
-        for (let p = 0; p < 7; p++) { const a = (p / 7) * Math.PI * 2; const r = s * 0.2 * (0.2 + Math.abs(Math.sin(p * 2.7)) * 0.6); const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.018, 8, 8), wireMat(c, 0.35)); d.position.set(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 0); g.add(d); }
-      });
-      return g;
-    }
-
-    function createRadarChart(s, col) {
-      const g = new THREE.Group();
-      const ax = 6, r = s * 0.48;
-      for (let ring = 1; ring <= 4; ring++) { const rr = r * ring / 4; const pts = []; for (let i = 0; i <= ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; pts.push(V3(Math.cos(a) * rr, Math.sin(a) * rr)); } g.add(new THREE.Line(toGeo(pts), lineMat(col, 0.06 + ring * 0.025))); }
-      for (let i = 0; i < ax; i++) { const a = (i / ax) * Math.PI * 2 - Math.PI / 2; g.add(new THREE.Line(toGeo([V3(0, 0), V3(Math.cos(a) * r, Math.sin(a) * r)]), lineMat(col, 0.12))); }
-      const dv = [0.85, 0.65, 0.90, 0.50, 0.75, 0.60]; const dp = [];
-      for (let i = 0; i <= ax; i++) { const idx = i % ax; const a = (idx / ax) * Math.PI * 2 - Math.PI / 2; dp.push(V3(Math.cos(a) * r * dv[idx], Math.sin(a) * r * dv[idx])); }
-      g.add(new THREE.Line(toGeo(dp), lineMat(col, 0.5)));
-      dp.slice(0, -1).forEach(p => { const d = new THREE.Mesh(new THREE.SphereGeometry(s * 0.025, 10, 10), wireMat(col, 0.5)); d.position.copy(p); g.add(d); });
-      return g;
-    }
-
-    function createPipeline(s, col) {
-      const g = new THREE.Group();
-      const stages = [{ x: -s * 0.6, y: 0 }, { x: -s * 0.2, y: s * 0.22 }, { x: -s * 0.2, y: -s * 0.22 }, { x: s * 0.15, y: 0 }, { x: s * 0.5, y: s * 0.18 }, { x: s * 0.5, y: -s * 0.18 }];
-      const edges = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [3, 5]];
-      stages.forEach(({ x, y }) => { const n = new THREE.Mesh(new THREE.BoxGeometry(s * 0.16, s * 0.08, s * 0.03), wireMat(col, 0.35)); n.position.set(x, y, 0); g.add(n); });
-      edges.forEach(([a, b]) => { const sa = stages[a], sb = stages[b]; g.add(new THREE.Line(toGeo(smoothCurve([V3(sa.x + s * 0.08, sa.y), V3((sa.x + sb.x) / 2, (sa.y + sb.y) / 2), V3(sb.x - s * 0.08, sb.y)], 16)), lineMat(col, 0.15))); });
-      return g;
-    }
-
-    function createHistogram(s, col) {
-      const g = new THREE.Group();
-      const bins = 12, base = -s * 0.38; const bw = s * 1.0 / bins;
-      for (let i = 0; i < bins; i++) { const nx = (i / (bins - 1) - 0.5) * 2; const h = Math.exp(-nx * nx * 2.5) * s * 0.75 + s * 0.02; const m = new THREE.Mesh(new THREE.BoxGeometry(bw * 0.85, h, bw * 0.25), wireMat(col, 0.18 + Math.exp(-nx * nx * 2.5) * 0.18)); m.position.set((i - (bins - 1) / 2) * bw, base + h / 2, 0); g.add(m); }
-      const cp = []; for (let t = 0; t <= 80; t++) { const x = (t / 80 - 0.5) * s * 1.1; const n = x / (s * 0.5) * 2; cp.push(V3(x, Math.exp(-n * n * 0.65) * s * 0.75 + base)); }
-      g.add(new THREE.Line(toGeo(cp), lineMat(col, 0.5)));
-      g.add(new THREE.Line(toGeo([V3(-s * 0.58, base), V3(s * 0.58, base)]), lineMat(col, 0.25)));
-      return g;
-    }
-
-    function createTimeSeries(s, col) {
-      const g = new THREE.Group();
-      const ext = s * 0.5;
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(ext, -ext * 0.75)]), lineMat(col, 0.2)));
-      g.add(new THREE.Line(toGeo([V3(-ext, -ext * 0.75), V3(-ext, ext * 0.75)]), lineMat(col, 0.2)));
-      const sc = [col, 0x60a5fa, 0xfbbf24];
-      [[0.3, 0.35, 0.28, 0.45, 0.50, 0.42, 0.55, 0.62, 0.58, 0.70, 0.75, 0.68, 0.82], [0.5, 0.48, 0.52, 0.45, 0.40, 0.38, 0.42, 0.35, 0.38, 0.32, 0.35, 0.30, 0.28], [0.1, 0.15, 0.18, 0.22, 0.20, 0.28, 0.32, 0.30, 0.38, 0.42, 0.45, 0.50, 0.55]].forEach((d, si) => { const pts = d.map((v, i) => V3(-ext + (i / (d.length - 1)) * ext * 2, -ext * 0.75 + v * ext * 1.5)); g.add(new THREE.Line(toGeo(smoothCurve(pts, 50)), lineMat(sc[si], 0.35))); });
-      return g;
-    }
-
-    /* ── Factory list & populate ───────────────────── */
-    const factories = [
-      createLineChart, createBarChart, createScatterPlot,
-      createNeuralNet, createDonutChart, createROCCurve,
-      createDecisionTree, createKMeans, createRadarChart,
-      createPipeline, createHistogram, createTimeSeries
-    ];
-
-    const fgC = [0xffffff, 0x60a5fa, 0xfbbf24, 0x34d399];
-    const mgC = [0xffffff, 0x60a5fa, 0xa78bfa];
-    const bgC = [0x3f3f50, 0x4b5563];
-    const shapeObjs = [];
-
-    function populate(group, count, colSet, sX, sY, zR, zO) {
-      for (let i = 0; i < count; i++) {
-        const s = Math.random() * 0.65 + 0.55;
-        const col = colSet[i % colSet.length];
-        const shape = factories[i % factories.length](s, col);
-        shape.position.set((Math.random() - 0.5) * sX, (Math.random() - 0.5) * sY, Math.random() * zR + zO);
-        shape.rotation.set((Math.random() - 0.5) * 0.18, (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.12);
-        group.add(shape);
-        shapeObjs.push({ shape, rs: (Math.random() - 0.5) * 0.003 });
-      }
-    }
-
-    populate(fg, 5, fgC, 58, 40, 10, 4);
-    populate(mg, 8, mgC, 82, 55, 18, -6);
-    populate(bg, 12, bgC, 100, 70, 22, -18);
-
-    /* ── Scroll & mouse ────────────────────────────── */
-    let scrollP = 0, mX = 0, mY = 0;
-    ScrollTrigger.create({ trigger: "body", start: "top top", end: "bottom bottom", scrub: true, onUpdate: s => { scrollP = s.progress; } });
-    document.addEventListener('mousemove', e => { mX = (e.clientX / innerWidth) * 2 - 1; mY = -(e.clientY / innerHeight) * 2 + 1; });
-
-    /* ── Animate loop ──────────────────────────────── */
-    function animate() {
-      requestAnimationFrame(animate);
-      fg.position.y = scrollP * 20; mg.position.y = scrollP * 10; bg.position.y = scrollP * 5;
-      fg.rotation.x += (mY * 0.05 - fg.rotation.x) * 0.025; fg.rotation.y += (mX * 0.05 - fg.rotation.y) * 0.025;
-      mg.rotation.x += (mY * 0.025 - mg.rotation.x) * 0.018; mg.rotation.y += (mX * 0.025 - mg.rotation.y) * 0.018;
-      bg.rotation.x += (mY * 0.012 - bg.rotation.x) * 0.012; bg.rotation.y += (mX * 0.012 - bg.rotation.y) * 0.012;
-      const t = Date.now() * 0.0003;
-      shapeObjs.forEach(({ shape, rs }) => { shape.rotation.y += rs; shape.rotation.z += rs * 0.18; shape.position.y += Math.sin(t + shape.position.x * 0.25) * 0.003; });
-      renderer.render(scene, camera);
-    }
-
-    window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); });
-    animate();
-  </script>
-
-  <!-- UTILITY SCRIPTS — Ripple, Mobile Menu -->
+  <!-- ═══════════════════════════════════════════════════════
+     SCRIPTS & DADOS INTERATIVOS
+  ═══════════════════════════════════════════════════════ -->
   <script src="assets/js/main.js"></script>
 
   <script>
+    // Base de dados estruturada de Projetos
+    const PROJECTS = [
+      {
+        id: "motor-risco-credito",
+        title: "Motor de Risco & Crédito Dinâmico",
+        category: "analytics",
+        categoryName: "Analytics & Risco",
+        badgeClass: "badge-theme-analytics",
+        sector: "Fintech B2B & Crédito",
+        image: "assets/img/projects/project-credit-portfolio.svg",
+        stack: ["Python", "AWS Athena", "FastAPI", "Power BI", "Scikit-Learn"],
+        metrics: [
+          { val: "80%", label: "Decisões Automáticas" },
+          { val: "-28%", label: "Tempo de Concessão" },
+          { val: "2.14%", label: "Taxa de Default (NPL 90)" }
+        ],
+        problem: "Processo de análise de crédito descentralizado e analógico. Propostas demoravam até 4 dias úteis para aprovação, gerando perda de clientes com excelente score e acúmulo de risco invisível em clientes devedores.",
+        solution: "Estruturação de um pipeline unificando 3 ERPs e bureaus de crédito, seguido pelo treinamento de modelos de credit scoring e esteira de API em FastAPI integrada diretamente aos sistemas transacionais para concessão de crédito em segundos.",
+        results: "Redução no tempo médio de resposta de 4 dias para 30 segundos em 80% das solicitações. Queda de 18% na taxa de inadimplência e aumento de 22% no volume de operações de crédito concedidas com segurança.",
+        learnings: "Em crédito corporativo, a governança e a interpretabilidade das variáveis (Explainable AI com SHAP values) são tão importantes quanto a acurácia bruta do algoritmo para aprovação regulatória e alinhamento com áreas de risco e auditoria."
+      },
+      {
+        id: "sales-dashboard-latam",
+        title: "Sales Intelligence & Performance LATAM",
+        category: "dataviz",
+        categoryName: "Power BI & DataViz",
+        badgeClass: "badge-theme-dataviz",
+        sector: "Operações Comerciais & Varejo",
+        image: "assets/img/projects/project-sales-dashboard.svg",
+        stack: ["Power BI", "DAX Avançado", "SQL Server", "Star Schema", "Power Query"],
+        metrics: [
+          { val: "US$ 14.8M", label: "Faturamento Monitorado" },
+          { val: "+24%", label: "Assertividade de Metas" },
+          { val: "6 Países", label: "Operações Unificadas" }
+        ],
+        problem: "Diretoria e 6 gerências regionais (Brasil, Argentina, Chile, Colômbia, Peru e Uruguai) operavam com planilhas desconexas, regras de negócio conflitantes de margem e relatórios entregues com semanas de defasagem.",
+        solution: "Criação de um repositório centralizado de dados com modelagem dimensional Star Schema, regras de conversão cambial dinâmica e um conjunto intuitivo de visões executivas (visão Macro, por País, por Categoria de Produto e por Vendedor).",
+        results: "Eliminação de mais de 40 horas mensais gastas na compilação manual de planilhas. Aumento de 24% no atingimento de metas operacionais pelo acompanhamento diário de gaps de receita.",
+        learnings: "Design visual claro e minimalista acelera drasticamente a adoção por executivos seniores. 'Dashboard não é análise': a ferramenta deve direcionar o olhar para os desvios críticos e ações corretivas."
+      },
+      {
+        id: "lakehouse-databricks-etl",
+        title: "Lakehouse ETL & Pipelines Escaláveis",
+        category: "data",
+        categoryName: "Engenharia de Dados",
+        badgeClass: "badge-theme-data",
+        sector: "Indústria & Supply Chain",
+        image: "assets/img/projects/project-etl-databricks.svg",
+        stack: ["Databricks", "Apache Spark", "Delta Lake", "Scala / Python", "AWS S3"],
+        metrics: [
+          { val: "+15M", label: "Eventos Diários" },
+          { val: "-65%", label: "Custos Cloud" },
+          { val: "100%", label: "ACID Compliance" }
+        ],
+        problem: "Pipelines legados falhavam frequentemente por falta de atomicidade (ACID) e sobrecarregavam o banco transacional. O processamento noturno extrapolava o início do expediente, atrasando relatórios operacionais matinais.",
+        solution: "Implementação de arquitetura Delta Lake no Databricks dividida em camadas Bronze (raw ingestion), Silver (limpeza, deduplicação e conformidade) e Gold (agregações de negócio e data marts dimensionais) com orquestração resiliente.",
+        results: "Redução do tempo de execução de 4h30 para 35 minutos. 65% de economia em processamento em nuvem graças a Z-Ordering, Data Skipping e autoscaling inteligente de clusters Spark.",
+        learnings: "Adotar contratos de dados (Data Contracts) na camada Silver impede que anomalias em sistemas de origem poluam métricas de negócio consumidas por relatórios de diretoria."
+      },
+      {
+        id: "agentes-ia-rag-automacao",
+        title: "Automação com IA & Agentes RAG",
+        category: "ai",
+        categoryName: "Inteligência Artificial",
+        badgeClass: "badge-theme-ai",
+        sector: "Distribuição de Energia & Utilities",
+        image: "assets/img/projects/project-ai-agents.svg",
+        stack: ["GenAI / LLMs", "LangChain", "Databricks", "Vector DB", "Python / FastAPI"],
+        metrics: [
+          { val: "-40%", label: "Tickets Nível 1" },
+          { val: "45 seg", label: "SLA Médio de Resolução" },
+          { val: "96.8%", label: "Assertividade do RAG" }
+        ],
+        problem: "Centenas de solicitações internas de conformidade e autorizações de serviço ficavam retidas em filas com SLA superior a 4 horas úteis, gerando gargalo em operações de campo essenciais.",
+        solution: "Desenvolvimento de um agente conversacional autônomo conectado a um banco vetorial com embeddings de todas as normas técnicas e políticas internas, com capacidade de orquestrar consultas e chamadas de API para liberar requisições seguras.",
+        results: "Queda de 40% no volume de chamados humanos de primeiro nível. Resolução instantânea (média de 45 segundos) para consultas normativas com rastreabilidade completa e auditoria das fontes citadas.",
+        learnings: "Para aplicações corporativas sérias, o segredo do sucesso do RAG está na etapa de chunking semântico dos documentos e no filtro rígido de confiança antes de permitir a resposta do LLM."
+      },
+      {
+        id: "tracking-serverside-governanca",
+        title: "Governança & Tracking Server-Side de Conversão",
+        category: "product",
+        categoryName: "Product Analytics & Growth",
+        badgeClass: "badge-theme-product",
+        sector: "E-commerce & Mobile App",
+        image: "assets/img/projects/project-tracking-analytics.svg",
+        stack: ["GA4", "BigQuery", "GTM Server-Side", "Cloud Run (GCP)", "Looker Studio"],
+        metrics: [
+          { val: "+92.4%", label: "Eventos Recuperados" },
+          { val: "+18%", label: "ROAS em Mídia Paga" },
+          { val: "62 ms", label: "Latência Média Stream" }
+        ],
+        problem: "Dispositivos iOS e navegadores com proteções de privacidade descartavam até 35% dos eventos de checkout e lead, distorcendo o custo de aquisição (CAC) e prejudicando os algoritmos de otimização de campanhas de mídia paga.",
+        solution: "Implementação de servidor proxy em subdomínio de 1ª parte no Google Cloud Run rodando GTM Server-Side, sanitizando dados de PII e disparando eventos server-to-server para APIs de conversão (CAPI) e stream direto para o BigQuery.",
+        results: "Recuperação de 92.4% dos eventos antes perdidos no funil. Otimização das campanhas resultou em 18% de aumento no ROAS e criação de uma base de dados proprietária de alta fidelidade para atribuição multitoque.",
+        learnings: "First-party data não é apenas um requisito técnico, mas um ativo estratégico de produto indispensável em um ecossistema digital pós-cookies."
+      },
+      {
+        id: "churn-prediction-retencao",
+        title: "Predição de Churn & Retenção de Clientes",
+        category: "business",
+        categoryName: "Business Analytics",
+        badgeClass: "badge-theme-business",
+        sector: "SaaS B2B & Serviços Recorrentes",
+        image: "assets/img/projects/project-churn-prediction.svg",
+        stack: ["Python", "Scikit-Learn / XGBoost", "PostgreSQL", "Metabase", "Webhooks"],
+        metrics: [
+          { val: "R$ 1.2M", label: "ARR Salvo" },
+          { val: "0.914", label: "AUC-ROC do Modelo" },
+          { val: "84.6%", label: "Precisão Top Decil" }
+        ],
+        problem: "O time de Customer Success só tomava conhecimento do cancelamento após a solicitação formal do cliente, quando a taxa de recuperação era inferior a 6%.",
+        solution: "Engenharia de features com base na queda de frequência de logins, uso de recursos-chave e sentimento de tickets nos últimos 30 dias. Modelo XGBoost calculando diariamente o score de risco de cada conta e acionando playbooks de CS.",
+        results: "Identificação do risco com até 45 dias de antecedência. Redução do churn voluntário de 4.1% para 1.8% ao mês, salvando mais de R$ 1.2M em receita anual recorrente (ARR).",
+        learnings: "O melhor modelo preditivo é inútil se não estiver conectado a um processo operacional claro. A chave foi traduzir o 'score de risco' em ações práticas de contato e ofertas de treinamento para o cliente."
+      }
+    ];
+
     document.addEventListener("DOMContentLoaded", () => {
-      // Efeito de Parallax nos Cards
-      document.querySelectorAll('.project-card').forEach(card => {
-        const icon = card.querySelector('i[data-lucide]:not(.w-3, .w-4)'); 
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          
-          if(icon) {
-            gsap.to(icon, {
-              x: x * 30,
-              y: y * 30,
-              rotation: -12 + (x * 15),
-              duration: 1,
-              ease: "power2.out"
-            });
+      // 1. Inicializar ícones do Lucide
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      // 2. Elementos DOM de Filtro e Busca
+      const pills = document.querySelectorAll(".cat-pill");
+      const cards = document.querySelectorAll(".project-card");
+      const searchInput = document.getElementById("project-search-input");
+      const searchClear = document.getElementById("project-search-clear");
+      const emptyState = document.getElementById("empty-search-state");
+      const resetSearchBtn = document.getElementById("reset-search-btn");
+      const projectCounter = document.getElementById("project-counter");
+
+      let currentFilter = "all";
+      let currentQuery = "";
+
+      function normalizeStr(str) {
+        return (str || "")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .trim();
+      }
+
+      function filterProjects() {
+        const queryTerms = normalizeStr(currentQuery).split(/\s+/).filter(Boolean);
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const cardCategory = card.getAttribute("data-category") || "";
+          const cardTech = card.getAttribute("data-tech") || "";
+          const cardText = normalizeStr(card.innerText + " " + cardTech);
+
+          const matchesCategory = (currentFilter === "all") || (cardCategory === currentFilter);
+          const matchesQuery = queryTerms.every((term) => cardText.includes(term));
+
+          if (matchesCategory && matchesQuery) {
+            card.classList.remove("hidden");
+            visibleCount++;
+          } else {
+            card.classList.add("hidden");
           }
         });
-        
-        card.addEventListener('mouseleave', () => {
-          if(icon) {
-            gsap.to(icon, { x: 0, y: 0, rotation: -12, duration: 1, ease: "power2.out" });
+
+        if (projectCounter) {
+          projectCounter.textContent = `${visibleCount} ${visibleCount === 1 ? 'projeto' : 'projetos'}`;
+        }
+
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove("hidden");
+          } else {
+            emptyState.classList.add("hidden");
+          }
+        }
+      }
+
+      // Filtro de Pills
+      pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          pills.forEach((p) => p.classList.remove("active"));
+          pill.classList.add("active");
+          currentFilter = pill.getAttribute("data-filter") || "all";
+          filterProjects();
+        });
+      });
+
+      // Input de busca em tempo real
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          currentQuery = e.target.value;
+          if (searchClear) {
+            if (currentQuery.trim().length > 0) {
+              searchClear.classList.remove("hidden");
+            } else {
+              searchClear.classList.add("hidden");
+            }
+          }
+          filterProjects();
+        });
+
+        searchInput.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            searchInput.value = "";
+            currentQuery = "";
+            searchClear.classList.add("hidden");
+            filterProjects();
+          }
+        });
+      }
+
+      if (searchClear) {
+        searchClear.addEventListener("click", () => {
+          searchInput.value = "";
+          currentQuery = "";
+          searchClear.classList.add("hidden");
+          filterProjects();
+          searchInput.focus();
+        });
+      }
+
+      if (resetSearchBtn) {
+        resetSearchBtn.addEventListener("click", () => {
+          if (searchInput) searchInput.value = "";
+          currentQuery = "";
+          if (searchClear) searchClear.classList.add("hidden");
+          const allPill = document.querySelector('.cat-pill[data-filter="all"]');
+          if (allPill) allPill.click();
+          filterProjects();
+        });
+      }
+
+      // 3. Navegação direta para os Estudos de Caso
+      cards.forEach((card) => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("a")) return;
+          const href = card.getAttribute("data-href");
+          if (href) {
+            window.location.href = href;
           }
         });
       });
 
-      // Inicializa os ícones
-      lucide.createIcons();
+      // 4. Modal de Busca Global (Ctrl+K)
+      const searchTrigger = document.getElementById("search-modal-trigger");
+      const searchModal = document.getElementById("search-modal");
+      const searchClose = document.getElementById("search-modal-close");
+      const siteSearchInput = document.getElementById("site-search-input");
+      const modalContainer = document.getElementById("search-modal-container");
+
+      function openGlobalSearch() {
+        if (!searchModal) return;
+        searchModal.classList.remove("hidden");
+        searchModal.classList.add("flex");
+        setTimeout(() => {
+          searchModal.classList.remove("opacity-0");
+          modalContainer.classList.remove("scale-95");
+          modalContainer.classList.add("scale-100");
+          if (siteSearchInput) siteSearchInput.focus();
+        }, 10);
+      }
+
+      function closeGlobalSearch() {
+        if (!searchModal) return;
+        searchModal.classList.add("opacity-0");
+        modalContainer.classList.remove("scale-100");
+        modalContainer.classList.remove("scale-95");
+        setTimeout(() => {
+          searchModal.classList.add("hidden");
+          searchModal.classList.remove("flex");
+        }, 200);
+      }
+
+      if (searchTrigger) searchTrigger.addEventListener("click", openGlobalSearch);
+      if (searchClose) searchClose.addEventListener("click", closeGlobalSearch);
+
+      if (searchModal) {
+        searchModal.addEventListener("click", (e) => {
+          if (e.target === searchModal) closeGlobalSearch();
+        });
+      }
+
+      // Teclas de atalho universais
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (searchModal && !searchModal.classList.contains("hidden")) {
+            closeGlobalSearch();
+          }
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          openGlobalSearch();
+        }
+      });
+
+      // 5. Drawer Mobile
+      const mobileBtn = document.getElementById("mobile-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileClose = document.getElementById("mobile-close");
+
+      if (mobileBtn && mobileMenu && mobileClose) {
+        mobileBtn.addEventListener("click", () => {
+          mobileMenu.classList.add("open");
+          document.body.style.overflow = "hidden";
+        });
+        mobileClose.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          document.body.style.overflow = "";
+        });
+      }
     });
   </script>
 
 </body>
 
 </html>
-
-

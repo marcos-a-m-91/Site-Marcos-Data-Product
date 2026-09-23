@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Motor de Risco & Crédito Dinâmico — Estudo de Caso | Marcos Data Product</title>
+  <meta name="description"
+    content="Como unificamos 3 bases ERPs legadas e implantamos um motor algorítmico servido via API que automatizou 80% das decisões de crédito e reduziu o tempo de análise de 4 dias para 30 segundos." />
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Motor de Risco & Crédito Dinâmico — Estudo de Caso | Marcos Data Product" />
+  <meta property="og:description"
+    content="Da análise manual à concessão em 30 segundos: caso de estudo de engenharia e modelagem preditiva aplicada ao crédito corporativo." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/img/projects/project-credit-portfolio.svg" />
+
+  <!-- Vendor Libraries -->
+  <script src="../assets/vendor/resource_3fa48481346f.js"></script>
+  <script src="../assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png" />
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+
+  <style>
+    /* Inter Typography & Design System Overrides */
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote, label {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    #reading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #38bdf8);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }
+
+    .article-prose {
+      color: #1f2937;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .article-prose h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #0b1e3a;
+      letter-spacing: -0.02em;
+    }
+
+    .article-prose h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #0b1e3a;
+    }
+
+    .article-prose p {
+      margin-bottom: 1.4rem;
+      color: #475569;
+    }
+
+    .article-prose ul, .article-prose ol {
+      margin-bottom: 1.4rem;
+      padding-left: 1.5rem;
+      color: #475569;
+    }
+
+    .article-prose li {
+      margin-bottom: 0.5rem;
+    }
+
+    .article-prose blockquote {
+      border-left: 4px solid #2563eb;
+      padding: 1rem 1.25rem;
+      background-color: #f8fafc;
+      border-radius: 0 1rem 1rem 0;
+      font-style: italic;
+      color: #334155;
+      margin: 2rem 0;
+    }
+
+    .article-prose strong {
+      color: #0b1e3a;
+      font-weight: 600;
+    }
+
+    /* Active Nav Link with blue line underline */
+    .nav-item-active {
+      color: #0b1e3a !important;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-item-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #2563eb;
+      border-radius: 2px;
+    }
+
+    .card-hover-clean {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-hover-clean:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
+      border-color: rgba(37, 99, 235, 0.35);
+    }
+
+    .badge-theme-analytics {
+      background-color: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
+
+  <!-- Reading Progress Bar -->
+  <div id="reading-bar"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     HEADER / NAVBAR
+  ═══════════════════════════════════════════════════════ -->
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product Logo"
+          class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
+        <a href="../index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
+        <a href="../blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
+        <a href="../projetos.html" class="nav-item-active">Projetos</a>
+        <a href="../biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
+        <a href="../sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer"
+          aria-label="Buscar no site">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- CTA "Vamos conversar" -->
+        <a href="mailto:contato@marcosdataproduct.com"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          <span>Vamos conversar</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] cursor-pointer"
+          id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]"
+      id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+    <a href="../index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
+      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
+      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
+    </a>
+    <div class="flex flex-col gap-2">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="../blog.html" class="mobile-link">Blog</a>
+      <a href="../projetos.html" class="mobile-link active font-semibold text-[#2563eb]">Projetos</a>
+      <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
+      <a href="../sobre.html" class="mobile-link">Sobre</a>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+      <a href="mailto:contato@marcosdataproduct.com"
+        class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+        <span>Vamos conversar</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     BREADCRUMB & HEADER DO ESTUDO DE CASO
+  ═══════════════════════════════════════════════════════ -->
+  <main class="max-w-4xl mx-auto px-5 sm:px-8 pt-8 sm:pt-12 pb-24">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-[#64748b] mb-6">
+      <a href="../index.html" class="hover:text-[#0b1e3a] transition-colors">Home</a>
+      <span>/</span>
+      <a href="../projetos.html" class="hover:text-[#0b1e3a] transition-colors">Projetos</a>
+      <span>/</span>
+      <span class="text-[#0b1e3a] font-medium truncate">Motor de Risco & Crédito Dinâmico</span>
+    </nav>
+
+    <!-- Header Meta & Title -->
+    <header class="mb-10">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="badge-theme-analytics px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">
+          Analytics & Risco
+        </span>
+        <span class="bg-[#0b1e3a] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+          <i data-lucide="building-2" class="w-3.5 h-3.5 text-[#38bdf8]"></i>
+          Fintech B2B & Crédito
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0b1e3a] tracking-tight leading-[1.15] mb-5">
+        Motor de Risco & Crédito Dinâmico: Da Análise Manual à Concessão em 30 Segundos
+      </h1>
+
+      <p class="text-base sm:text-lg text-[#64748b] leading-relaxed mb-6 font-normal">
+        Como unificamos 3 bases ERPs legadas e implantamos um motor preditivo servido via API que automatizou 80% das decisões diárias de crédito corporativo com governança e interpretabilidade.
+      </p>
+
+      <div class="flex items-center justify-between py-4 border-y border-[#e2e8f0] text-xs text-[#64748b]">
+        <div class="flex items-center gap-2.5">
+          <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-8 h-8 rounded-full object-cover border border-[#e2e8f0]" />
+          <div>
+            <div class="font-semibold text-[#0b1e3a]">Marcos Aurélio</div>
+            <div class="text-[11px] text-[#94a3b8]">Economista & Analista de Negócios</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1">
+            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 7 min de leitura
+          </span>
+          <span class="hidden sm:inline">·</span>
+          <span class="hidden sm:inline">Caso de Estudo Prático</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Visual Architecture / Graphic Showcase -->
+    <div class="w-full rounded-2xl overflow-hidden border border-[#e2e8f0] bg-[#07101e] mb-12 shadow-sm">
+      <img src="../assets/img/projects/project-credit-portfolio.svg" alt="Arquitetura do Motor de Risco e Crédito" class="w-full h-auto object-cover" />
+    </div>
+
+    <!-- Highlights KPI Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-14">
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#0b1e3a] tracking-tight">80%</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">Decisões 100% Automáticas</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#2563eb] tracking-tight">-28%</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">Tempo Total de Análise</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#10b981] tracking-tight">2.14%</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">Inadimplência NPL 90</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#6366f1] tracking-tight">+22%</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">Volume de Crédito Aprovado</div>
+      </div>
+    </div>
+
+    <!-- Article Content Prose -->
+    <article class="article-prose">
+
+      <h2>1. Contexto & Cenário Operacional</h2>
+      <p>
+        No ecossistema de vendas B2B, a velocidade da concessão de crédito é frequentemente o diferencial entre fechar um contrato lucrativo ou perder a oportunidade para um concorrente ágil. Na operação em questão, a empresa enfrentava um desafio crítico: o processo de análise de crédito era <strong>100% analógico e descentralizado</strong>.
+      </p>
+      <p>
+        Os dados cadastrais, históricos de pedidos e registros de pagamentos estavam fragmentados em <strong>três sistemas ERPs legados distintos</strong>, além de planilhas locais mantidas individualmente por cada filial regional. Quando um cliente submetia uma proposta de compra a prazo, a equipe de crédito precisava consultar manualmente bureau a bureau, extrair extratos e preencher formulários estáticos.
+      </p>
+      <p>
+        O resultado direto desse atrito era um <strong>SLA médio de 4 dias úteis</strong> para a resposta final. Clientes com excelente saúde financeira desistiam da transação pela lentidão, enquanto casos de risco elevado por vezes passavam despercebidos por cansaço operacional e falta de conciliação de dados.
+      </p>
+
+      <h2>2. O Problema & Objetivos de Negócio</h2>
+      <p>
+        O objetivo estratégico foi desenhado em conjunto com a diretoria financeira e os gestores comerciais:
+      </p>
+      <ul>
+        <li><strong>Reduzir o tempo de resposta:</strong> De dias para menos de 1 minuto nas propostas padrão de baixo e médio risco.</li>
+        <li><strong>Unificar a esteira de dados:</strong> Consolidar os dados transacionais de clientes dispersos entre os três ERPs corporativos.</li>
+        <li><strong>Eliminar subjetividade na concessão:</strong> Criar uma régua de score estatístico com pesos transparentes e políticas claras de limite de exposição.</li>
+        <li><strong>Blindar o caixa contra inadimplência:</strong> Manter a taxa de default (NPL 90) abaixo da média de 2,5% do setor.</li>
+      </ul>
+
+      <blockquote>
+        "A meta não era simplesmente substituir humanos por algoritmos, mas liberar os analistas seniores de tarefas repetitivas de triagem para que pudessem focar exclusivamente nas exceções e clientes estratégicos complexos."
+      </blockquote>
+
+      <h2>3. Arquitetura Técnica & Stack Adotada</h2>
+      <p>
+        Para garantir escalabilidade, segurança e baixo custo de infraestrutura, desenhamos a solução baseada nas seguintes ferramentas:
+      </p>
+      <ul>
+        <li><strong>Python & Pandas/Polars:</strong> Tratamento, padronização e higienização dos cadastros e histórico financeiro de transações.</li>
+        <li><strong>AWS Athena & S3:</strong> Repositório central de dados (Data Lake) para consultas SQL serverless de alto desempenho sobre as bases históricas unificadas.</li>
+        <li><strong>Scikit-Learn & XGBoost:</strong> Treinamento dos modelos de propensão ao pagamento e cálculo do score de risco probabilístico.</li>
+        <li><strong>SHAP (SHapley Additive exPlanations):</strong> Camada de Explainable AI que gera a justificativa exata dos 3 principais fatores que influenciaram a nota de crédito.</li>
+        <li><strong>FastAPI:</strong> Microsserviço de API REST de alta velocidade para responder em menos de 400 milissegundos às requisições do sistema transacional.</li>
+        <li><strong>Power BI:</strong> Dashboard de monitoramento em tempo real do volume de propostas, carteira ativa e taxas de inadimplência por segmento.</li>
+      </ul>
+
+      <h2>4. Implementação Passo a Passo (Do Dado à Produção)</h2>
+      <p>
+        A implementação foi dividida em quatro fases integradas:
+      </p>
+
+      <h3>Fase 1: Higienização e Centralização de Dados</h3>
+      <p>
+        O primeiro desafio consistiu em desduplicar cadastros de clientes que possuíam registros inconsistentes nos três ERPs. Criamos um identificador unificado baseado em CNPJ raiz, consolidando histórico de pontualidade de pagamentos, títulos protestados e tempo de relacionamento comercial.
+      </p>
+
+      <h3>Fase 2: Modelagem Preditiva & Backtesting</h3>
+      <p>
+        Treinamos um classificador supervisionado com 3 anos de transações passadas. O modelo foi calibrado com foco na métrica de <strong>Precision @ Top Decil</strong> para garantir que clientes classificados como "Score A" tivessem taxa de default praticamente nula. Realizamos backtesting em períodos de estresse econômico para atestar a resiliência das regras de corte.
+      </p>
+
+      <h3>Fase 3: Construção da API em FastAPI</h3>
+      <p>
+        Empacotamos a esteira preditiva em um container Docker servido via FastAPI. Quando o vendedor insere o pedido no sistema de vendas, o sistema envia o CNPJ e o valor solicitado. A API consulta as bases, calcula as variáveis, roda o modelo e devolve em 30 segundos uma das três respostas:
+      </p>
+      <ul>
+        <li><strong class="text-emerald-700">Aprovado Automático (Faixa Verde):</strong> Limite concedido de imediato, pedido liberado para faturamento.</li>
+        <li><strong class="text-amber-700">Análise de Alçada (Faixa Amarela):</strong> Direcionado com recomendação estatística e os fatores de atenção destacados para o analista humano.</li>
+        <li><strong class="text-rose-700">Recusado com Justificativa (Faixa Vermelha):</strong> Bloqueio automático com motivos regulatórios claros.</li>
+      </ul>
+
+      <h2>5. Resultados & Impacto Tangível de Negócio</h2>
+      <p>
+        Após 6 meses de operação em produção, os números demonstraram a transformação:
+      </p>
+      <ul>
+        <li><strong>80% das solicitações diárias</strong> passaram a ser aprovadas ou recusadas instantaneamente sem intervenção manual.</li>
+        <li>O tempo médio de liberação de pedidos despencou de <strong>4 dias para 30 segundos</strong> nos casos automáticos.</li>
+        <li>O volume financeiro total de crédito concedido com segurança cresceu <strong>+22%</strong> pela retenção dos clientes ágeis.</li>
+        <li>A inadimplência da carteira ativa foi mantida em saudáveis <strong>2.14%</strong>, abaixo do teto de tolerância corporativa.</li>
+      </ul>
+
+      <h2>6. Principais Aprendizados & Lições do Marcos</h2>
+      <p>
+        Este projeto reforçou uma convicção fundamental sobre o desenvolvimento de produtos de dados:
+      </p>
+      <blockquote>
+        "Em risco de crédito corporativo, a governança e a interpretabilidade das variáveis (Explainable AI com SHAP) são tão vitais quanto a acurácia do modelo. Se a equipe de compliance ou auditoria não entender exatamente por que o algoritmo recusou ou aprovou determinado limite, a solução nunca ganhará a confiança institucional necessária para escalar."
+      </blockquote>
+
+    </article>
+
+    <!-- Navigation between projects -->
+    <div class="mt-16 pt-8 border-t border-[#e2e8f0] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="../projetos.html" class="inline-flex items-center gap-2 text-sm font-semibold text-[#2563eb] hover:text-[#1d4ed8] transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Voltar para todos os projetos</span>
+      </a>
+      <a href="sales-dashboard-latam.html" class="inline-flex items-center gap-2 text-sm font-semibold text-[#0b1e3a] hover:text-[#2563eb] transition-colors">
+        <span>Próximo caso: Sales Intelligence LATAM</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     CTA BANNER: CONECTAR E CONVERSAR
+  ═══════════════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-20">
+    <div
+      class="bg-gradient-to-r from-[#0b1e3a] via-[#102a52] to-[#0b1e3a] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border border-white/10 shadow-xl relative overflow-hidden">
+      <!-- Ambient light -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-xl z-10">
+        <div class="text-[11px] font-bold text-[#38bdf8] uppercase tracking-widest mb-2">VAMOS CONSTRUIR JUNTOS</div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+          Tem um desafio de dados ou quer trocar uma ideia?
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 font-normal max-w-md mb-6 leading-relaxed">
+          Estou sempre aberto a novas conversas, parcerias, oportunidades e desafios em analytics, engenharia de dados e produtos de IA.
+        </p>
+        <a href="mailto:contato@marcosdataproduct.com"
+          class="px-6 py-3 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
+          <span>Iniciar conversa</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Right Side Brand Badge -->
+      <div
+        class="flex items-center gap-4 z-10 self-start md:self-center pl-0 md:pl-8 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 w-full md:w-auto">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-12 h-12 object-contain brightness-125" />
+        <div class="text-sm font-semibold text-white/90 leading-tight">
+          Dados. Ideias.<br />
+          Pessoas. Impacto.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER INSTITUCIONAL (DEEP NAVY)
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo e Nome da Marca -->
+      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain brightness-110" />
+        <span class="font-bold text-base tracking-tight text-white">Marcos Data Product</span>
+      </a>
+
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
+      </div>
+
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="search-modal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#e2e8f0] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      id="search-modal-container">
+
+      <!-- Input Header -->
+      <div class="p-4 border-b border-[#e2e8f0] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#2563eb]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
+          class="w-full text-sm outline-none text-[#0b1e3a] placeholder-[#94a3b8]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#94a3b8] hover:text-[#0b1e3a] hover:bg-slate-100 cursor-pointer" aria-label="Fechar busca">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Quick Results / Suggestions -->
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+        <div class="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <a href="../blog/agentes-ia-business-analytics.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i
+                data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • IA e RAG</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../projetos.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs"><i
+                data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Casos de Estudo & Portfólio</div>
+              <div class="text-[10px] text-[#64748b]">Projetos • Soluções de dados ponta a ponta</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     SCRIPTS & INTERAÇÕES
+  ═══════════════════════════════════════════════════════ -->
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Inicializar ícones Lucide
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      // 2. Reading Progress Bar
+      const readingBar = document.getElementById("reading-bar");
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        if (readingBar) readingBar.style.width = progress + "%";
+      }, { passive: true });
+
+      // 3. Search Modal
+      const searchTrigger = document.getElementById("search-modal-trigger");
+      const searchModal = document.getElementById("search-modal");
+      const searchClose = document.getElementById("search-modal-close");
+      const siteSearchInput = document.getElementById("site-search-input");
+      const modalContainer = document.getElementById("search-modal-container");
+
+      function openGlobalSearch() {
+        if (!searchModal) return;
+        searchModal.classList.remove("hidden");
+        searchModal.classList.add("flex");
+        setTimeout(() => {
+          searchModal.classList.remove("opacity-0");
+          modalContainer.classList.remove("scale-95");
+          modalContainer.classList.add("scale-100");
+          if (siteSearchInput) siteSearchInput.focus();
+        }, 10);
+      }
+
+      function closeGlobalSearch() {
+        if (!searchModal) return;
+        searchModal.classList.add("opacity-0");
+        modalContainer.classList.remove("scale-100");
+        modalContainer.classList.add("scale-95");
+        setTimeout(() => {
+          searchModal.classList.add("hidden");
+          searchModal.classList.remove("flex");
+        }, 200);
+      }
+
+      if (searchTrigger) searchTrigger.addEventListener("click", openGlobalSearch);
+      if (searchClose) searchClose.addEventListener("click", closeGlobalSearch);
+
+      if (searchModal) {
+        searchModal.addEventListener("click", (e) => {
+          if (e.target === searchModal) closeGlobalSearch();
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && searchModal && !searchModal.classList.contains("hidden")) {
+          closeGlobalSearch();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          openGlobalSearch();
+        }
+      });
+
+      // 4. Mobile Drawer
+      const mobileBtn = document.getElementById("mobile-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileClose = document.getElementById("mobile-close");
+
+      if (mobileBtn && mobileMenu && mobileClose) {
+        mobileBtn.addEventListener("click", () => {
+          mobileMenu.classList.add("open");
+          document.body.style.overflow = "hidden";
+        });
+        mobileClose.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          document.body.style.overflow = "";
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

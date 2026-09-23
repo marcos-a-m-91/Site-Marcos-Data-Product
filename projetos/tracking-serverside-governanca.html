@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Governança & Tracking Server-Side — Estudo de Caso | Marcos Data Product</title>
+  <meta name="description"
+    content="Como estruturamos uma infraestrutura de coleta de dados de 1ª parte no Google Cloud Run com GTM Server-Side, recuperando 92.4% dos eventos perdidos e gerando +18% de ROAS em mídia paga com governança LGPD." />
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Governança & Tracking Server-Side — Estudo de Caso | Marcos Data Product" />
+  <meta property="og:description"
+    content="Da perda de dados por bloqueadores à governança de 1ª parte: caso de estudo de engenharia de tracking, cloud e product analytics." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/img/projects/project-tracking-analytics.svg" />
+
+  <!-- Vendor Libraries -->
+  <script src="../assets/vendor/resource_3fa48481346f.js"></script>
+  <script src="../assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png" />
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+
+  <style>
+    /* Inter Typography & Design System Overrides */
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote, label {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    #reading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #38bdf8);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }
+
+    .article-prose {
+      color: #1f2937;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .article-prose h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #0b1e3a;
+      letter-spacing: -0.02em;
+    }
+
+    .article-prose h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #0b1e3a;
+    }
+
+    .article-prose p {
+      margin-bottom: 1.4rem;
+      color: #475569;
+    }
+
+    .article-prose ul, .article-prose ol {
+      margin-bottom: 1.4rem;
+      padding-left: 1.5rem;
+      color: #475569;
+    }
+
+    .article-prose li {
+      margin-bottom: 0.5rem;
+    }
+
+    .article-prose blockquote {
+      border-left: 4px solid #2563eb;
+      padding: 1rem 1.25rem;
+      background-color: #f8fafc;
+      border-radius: 0 1rem 1rem 0;
+      font-style: italic;
+      color: #334155;
+      margin: 2rem 0;
+    }
+
+    .article-prose strong {
+      color: #0b1e3a;
+      font-weight: 600;
+    }
+
+    /* Active Nav Link with blue line underline */
+    .nav-item-active {
+      color: #0b1e3a !important;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-item-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #2563eb;
+      border-radius: 2px;
+    }
+
+    .card-hover-clean {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-hover-clean:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
+      border-color: rgba(37, 99, 235, 0.35);
+    }
+
+    .badge-theme-product {
+      background-color: #ffe4e6;
+      color: #be123c;
+      border: 1px solid #fecdd3;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
+
+  <!-- Reading Progress Bar -->
+  <div id="reading-bar"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+     HEADER / NAVBAR
+  ═══════════════════════════════════════════════════════ -->
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product Logo"
+          class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
+        <a href="../index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
+        <a href="../blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
+        <a href="../projetos.html" class="nav-item-active">Projetos</a>
+        <a href="../biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
+        <a href="../sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer"
+          aria-label="Buscar no site">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- CTA "Vamos conversar" -->
+        <a href="mailto:contato@marcosdataproduct.com"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          <span>Vamos conversar</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] cursor-pointer"
+          id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]"
+      id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+    <a href="../index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
+      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
+      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
+    </a>
+    <div class="flex flex-col gap-2">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="../blog.html" class="mobile-link">Blog</a>
+      <a href="../projetos.html" class="mobile-link active font-semibold text-[#2563eb]">Projetos</a>
+      <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
+      <a href="../sobre.html" class="mobile-link">Sobre</a>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+      <a href="mailto:contato@marcosdataproduct.com"
+        class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+        <span>Vamos conversar</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     BREADCRUMB & HEADER DO ESTUDO DE CASO
+  ═══════════════════════════════════════════════════════ -->
+  <main class="max-w-4xl mx-auto px-5 sm:px-8 pt-8 sm:pt-12 pb-24">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-[#64748b] mb-6">
+      <a href="../index.html" class="hover:text-[#0b1e3a] transition-colors">Home</a>
+      <span>/</span>
+      <a href="../projetos.html" class="hover:text-[#0b1e3a] transition-colors">Projetos</a>
+      <span>/</span>
+      <span class="text-[#0b1e3a] font-medium truncate">Governança & Tracking Server-Side</span>
+    </nav>
+
+    <!-- Header Meta & Title -->
+    <header class="mb-10">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="badge-theme-product px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">
+          Product Analytics & Growth
+        </span>
+        <span class="bg-[#0b1e3a] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+          <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-[#38bdf8]"></i>
+          E-commerce & Mobile App
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0b1e3a] tracking-tight leading-[1.15] mb-5">
+        Governança & Tracking Server-Side: Recuperando 92.4% dos Dados de Conversão
+      </h1>
+
+      <p class="text-base sm:text-lg text-[#64748b] leading-relaxed mb-6 font-normal">
+        Como arquitetamos uma esteira de First-Party Data no Google Cloud Run com GTM Server-Side, blindando a telemetria do produto contra bloqueadores de anúncios, garantindo total conformidade com a LGPD e aumentando o ROAS em +18%.
+      </p>
+
+      <div class="flex items-center justify-between py-4 border-y border-[#e2e8f0] text-xs text-[#64748b]">
+        <div class="flex items-center gap-2.5">
+          <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-8 h-8 rounded-full object-cover border border-[#e2e8f0]" />
+          <div>
+            <div class="font-semibold text-[#0b1e3a]">Marcos Aurélio</div>
+            <div class="text-[11px] text-[#94a3b8]">Economista & Analista de Negócios</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1">
+            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 6 min de leitura
+          </span>
+          <span class="hidden sm:inline">·</span>
+          <span class="hidden sm:inline">Caso de Estudo Prático</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Visual Architecture / Graphic Showcase -->
+    <div class="w-full rounded-2xl overflow-hidden border border-[#e2e8f0] bg-[#070f1e] mb-12 shadow-sm">
+      <img src="../assets/img/projects/project-tracking-analytics.svg" alt="Arquitetura de Tracking Server-Side no GCP" class="w-full h-auto object-cover" />
+    </div>
+
+    <!-- Highlights KPI Cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-14">
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#0b1e3a] tracking-tight">+92.4%</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">Sinais Recuperados</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#2563eb] tracking-tight">+18%</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">ROAS em Mídia Paga</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#10b981] tracking-tight">62 ms</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">Latência Stream BigQuery</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] shadow-xs">
+        <div class="text-2xl sm:text-3xl font-extrabold text-[#7e22ce] tracking-tight">100%</div>
+        <div class="text-xs text-[#64748b] font-medium mt-1">LGPD & Sanitização PII</div>
+      </div>
+    </div>
+
+    <!-- Article Content Prose -->
+    <article class="article-prose">
+
+      <h2>1. Contexto & Cenário Operacional</h2>
+      <p>
+        O ecossistema digital contemporâneo vivencia a maior revolução em privacidade e mensuração da história da internet: restrições ITP (Intelligent Tracking Prevention) no Safari e iOS, bloqueadores de scripts de terceiros cada vez mais populares e regulamentações rigorosas de privacidade como LGPD e GDPR.
+      </p>
+      <p>
+        Em uma grande plataforma de e-commerce e serviços digitais, o time de marketing e produto percebeu uma discrepância alarmante: o volume real de vendas faturadas no ERP era <strong>32% maior</strong> do que os eventos computados pelo Google Analytics 4 e pixels de conversão. Dispositivos móveis modernos descartavam silenciosamente eventos de checkout e lead, gerando um "apagão" de atribuição. Como consequência, o Custo de Aquisição de Clientes (CAC) parecia inflado e os algoritmos de leilão de mídia operavam às cegas.
+      </p>
+
+      <h2>2. O Problema & Desafios Técnicos</h2>
+      <p>
+        A dependência do tracking client-side (tags JavaScript executadas no navegador do usuário) apresentava três falhas estruturais:
+      </p>
+      <ul>
+        <li><strong>Perda massiva de sinais de conversão:</strong> Usuários com extensões de privacidade ou Safari tinham seus cookies de sessão expurgados em até 24 horas, quebrando o rastreamento da jornada de compra de tickets mais altos.</li>
+        <li><strong>Risco de vazamento de dados pessoais (PII):</strong> Scripts de terceiros instalados no front-end tinham acesso irrestrito ao DOM da página, criando vulnerabilidades regulatórias frente à LGPD.</li>
+        <li><strong>Degradação de performance web (Core Web Vitals):</strong> O acúmulo de bibliotecas analíticas externas sobrecarregava a CPU dos dispositivos móveis, atrasando o Largest Contentful Paint (LCP).</li>
+      </ul>
+
+      <h2>3. Arquitetura Técnica & Stack Adotada</h2>
+      <p>
+        Desenvolvemos uma infraestrutura robusta de <strong>Server-Side Tagging</strong> hospedada no ecossistema <strong>Google Cloud Platform (GCP)</strong>:
+      </p>
+      <ul>
+        <li><strong>Google Tag Manager Server-Side:</strong> Container implantado em instâncias gerenciadas no Google Cloud Run com subdomínio de primeira parte (ex: <code>metrics.dominio.com.br</code>). O navegador conversa exclusivamente com um endpoint proprietário do domínio.</li>
+        <li><strong>Sanitização Rigorosa de Dados (Data Governance Gate):</strong> Antes de despachar eventos para provedores externos, o servidor sanitiza parâmetros de URL, faz hash SHA-256 de e-mails/telefones e remove qualquer PII não autorizada pelo termo de consentimento.</li>
+        <li><strong>APIs de Conversão (CAPI):</strong> Disparo de transações server-to-server diretamente para Meta Conversions API, Google Ads Enhanced Conversions e TikTok Events API, imunes a bloqueios client-side.</li>
+        <li><strong>Streaming Contínuo para o Google BigQuery:</strong> Todos os eventos brutos de comportamento do usuário são descarregados em tempo real (latência média de 62 ms) para um data lakehouse particionado no BigQuery para análises de atribuição multitoque.</li>
+      </ul>
+
+      <blockquote>
+        "Tracking Server-Side não é apenas uma tática para contornar bloqueadores de anúncios; é a evolução definitiva da soberania de dados. Quando sua empresa assume o controle do pipeline de coleta no servidor, você decide exatamente o que entra, o que é anonimizado e para onde cada bit de informação é compartilhado."
+      </blockquote>
+
+      <h2>4. Implementação Passo a Passo</h2>
+      <p>
+        A migração foi executada em quatro fases de testes A/B de telemetria:
+      </p>
+
+      <h3>Fase 1: Configuração de DNS e Cloud Run Provisioning</h3>
+      <p>
+        Mapeamos certificados SSL de primeira parte e configuramos o Cloud Run com escalonamento elétrico de 0 a dezenas de instâncias concorrentes, suportando picos de tráfego de datas promocionais (como Black Friday) com custo mínimo em períodos normais.
+      </p>
+
+      <h3>Fase 2: Consolidação do Modelo de Eventos</h3>
+      <p>
+        Desenvolvemos uma taxonomia unificada de eventos de produto (ex: <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, <code>purchase</code>), garantindo que tanto a web quanto o aplicativo móvel consumissem o mesmo payload semântico.
+      </p>
+
+      <h3>Fase 3: Auditoria de Privacidade e Consent Mode v2</h3>
+      <p>
+        Integramos a plataforma de gestão de consentimento (CMP) ao container do servidor. Se o usuário recusa cookies analíticos, o servidor automaticamente anonimiza o IP e descarta identificadores persistentes, operando em modo estritamente estatístico.
+      </p>
+
+      <h2>5. Resultados & Impacto Tangível de Negócio</h2>
+      <p>
+        Os resultados comprovaram a superioridade da arquitetura de primeira parte:
+      </p>
+      <ul>
+        <li>Recuperação de <strong>+92.4% dos sinais de conversão</strong> que antes eram descartados por ad blockers e proteções ITP de navegadores.</li>
+        <li>O retorno sobre investimento em publicidade (ROAS) cresceu <strong>+18%</strong>, impulsionado pelo aprendizado otimizado dos algoritmos de lances de mídia.</li>
+        <li>Latência de streaming para o BigQuery de apenas <strong>62 milissegundos</strong>, permitindo detecção de fraude e abandono de carrinho quase instantânea.</li>
+        <li>Redução de 450 ms no tempo de bloqueio de JavaScript do site, melhorando o ranking de SEO técnico e a experiência do usuário.</li>
+      </ul>
+
+      <h2>6. Principais Aprendizados & Lições do Marcos</h2>
+      <blockquote>
+        "Em um mundo sem cookies de terceiros, os dados de primeira parte (First-Party Data) se tornaram o ativo mais valioso de qualquer companhia digital. Empresas que ainda dependem de scripts legados no front-end estão navegando no escuro. A governança técnica de dados não é custo de TI — é a fundação que sustenta a inteligência de negócios do futuro."
+      </blockquote>
+
+    </article>
+
+    <!-- Navigation between projects -->
+    <div class="mt-16 pt-8 border-t border-[#e2e8f0] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="agentes-ia-rag-automacao.html" class="inline-flex items-center gap-2 text-sm font-semibold text-[#0b1e3a] hover:text-[#2563eb] transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        <span>Anterior: Agentes de IA & RAG</span>
+      </a>
+      <a href="churn-prediction-retencao.html" class="inline-flex items-center gap-2 text-sm font-semibold text-[#2563eb] hover:text-[#1d4ed8] transition-colors">
+        <span>Próximo caso: Predição de Churn</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     CTA BANNER: CONECTAR E CONVERSAR
+  ═══════════════════════════════════════════════════════ -->
+  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-20">
+    <div
+      class="bg-gradient-to-r from-[#0b1e3a] via-[#102a52] to-[#0b1e3a] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border border-white/10 shadow-xl relative overflow-hidden">
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-xl z-10">
+        <div class="text-[11px] font-bold text-[#38bdf8] uppercase tracking-widest mb-2">VAMOS CONSTRUIR JUNTOS</div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
+          Quer recuperar a visibilidade real dos seus dados de conversão?
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 font-normal max-w-md mb-6 leading-relaxed">
+          Vamos conversar sobre tracking server-side, infraestrutura GCP, BigQuery e estratégias avançadas de first-party data para o seu produto.
+        </p>
+        <a href="mailto:contato@marcosdataproduct.com"
+          class="px-6 py-3 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
+          <span>Iniciar conversa</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div
+        class="flex items-center gap-4 z-10 self-start md:self-center pl-0 md:pl-8 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 w-full md:w-auto">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-12 h-12 object-contain brightness-125" />
+        <div class="text-sm font-semibold text-white/90 leading-tight">
+          Dados. Ideias.<br />
+          Pessoas. Impacto.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     FOOTER INSTITUCIONAL (DEEP NAVY)
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain brightness-110" />
+        <span class="font-bold text-base tracking-tight text-white">Marcos Data Product</span>
+      </a>
+
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
+      </div>
+
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="search-modal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#e2e8f0] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      id="search-modal-container">
+
+      <div class="p-4 border-b border-[#e2e8f0] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#2563eb]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
+          class="w-full text-sm outline-none text-[#0b1e3a] placeholder-[#94a3b8]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#94a3b8] hover:text-[#0b1e3a] hover:bg-slate-100 cursor-pointer" aria-label="Fechar busca">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+        <div class="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <a href="../blog/modelagem-star-schema-powerbi.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i
+                data-lucide="database" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Modelagem Star Schema no Power BI</div>
+              <div class="text-[10px] text-[#64748b]">Artigo • Power BI & Modelagem Dimensional</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../projetos.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs"><i
+                data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Casos de Estudo & Portfólio</div>
+              <div class="text-[10px] text-[#64748b]">Projetos • Soluções de dados ponta a ponta</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+     SCRIPTS & INTERAÇÕES
+  ═══════════════════════════════════════════════════════ -->
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) window.lucide.createIcons();
+
+      const readingBar = document.getElementById("reading-bar");
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        if (readingBar) readingBar.style.width = progress + "%";
+      }, { passive: true });
+
+      const searchTrigger = document.getElementById("search-modal-trigger");
+      const searchModal = document.getElementById("search-modal");
+      const searchClose = document.getElementById("search-modal-close");
+      const siteSearchInput = document.getElementById("site-search-input");
+      const modalContainer = document.getElementById("search-modal-container");
+
+      function openGlobalSearch() {
+        if (!searchModal) return;
+        searchModal.classList.remove("hidden");
+        searchModal.classList.add("flex");
+        setTimeout(() => {
+          searchModal.classList.remove("opacity-0");
+          modalContainer.classList.remove("scale-95");
+          modalContainer.classList.add("scale-100");
+          if (siteSearchInput) siteSearchInput.focus();
+        }, 10);
+      }
+
+      function closeGlobalSearch() {
+        if (!searchModal) return;
+        searchModal.classList.add("opacity-0");
+        modalContainer.classList.remove("scale-100");
+        modalContainer.classList.remove("scale-95");
+        setTimeout(() => {
+          searchModal.classList.add("hidden");
+          searchModal.classList.remove("flex");
+        }, 200);
+      }
+
+      if (searchTrigger) searchTrigger.addEventListener("click", openGlobalSearch);
+      if (searchClose) searchClose.addEventListener("click", closeGlobalSearch);
+
+      if (searchModal) {
+        searchModal.addEventListener("click", (e) => {
+          if (e.target === searchModal) closeGlobalSearch();
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && searchModal && !searchModal.classList.contains("hidden")) {
+          closeGlobalSearch();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          openGlobalSearch();
+        }
+      });
+
+      const mobileBtn = document.getElementById("mobile-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileClose = document.getElementById("mobile-close");
+
+      if (mobileBtn && mobileMenu && mobileClose) {
+        mobileBtn.addEventListener("click", () => {
+          mobileMenu.classList.add("open");
+          document.body.style.overflow = "hidden";
+        });
+        mobileClose.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          document.body.style.overflow = "";
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>
