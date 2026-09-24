@@ -43,32 +43,32 @@
       background-position: center right;
       background-repeat: no-repeat;
       background-size: cover;
-      min-height: 560px;
+      min-height: 480px;
     }
 
-    /* Máscara de gradiente para contraste e legibilidade editorial */
+    /* Máscara de gradiente Deep Navy editorial */
     .biblioteca-hero-gradient-mask {
       background: linear-gradient(
         to right,
-        rgba(8, 20, 38, 0.97) 0%,
-        rgba(8, 20, 38, 0.93) 38%,
-        rgba(8, 20, 38, 0.72) 58%,
-        rgba(8, 20, 38, 0.28) 82%,
-        rgba(8, 20, 38, 0.05) 100%
+        rgba(11, 30, 58, 0.94) 0%,
+        rgba(11, 30, 58, 0.88) 38%,
+        rgba(11, 30, 58, 0.58) 62%,
+        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.0) 100%
       );
     }
 
     @media (max-width: 1024px) {
       .biblioteca-hero-container {
         background-position: 72% center;
-        min-height: auto;
+        min-height: 400px;
       }
       .biblioteca-hero-gradient-mask {
         background: linear-gradient(
           to bottom,
-          rgba(8, 20, 38, 0.98) 0%,
-          rgba(8, 20, 38, 0.90) 65%,
-          rgba(8, 20, 38, 0.45) 100%
+          rgba(11, 30, 58, 0.95) 0%,
+          rgba(11, 30, 58, 0.90) 65%,
+          rgba(11, 30, 58, 0.50) 100%
         );
       }
     }
@@ -90,11 +90,11 @@
       transform: translateY(-1px);
     }
     .hero-cat-pill.active {
-      border: 1.5px solid #0084FF !important;
-      background-color: rgba(0, 132, 255, 0.15) !important;
+      border: 1.5px solid #2563eb !important;
+      background-color: rgba(37, 99, 235, 0.25) !important;
       color: #ffffff !important;
       font-weight: 500 !important;
-      box-shadow: 0 0 16px rgba(0, 132, 255, 0.45) !important;
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.4) !important;
     }
 
     /* Active Nav Link with blue line underline */
@@ -308,24 +308,24 @@
       <div class="max-w-3xl">
         
         <!-- Eyebrow -->
-        <span class="text-xs sm:text-sm font-bold text-[#00A3FF] uppercase tracking-[0.28em] block mb-3.5">
+        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.25em] block mb-4">
           BIBLIOTECA
         </span>
 
         <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-[56px] xl:text-[62px] font-extrabold text-white tracking-tight leading-[1.08] mb-4">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
           Livros que ampliam<br />
-          <span class="text-[#0084FF]">perspectivas.</span>
+          <span class="text-[#38bdf8]">perspectivas.</span>
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed mb-7 font-normal max-w-2xl">
+        <p class="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-2xl font-normal">
           Uma seleção de livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida. Ideias que inspiram, provocam e geram novas conexões.
         </p>
 
         <!-- Search Bar (Pill rounded-full) -->
         <div class="relative w-full max-w-[760px] mb-4">
-          <div class="flex items-center bg-[#0d1f38]/85 hover:bg-[#0d1f38] backdrop-blur-md border border-white/20 hover:border-white/35 rounded-full px-5 py-3.5 sm:py-4 text-white transition-all shadow-xl focus-within:border-[#0084FF] focus-within:ring-2 focus-within:ring-[#0084FF]/30">
+          <div class="flex items-center bg-[#0d1f38]/85 hover:bg-[#0d1f38] backdrop-blur-md border border-white/20 hover:border-white/35 rounded-full px-5 py-3.5 sm:py-4 text-white transition-all shadow-xl focus-within:border-[#38bdf8] focus-within:ring-2 focus-within:ring-[#38bdf8]/30">
             <i data-lucide="search" class="w-5 h-5 text-slate-300 mr-3.5 shrink-0"></i>
             <input 
               type="text" 
@@ -812,15 +812,41 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════
-     FOOTER
+     FOOTER INSTITUCIONAL (DEEP NAVY)
   ═══════════════════════════════════════════════════════ -->
-  <footer class="border-t border-[#e2e8f0] bg-white px-5 sm:px-8 py-8 mt-12">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#64748b]">
-      <a href="index.html" class="flex items-center gap-3 group text-inherit hover:text-[#0b1e3a] transition-colors" aria-label="Home - Marcos Data Product">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-6 h-6 object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
-        <span class="font-semibold text-sm text-[#0b1e3a]">Marcos Data Product</span>
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo e Nome da Marca -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain brightness-110" />
+        <span class="font-bold text-base tracking-tight text-white">Marcos Data Product</span>
       </a>
-      <span>© 2026 Marcos Data Product · Feito com dados, café e IA</span>
+
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
+      </div>
+
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
     </div>
   </footer>
 
@@ -839,7 +865,7 @@
     "author": "Charles Wheelan",
     "rating": 4.8,
     "amazon_link": "https://www.amazon.com.br/dp/8537815128",
-    "cover_image": "assets/img/Biblioteca page/Estatística O que é, para que serve, como funciona.webp",
+    "cover_image": "assets/img/books/cover-estatistica-o-que-e.webp",
     "short_desc": "Como transformar dados e gráficos em respostas reais sem fórmulas intimidadoras.",
     "desc_full": "O livro mais didático e esclarecedor sobre como a análise estatística funciona no mundo real. Ensina como pensar criticamente com dados, identificar vieses em pesquisas e entender probabilidades e correlações sem fórmulas excessivas.",
     "tags": [

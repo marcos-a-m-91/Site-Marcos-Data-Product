@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -79,30 +79,34 @@
       background-position: center right;
       background-repeat: no-repeat;
       background-size: cover;
-      min-height: 520px;
+      min-height: 480px;
     }
 
-    /* Máscara de gradiente editorial fiel ao mockup */
+    /* Máscara de gradiente editorial Deep Navy */
     .sobre-hero-gradient-mask {
-      background: linear-gradient(to right,
-          rgba(8, 20, 38, 0.98) 0%,
-          rgba(8, 20, 38, 0.93) 38%,
-          rgba(8, 20, 38, 0.65) 58%,
-          rgba(8, 20, 38, 0.20) 82%,
-          rgba(8, 20, 38, 0.03) 100%);
+      background: linear-gradient(
+        to right,
+        rgba(11, 30, 58, 0.94) 0%,
+        rgba(11, 30, 58, 0.88) 38%,
+        rgba(11, 30, 58, 0.58) 62%,
+        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.0) 100%
+      );
     }
 
     @media (max-width: 1024px) {
       .sobre-hero-container {
         background-position: 72% center;
-        min-height: auto;
+        min-height: 400px;
       }
 
       .sobre-hero-gradient-mask {
-        background: linear-gradient(to bottom,
-            rgba(8, 20, 38, 0.98) 0%,
-            rgba(8, 20, 38, 0.92) 65%,
-            rgba(8, 20, 38, 0.65) 100%);
+        background: linear-gradient(
+          to bottom,
+          rgba(11, 30, 58, 0.95) 0%,
+          rgba(11, 30, 58, 0.90) 65%,
+          rgba(11, 30, 58, 0.50) 100%
+        );
       }
     }
 
@@ -336,7 +340,6 @@
       <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
         <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
         <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
-        <a href="playbook.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Playbook</a>
         <a href="projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
         <a href="biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
         <a href="sobre.html" class="nav-item-active">Sobre</a>
@@ -381,7 +384,6 @@
     <div class="flex flex-col gap-2">
       <a href="index.html" class="mobile-link">Home</a>
       <a href="blog.html" class="mobile-link">Blog</a>
-      <a href="playbook.html" class="mobile-link">Playbook</a>
       <a href="projetos.html" class="mobile-link">Projetos</a>
       <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
       <a href="sobre.html" class="mobile-link active font-semibold text-[#2563eb]">Sobre</a>
@@ -407,19 +409,18 @@
       <div class="max-w-2xl">
 
         <!-- Eyebrow -->
-        <span class="text-[11px] font-bold text-[#38bdf8] uppercase tracking-[0.2em] block mb-4">
+        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.25em] block mb-4">
           SOBRE
         </span>
 
         <!-- Main Headline -->
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.15] mb-5">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
           Dados conectam pessoas, negócios e <span class="text-[#38bdf8]">oportunidades.</span>
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-sm sm:text-base text-slate-300 font-normal leading-relaxed mb-8 max-w-xl">
-          Aqui você encontra um pouco da minha história, do que me move e o que estou construindo com o Marcos Data
-          Product.
+        <p class="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-xl">
+          Aqui você encontra um pouco da minha história, do que me move e o que estou construindo com o Marcos Data Product.
         </p>
 
         <!-- Social Action Buttons -->
@@ -633,27 +634,27 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
                     Excel Avançado
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/VBA.svg" alt="VBA" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/VBA.svg" alt="VBA" class="w-3.5 h-3.5 object-contain" />
                     VBA
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
                     Power Point
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs" class="w-3.5 h-3.5 object-contain" />
                     Totvs
                   </span>
                 </div>
@@ -733,27 +734,27 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
                     Excel Avançado
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Qlik.svg" alt="Qlik Sense" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Qlik.svg" alt="Qlik Sense" class="w-3.5 h-3.5 object-contain" />
                     Qlik Sense
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs" class="w-3.5 h-3.5 object-contain" />
                     Totvs
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
                     Power Point
                   </span>
                 </div>
@@ -799,17 +800,17 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/sql.svg" alt="SQL" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/sql.svg" alt="SQL" class="w-3.5 h-3.5 object-contain" />
                     SQL
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
                     Excel Avançado
                   </span>
                 </div>
@@ -889,47 +890,47 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/python_color.svg" alt="Python" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/python_color.svg" alt="Python" class="w-3.5 h-3.5 object-contain" />
                     Python
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/GA4.svg" alt="GA4" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/GA4.svg" alt="GA4" class="w-3.5 h-3.5 object-contain" />
                     GA4
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Data Studio.svg" alt="Data Studio" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Data Studio.svg" alt="Data Studio" class="w-3.5 h-3.5 object-contain" />
                     Data Studio
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Miro.svg" alt="Miro" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Miro.svg" alt="Miro" class="w-3.5 h-3.5 object-contain" />
                     Miro
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
                     Power Point
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Athena.svg" alt="Athena" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Athena.svg" alt="Athena" class="w-3.5 h-3.5 object-contain" />
                     Athena
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/VS Code.svg" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/VS Code.svg" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
                     VS Code
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Jira.svg" alt="Jira" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Jira.svg" alt="Jira" class="w-3.5 h-3.5 object-contain" />
                     Jira
                   </span>
                 </div>
@@ -975,27 +976,27 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/databricks.svg" alt="Databricks" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/databricks.svg" alt="Databricks" class="w-3.5 h-3.5 object-contain" />
                     Databricks
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/python_color.svg" alt="Python" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/python_color.svg" alt="Python" class="w-3.5 h-3.5 object-contain" />
                     Python
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/github.svg" alt="GitHub" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/github.svg" alt="GitHub" class="w-3.5 h-3.5 object-contain" />
                     GitHub
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Jira.svg" alt="Jira" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Jira.svg" alt="Jira" class="w-3.5 h-3.5 object-contain" />
                     Jira
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Confluence.svg" alt="Confluence" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Confluence.svg" alt="Confluence" class="w-3.5 h-3.5 object-contain" />
                     Confluence
                   </span>
                 </div>
@@ -1075,37 +1076,37 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/GCP.svg" alt="GCP" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/GCP.svg" alt="GCP" class="w-3.5 h-3.5 object-contain" />
                     GCP
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Sharepoint.svg" alt="Sharepoint" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Sharepoint.svg" alt="Sharepoint" class="w-3.5 h-3.5 object-contain" />
                     Sharepoint
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Jira.svg" alt="Jira" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Jira.svg" alt="Jira" class="w-3.5 h-3.5 object-contain" />
                     Jira
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/github.svg" alt="GitHub" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/github.svg" alt="GitHub" class="w-3.5 h-3.5 object-contain" />
                     GitHub
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/VS Code.svg" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/VS Code.svg" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
                     VS Code
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/ícone stacks/Copilot.svg" alt="Github Copilot Studio" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Copilot.svg" alt="Github Copilot Studio" class="w-3.5 h-3.5 object-contain" />
                     Github Copilot Studio
                   </span>
                 </div>
@@ -1403,51 +1404,39 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-     6. FOOTER INSTITUCIONAL (LIGHT CLEAN)
+     FOOTER INSTITUCIONAL (DEEP NAVY)
   ═══════════════════════════════════════════════════════ -->
-  <footer class="bg-white text-[#1f2937] py-12 px-5 sm:px-8 border-t border-[#e2e8f0]">
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
       <!-- Logo e Nome da Marca -->
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product"
-          class="w-8 h-8 object-contain group-hover:scale-105 transition-transform" />
-        <span class="font-bold text-base tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
+        <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain brightness-110" />
+        <span class="font-bold text-base tracking-tight text-white">Marcos Data Product</span>
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="flex items-center gap-6 sm:gap-8 text-xs sm:text-sm text-[#64748b]">
-        <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
-        <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
-        <a href="playbook.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Playbook</a>
-        <a href="projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
-        <a href="biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
-        <a href="sobre.html" class="text-[#2563eb] font-semibold">Sobre</a>
-      </nav>
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
+      </div>
 
-      <!-- Ícones de Redes Sociais & Frase -->
-      <div class="flex flex-col items-center md:items-end gap-2">
-        <div class="flex items-center gap-4 text-[#64748b]">
-          <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
-            class="hover:text-[#2563eb] transition-colors" aria-label="LinkedIn">
-            <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
-          </a>
-          <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
-            class="hover:text-[#2563eb] transition-colors" aria-label="GitHub">
-            <i data-lucide="github" class="w-4.5 h-4.5"></i>
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-            class="hover:text-[#2563eb] transition-colors" aria-label="YouTube">
-            <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-            class="hover:text-[#2563eb] transition-colors" aria-label="Instagram">
-            <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
-          </a>
-        </div>
-        <span class="text-[11px] text-[#94a3b8]">
-          Dados para um futuro melhor.
-        </span>
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
       </div>
 
     </div>

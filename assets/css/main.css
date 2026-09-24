@@ -63,11 +63,15 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  background: var(--void);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  background: #f8fafc;
   color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote, label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif;
 }
 
 /* ── Three.js Canvas ─────────────────────────── */
@@ -1018,5 +1022,86 @@ section {
   color: #4338ca;
   border: 1px solid #c7d2fe;
 }
+
+/* ══════════════════════════════════════════════════
+   MARCOS DATA PRODUCT — UNIFIED DESIGN SYSTEM TOKENS
+══════════════════════════════════════════════════ */
+
+/* Active Nav Item Indicator */
+.nav-item-active {
+  color: #0b1e3a !important;
+  font-weight: 600;
+  position: relative;
+}
+.nav-item-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #2563eb;
+  border-radius: 2px;
+}
+
+/* Subtle Card Elevation */
+.card-hover-clean {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-clean:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+/* Unified Hero Editorial Component */
+.hero-editorial-container {
+  position: relative;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-editorial-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(11, 30, 58, 0.94) 0%,
+    rgba(11, 30, 58, 0.88) 38%,
+    rgba(11, 30, 58, 0.58) 62%,
+    rgba(11, 30, 58, 0.20) 84%,
+    rgba(11, 30, 58, 0.0) 100%
+  );
+}
+
+@media (max-width: 1024px) {
+  .hero-editorial-container {
+    background-position: 70% center;
+    min-height: 400px;
+  }
+  .hero-editorial-gradient {
+    background: linear-gradient(
+      to bottom,
+      rgba(11, 30, 58, 0.95) 0%,
+      rgba(11, 30, 58, 0.90) 65%,
+      rgba(11, 30, 58, 0.50) 100%
+    );
+  }
+}
+
+/* Reading Progress Bar */
+#reading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
 
 

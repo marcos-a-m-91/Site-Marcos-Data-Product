@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -14,14 +14,13 @@
   <meta property="og:image" content="../assets/img/blog/cover-agentes-ia.svg" />
 
   <!-- Vendor Libraries (Local) -->
-  <script src="../assets/vendor/gsap_4a57399e4113.js"></script>
-  <script src="../assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
   <script src="../assets/vendor/resource_3fa48481346f.js"></script>
   <script src="../assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
 
-  <!-- Vendor Fonts (Local) -->
-  <link href="../assets/vendor/css2_5f62d382f7c0.css" rel="stylesheet" />
-  <link href="../assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
@@ -38,203 +37,210 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
 
   <style>
-    /* Estilos específicos de leitura tipográfica do Artigo */
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote, label {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    }
+
     #reading-bar {
       position: fixed;
       top: 0;
       left: 0;
       height: 3px;
-      background: linear-gradient(90deg, #11376e, #1f6feb);
+      background: linear-gradient(90deg, #2563eb, #38bdf8);
       width: 0%;
       z-index: 9999;
       transition: width 0.1s ease-out;
     }
     .article-prose {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-      color: #1f2328;
-      font-size: 1.075rem;
+      color: #1f2937;
+      font-size: 1.05rem;
       line-height: 1.8;
     }
     .article-prose h2 {
-      font-size: 1.75rem;
+      font-size: 1.65rem;
       font-weight: 700;
       margin-top: 2.5rem;
       margin-bottom: 1rem;
-      color: #1f2328;
+      color: #0b1e3a;
       letter-spacing: -0.02em;
     }
     .article-prose h3 {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 600;
       margin-top: 2rem;
       margin-bottom: 0.75rem;
-      color: #1f2328;
-      letter-spacing: -0.01em;
+      color: #0b1e3a;
     }
     .article-prose p {
       margin-bottom: 1.4rem;
-      color: #24292f;
+      color: #475569;
     }
     .article-prose ul, .article-prose ol {
       margin-bottom: 1.4rem;
       padding-left: 1.5rem;
+      color: #475569;
     }
     .article-prose li {
       margin-bottom: 0.5rem;
     }
     .article-prose blockquote {
-      border-left: 4px solid #d0d7de;
-      padding-left: 1rem;
+      border-left: 4px solid #2563eb;
+      padding: 1rem 1.25rem;
+      background-color: #f8fafc;
+      border-radius: 0 1rem 1rem 0;
       font-style: italic;
-      color: #57606a;
-      margin: 1.5rem 0;
+      color: #334155;
+      margin: 2rem 0;
     }
     .article-prose strong {
-      color: #0f172a;
-      font-weight: 700;
+      color: #0b1e3a;
+      font-weight: 600;
     }
     .primer-table th, .primer-table td {
       padding: 10px 14px;
-      border: 1px solid #d0d7de;
+      border: 1px solid #e2e8f0;
     }
     .primer-table th {
-      background: #f6f8fa;
+      background: #f8fafc;
       font-weight: 600;
-      color: #1f2328;
-    }
-    .callout-box .callout-content p {
-      margin-bottom: 0.5rem;
-    }
-    .callout-box .callout-content p:last-child {
-      margin-bottom: 0;
-    }
-    .callout-box .callout-content ul {
-      margin-bottom: 0.5rem;
-      padding-left: 1.25rem;
-      list-style-type: disc;
-    }
-    .callout-box .callout-content li {
-      margin-bottom: 0.25rem;
+      color: #0b1e3a;
     }
   </style>
 </head>
 
-<body>
+<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
   <div id="reading-bar"></div>
 
-  <!-- Three.js Canvas -->
-  <canvas id="canvas"></canvas>
-
   <!-- ═══════════════════════════════════════════════════════
-     NAVBAR
+     HEADER / NAVBAR
   ═══════════════════════════════════════════════════════ -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Home">
-        <img src="../assets/img/Logo.png" alt="Marcos Data Product"
-          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data Product</span>
+      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product Logo"
+          class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
       </a>
 
-      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
-        <a href="../index.html" class="nav-link">Home</a>
-        <a href="../blog.html" class="nav-link active">Blog</a>
-        <a href="../projetos.html" class="nav-link">Projetos</a>
-        <a href="../biblioteca.html" class="nav-link">Biblioteca</a>
-        <a href="../sobre.html" class="nav-link">Sobre</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
+        <a href="../index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
+        <a href="../blog.html" class="nav-item-active">Blog</a>
+        <a href="../projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
+        <a href="../biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
+        <a href="../sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
       </nav>
 
-      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-      </button>
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer"
+          aria-label="Buscar no site">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- CTA "Vamos conversar" -->
+        <a href="mailto:contato@marcosdataproduct.com"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          <span>Vamos conversar</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] cursor-pointer"
+          id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close" aria-label="Fechar menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]" id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="../index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
-      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
-      <span class="font-semibold text-lg text-[#1f2328]">Marcos Data Product</span>
+    <a href="../index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
+      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
+      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
     </a>
-    <a href="../index.html" class="mobile-link">Home</a>
-    <a href="../blog.html" class="mobile-link active">Blog</a>
-    <a href="../projetos.html" class="mobile-link">Projetos</a>
-    <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
-    <a href="../sobre.html" class="mobile-link">Sobre</a>
+    <div class="flex flex-col gap-2">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="../blog.html" class="mobile-link active font-semibold text-[#2563eb]">Blog</a>
+      <a href="../projetos.html" class="mobile-link">Projetos</a>
+      <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
+      <a href="../sobre.html" class="mobile-link">Sobre</a>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+      <a href="mailto:contato@marcosdataproduct.com"
+        class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+        <span>Vamos conversar</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER DO POST
   ═══════════════════════════════════════════════════════ -->
-  <main class="relative z-10 pt-36 sm:pt-40 pb-20 px-5 sm:px-8">
-    <div class="max-w-4xl mx-auto">
-      
-      <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-xs text-[#656d76] mb-8" aria-label="Breadcrumb">
-        <a href="../index.html" class="hover:text-[#11376e] transition-colors">Home</a>
-        <span>/</span>
-        <a href="../blog.html" class="hover:text-[#11376e] transition-colors">Blog</a>
-        <span>/</span>
-        <span class="text-[#1f2328] font-medium truncate max-w-xs">Inteligência Artificial</span>
-      </nav>
+  <main class="max-w-4xl mx-auto px-5 sm:px-8 pt-8 sm:pt-12 pb-24">
 
-      <!-- Category badge & Read info -->
-      <div class="flex flex-wrap items-center gap-3 mb-5">
-        <span class="badge badge-blue text-xs">Inteligência Artificial</span>
-        <span class="text-xs text-[#656d76] flex items-center gap-1.5">
-          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 12 de Setembro de 2026
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-[#64748b] mb-6" aria-label="Breadcrumb">
+      <a href="../index.html" class="hover:text-[#0b1e3a] transition-colors">Home</a>
+      <span>/</span>
+      <a href="../blog.html" class="hover:text-[#0b1e3a] transition-colors">Blog</a>
+      <span>/</span>
+      <span class="text-[#0b1e3a] font-medium truncate">Agentes Autônomos de IA</span>
+    </nav>
+
+    <!-- Header Meta & Title -->
+    <header class="mb-10">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="badge-theme-ai px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider">
+          Inteligência Artificial
         </span>
-        <span class="text-[#d0d7de]">•</span>
-        <span class="text-xs text-[#656d76] flex items-center gap-1.5">
-          <i data-lucide="clock" class="w-3.5 h-3.5"></i> 8 min de leitura
+        <span class="bg-[#0b1e3a] text-white px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+          <i data-lucide="bot" class="w-3.5 h-3.5 text-[#38bdf8]"></i>
+          Business Analytics &amp; RAG
         </span>
       </div>
 
       <!-- Main Title -->
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1f2328] tracking-tight leading-[1.18] mb-6" style="font-family:'Space Grotesk',sans-serif">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0b1e3a] tracking-tight leading-[1.15] mb-5">
         Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
       </h1>
 
       <!-- Excerpt -->
-      <p class="text-lg sm:text-xl text-[#57606a] leading-relaxed mb-8" style="font-family:'Manrope',sans-serif">
+      <p class="text-base sm:text-lg text-[#64748b] leading-relaxed mb-6 font-normal">
         Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
       </p>
 
       <!-- Author Chip -->
-      <div class="flex items-center justify-between py-4 border-y border-[#d0d7de] mb-10">
-        <div class="flex items-center gap-3">
-          <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de]" />
+      <div class="flex items-center justify-between py-4 border-y border-[#e2e8f0] text-xs text-[#64748b]">
+        <div class="flex items-center gap-2.5">
+          <img src="../assets/img/foto-marcos-aurelio.webp" alt="Marcos Aurélio" class="w-8 h-8 rounded-full object-cover border border-[#e2e8f0]" />
           <div>
-            <span class="font-bold text-sm text-[#1f2328] block">Marcos Aurélio</span>
-            <span class="text-xs text-[#656d76]">Senior Business Analytics &bull; Autor</span>
+            <div class="font-semibold text-[#0b1e3a]">Marcos Aurélio</div>
+            <div class="text-[11px] text-[#94a3b8]">Senior Business Analytics &bull; Autor</div>
           </div>
         </div>
-        
-        <!-- Social share quick links -->
-        <div class="flex items-center gap-2">
-          <button onclick="shareArticle('linkedin')" class="p-2 rounded-lg glass hover:text-[#0A66C2] transition-colors" title="Compartilhar no LinkedIn">
-            <i data-lucide="linkedin" class="w-4 h-4"></i>
-          </button>
-          <button onclick="shareArticle('whatsapp')" class="p-2 rounded-lg glass hover:text-[#25D366] transition-colors" title="Compartilhar no WhatsApp">
-            <i data-lucide="message-circle" class="w-4 h-4"></i>
-          </button>
-          <button onclick="copyCurrentUrl()" class="p-2 rounded-lg glass hover:text-[#11376e] transition-colors" title="Copiar link">
-            <i data-lucide="link" class="w-4 h-4"></i>
-          </button>
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1.5">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 12 de Setembro de 2026
+          </span>
+          <span class="hidden sm:inline">·</span>
+          <span class="flex items-center gap-1">
+            <i data-lucide="clock" class="w-3.5 h-3.5"></i> 8 min de leitura
+          </span>
         </div>
       </div>
+    </header>
 
-      <!-- Featured Image / Cover -->
-      <div class="rounded-2xl overflow-hidden border border-[#d0d7de] shadow-sm mb-12 bg-white max-h-[440px] flex items-center justify-center"><img src="../assets/img/blog/cover-agentes-ia.svg" alt="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção" class="w-full h-full object-cover max-h-[440px]" /></div>
+    <!-- Featured Image / Cover -->
+    <div class="w-full rounded-2xl overflow-hidden border border-[#e2e8f0] bg-white shadow-sm mb-12 flex items-center justify-center">
+      <img src="../assets/img/blog/cover-agentes-ia.svg" alt="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção" class="w-full h-auto object-cover" />
+    </div>
 
       <!-- ═══════════════════════════════════════════════════════
          CORPO DO ARTIGO + SIDEBAR
@@ -370,7 +376,7 @@ class RevenueInspectorAgent:
 
           <!-- Author Bio Card -->
           <div class="glass p-6 sm:p-8 rounded-2xl border border-[#d0d7de] mt-10 flex flex-col sm:flex-row items-center gap-6">
-            <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-20 h-20 rounded-2xl object-cover border border-[#d0d7de] shadow-sm" />
+            <img src="../assets/img/foto-marcos-aurelio.webp" alt="Marcos Aurélio" class="w-20 h-20 rounded-2xl object-cover border border-[#d0d7de] shadow-sm" />
             <div class="text-center sm:text-left">
               <span class="badge badge-blue text-[11px] mb-2">Sobre o Autor</span>
               <h3 class="text-lg font-bold text-[#1f2328] mb-1">Marcos Aurélio</h3>
@@ -422,7 +428,7 @@ class RevenueInspectorAgent:
       
       <section class="mt-20 pt-12 border-t border-[#d0d7de]">
         <div class="flex items-center justify-between mb-8">
-          <h3 class="text-xl font-bold text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">Artigos Relacionados</h3>
+          <h3 class="text-xl font-bold text-[#1f2328]">Artigos Relacionados</h3>
           <a href="../blog.html" class="text-xs font-semibold text-[#11376e] hover:underline flex items-center gap-1">
             Ver todos <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </a>
@@ -473,20 +479,41 @@ class RevenueInspectorAgent:
   </main>
 
   <!-- ═══════════════════════════════════════════════════════
-     FOOTER
+     FOOTER INSTITUCIONAL (DEEP NAVY)
   ═══════════════════════════════════════════════════════ -->
-  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
-      <a href="../index.html" class="flex items-center gap-3 group text-inherit hover:text-[#11376e] transition-colors" aria-label="Home - Marcos Data Product">
-        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
-        <span>&copy; 2026 Marcos Data Product</span>
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo e Nome da Marca -->
+      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
+        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain brightness-110" />
+        <span class="font-bold text-base tracking-tight text-white">Marcos Data Product</span>
       </a>
-      <div class="flex items-center gap-4">
-        <a href="../blog.html" class="hover:text-[#11376e]">Blog</a>
-        <a href="../projetos.html" class="hover:text-[#11376e]">Projetos</a>
-        <a href="../biblioteca.html" class="hover:text-[#11376e]">Biblioteca</a>
-        <a href="../sobre.html" class="hover:text-[#11376e]">Sobre</a>
+
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
       </div>
+
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
     </div>
   </footer>
 
