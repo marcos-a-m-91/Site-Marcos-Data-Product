@@ -2,9 +2,16 @@
 <html lang="pt-BR">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Projetos — Marcos Data Product | Produtos de dados reais, do conceito à decisão</title>
+  <title>Projetos - Marcos Data Product | Produtos de dados reais, do conceito à decisão</title>
   <meta name="description"
     content="Casos de estudo reais, automações, arquiteturas analíticas e produtos de dados ponta a ponta desenvolvidos por Marcos Aurélio com foco em impacto de negócios." />
 
@@ -49,47 +56,47 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Hero section com imagem de fundo e gradiente */
+    /* Hero section: Viewport Stability & Photographic Editorial Layout */
     .projetos-hero-container {
       position: relative;
       background-image: url('assets/img/hero_section_projetos.png');
       background-position: center right;
       background-repeat: no-repeat;
       background-size: cover;
-      min-height: 460px;
+      min-height: 440px;
     }
 
-    /* Máscara de gradiente editorial fiel às páginas de Sobre, Blog e Biblioteca */
+    /* Máscara de gradiente Deep Navy editorial para contraste e legibilidade */
     .projetos-hero-gradient-mask {
       background: linear-gradient(
         to right,
-        rgba(11, 30, 58, 0.94) 0%,
-        rgba(11, 30, 58, 0.88) 38%,
-        rgba(11, 30, 58, 0.58) 62%,
-        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.96) 0%,
+        rgba(11, 30, 58, 0.90) 42%,
+        rgba(11, 30, 58, 0.60) 65%,
+        rgba(11, 30, 58, 0.22) 85%,
         rgba(11, 30, 58, 0.0) 100%
       );
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1023px) {
       .projetos-hero-container {
         background-position: 70% center;
-        min-height: 400px;
+        min-height: 380px;
       }
 
       .projetos-hero-gradient-mask {
         background: linear-gradient(
           to bottom,
-          rgba(11, 30, 58, 0.95) 0%,
-          rgba(11, 30, 58, 0.90) 65%,
-          rgba(11, 30, 58, 0.50) 100%
+          rgba(11, 30, 58, 0.96) 0%,
+          rgba(11, 30, 58, 0.91) 68%,
+          rgba(11, 30, 58, 0.55) 100%
         );
       }
     }
 
     /* Active Nav Link with blue line underline */
     .nav-item-active {
-      color: #0b1e3a !important;
+      color: #11376e !important;
       font-weight: 600;
       position: relative;
     }
@@ -101,19 +108,47 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: #2563eb;
-      border-radius: 2px;
+      background-color: #11376e;
+      border-radius: 9999px;
     }
 
-    /* Card Elevation & Hover Clean */
+    /* Tactile Buttons with Emil Kowalski spring and physical push on active */
+    .btn-tactile {
+      transition: transform var(--duration-press, 160ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  background-color var(--duration-fast, 180ms) ease,
+                  box-shadow var(--duration-fast, 180ms) ease,
+                  border-color var(--duration-fast, 180ms) ease;
+    }
+    .btn-tactile:hover {
+      transform: translateY(-2px);
+    }
+    .btn-tactile:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Card Elevation with navy-tinted ambient shadows */
     .card-hover-clean {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
     }
 
     .card-hover-clean:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
-      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: 0 10px 24px -4px rgba(11, 30, 58, 0.10), 0 2px 6px -1px rgba(31, 35, 40, 0.04);
+      border-color: rgba(17, 55, 110, 0.35);
+    }
+
+    .card-hover-clean:active {
+      transform: translateY(-1px) scale(0.995);
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn-tactile, .card-hover-clean {
+        transition: none !important;
+        transform: none !important;
+      }
     }
 
     /* Custom scrollbar hiding */
@@ -128,11 +163,11 @@
 
     /* Category Pill Active State */
     .cat-pill.active {
-      background-color: #2563eb !important;
+      background-color: #11376e !important;
       color: #ffffff !important;
-      border-color: #2563eb !important;
+      border-color: #11376e !important;
       font-weight: 600 !important;
-      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 1px 3px rgba(31, 35, 40, 0.15);
     }
 
     .cat-pill.active i,
@@ -140,88 +175,92 @@
       color: #ffffff !important;
     }
 
-    /* ── Pastel Theme Badges ── */
+    /* ── Pastel Theme Badges (DESIGN.md Tokens) ── */
     .badge-theme-data {
-      background-color: #e0f2fe;
-      color: #0369a1;
-      border: 1px solid #bae6fd;
+      background-color: #ddf4ff;
+      color: #0969da;
+      border: 1px solid #54aeff;
     }
 
     .badge-theme-dataviz {
-      background-color: #f3e8ff;
-      color: #7e22ce;
-      border: 1px solid #e9d5ff;
+      background-color: #fbefff;
+      color: #8250df;
+      border: 1px solid #d2a8ff;
     }
 
     .badge-theme-analytics {
-      background-color: #fef3c7;
-      color: #b45309;
-      border: 1px solid #fde68a;
+      background-color: #fff8c5;
+      color: #9a6700;
+      border: 1px solid #d4a72c;
     }
 
     .badge-theme-business {
-      background-color: #d1fae5;
-      color: #047857;
-      border: 1px solid #a7f3d0;
+      background-color: #dafbe1;
+      color: #1a7f37;
+      border: 1px solid #4ac26b;
     }
 
     .badge-theme-product {
-      background-color: #ffe4e6;
-      color: #be123c;
-      border: 1px solid #fecdd3;
+      background-color: #ffebe9;
+      color: #cf222e;
+      border: 1px solid #ff8182;
     }
 
     .badge-theme-ai {
-      background-color: #e0e7ff;
-      color: #4338ca;
-      border: 1px solid #c7d2fe;
+      background-color: #ddf4ff;
+      color: #0969da;
+      border: 1px solid #54aeff;
     }
   </style>
 </head>
 
-<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
+<body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER / NAVBAR (Oficial do Site)
   ═══════════════════════════════════════════════════════ -->
   <header id="navbar"
-    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#d0d7de] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
 
       <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
         <img src="assets/img/Logo.png" alt="Marcos Data Product Logo"
-          class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
-        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
+          class="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#1f2328]">Marcos Data Product</span>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
-        <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
-        <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
+        <a href="index.html" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
+        <a href="blog.html" class="hover:text-[#11376e] font-medium transition-colors">Blog</a>
         <a href="projetos.html" class="nav-item-active">Projetos</a>
-        <a href="biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
-        <a href="sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
+        <a href="biblioteca.html" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
+        <a href="sobre.html" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
       </nav>
 
       <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
       <div class="flex items-center gap-3">
         <!-- Search Trigger -->
         <button id="search-modal-trigger"
-          class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer"
+          class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] transition-colors cursor-pointer"
           aria-label="Buscar no site">
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
         <!-- CTA "Vamos conversar" -->
         <a href="mailto:contato@marcosdataproduct.com"
-          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
           <span>Vamos conversar</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
 
         <!-- Mobile Menu Toggle -->
-        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] cursor-pointer"
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer"
           id="mobile-btn" aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
@@ -232,24 +271,24 @@
 
   <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]"
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]"
       id="mobile-close" aria-label="Fechar menu">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
     <a href="index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
       <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
-      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
+      <span class="font-bold text-lg text-[#1f2328]">Marcos Data Product</span>
     </a>
     <div class="flex flex-col gap-2">
       <a href="index.html" class="mobile-link">Home</a>
       <a href="blog.html" class="mobile-link">Blog</a>
-      <a href="projetos.html" class="mobile-link active font-semibold text-[#2563eb]">Projetos</a>
+      <a href="projetos.html" class="mobile-link active font-semibold text-[#11376e]">Projetos</a>
       <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
       <a href="sobre.html" class="mobile-link">Sobre</a>
     </div>
     <div class="mt-8 pt-6 border-t border-slate-200">
       <a href="mailto:contato@marcosdataproduct.com"
-        class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+        class="w-full py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
         <span>Vamos conversar</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
@@ -264,21 +303,21 @@
     <!-- Ambient Gradient Mask -->
     <div class="projetos-hero-gradient-mask absolute inset-0 z-0"></div>
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 relative z-10 w-full">
       <div class="max-w-2xl">
 
         <!-- Eyebrow -->
-        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.25em] block mb-4">
+        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.22em] block mb-4">
           PROJETOS
         </span>
 
         <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-5">
           Produtos de dados reais,<br />
           <span class="text-[#38bdf8]">do conceito à decisão.</span>
         </h1>
 
-        <!-- Subtitle -->
+        <!-- Subtitle (17 words <= 20 words limit) -->
         <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl">
           Soluções arquitetadas de ponta a ponta: governança, engenharia de dados, machine learning e inteligência de negócios gerando impacto mensurável.
         </p>
@@ -292,30 +331,30 @@
      FILTROS DE CATEGORIA & BUSCA EM TEMPO REAL
   ═══════════════════════════════════════════════════════ -->
   <section class="max-w-7xl mx-auto px-5 sm:px-8 -mt-6 sm:-mt-8 relative z-20 mb-12">
-    <div class="bg-white rounded-2xl border border-[#e2e8f0] p-4 sm:p-5 shadow-sm">
+    <div class="bg-white rounded-2xl border border-[#d0d7de] p-4 sm:p-5 shadow-sm">
       
-      <!-- Linha Superior: Título de Especialidades & Barra de Pesquisa (Totalmente desacoplados contra colisão) -->
+      <!-- Linha Superior: Título de Especialidades & Barra de Pesquisa -->
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 pb-3.5 border-b border-slate-100">
         
         <!-- Indicador de Status / Título de Filtro -->
         <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-blue-50 text-[#2563eb] flex items-center justify-center shrink-0">
+          <div class="w-7 h-7 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
             <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-xs sm:text-sm font-bold text-[#0b1e3a]">Filtrar por Especialidade</span>
-            <span class="text-xs text-[#94a3b8] hidden md:inline">•</span>
-            <span class="text-xs text-[#64748b] hidden md:inline">Selecione uma área ou pesquise por stack tecnológica</span>
+            <span class="text-xs sm:text-sm font-bold text-[#1f2328]">Filtrar por Especialidade</span>
+            <span class="text-xs text-[#8c959f] hidden md:inline">•</span>
+            <span class="text-xs text-[#656d76] hidden md:inline">Selecione uma área ou pesquise por stack tecnológica</span>
           </div>
         </div>
 
         <!-- Input de Busca em Tempo Real -->
         <div class="relative w-full sm:w-72 md:w-80 shrink-0">
-          <i data-lucide="search" class="w-4 h-4 text-[#94a3b8] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <i data-lucide="search" class="w-4 h-4 text-[#8c959f] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
           <input type="text" id="project-search-input" placeholder="Buscar tecnologia, stack ou palavra..."
-            class="w-full pl-10 pr-9 py-2 text-xs sm:text-sm bg-slate-50 hover:bg-white focus:bg-white border border-[#e2e8f0] focus:border-[#2563eb] rounded-xl outline-none transition-all placeholder-[#94a3b8] text-[#0b1e3a] focus:ring-2 focus:ring-blue-100" />
+            class="w-full pl-10 pr-9 py-2 text-xs sm:text-sm bg-slate-50 hover:bg-white focus:bg-white border border-[#d0d7de] focus:border-[#11376e] rounded-xl outline-none transition-all placeholder-[#8c959f] text-[#1f2328] focus:ring-2 focus:ring-[#11376e]/15" />
           <button id="project-search-clear"
-            class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-[#94a3b8] hover:text-[#0b1e3a] rounded cursor-pointer"
+            class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-[#8c959f] hover:text-[#11376e] rounded cursor-pointer"
             aria-label="Limpar busca">
             <i data-lucide="x" class="w-3.5 h-3.5"></i>
           </button>
@@ -323,55 +362,55 @@
 
       </div>
 
-      <!-- Linha Inferior: Tags com Ícones (Flex wrap limpo, 100% visível em qualquer resolução) -->
+      <!-- Linha Inferior: Tags com Ícones -->
       <div class="flex flex-wrap items-center gap-2 pt-3.5" id="category-pills">
         <button
-          class="cat-pill active px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          class="cat-pill btn-tactile active px-3.5 py-2 rounded-full border border-[#d0d7de] bg-slate-50 text-[#656d76] text-xs font-medium hover:text-[#11376e] hover:bg-slate-100 hover:border-slate-300 shrink-0 cursor-pointer flex items-center gap-2"
           data-filter="all">
-          <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-[#2563eb]"></i>
+          <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-[#11376e]"></i>
           <span>Todos os Casos</span>
-          <span class="text-[10px] opacity-80 font-mono font-semibold" id="pill-count-all">(6)</span>
+          <span class="text-xs opacity-80 font-mono font-semibold" id="pill-count-all">(6)</span>
         </button>
 
         <button
-          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          class="cat-pill btn-tactile px-3.5 py-2 rounded-full border border-[#d0d7de] bg-slate-50 text-[#656d76] text-xs font-medium hover:text-[#11376e] hover:bg-slate-100 hover:border-slate-300 shrink-0 cursor-pointer flex items-center gap-2"
           data-filter="analytics">
-          <i data-lucide="trending-up" class="w-3.5 h-3.5 text-[#b45309]"></i>
+          <i data-lucide="trending-up" class="w-3.5 h-3.5 text-[#9a6700]"></i>
           <span>Analytics & Risco</span>
         </button>
 
         <button
-          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          class="cat-pill btn-tactile px-3.5 py-2 rounded-full border border-[#d0d7de] bg-slate-50 text-[#656d76] text-xs font-medium hover:text-[#11376e] hover:bg-slate-100 hover:border-slate-300 shrink-0 cursor-pointer flex items-center gap-2"
           data-filter="dataviz">
-          <i data-lucide="pie-chart" class="w-3.5 h-3.5 text-[#7e22ce]"></i>
+          <i data-lucide="pie-chart" class="w-3.5 h-3.5 text-[#8250df]"></i>
           <span>Power BI & DataViz</span>
         </button>
 
         <button
-          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          class="cat-pill btn-tactile px-3.5 py-2 rounded-full border border-[#d0d7de] bg-slate-50 text-[#656d76] text-xs font-medium hover:text-[#11376e] hover:bg-slate-100 hover:border-slate-300 shrink-0 cursor-pointer flex items-center gap-2"
           data-filter="data">
-          <i data-lucide="database" class="w-3.5 h-3.5 text-[#0284c7]"></i>
+          <i data-lucide="database" class="w-3.5 h-3.5 text-[#0969da]"></i>
           <span>Engenharia de Dados</span>
         </button>
 
         <button
-          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          class="cat-pill btn-tactile px-3.5 py-2 rounded-full border border-[#d0d7de] bg-slate-50 text-[#656d76] text-xs font-medium hover:text-[#11376e] hover:bg-slate-100 hover:border-slate-300 shrink-0 cursor-pointer flex items-center gap-2"
           data-filter="ai">
-          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#4338ca]"></i>
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#0969da]"></i>
           <span>Inteligência Artificial</span>
         </button>
 
         <button
-          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          class="cat-pill btn-tactile px-3.5 py-2 rounded-full border border-[#d0d7de] bg-slate-50 text-[#656d76] text-xs font-medium hover:text-[#11376e] hover:bg-slate-100 hover:border-slate-300 shrink-0 cursor-pointer flex items-center gap-2"
           data-filter="product">
-          <i data-lucide="package" class="w-3.5 h-3.5 text-[#be123c]"></i>
+          <i data-lucide="package" class="w-3.5 h-3.5 text-[#cf222e]"></i>
           <span>Product Analytics</span>
         </button>
 
         <button
-          class="cat-pill px-3.5 py-2 rounded-full border border-[#e2e8f0] bg-slate-50 text-[#64748b] text-xs font-medium hover:text-[#0b1e3a] hover:bg-slate-100 hover:border-slate-300 transition-all shrink-0 cursor-pointer flex items-center gap-2"
+          class="cat-pill btn-tactile px-3.5 py-2 rounded-full border border-[#d0d7de] bg-slate-50 text-[#656d76] text-xs font-medium hover:text-[#11376e] hover:bg-slate-100 hover:border-slate-300 shrink-0 cursor-pointer flex items-center gap-2"
           data-filter="business">
-          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-[#047857]"></i>
+          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-[#1a7f37]"></i>
           <span>Business Analytics</span>
         </button>
       </div>
@@ -386,13 +425,13 @@
   <main class="max-w-7xl mx-auto px-5 sm:px-8 pb-20">
 
     <!-- Header da Lista -->
-    <div class="flex items-center justify-between mb-8 pb-3 border-b border-[#e2e8f0]">
+    <div class="flex items-center justify-between mb-8 pb-3 border-b border-[#d0d7de]">
       <div class="flex items-center gap-2">
-        <h2 class="text-xl sm:text-2xl font-bold text-[#0b1e3a] tracking-tight">Estudos de Caso</h2>
-        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-[#64748b]"
+        <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Estudos de Caso</h2>
+        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-[#656d76]"
           id="project-counter">6 projetos</span>
       </div>
-      <span class="text-xs text-[#64748b] hidden sm:inline">Clique no projeto para ver a análise completa</span>
+      <span class="text-xs text-[#656d76] hidden sm:inline">Clique no projeto para ver a análise completa</span>
     </div>
 
     <!-- Cards Grid -->
@@ -400,17 +439,17 @@
 
       <!-- PROJETO 1: Motor de Risco & Crédito Dinâmico -->
       <article
-        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
         data-category="analytics"
         data-href="projetos/motor-risco-credito.html"
         data-tech="python aws athena fastapi power bi scikit-learn credit scoring analytics risco fintech">
         <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#07101e] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+        <div class="aspect-[16/10] bg-[#07101e] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
           <img src="assets/img/projects/project-credit-portfolio.svg" alt="Credit Risk Intelligence"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            class="w-full h-full object-cover" />
           <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
             <span
-              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
               <i data-lucide="building-2" class="w-3 h-3 text-[#38bdf8]"></i>
               Fintech B2B
             </span>
@@ -421,30 +460,30 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+              <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
                 Analytics & Risco
               </span>
-              <span class="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+              <span class="text-xs font-semibold text-emerald-600 flex items-center gap-1">
                 <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
                 80% Automação
               </span>
             </div>
 
-            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
               Motor de Risco & Crédito Dinâmico
             </h3>
 
-            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
               Unificação de 3 bases ERPs legadas e implantação de motor preditivo servido via API interna em FastAPI, automatizando 80% das decisões diárias de crédito.
             </p>
 
             <!-- Callout de Métrica -->
-            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
                 <i data-lucide="zap" class="w-4 h-4"></i>
               </div>
-              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
-                Tempo de aprovação reduzido de <strong class="text-[#2563eb]">4 dias</strong> para <strong class="text-[#2563eb]">30 segundos</strong>.
+              <div class="text-xs text-[#1f2328] font-medium leading-tight">
+                Tempo de aprovação reduzido de <strong class="text-[#11376e]">4 dias</strong> para <strong class="text-[#11376e]">30 segundos</strong>.
               </div>
             </div>
           </div>
@@ -452,14 +491,14 @@
           <!-- Bottom Footer -->
           <div>
             <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Python</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">AWS Athena</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">FastAPI</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Power BI</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Python</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">AWS Athena</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">FastAPI</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Power BI</span>
             </div>
 
             <a href="projetos/motor-risco-credito.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
               <span>Ler Estudo de Caso</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
@@ -469,17 +508,17 @@
 
       <!-- PROJETO 2: Sales Intelligence & Performance LATAM -->
       <article
-        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
         data-category="dataviz"
         data-href="projetos/sales-dashboard-latam.html"
         data-tech="power bi dax sql server star schema modelagem dimensional dataviz dashboard vendas varejo">
         <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#070f1e] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+        <div class="aspect-[16/10] bg-[#070f1e] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
           <img src="assets/img/projects/project-sales-dashboard.svg" alt="Sales Intelligence LATAM"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            class="w-full h-full object-cover" />
           <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
             <span
-              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
               <i data-lucide="globe-2" class="w-3 h-3 text-[#38bdf8]"></i>
               Varejo LATAM
             </span>
@@ -490,30 +529,30 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+              <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
                 Power BI & DataViz
               </span>
-              <span class="text-[11px] font-semibold text-blue-600 flex items-center gap-1">
+              <span class="text-xs font-semibold text-blue-600 flex items-center gap-1">
                 <i data-lucide="activity" class="w-3.5 h-3.5"></i>
                 US$ 14.8M
               </span>
             </div>
 
-            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
               Sales Intelligence & Performance LATAM
             </h3>
 
-            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
               Arquitetura analítica comercial completa para diretorias em 6 países. Modelagem Star Schema, DAX avançado, cálculo dinâmico de margem e conciliação cambial.
             </p>
 
             <!-- Callout de Métrica -->
-            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
                 <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
               </div>
-              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
-                Aumento de <strong class="text-[#2563eb]">+24%</strong> na assertividade de metas operacionais.
+              <div class="text-xs text-[#1f2328] font-medium leading-tight">
+                Aumento de <strong class="text-[#11376e]">+24%</strong> na assertividade de metas operacionais.
               </div>
             </div>
           </div>
@@ -521,14 +560,14 @@
           <!-- Bottom Footer -->
           <div>
             <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Power BI</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">DAX</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">SQL Server</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Star Schema</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Power BI</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">DAX</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">SQL Server</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Star Schema</span>
             </div>
 
             <a href="projetos/sales-dashboard-latam.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
               <span>Ler Estudo de Caso</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
@@ -538,17 +577,17 @@
 
       <!-- PROJETO 3: Lakehouse ETL & Pipelines Escaláveis -->
       <article
-        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
         data-category="data"
         data-href="projetos/lakehouse-databricks-etl.html"
         data-tech="databricks apache spark delta lake scala python aws s3 engenharia lakehouse etl pipeline">
         <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#080e18] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+        <div class="aspect-[16/10] bg-[#080e18] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
           <img src="assets/img/projects/project-etl-databricks.svg" alt="Lakehouse Databricks ETL"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            class="w-full h-full object-cover" />
           <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
             <span
-              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
               <i data-lucide="factory" class="w-3 h-3 text-[#38bdf8]"></i>
               Indústria & Supply
             </span>
@@ -559,30 +598,30 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+              <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
                 Engenharia de Dados
               </span>
-              <span class="text-[11px] font-semibold text-cyan-700 flex items-center gap-1">
+              <span class="text-xs font-semibold text-cyan-700 flex items-center gap-1">
                 <i data-lucide="database" class="w-3.5 h-3.5"></i>
                 +15M Eventos
               </span>
             </div>
 
-            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
               Lakehouse ETL & Pipelines Escaláveis
             </h3>
 
-            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
               Migração de processos batch para arquitetura Lakehouse Medalhão (Bronze, Silver e Gold) no Databricks, garantindo conformidade ACID e alto throughput.
             </p>
 
             <!-- Callout de Métrica -->
-            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
                 <i data-lucide="clock" class="w-4 h-4"></i>
               </div>
-              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
-                Tempo de carga reduzido de <strong class="text-[#2563eb]">4h30</strong> para <strong class="text-[#2563eb]">35 min</strong> (-65% custo cloud).
+              <div class="text-xs text-[#1f2328] font-medium leading-tight">
+                Tempo de carga reduzido de <strong class="text-[#11376e]">4h30</strong> para <strong class="text-[#11376e]">35 min</strong> (-65% custo cloud).
               </div>
             </div>
           </div>
@@ -590,14 +629,14 @@
           <!-- Bottom Footer -->
           <div>
             <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Databricks</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Apache Spark</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Delta Lake</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Scala</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Databricks</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Apache Spark</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Delta Lake</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Scala</span>
             </div>
 
             <a href="projetos/lakehouse-databricks-etl.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
               <span>Ler Estudo de Caso</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
@@ -607,17 +646,17 @@
 
       <!-- PROJETO 4: Automação com IA & Agentes RAG -->
       <article
-        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
         data-category="ai"
         data-href="projetos/agentes-ia-rag-automacao.html"
         data-tech="genai llm langchain databricks python vector db agentes rag inteligencia artificial automacao">
         <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#080e1c] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+        <div class="aspect-[16/10] bg-[#080e1c] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
           <img src="assets/img/projects/project-ai-agents.svg" alt="AI Agents RAG"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            class="w-full h-full object-cover" />
           <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
             <span
-              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
               <i data-lucide="zap" class="w-3 h-3 text-[#a78bfa]"></i>
               Energy Sector
             </span>
@@ -628,30 +667,30 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+              <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
                 Inteligência Artificial
               </span>
-              <span class="text-[11px] font-semibold text-indigo-600 flex items-center gap-1">
+              <span class="text-xs font-semibold text-indigo-600 flex items-center gap-1">
                 <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
                 RAG 96.8%
               </span>
             </div>
 
-            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
               Automação com IA & Agentes RAG
             </h3>
 
-            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
               Substituição de um workflow manual letárgico por um Agente Autônomo de IA com RAG treinado nas normas corporativas da companhia, integrado ao chat corporativo.
             </p>
 
             <!-- Callout de Métrica -->
-            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
                 <i data-lucide="message-square" class="w-4 h-4"></i>
               </div>
-              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
-                Redução de <strong class="text-[#2563eb]">40%</strong> nos chamados e SLA caindo de 4h para 45s.
+              <div class="text-xs text-[#1f2328] font-medium leading-tight">
+                Redução de <strong class="text-[#11376e]">40%</strong> nos chamados e SLA caindo de 4h para 45s.
               </div>
             </div>
           </div>
@@ -659,14 +698,14 @@
           <!-- Bottom Footer -->
           <div>
             <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">GenAI / LLMs</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">LangChain</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Databricks</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Vector DB</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">GenAI / LLMs</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">LangChain</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Databricks</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Vector DB</span>
             </div>
 
             <a href="projetos/agentes-ia-rag-automacao.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
               <span>Ler Estudo de Caso</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
@@ -676,17 +715,17 @@
 
       <!-- PROJETO 5: Governança & Tracking Server-Side -->
       <article
-        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
         data-category="product"
         data-href="projetos/tracking-serverside-governanca.html"
         data-tech="ga4 bigquery gtm server-side looker studio cloud run product analytics growth tracking">
         <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#071222] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+        <div class="aspect-[16/10] bg-[#071222] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
           <img src="assets/img/projects/project-tracking-analytics.svg" alt="Server-Side Tracking Pipeline"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            class="w-full h-full object-cover" />
           <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
             <span
-              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
               <i data-lucide="shopping-bag" class="w-3 h-3 text-[#38bdf8]"></i>
               E-commerce App
             </span>
@@ -697,30 +736,30 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-product inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+              <span class="badge-theme-product inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
                 Product Analytics
               </span>
-              <span class="text-[11px] font-semibold text-rose-600 flex items-center gap-1">
+              <span class="text-xs font-semibold text-rose-600 flex items-center gap-1">
                 <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
                 +92.4% Sinais
               </span>
             </div>
 
-            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
               Governança & Tracking Server-Side
             </h3>
 
-            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
               Infraestrutura de coleta de 1ª parte no GCP com GTM Server-Side. Eliminação de perdas decorrentes de bloqueadores e integração contínua de eventos no BigQuery.
             </p>
 
             <!-- Callout de Métrica -->
-            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
                 <i data-lucide="target" class="w-4 h-4"></i>
               </div>
-              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
-                Aumento de <strong class="text-[#2563eb]">+18% no ROAS</strong> de mídia por atribuição precisa.
+              <div class="text-xs text-[#1f2328] font-medium leading-tight">
+                Aumento de <strong class="text-[#11376e]">+18% no ROAS</strong> de mídia por atribuição precisa.
               </div>
             </div>
           </div>
@@ -728,14 +767,14 @@
           <!-- Bottom Footer -->
           <div>
             <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">GA4</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">BigQuery</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">GTM Server-Side</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Cloud Run</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">GA4</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">BigQuery</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">GTM Server-Side</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Cloud Run</span>
             </div>
 
             <a href="projetos/tracking-serverside-governanca.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
               <span>Ler Estudo de Caso</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
@@ -745,17 +784,17 @@
 
       <!-- PROJETO 6: Predição de Churn & Retenção de Clientes -->
       <article
-        class="project-card bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
+        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
         data-category="business"
         data-href="projetos/churn-prediction-retencao.html"
         data-tech="python scikit-learn xgboost postgresql metabase churn predicao machine learning business analytics saas">
         <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#09101d] relative overflow-hidden flex items-center justify-center border-b border-[#e2e8f0]">
+        <div class="aspect-[16/10] bg-[#09101d] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
           <img src="assets/img/projects/project-churn-prediction.svg" alt="Churn Prediction Machine Learning"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            class="w-full h-full object-cover" />
           <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
             <span
-              class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
+              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
               <i data-lucide="briefcase" class="w-3 h-3 text-[#34d399]"></i>
               SaaS B2B
             </span>
@@ -766,30 +805,30 @@
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+              <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
                 Business Analytics
               </span>
-              <span class="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+              <span class="text-xs font-semibold text-emerald-600 flex items-center gap-1">
                 <i data-lucide="dollar-sign" class="w-3.5 h-3.5"></i>
                 R$ 1.2M Salvo
               </span>
             </div>
 
-            <h3 class="font-bold text-lg text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2.5">
+            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
               Predição de Churn & Retenção de Clientes
             </h3>
 
-            <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed mb-5">
+            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
               Modelo preditivo em Python identificando contas com risco de cancelamento com 45 dias de antecedência a partir da telemetria de produto e suporte.
             </p>
 
             <!-- Callout de Métrica -->
-            <div class="bg-[#f0f7ff] border border-blue-100 rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#2563eb]/10 text-[#2563eb] flex items-center justify-center shrink-0">
+            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
                 <i data-lucide="heart-handshake" class="w-4 h-4"></i>
               </div>
-              <div class="text-[11px] text-[#0b1e3a] font-medium leading-tight">
-                Redução de <strong class="text-[#2563eb]">4.1% para 1.8%</strong> na taxa mensal de churn voluntário.
+              <div class="text-xs text-[#1f2328] font-medium leading-tight">
+                Redução de <strong class="text-[#11376e]">4.1% para 1.8%</strong> na taxa mensal de churn voluntário.
               </div>
             </div>
           </div>
@@ -797,14 +836,14 @@
           <!-- Bottom Footer -->
           <div>
             <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Python</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">XGBoost</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">PostgreSQL</span>
-              <span class="px-2 py-0.5 bg-slate-100 text-[#475569] rounded text-[11px] font-medium">Metabase</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Python</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">XGBoost</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">PostgreSQL</span>
+              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Metabase</span>
             </div>
 
             <a href="projetos/churn-prediction-retencao.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-[#2563eb] border border-[#e2e8f0] hover:border-[#2563eb] text-[#0b1e3a] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
+              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
               <span>Ler Estudo de Caso</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
             </a>
@@ -815,16 +854,16 @@
     </div>
 
     <!-- Empty State de Busca -->
-    <div id="empty-search-state" class="hidden bg-white rounded-2xl border border-[#e2e8f0] p-12 text-center max-w-lg mx-auto my-12 shadow-sm">
-      <div class="w-14 h-14 rounded-2xl bg-slate-100 text-[#64748b] flex items-center justify-center mx-auto mb-4">
+    <div id="empty-search-state" class="hidden bg-white rounded-2xl border border-[#d0d7de] p-12 text-center max-w-lg mx-auto my-12 shadow-sm">
+      <div class="w-14 h-14 rounded-2xl bg-slate-100 text-[#656d76] flex items-center justify-center mx-auto mb-4">
         <i data-lucide="search-x" class="w-7 h-7"></i>
       </div>
-      <h3 class="text-base font-bold text-[#0b1e3a] mb-1.5">Nenhum projeto encontrado</h3>
-      <p class="text-xs sm:text-sm text-[#64748b] mb-6 leading-relaxed">
-        Não localizamos nenhum caso de estudo com os termos pesquisados. Tente buscar por palavras como <span class="font-mono text-[#2563eb]">Power BI</span>, <span class="font-mono text-[#2563eb]">Python</span> ou <span class="font-mono text-[#2563eb]">Databricks</span>.
+      <h3 class="text-base font-bold text-[#1f2328] mb-1.5">Nenhum projeto encontrado</h3>
+      <p class="text-xs sm:text-sm text-[#656d76] mb-6 leading-relaxed">
+        Não localizamos nenhum caso de estudo com os termos pesquisados. Tente buscar por palavras como <span class="font-mono text-[#11376e]">Power BI</span>, <span class="font-mono text-[#11376e]">Python</span> ou <span class="font-mono text-[#11376e]">Databricks</span>.
       </p>
       <button id="reset-search-btn"
-        class="px-5 py-2.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold transition-all cursor-pointer shadow-sm">
+        class="px-5 py-2.5 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold transition-all cursor-pointer shadow-sm">
         Limpar filtros de busca
       </button>
     </div>
@@ -842,7 +881,7 @@
       <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="max-w-xl z-10">
-        <div class="text-[11px] font-bold text-[#38bdf8] uppercase tracking-widest mb-2">VAMOS CONSTRUIR JUNTOS</div>
+        <div class="text-xs font-bold text-[#38bdf8] uppercase tracking-widest mb-2">VAMOS CONSTRUIR JUNTOS</div>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
           Tem um desafio de dados ou quer trocar uma ideia?
         </h2>
@@ -851,7 +890,7 @@
           produtos de IA.
         </p>
         <a href="mailto:contato@marcosdataproduct.com"
-          class="px-6 py-3 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
+          class="px-6 py-3 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
           <span>Iniciar conversa</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
@@ -920,69 +959,69 @@
   <div id="search-modal"
     class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
     <div
-      class="bg-white rounded-2xl max-w-xl w-full border border-[#e2e8f0] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform"
       id="search-modal-container">
 
       <!-- Input Header -->
-      <div class="p-4 border-b border-[#e2e8f0] flex items-center gap-3">
-        <i data-lucide="search" class="w-5 h-5 text-[#2563eb]"></i>
+      <div class="p-4 border-b border-[#d0d7de] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#11376e]"></i>
         <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
-          class="w-full text-sm outline-none text-[#0b1e3a] placeholder-[#94a3b8]" autofocus />
-        <button id="search-modal-close" class="p-1 rounded-lg text-[#94a3b8] hover:text-[#0b1e3a] hover:bg-slate-100 cursor-pointer" aria-label="Fechar busca">
+          class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#8c959f] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer" aria-label="Fechar busca">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <!-- Quick Results / Suggestions -->
       <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
-        <div class="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <div class="text-xs font-bold text-[#8c959f] uppercase tracking-wider mb-2">Sugestões rápidas</div>
         <a href="blog/agentes-ia-business-analytics.html"
-          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
                 data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Agentes Autônomos de IA em Business Analytics</div>
-              <div class="text-[10px] text-[#64748b]">Artigo • IA e RAG</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-xs text-[#656d76]">Artigo • IA e RAG</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
         <a href="blog/media-moda-e-mediana.html"
-          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs"><i
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
                 data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Média, Moda e Mediana: O que os números escondem</div>
-              <div class="text-[10px] text-[#64748b]">Artigo • Estatística e Negócios</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Média, Moda e Mediana: O que os números escondem</div>
+              <div class="text-xs text-[#656d76]">Artigo • Estatística e Negócios</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
         <a href="blog/modelagem-star-schema-powerbi.html"
-          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
                 data-lucide="database" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Modelagem Star Schema no Power BI</div>
-              <div class="text-[10px] text-[#64748b]">Artigo • Power BI & Modelagem Dimensional</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Modelagem Star Schema no Power BI</div>
+              <div class="text-xs text-[#656d76]">Artigo • Power BI & Modelagem Dimensional</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
         <a href="biblioteca.html"
-          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#f1f5f9] text-[#2563eb] flex items-center justify-center text-xs"><i
+            <span class="w-7 h-7 rounded-lg bg-[#f6f8fa] border border-[#d0d7de] text-[#11376e] flex items-center justify-center text-xs"><i
                 data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Biblioteca de Leituras</div>
-              <div class="text-[10px] text-[#64748b]">Curadoria de livros e referências recomendadas</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca de Leituras</div>
+              <div class="text-xs text-[#656d76]">Curadoria de livros e referências recomendadas</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
       </div>
 

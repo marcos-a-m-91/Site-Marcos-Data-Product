@@ -159,4 +159,87 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 8. Privacy & Cookie Consent Card (LGPD + Data Product Storytelling)
+    function initCookieConsent() {
+        const CONSENT_KEY = 'mdp_cookie_consent';
+        if (localStorage.getItem(CONSENT_KEY)) return;
+
+        const banner = document.createElement('div');
+        banner.id = 'cookie-consent-card';
+        banner.className = 'fixed bottom-5 right-5 sm:right-6 max-w-md w-[calc(100%-2.5rem)] z-50 transition-all duration-500 transform translate-y-10 opacity-0 pointer-events-none';
+        banner.style.fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, sans-serif";
+
+        banner.innerHTML = `
+            <div class="bg-white/95 backdrop-blur-md rounded-2xl p-5 border border-[#d0d7de] shadow-2xl flex flex-col gap-3.5 relative">
+                <div class="flex items-start justify-between gap-3">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="cookie" class="w-4 h-4"></i>
+                        </span>
+                        <div>
+                            <h4 class="text-xs font-bold text-[#1f2328] uppercase tracking-wider">
+                                Dados & Transparência
+                            </h4>
+                            <p class="text-[11px] text-[#656d76]">Do dado à decisão • Marcos Data Product</p>
+                        </div>
+                    </div>
+                    <button id="cookie-close-btn" class="p-1.5 rounded-lg text-[#8c959f] hover:text-[#1f2328] hover:bg-slate-100 transition-colors cursor-pointer" aria-label="Fechar aviso" title="Fechar">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <p class="text-xs text-[#57606a] leading-relaxed">
+                    Utilizamos cookies e métricas de navegação anônimas para entender o engajamento e aprimorar sua experiência. Como este é um site sobre <strong>Business Analytics e Produtos de Dados</strong>, alguns desses insights agregados também servirão de <strong>exemplo real em futuros artigos e estudos de caso do blog</strong>!
+                </p>
+
+                <div class="flex items-center gap-2 pt-1 border-t border-[#d0d7de]/50">
+                    <button id="cookie-accept-btn" class="flex-1 py-2.5 px-4 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow transition-all btn-tactile cursor-pointer flex items-center justify-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                        <span>Aceitar e colaborar</span>
+                    </button>
+                    <button id="cookie-essential-btn" class="py-2.5 px-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#57606a] hover:text-[#1f2328] text-xs font-medium transition-all cursor-pointer">
+                        <span>Apenas essenciais</span>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(banner);
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        // Suave entrada após 800ms
+        setTimeout(() => {
+            banner.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+        }, 800);
+
+        function dismissBanner(consentValue) {
+            localStorage.setItem(CONSENT_KEY, consentValue);
+            banner.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+            
+            // Disparar no dataLayer para futuro Google Tag Manager / GA4
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'cookie_consent_update',
+                consent_status: consentValue,
+                timestamp: new Date().toISOString()
+            });
+
+            setTimeout(() => {
+                banner.remove();
+            }, 500);
+        }
+
+        const acceptBtn = document.getElementById('cookie-accept-btn');
+        const essentialBtn = document.getElementById('cookie-essential-btn');
+        const closeBtn = document.getElementById('cookie-close-btn');
+
+        if (acceptBtn) acceptBtn.addEventListener('click', () => dismissBanner('granted'));
+        if (essentialBtn) essentialBtn.addEventListener('click', () => dismissBanner('essential_only'));
+        if (closeBtn) closeBtn.addEventListener('click', () => dismissBanner('dismissed'));
+    }
+
+    initCookieConsent();
 });

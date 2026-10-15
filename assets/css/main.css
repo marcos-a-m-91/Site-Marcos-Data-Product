@@ -56,6 +56,16 @@
   --glass-strong-bg: #ffffff;
   --glass-strong-border: #d0d7de;
   --glass-strong-blur: blur(16px);
+
+  /* Motion & Animation Tokens (Emil Kowalski Standards) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-press: 160ms;
+  --duration-fast: 180ms;
+  --duration-normal: 250ms;
+  --duration-moderate: 350ms;
 }
 
 html {
@@ -220,7 +230,10 @@ section {
   padding: 0.75rem 1.75rem;
   border: 1px solid rgba(27, 31, 36, 0.15);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-press) var(--ease-out),
+              background-color var(--duration-press) var(--ease-out),
+              box-shadow var(--duration-press) var(--ease-out),
+              border-color var(--duration-press) var(--ease-out);
   position: relative;
   overflow: hidden;
   box-shadow: 0 1px 0 rgba(27, 31, 36, 0.1), 0 2px 6px rgba(17, 55, 110, 0.2);
@@ -234,7 +247,7 @@ section {
 }
 
 .btn-primary:active {
-  transform: translateY(0) scale(0.99);
+  transform: scale(0.97);
 }
 
 .btn-primary .ripple-effect {
@@ -260,7 +273,11 @@ section {
   padding: 0.75rem 1.75rem;
   border: 1px solid var(--border-default);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-press) var(--ease-out),
+              color var(--duration-press) var(--ease-out),
+              background-color var(--duration-press) var(--ease-out),
+              border-color var(--duration-press) var(--ease-out),
+              box-shadow var(--duration-press) var(--ease-out);
   text-decoration: none;
   box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
 }
@@ -274,12 +291,14 @@ section {
 }
 
 .btn-secondary:active {
-  transform: translateY(0) scale(0.99);
+  transform: scale(0.97);
 }
 
 /* ── Nav — Segmented Pill Control ─────────────── */
 #navbar {
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
 }
 
 #navbar.scrolled {
@@ -316,9 +335,17 @@ section {
   border: 1px solid transparent;
   background: transparent;
   text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
   white-space: nowrap;
   user-select: none;
+}
+
+.nav-pill-group .nav-link:active {
+  transform: scale(0.97);
 }
 
 /* Hover: subtle white pill */
@@ -352,7 +379,9 @@ section {
   border: 1px solid var(--border-default);
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
   cursor: pointer;
   text-decoration: none;
   display: block;
@@ -366,13 +395,17 @@ section {
   box-shadow: 0 8px 24px rgba(17, 55, 110, 0.12), 0 2px 6px rgba(31, 35, 40, 0.08);
 }
 
+.section-card:active {
+  transform: translateY(-2px) scale(0.985);
+}
+
 .section-card:hover .card-icon-wrap { transform: scale(1.08); }
 .section-card:hover .card-arrow { transform: translateX(4px); opacity: 1; }
 .section-card:hover .card-visual { transform: scale(1.02); }
 
-.card-icon-wrap { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-.card-arrow { opacity: 0.4; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-.card-visual { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.card-icon-wrap { transition: transform var(--duration-normal) var(--ease-out); }
+.card-arrow { opacity: 0.4; transition: transform var(--duration-normal) var(--ease-out), opacity var(--duration-normal) var(--ease-out); }
+.card-visual { transition: transform var(--duration-moderate) var(--ease-out); }
 
 /* ── Hub Deck (Interactive Expanding Cards) ────────── */
 .hub-deck {
@@ -406,12 +439,12 @@ section {
   cursor: pointer;
   text-decoration: none;
   color: inherit;
-  transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.3s ease,
-              border-color 0.3s ease,
-              box-shadow 0.3s ease,
-              transform 0.3s ease,
-              opacity 0.3s ease;
+  transition: flex 0.65s var(--ease-spring),
+              background var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out),
+              opacity var(--duration-normal) var(--ease-out);
   min-width: 0;
 }
 
@@ -618,7 +651,7 @@ section {
   .hub-card.active {
     border-color: rgba(var(--card-accent-rgb), 0.45);
     background: #ffffff;
-    box-shadow: 0 6px 20px rgba(31, 35, 40, 0.1), 0 0 15px rgba(var(--card-accent-rgb), 0.1);
+    box-shadow: 0 6px 20px rgba(31, 35, 40, 0.1), 0 2px 6px rgba(31, 35, 40, 0.06);
   }
   .hub-card.active .hub-card-glow {
     opacity: 0.3;
@@ -655,9 +688,16 @@ section {
   color: #ffffff !important;
   border: 1px solid rgba(27, 31, 36, 0.15);
   box-shadow: 0 1px 0 rgba(27, 31, 36, 0.1), 0 2px 6px rgba(17, 55, 110, 0.2);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-press) var(--ease-out),
+              background-color var(--duration-press) var(--ease-out),
+              border-color var(--duration-press) var(--ease-out),
+              box-shadow var(--duration-press) var(--ease-out);
   text-decoration: none;
   width: max-content;
+}
+
+.hub-btn:active {
+  transform: scale(0.97);
 }
 
 .hub-card:hover .hub-btn {
@@ -675,7 +715,7 @@ section {
 .hub-btn svg {
   color: #ffffff;
   stroke: #ffffff;
-  transition: transform 0.2s ease;
+  transition: transform var(--duration-fast) var(--ease-out);
 }
 
 .hub-card:hover .hub-btn svg {
@@ -739,7 +779,7 @@ section {
   gap: 1.5rem;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s;
+  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 .mobile-menu.active {
@@ -755,7 +795,14 @@ section {
   padding: 0.55rem 1.8rem;
   border-radius: 6px;
   border: 1px solid transparent;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.mobile-menu a:active {
+  transform: scale(0.97);
 }
 
 .mobile-menu a:hover {
@@ -774,7 +821,9 @@ section {
 /* ── Spec row for mini data (Primer Box) ───────── */
 .stat-item {
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
   background: #ffffff !important;
   border: 1px solid var(--border-default) !important;
   box-shadow: 0 1px 3px rgba(31, 35, 40, 0.08);
@@ -800,10 +849,16 @@ section {
   display: flex;
   flex-direction: column;
   box-shadow: 0 1px 3px rgba(31, 35, 40, 0.06), 0 1px 2px rgba(31, 35, 40, 0.04);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
   overflow: hidden;
   text-decoration: none;
   color: inherit;
+}
+
+.pillar-card:active {
+  transform: translateY(-2px) scale(0.985);
 }
 
 .pillar-card-amber {
@@ -874,7 +929,8 @@ section {
   align-items: center;
   justify-content: center;
   color: var(--pillar-accent);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  transition: transform var(--duration-normal) var(--ease-out),
+              background-color var(--duration-normal) var(--ease-out);
 }
 
 .pillar-card:hover .pillar-icon-wrap {
@@ -894,7 +950,8 @@ section {
   color: var(--text-secondary);
   background: #f6f8fa;
   border: 1px solid var(--border-default);
-  transition: all 0.2s ease;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out);
 }
 
 .pillar-card:hover .pillar-topic-pill {
@@ -916,12 +973,18 @@ section {
   background: var(--pillar-accent);
   border: 1px solid rgba(27, 31, 36, 0.15);
   box-shadow: 0 1px 0 rgba(27, 31, 36, 0.1), 0 2px 5px rgba(var(--pillar-accent-rgb), 0.2);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-press) var(--ease-out),
+              background-color var(--duration-press) var(--ease-out),
+              box-shadow var(--duration-press) var(--ease-out);
   text-decoration: none;
 }
 
+.pillar-btn:active {
+  transform: scale(0.97);
+}
+
 .pillar-btn svg {
-  transition: transform 0.2s ease;
+  transition: transform var(--duration-fast) var(--ease-out);
 }
 
 .pillar-card:hover .pillar-btn svg {
@@ -939,7 +1002,13 @@ section {
   display: flex;
   flex-direction: column;
   box-shadow: 0 1px 3px rgba(31, 35, 40, 0.06);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.playbook-resource-card:active {
+  transform: translateY(-2px) scale(0.985);
 }
 
 .playbook-resource-card:hover {
@@ -973,7 +1042,15 @@ section {
   background: #ffffff;
   border: 1px solid var(--border-default);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+}
+
+.filter-pill-btn:active {
+  transform: scale(0.97);
 }
 
 .filter-pill-btn:hover {
@@ -1046,12 +1123,17 @@ section {
 
 /* Subtle Card Elevation */
 .card-hover-clean {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
 }
 .card-hover-clean:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
   border-color: rgba(37, 99, 235, 0.35);
+}
+.card-hover-clean:active {
+  transform: translateY(-1px) scale(0.985);
 }
 
 /* Unified Hero Editorial Component */
@@ -1102,6 +1184,27 @@ section {
   z-index: 9999;
   transition: width 0.1s ease-out;
 }
+
+/* ══════════════════════════════════════════════════
+   ACCESSIBILITY & PREFERS-REDUCED-MOTION (Emil Kowalski Standard)
+══════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Preserve gentle opacity fades so state changes remain legible */
+  .fade-in,
+  .mobile-menu {
+    transition: opacity 150ms ease !important;
+  }
+}
+
 
 
 

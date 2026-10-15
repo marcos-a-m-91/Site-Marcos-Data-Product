@@ -1,12 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Sobre Mim — Marcos Data Product | Economista & Analista de Negócios</title>
+  <title>Sobre Mim - Marcos Data Product | Economista & Analista de Negócios</title>
   <meta name="description"
-    content="Conectando dados, negócios e pessoas. Conheça a trajetória de Marcos Aurélio e o que move o Marcos Data Product." />
+    content="Conectando dados, negócios e pessoas: conheça a trajetória de Marcos Aurélio e o que move o Marcos Data Product." />
 
   <!-- ═══════════════════════════════════════════════
        DEPENDENCIES (Vendor + Main Assets)
@@ -54,9 +61,9 @@
       font-family: 'Caveat', cursive, sans-serif !important;
     }
 
-    /* Active Nav Link with blue line underline */
+    /* Active Nav Link with brand blue line underline */
     .nav-item-active {
-      color: #0b1e3a !important;
+      color: #11376e !important;
       font-weight: 600;
       position: relative;
     }
@@ -68,33 +75,33 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: #2563eb;
+      background-color: #11376e;
       border-radius: 2px;
     }
 
-    /* Hero section com imagem de fundo e gradiente */
+    /* Hero section: Viewport Stability & Photographic Editorial Layout */
     .sobre-hero-container {
       position: relative;
       background-image: url('assets/img/hero_section_sobre.webp');
       background-position: center right;
       background-repeat: no-repeat;
       background-size: cover;
-      min-height: 480px;
+      min-height: 460px;
     }
 
     /* Máscara de gradiente editorial Deep Navy */
     .sobre-hero-gradient-mask {
       background: linear-gradient(
         to right,
-        rgba(11, 30, 58, 0.94) 0%,
-        rgba(11, 30, 58, 0.88) 38%,
-        rgba(11, 30, 58, 0.58) 62%,
-        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.96) 0%,
+        rgba(11, 30, 58, 0.90) 42%,
+        rgba(11, 30, 58, 0.60) 65%,
+        rgba(11, 30, 58, 0.22) 85%,
         rgba(11, 30, 58, 0.0) 100%
       );
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1023px) {
       .sobre-hero-container {
         background-position: 72% center;
         min-height: 400px;
@@ -103,9 +110,9 @@
       .sobre-hero-gradient-mask {
         background: linear-gradient(
           to bottom,
-          rgba(11, 30, 58, 0.95) 0%,
-          rgba(11, 30, 58, 0.90) 65%,
-          rgba(11, 30, 58, 0.50) 100%
+          rgba(11, 30, 58, 0.96) 0%,
+          rgba(11, 30, 58, 0.91) 68%,
+          rgba(11, 30, 58, 0.55) 100%
         );
       }
     }
@@ -127,15 +134,43 @@
       transform: translateY(-2px);
     }
 
-    /* Card Elevation & Hover Clean */
+    /* Tactile Buttons with Emil Kowalski spring and physical push on active */
+    .btn-tactile {
+      transition: transform var(--duration-press, 160ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  background-color var(--duration-fast, 180ms) ease,
+                  box-shadow var(--duration-fast, 180ms) ease,
+                  border-color var(--duration-fast, 180ms) ease;
+    }
+    .btn-tactile:hover {
+      transform: translateY(-2px);
+    }
+    .btn-tactile:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Card Elevation & Hover Clean following DESIGN.md */
     .card-hover-clean {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
     }
 
     .card-hover-clean:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
-      border-color: rgba(37, 99, 235, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(17, 55, 110, 0.10), 0 4px 10px -2px rgba(31, 35, 40, 0.04);
+      border-color: rgba(17, 55, 110, 0.35);
+    }
+
+    .card-hover-clean:active {
+      transform: translateY(-1px) scale(0.995);
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn-tactile, .card-hover-clean, .hero-social-btn, .timeline-card, .timeline-node, .timeline-v-item {
+        transition: none !important;
+        transform: none !important;
+      }
     }
 
     /* ═══════════════════════════════════════════════════════
@@ -150,8 +185,8 @@
       --company-color-rgb: 98, 19, 145;
     }
     .timeline-item-neoenergia {
-      --company-color: #598527;
-      --company-color-rgb: 89, 133, 39;
+      --company-color: #44681e;
+      --company-color-rgb: 68, 104, 30;
     }
     .timeline-item-alelo {
       --company-color: #008542;
@@ -175,19 +210,21 @@
       will-change: transform, box-shadow, border-color;
     }
 
-    /* Borda do card com a cor da empresa + destaque sutil na lateral */
+    /* Borda limpa com transição suave e física elástica */
     .timeline-v-item .timeline-card {
-      border: 1px solid rgba(var(--company-color-rgb), 0.28) !important;
-      border-left: 4px solid var(--company-color) !important;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid #d0d7de !important;
+      padding: 1.5rem !important;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.28s ease !important;
+      transform-origin: center center;
       will-change: transform, box-shadow, border-color;
     }
 
     .timeline-v-item .timeline-card:hover {
       border-color: rgba(var(--company-color-rgb), 0.55) !important;
-      border-left-color: var(--company-color) !important;
-      box-shadow: 0 14px 28px -6px rgba(var(--company-color-rgb), 0.16), 0 8px 12px -6px rgba(11, 30, 58, 0.04) !important;
-      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -6px rgba(17, 55, 110, 0.12), 0 4px 10px rgba(31, 35, 40, 0.04) !important;
+      transform: translateY(-2px);
     }
 
     .timeline-year-badge {
@@ -198,31 +235,73 @@
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Estado Iluminado (Scroll-Driven):
+    /* Estado Iluminado Base (Scroll-Driven):
        Quando a linha alcança a empresa, o ano e o nó assumem a cor da empresa */
     .timeline-v-item.is-illuminated .timeline-node {
       border-color: var(--company-color) !important;
       background-color: #ffffff !important;
-      box-shadow: 0 0 0 4px rgba(var(--company-color-rgb), 0.18), 0 0 24px rgba(var(--company-color-rgb), 0.40) !important;
-      transform: scale(1.10);
+      box-shadow: 0 0 0 3px rgba(var(--company-color-rgb), 0.16) !important;
+      transform: scale(1.05);
     }
 
     .timeline-v-item.is-illuminated .timeline-card {
-      border-color: rgba(var(--company-color-rgb), 0.55) !important;
-      border-left-color: var(--company-color) !important;
-      box-shadow: 0 16px 32px -8px rgba(11, 30, 58, 0.08), 0 0 24px rgba(var(--company-color-rgb), 0.18) !important;
-      transform: translateY(-2px);
+      border-color: rgba(var(--company-color-rgb), 0.38) !important;
+      box-shadow: 0 6px 18px -4px rgba(17, 55, 110, 0.08) !important;
+      transform: scale(1);
     }
 
     .timeline-v-item.is-illuminated .timeline-year-badge {
       background-color: var(--company-color) !important;
       color: #ffffff !important;
       border-color: var(--company-color) !important;
-      box-shadow: 0 2px 12px rgba(var(--company-color-rgb), 0.40) !important;
+      box-shadow: 0 2px 8px rgba(var(--company-color-rgb), 0.30) !important;
     }
 
     .timeline-v-item.is-illuminated .timeline-year-watermark {
-      color: rgba(var(--company-color-rgb), 0.24) !important;
+      color: rgba(var(--company-color-rgb), 0.20) !important;
+    }
+
+    /* ESTADO ATIVO / SPOTLIGHT (Exclusivo da empresa em foco atual):
+       Dá zoom no bloco, intensifica a iluminação e eleva a profundidade;
+       ao rolar para a próxima, o bloco volta ao tamanho normal */
+    .timeline-v-item.is-active {
+      z-index: 25;
+    }
+
+    .timeline-v-item.is-active .timeline-card {
+      border-color: var(--company-color) !important;
+      box-shadow: 0 20px 42px -10px rgba(var(--company-color-rgb), 0.28), 0 4px 16px rgba(11, 30, 58, 0.08) !important;
+      transform: scale(1.035) translateY(-3px) !important;
+    }
+
+    .timeline-v-item.is-active .timeline-card:hover {
+      transform: scale(1.045) translateY(-4px) !important;
+    }
+
+    @media (max-width: 640px) {
+      .timeline-v-item.is-active .timeline-card {
+        transform: scale(1.02) translateY(-2px) !important;
+      }
+      .timeline-v-item.is-active .timeline-card:hover {
+        transform: scale(1.025) translateY(-3px) !important;
+      }
+    }
+
+    .timeline-v-item.is-active .timeline-node {
+      border-color: var(--company-color) !important;
+      background-color: #ffffff !important;
+      box-shadow: 0 0 0 6px rgba(var(--company-color-rgb), 0.28), 0 0 16px rgba(var(--company-color-rgb), 0.40) !important;
+      transform: scale(1.22);
+    }
+
+    .timeline-v-item.is-active .timeline-year-watermark {
+      color: rgba(var(--company-color-rgb), 0.38) !important;
+      transform: scale(1.06);
+    }
+
+    .timeline-v-item.is-active .timeline-year-badge {
+      transform: scale(1.06);
+      box-shadow: 0 4px 14px rgba(var(--company-color-rgb), 0.45) !important;
     }
 
     /* CTA Mountains Background */
@@ -320,7 +399,11 @@
   </style>
 </head>
 
-<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
+<body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER / NAVBAR
@@ -332,16 +415,16 @@
       <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
         <img src="assets/img/Logo.png" alt="Marcos Data Product Logo"
-          class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
-        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
+          class="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#11376e]">Marcos Data Product</span>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
-        <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
-        <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
-        <a href="projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
-        <a href="biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
+        <a href="index.html" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
+        <a href="blog.html" class="hover:text-[#11376e] font-medium transition-colors">Blog</a>
+        <a href="projetos.html" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
+        <a href="biblioteca.html" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
         <a href="sobre.html" class="nav-item-active">Sobre</a>
       </nav>
 
@@ -349,20 +432,20 @@
       <div class="flex items-center gap-3">
         <!-- Search Trigger -->
         <button id="search-modal-trigger"
-          class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer"
+          class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f1f5f9] transition-colors cursor-pointer"
           aria-label="Buscar no site">
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
         <!-- CTA "Vamos conversar" -->
         <a href="mailto:contato@marcosdataproduct.com"
-          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
           <span>Vamos conversar</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
 
         <!-- Mobile Menu Toggle -->
-        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9]" id="mobile-btn"
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f1f5f9]" id="mobile-btn"
           aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
@@ -426,19 +509,19 @@
         <!-- Social Action Buttons -->
         <div class="flex items-center gap-3">
           <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn flex items-center justify-center" aria-label="LinkedIn">
+            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="LinkedIn">
             <i data-lucide="linkedin" class="w-5 h-5"></i>
           </a>
           <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn flex items-center justify-center" aria-label="GitHub">
+            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="GitHub">
             <i data-lucide="github" class="w-5 h-5"></i>
           </a>
           <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn flex items-center justify-center" aria-label="YouTube">
+            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="YouTube">
             <i data-lucide="youtube" class="w-5 h-5"></i>
           </a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn flex items-center justify-center" aria-label="Instagram">
+            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="Instagram">
             <i data-lucide="instagram" class="w-5 h-5"></i>
           </a>
         </div>
@@ -465,9 +548,6 @@
 
       <!-- Coluna Central: História & Assinatura -->
       <div class="lg:col-span-5 flex flex-col">
-        <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">
-          OLÁ, EU SOU O
-        </span>
         <h2 class="text-3xl sm:text-4xl font-bold text-[#0b1e3a] tracking-tight">
           Marcos Aurélio
         </h2>
@@ -491,7 +571,7 @@
           <p>
             Criei o Marcos Data Product para compartilhar esse caminho: o que aprendo, estudo e construo, sem falar
             apenas sobre o que já sei. Quero também mostrar as dúvidas, descobertas, ferramentas e ideias que encontro
-            pelo caminho — porque acredito que aprender fica mais interessante quando a gente compartilha o processo.
+            pelo caminho: porque acredito que aprender fica mais interessante quando a gente compartilha o processo.
           </p>
         </div>
 
@@ -502,53 +582,53 @@
 
         <!-- Fact 1 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-slate-200/70 shadow-2xs card-hover-clean">
+          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#2563eb] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
             <i data-lucide="graduation-cap" class="w-5 h-5"></i>
           </div>
           <div>
-            <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Economista</h4>
-            <p class="text-[11px] text-[#64748b]">de formação</p>
+            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Economista</h3>
+            <p class="text-[11px] text-[#656d76]">de formação</p>
           </div>
         </div>
 
         <!-- Fact 2 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-slate-200/70 shadow-2xs card-hover-clean">
+          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#2563eb] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
             <i data-lucide="briefcase" class="w-5 h-5"></i>
           </div>
           <div>
-            <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">10+</h4>
-            <p class="text-[11px] text-[#64748b]">anos de experiência</p>
+            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">10+</h3>
+            <p class="text-[11px] text-[#656d76]">anos de experiência</p>
           </div>
         </div>
 
         <!-- Fact 3 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-slate-200/70 shadow-2xs card-hover-clean">
+          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#2563eb] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
             <i data-lucide="book-open" class="w-5 h-5"></i>
           </div>
           <div>
-            <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Aprendizado</h4>
-            <p class="text-[11px] text-[#64748b]">contínuo</p>
+            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Aprendizado</h3>
+            <p class="text-[11px] text-[#656d76]">contínuo</p>
           </div>
         </div>
 
         <!-- Fact 4 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-slate-200/70 shadow-2xs card-hover-clean">
+          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#2563eb] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
             <i data-lucide="users" class="w-5 h-5"></i>
           </div>
           <div>
-            <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Compartilhar</h4>
-            <p class="text-[11px] text-[#64748b]">para multiplicar</p>
+            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Compartilhar</h3>
+            <p class="text-[11px] text-[#656d76]">para multiplicar</p>
           </div>
         </div>
 
@@ -566,7 +646,7 @@
 
     <!-- Section Header (Fiel ao padrão da Home: CONTEÚDO RECENTE / Barra Azul) -->
     <div class="mb-12 sm:mb-16">
-      <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">EXPERIÊNCIAS</span>
+      <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">TRAJETÓRIA PROFISSIONAL</span>
       <h2 class="text-2xl sm:text-3xl font-bold text-[#0b1e3a] tracking-tight">
         Minha trajetória
       </h2>
@@ -597,7 +677,7 @@
       <!-- Lista de Marcos (6 Empresas) -->
       <div class="space-y-12 sm:space-y-16 relative z-10">
 
-        <!-- Marco 1: Bauminas (2015–2018) -->
+        <!-- Marco 1: Bauminas (2015-2018) -->
         <div
           class="timeline-v-item timeline-item-bauminas relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Card (Esquerda no Desktop) -->
@@ -615,7 +695,7 @@
                     <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Bauminas</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2015–2018
+                      2015-2018
                     </span>
                   </div>
                   <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Assistente de Controladoria Comercial</p>
@@ -680,7 +760,7 @@
           </div>
         </div>
 
-        <!-- Marco 2: Kroton (2018–2019) -->
+        <!-- Marco 2: Kroton (2018-2019) -->
         <div
           class="timeline-v-item timeline-item-kroton relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Ano de Destaque Decorativo (Esquerda no Desktop) -->
@@ -715,7 +795,7 @@
                     <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Kroton</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2018–2019
+                      2018-2019
                     </span>
                   </div>
                   <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista em Gestão Financeira Orçamentária</p>
@@ -763,7 +843,7 @@
           </div>
         </div>
 
-        <!-- Marco 3: Neoenergia (2020–2021) -->
+        <!-- Marco 3: Neoenergia (2020-2021) -->
         <div
           class="timeline-v-item timeline-item-neoenergia relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Card (Esquerda no Desktop) -->
@@ -781,7 +861,7 @@
                     <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Neoenergia</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2020–2021
+                      2020-2021
                     </span>
                   </div>
                   <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Qualidade do Atendimento</p>
@@ -836,7 +916,7 @@
           </div>
         </div>
 
-        <!-- Marco 4: Alelo (2022–2024) -->
+        <!-- Marco 4: Alelo (2022-2024) -->
         <div
           class="timeline-v-item timeline-item-alelo relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Ano de Destaque Decorativo (Esquerda no Desktop) -->
@@ -871,10 +951,10 @@
                     <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Alelo</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2022–2024
+                      2022-2024
                     </span>
                   </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Negócios — Product Operations & Analytics</p>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Negócios - Product Operations & Analytics</p>
                 </div>
               </div>
 
@@ -939,7 +1019,7 @@
           </div>
         </div>
 
-        <!-- Marco 5: Nubank (2024–2026) -->
+        <!-- Marco 5: Nubank (2024-2026) -->
         <div
           class="timeline-v-item timeline-item-nubank relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Card (Esquerda no Desktop) -->
@@ -957,7 +1037,7 @@
                     <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Nubank</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2024–2026
+                      2024-2026
                     </span>
                   </div>
                   <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Business Analytics</p>
@@ -1022,7 +1102,7 @@
           </div>
         </div>
 
-        <!-- Marco 6: Ford (2026–Atual) -->
+        <!-- Marco 6: Ford (2026-Atual) -->
         <div
           class="timeline-v-item timeline-item-ford relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Ano de Destaque Decorativo (Esquerda no Desktop) -->
@@ -1057,7 +1137,7 @@
                     <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Ford</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2026–Atual
+                      2026-Atual
                     </span>
                   </div>
                   <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de BI</p>
@@ -1127,12 +1207,11 @@
   <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 border-t border-slate-200/80 overflow-hidden">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
       <div>
-        <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">DEPOIMENTOS</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-[#0b1e3a] tracking-tight">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#1f2328] tracking-tight">
           O que as pessoas dizem
         </h2>
-        <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5 mb-3"></div>
-        <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed max-w-2xl">
+        <div class="w-10 h-[3.75px] bg-[#11376e] rounded-full mt-2.5 mb-3"></div>
+        <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed max-w-2xl">
           Alguns depoimentos que recebi no LinkedIn e que me motivam a seguir compartilhando.
         </p>
       </div>
@@ -1142,7 +1221,7 @@
           Passe o mouse para pausar
         </span>
         <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#2563eb] hover:text-[#1d4ed8] transition-colors group">
+          class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] transition-colors group">
           <span>Ver mais no LinkedIn</span>
           <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
         </a>
@@ -1158,100 +1237,100 @@
 
           <!-- Card 1: Nubank -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 O Marcos tem uma capacidade incrível de transformar dados complexos em insights claros e acionáveis.
                 Além do conhecimento técnico, é uma pessoa colaborativa e sempre disposta a ajudar o time.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/Lucas Sorreano.jpeg" alt="Lucas Sorreano"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega de Nubank</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Nubank</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
 
           <!-- Card 2: Alelo -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 Trabalhar com o Marcos foi uma experiência enriquecedora. Ele combina visão estratégica com domínio
                 técnico, sempre trazendo uma abordagem pragmática e orientada a impacto.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/Leidiana de Carli.jpeg" alt="Leidiana de Carli"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega de Alelo</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Alelo</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
 
           <!-- Card 3: Ford -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 O Marcos se destaca pela curiosidade, pelo aprendizado contínuo e pela forma genuína de compartilhar
                 conhecimento. É inspiração para quem trabalha com dados e produtos.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/Carolina Pazinato.jpeg" alt="Carolina Pazinato"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega da Ford</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega da Ford</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
 
           <!-- Card 4: Negócios / Mentoria -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 Profissional extremamente dedicado e com olhar analítico diferenciado. Sua capacidade de estruturar
                 problemas e apoiar o desenvolvimento do time é uma referência em qualquer projeto.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/VIviane Vieira.jpeg" alt="Viviane Vieira"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega de Negócios</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Negócios</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
@@ -1263,100 +1342,100 @@
 
           <!-- Card 1: Nubank -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 O Marcos tem uma capacidade incrível de transformar dados complexos em insights claros e acionáveis.
                 Além do conhecimento técnico, é uma pessoa colaborativa e sempre disposta a ajudar o time.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/Lucas Sorreano.jpeg" alt="Lucas Sorreano"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega de Nubank</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Nubank</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
 
           <!-- Card 2: Alelo -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 Trabalhar com o Marcos foi uma experiência enriquecedora. Ele combina visão estratégica com domínio
                 técnico, sempre trazendo uma abordagem pragmática e orientada a impacto.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/Leidiana de Carli.jpeg" alt="Leidiana de Carli"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega de Alelo</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Alelo</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
 
           <!-- Card 3: Ford -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 O Marcos se destaca pela curiosidade, pelo aprendizado contínuo e pela forma genuína de compartilhar
                 conhecimento. É inspiração para quem trabalha com dados e produtos.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/Carolina Pazinato.jpeg" alt="Carolina Pazinato"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega da Ford</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega da Ford</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
 
           <!-- Card 4: Negócios / Mentoria -->
           <div
-            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-xs flex flex-col justify-between card-hover-clean">
+            class="testimonial-card-marquee bg-white rounded-2xl p-6 sm:p-7 border border-[#d0d7de] shadow-xs flex flex-col justify-between card-hover-clean">
             <div>
-              <div class="text-[#2563eb] mb-4">
+              <div class="text-[#11376e] mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
-              <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+              <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-6">
                 Profissional extremamente dedicado e com olhar analítico diferenciado. Sua capacidade de estruturar
                 problemas e apoiar o desenvolvimento do time é uma referência em qualquer projeto.
               </p>
             </div>
             <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
               <img src="assets/img/VIviane Vieira.jpeg" alt="Viviane Vieira"
-                class="w-10 h-10 rounded-full object-cover border border-slate-200" />
+                class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a]">Ex-colega de Negócios</h4>
-                <p class="text-[11px] text-[#64748b]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Negócios</h3>
+                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
               </div>
             </div>
           </div>
@@ -1383,8 +1462,8 @@
           Se você curte dados, tecnologia, negócios ou apenas boas conversas, será um prazer trocar uma ideia.
         </p>
         <a href="mailto:contato@marcosdataproduct.com"
-          class="px-6 py-3 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
-          <span>Vamos conversar</span>
+          class="px-6 py-3 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5 btn-tactile">
+          <span>Iniciar conversa</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
@@ -1487,7 +1566,7 @@
             <span class="w-7 h-7 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs"><i
                 data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Biblioteca — Livros
+              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Biblioteca - Livros
                 recomendados</div>
               <div class="text-[11px] text-[#64748b]">Curadoria • Dados, Estratégia e Produto</div>
             </div>
@@ -1667,18 +1746,56 @@
           progressBead.style.opacity = progress > 0.005 ? '1' : '0';
         }
 
-        // Iluminar marcos alcançados pela linha
+        // Iluminar marcos alcançados pela linha e destacar com zoom o marco ativo atual
         const currentBeamScreenY = firstNodeCenterY + currentLineHeight;
+
+        // Coletar as posições de todos os nós
+        const nodePositions = [];
         timelineItems.forEach((item) => {
           const node = item.querySelector('.timeline-node');
           if (node) {
             const nodeRect = node.getBoundingClientRect();
-            const nodeCenterY = nodeRect.top + nodeRect.height / 2;
-            if (currentBeamScreenY >= nodeCenterY - 8) {
-              item.classList.add('is-illuminated');
-            } else {
-              item.classList.remove('is-illuminated');
+            nodePositions.push(nodeRect.top + nodeRect.height / 2);
+          } else {
+            nodePositions.push(0);
+          }
+        });
+
+        // Determinar qual marco está no foco ativo (zoom spotlight)
+        let activeIndex = -1;
+        const isWithinTimeline = progress > 0.01 && containerRect.bottom > window.innerHeight * 0.15;
+
+        if (isWithinTimeline) {
+          for (let i = 0; i < timelineItems.length; i++) {
+            const currentY = nodePositions[i];
+            const prevMid = i === 0 ? currentY - 50 : (nodePositions[i - 1] + currentY) / 2;
+            const nextMid = i === timelineItems.length - 1 ? currentY + 120 : (currentY + nodePositions[i + 1]) / 2;
+
+            if (currentBeamScreenY >= prevMid && currentBeamScreenY < nextMid) {
+              activeIndex = i;
+              break;
             }
+          }
+          if (activeIndex === -1 && currentBeamScreenY >= nodePositions[timelineItems.length - 1]) {
+            activeIndex = timelineItems.length - 1;
+          }
+        }
+
+        timelineItems.forEach((item, index) => {
+          const nodeCenterY = nodePositions[index];
+
+          // Iluminado (linha alcançou)
+          if (progress > 0 && currentBeamScreenY >= nodeCenterY - 10) {
+            item.classList.add('is-illuminated');
+          } else {
+            item.classList.remove('is-illuminated');
+          }
+
+          // Ativo / Em foco (Zoom exclusivo no bloco atual)
+          if (index === activeIndex) {
+            item.classList.add('is-active');
+          } else {
+            item.classList.remove('is-active');
           }
         });
       }

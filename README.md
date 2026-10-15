@@ -25,6 +25,7 @@ Este é o repositório do site profissional de **Marcos Aurélio**, Senior Busin
 ├── projetos.html     # Portfólio de projetos e estudos de caso
 ├── biblioteca.html   # Curadoria de livros, referências e leituras recomendadas
 ├── sobre.html        # Biografia profissional, trajetória e competências
+├── 404.html          # Página 404 personalizada com busca e rotas recomendadas
 ├── design_system.html # Documentação viva de componentes e tokens visuais
 └── README.md
 ```

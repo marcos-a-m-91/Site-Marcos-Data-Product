@@ -1,11 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Marcos Data Product — Do dado à decisão</title>
-  <meta name="description" content="Conteúdo, projetos e aprendizados sobre dados, negócios, produto e tecnologia — do conceito à aplicação no mundo real." />
+  <title>Marcos Data Product - Do dado à decisão</title>
+  <meta name="description" content="Conteúdo, projetos e aprendizados sobre dados, negócios, produto e tecnologia: do conceito à aplicação no mundo real." />
 
   <!-- ═══════════════════════════════════════════════
        DEPENDENCIES
@@ -36,18 +43,19 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Hero section com texto sobre a imagem */
+    /* Hero section: Viewport Stability & Photographic Editorial Layout */
     .hero-container {
       position: relative;
       background-image: url('assets/img/imagem_hero_1.png');
       background-position: right center;
       background-repeat: no-repeat;
       background-size: cover;
-      min-height: 600px;
+      min-height: 560px;
     }
 
-    @media (min-width: 1280px) {
+    @media (min-width: 1024px) {
       .hero-container {
+        min-height: min(680px, calc(100dvh - 72px));
         background-position: right center;
       }
     }
@@ -56,32 +64,32 @@
     .hero-gradient-mask {
       background: linear-gradient(
         to right,
-        rgba(11, 30, 58, 0.94) 0%,
-        rgba(11, 30, 58, 0.88) 38%,
-        rgba(11, 30, 58, 0.58) 62%,
-        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.96) 0%,
+        rgba(11, 30, 58, 0.90) 42%,
+        rgba(11, 30, 58, 0.60) 66%,
+        rgba(11, 30, 58, 0.22) 86%,
         rgba(11, 30, 58, 0.0) 100%
       );
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1023px) {
       .hero-container {
-        background-position: 70% center;
-        min-height: 460px;
+        background-position: 75% center;
+        min-height: 500px;
       }
       .hero-gradient-mask {
         background: linear-gradient(
           to bottom,
-          rgba(11, 30, 58, 0.95) 0%,
-          rgba(11, 30, 58, 0.90) 65%,
-          rgba(11, 30, 58, 0.50) 100%
+          rgba(11, 30, 58, 0.97) 0%,
+          rgba(11, 30, 58, 0.92) 68%,
+          rgba(11, 30, 58, 0.60) 100%
         );
       }
     }
 
-    /* Active Nav Link with blue line underline */
+    /* Active Nav Link with brand blue line underline */
     .nav-item-active {
-      color: #0b1e3a !important;
+      color: #11376e !important;
       font-weight: 600;
       position: relative;
     }
@@ -92,33 +100,72 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: #2563eb;
+      background-color: #11376e;
       border-radius: 2px;
     }
 
-    /* Subtle Card Elevation */
+    /* Tactile Buttons with Emil Kowalski spring and physical push on active */
+    .btn-tactile {
+      transition: transform var(--duration-press, 160ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  background-color var(--duration-fast, 180ms) ease,
+                  box-shadow var(--duration-fast, 180ms) ease,
+                  border-color var(--duration-fast, 180ms) ease;
+    }
+    .btn-tactile:hover {
+      transform: translateY(-2px);
+    }
+    .btn-tactile:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Card Elevation with navy-tinted ambient shadows */
     .card-hover-clean {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
     }
     .card-hover-clean:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px -5px rgba(11, 30, 58, 0.08), 0 8px 10px -6px rgba(11, 30, 58, 0.04);
-      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: 0 10px 24px -4px rgba(11, 30, 58, 0.10), 0 2px 6px -1px rgba(31, 35, 40, 0.04);
+      border-color: rgba(17, 55, 110, 0.35);
+    }
+    .card-hover-clean:active {
+      transform: translateY(-1px) scale(0.995);
     }
 
-    /* Book cover shadow */
+    /* Book cover elevation with navy-tinted ambient depth */
     .book-shadow {
-      box-shadow: 0 8px 20px -4px rgba(11, 30, 58, 0.14), 0 3px 6px -3px rgba(11, 30, 58, 0.08);
-      transition: all 0.3s ease;
+      box-shadow: 0 6px 16px -2px rgba(11, 30, 58, 0.12), 0 2px 4px -1px rgba(11, 30, 58, 0.06);
+      transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
     }
     .book-shadow:hover {
       transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 14px 28px -6px rgba(11, 30, 58, 0.22);
+      box-shadow: 0 14px 28px -4px rgba(11, 30, 58, 0.18), 0 4px 8px -2px rgba(11, 30, 58, 0.08);
+    }
+
+    /* Technical workbench surface texture with subtle analytical micro-grid */
+    .section-surface-workbench {
+      background-color: #f8fafc;
+      background-image: radial-gradient(rgba(17, 55, 110, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn-tactile, .card-hover-clean, .book-shadow {
+        transition: none !important;
+        transform: none !important;
+      }
     }
   </style>
 </head>
 
-<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
+<body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER / NAVBAR
@@ -128,34 +175,34 @@
       
       <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product Logo" class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
-        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
+        <img src="assets/img/Logo.png" alt="Marcos Data Product Logo" class="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#11376e]">Marcos Data Product</span>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
         <a href="index.html" class="nav-item-active">Home</a>
-        <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
-        <a href="projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
-        <a href="biblioteca.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Biblioteca</a>
-        <a href="sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
+        <a href="blog.html" class="hover:text-[#11376e] font-medium transition-colors">Blog</a>
+        <a href="projetos.html" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
+        <a href="biblioteca.html" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
+        <a href="sobre.html" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
       </nav>
 
       <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
       <div class="flex items-center gap-3">
         <!-- Search Trigger -->
-        <button id="search-modal-trigger" class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer" aria-label="Buscar no site">
+        <button id="search-modal-trigger" class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f1f5f9] transition-colors cursor-pointer" aria-label="Buscar no site">
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
         <!-- CTA "Vamos conversar" -->
-        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
           <span>Vamos conversar</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
 
         <!-- Mobile Menu Toggle -->
-        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9]" id="mobile-btn" aria-label="Abrir Menu">
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f1f5f9]" id="mobile-btn" aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -165,22 +212,22 @@
 
   <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]" id="mobile-close" aria-label="Fechar menu">
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]" id="mobile-close" aria-label="Fechar menu">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
     <a href="index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
       <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
-      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
+      <span class="font-bold text-lg text-[#11376e]">Marcos Data Product</span>
     </a>
     <div class="flex flex-col gap-2">
-      <a href="index.html" class="mobile-link active font-semibold text-[#2563eb]">Home</a>
+      <a href="index.html" class="mobile-link active font-semibold text-[#11376e]">Home</a>
       <a href="blog.html" class="mobile-link">Blog</a>
       <a href="projetos.html" class="mobile-link">Projetos</a>
       <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
       <a href="sobre.html" class="mobile-link">Sobre</a>
     </div>
     <div class="mt-8 pt-6 border-t border-slate-200">
-      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
         <span>Vamos conversar</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
@@ -189,68 +236,84 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-     HERO SECTION
+     HERO SECTION (TASTE-SKILL REFINED)
   ═══════════════════════════════════════════════════════ -->
   <section class="hero-container relative overflow-hidden flex items-center">
     <!-- Ambient Gradient Blend Overlay -->
     <div class="hero-gradient-mask absolute inset-0 z-0"></div>
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 relative z-10 w-full">
       <div class="max-w-2xl">
 
-        <!-- Eyebrow -->
-        <div class="flex items-center gap-2 text-[#38bdf8] text-xs sm:text-sm font-bold tracking-[0.25em] uppercase mb-4">
-          <span>DADOS, IDEIAS, PESSOAS, IMPACTO.</span>
+        <!-- Eyebrow (Hero allowed per 1-per-3 section restraint) -->
+        <div class="flex items-center gap-2 text-[#38bdf8] text-xs sm:text-sm font-bold tracking-[0.22em] uppercase mb-4">
+          <span>DADOS, IDEIAS, PESSOAS, IMPACTO</span>
         </div>
 
-        <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
+        <!-- Headline (Max 2 lines, punchy) -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-5">
           Do dado<br />
           à <span class="text-[#38bdf8]">decisão.</span>
         </h1>
 
-        <!-- Subtitle -->
+        <!-- Subtitle (16 words <= 20 words limit, crisp, authoritative, zero em-dash) -->
         <p class="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-xl">
-          Conteúdo, projetos e aprendizados sobre dados, negócios, produto e tecnologia — do conceito à aplicação no mundo real.
+          Conteúdo, projetos e aprendizados sobre dados, negócios, produto e tecnologia: do conceito à aplicação no mundo real.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap items-center gap-3 sm:gap-4 mb-14">
-          <a href="#conteudo-recente" class="px-6 sm:px-7 py-3.5 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-sm inline-flex items-center gap-2 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5">
+        <!-- CTA Buttons (1 primary + 1 secondary, tactile feedback, no wrap) -->
+        <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+          <a href="#conteudo-recente" class="btn-tactile px-6 sm:px-7 py-3.5 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-sm inline-flex items-center gap-2 shadow-sm hover:shadow-md">
             <span>Explorar conteúdos</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
           </a>
-          <a href="sobre.html" class="px-6 sm:px-7 py-3.5 rounded-full border border-white/25 hover:border-white/45 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm font-semibold text-sm transition-all hover:-translate-y-0.5 shadow-sm">
-            <span>Conheça minha história</span>
+          <a href="projetos.html" class="btn-tactile px-6 sm:px-7 py-3.5 rounded-full border border-white/25 hover:border-white/45 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm font-semibold text-sm shadow-sm inline-flex items-center gap-2">
+            <span>Ver projetos</span>
+            <i data-lucide="layers" class="w-4 h-4 text-white/80"></i>
           </a>
         </div>
 
-        <!-- Metric Counters Row (Per user request: +10 anos & café consumidos) -->
-        <div class="grid grid-cols-2 gap-6 sm:gap-10 max-w-md pt-6 border-t border-white/15">
-          
-          <!-- Stat 1: +10 anos -->
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              +<span class="counter" data-target="10" data-duration="2.5">0</span> anos
-            </div>
-            <div class="text-xs text-slate-300 font-medium mt-1 leading-tight">
-              em dados e negócios
-            </div>
-          </div>
+      </div>
+    </div>
+  </section>
 
-          <!-- Stat 2: Litros de café consumidos -->
-          <div>
-            <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              +<span class="counter" data-target="864" data-duration="3.5" data-increment="true" data-interval="5000">0</span>L
-            </div>
-            <div class="text-xs text-slate-300 font-medium mt-1 leading-tight">
-              café consumidos
-            </div>
-          </div>
 
+  <!-- ═══════════════════════════════════════════════════════
+     METRICS & CREDIBILITY STRIP (Dedicated Executive Ribbon Under Hero)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="border-y border-[#d0d7de] bg-white py-5 sm:py-6 px-5 sm:px-8 relative z-20">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-8">
+      
+      <div class="flex flex-wrap items-center gap-8 sm:gap-14">
+        <!-- Stat 1: +10 anos -->
+        <div class="flex items-baseline gap-2.5">
+          <span class="text-2xl sm:text-3xl font-extrabold text-[#11376e] tracking-tight">
+            +<span class="counter" data-target="10" data-duration="2.5">0</span> anos
+          </span>
+          <span class="text-xs text-[#656d76] font-medium leading-tight">
+            em dados, produto e negócios
+          </span>
         </div>
 
+        <div class="hidden sm:block w-px h-7 bg-[#d0d7de]"></div>
+
+        <!-- Stat 2: 6 empresas de ponta -->
+        <div class="flex items-baseline gap-2.5">
+          <span class="text-2xl sm:text-3xl font-extrabold text-[#11376e] tracking-tight">
+            <span class="counter" data-target="6" data-duration="1.8">0</span> empresas
+          </span>
+          <span class="text-xs text-[#656d76] font-medium leading-tight">
+            passagens por Nubank, Ford, Alelo e mais
+          </span>
+        </div>
       </div>
+
+      <!-- Live Credibility Badge -->
+      <div class="inline-flex items-center gap-2.5 text-xs text-[#11376e] font-medium bg-[#11376e]/5 px-3.5 py-1.5 rounded-full border border-[#11376e]/15 self-start sm:self-auto">
+        <span class="w-2 h-2 rounded-full bg-[#1a7f37]"></span>
+        <span>Artigos práticos, cases reais e repertório</span>
+      </div>
+
     </div>
   </section>
 
@@ -349,19 +412,20 @@
   <!-- ═══════════════════════════════════════════════════════
      SEÇÃO 2: CONTEÚDO RECENTE (3 POSTS REAIS DO BLOG + QUOTE)
   ═══════════════════════════════════════════════════════ -->
-  <section id="conteudo-recente" class="py-7 sm:py-9 px-5 sm:px-8">
+  <section id="conteudo-recente" class="py-12 sm:py-16 px-5 sm:px-8 bg-white border-b border-[#e2e8f0]">
     <div class="max-w-7xl mx-auto">
 
-      <!-- Section Header -->
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-5 sm:mb-6 gap-4">
+      <!-- Section Header (Taste-Skill: Eyebrow dropped, confident headline) -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
         <div>
-          <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">CONTEÚDO RECENTE</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-[#0b1e3a] tracking-tight">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1f2328] tracking-tight">
             Do blog para o mundo real.
           </h2>
-          <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5"></div>
+          <p class="text-xs sm:text-sm text-[#656d76] mt-1.5 max-w-xl">
+            Artigos analíticos sobre produtos de dados, tomada de decisão e inteligência artificial aplicada.
+          </p>
         </div>
-        <a href="blog.html" class="inline-flex items-center gap-1.5 text-sm font-normal text-[#2563eb] hover:text-[#1d4ed8] group">
+        <a href="blog.html" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
           <span>Ver todos os artigos</span>
           <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
         </a>
@@ -373,31 +437,30 @@
         <!-- 3 Posts Grid (col-span-12 lg:col-span-9) -->
         <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
 
-          <!-- Post 1: Agentes Autônomos de IA -->
           <!-- Post 1: Agentes de IA -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group">
+          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
             <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
               <!-- Capa -->
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-agentes-ia.svg" alt="Agentes de IA em Business Analytics" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-agentes-ia.svg" alt="Agentes de IA em Business Analytics" class="w-full h-full object-cover rounded-xl" />
               </div>
               <!-- Corpo -->
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#9a6700]/10 text-[#9a6700]">
                     Analytics
                   </span>
-                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2">
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2">
                     O que é um Agente de IA em Analytics?
                   </h3>
-                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
                     Como sair de simples prompts e implementar pipelines com múltiplos agentes autônomos para automação de relatórios.
                   </p>
                 </div>
                 <!-- Metadados -->
-                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
                   <span class="flex items-center gap-1">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i> 8 min de leitura
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 8 min de leitura
                   </span>
                   <span>12 set 2026</span>
                 </div>
@@ -406,29 +469,29 @@
           </article>
 
           <!-- Post 2: Média, Moda e Mediana -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group">
+          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
             <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
               <!-- Capa -->
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana" class="w-full h-full object-cover rounded-xl" />
               </div>
               <!-- Corpo -->
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#1a7f37]/10 text-[#1a7f37]">
                     Data Viz
                   </span>
-                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2">
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2">
                     Dashboard não é análise
                   </h3>
-                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
                     Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Como ir além dos gráficos e identificar padrões reais.
                   </p>
                 </div>
                 <!-- Metadados -->
-                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
                   <span class="flex items-center gap-1">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i> 8 min de leitura
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 8 min de leitura
                   </span>
                   <span>11 set 2026</span>
                 </div>
@@ -437,29 +500,29 @@
           </article>
 
           <!-- Post 3: Modelagem Star Schema -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col justify-between group">
+          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
             <a href="blog/modelagem-star-schema-powerbi.html" class="block flex-1 flex flex-col">
               <!-- Capa -->
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#e2e8f0] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-star-schema.svg" alt="Modelagem Star Schema no Power BI" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" />
+              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/cover-star-schema.svg" alt="Modelagem Star Schema no Power BI" class="w-full h-full object-cover rounded-xl" />
               </div>
               <!-- Corpo -->
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-2.5">
+                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#11376e]/10 text-[#11376e]">
                     Business
                   </span>
-                  <h3 class="font-bold text-base text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-2">
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2">
                     Dados ajudam a aumentar aprovação de crédito
                   </h3>
-                  <p class="text-xs text-[#64748b] line-clamp-2 leading-relaxed mb-4">
+                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
                     Um case real de como estruturar dimensões, fatos e arquitetura analítica para impulsionar tomadas de decisão.
                   </p>
                 </div>
                 <!-- Metadados -->
-                <div class="flex items-center justify-between text-[11px] text-[#94a3b8] pt-3 border-t border-[#f1f5f9]">
+                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
                   <span class="flex items-center gap-1">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#64748b]"></i> 7 min de leitura
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 7 min de leitura
                   </span>
                   <span>10 set 2026</span>
                 </div>
@@ -469,22 +532,28 @@
 
         </div>
 
-        <!-- Quote Card (col-span-12 lg:col-span-3) -->
-        <div class="lg:col-span-3 bg-[#f0f7ff] border border-[#bfdbfe]/70 rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
-          <div>
-            <!-- Aspas em Azul -->
-            <svg class="w-8 h-8 text-[#2563eb] mb-5" viewBox="0 0 24 24" fill="currentColor">
+        <!-- Quote Card (col-span-12 lg:col-span-3) - Editorial Deep Navy Showcase -->
+        <div class="lg:col-span-3 bg-gradient-to-br from-[#0b1e3a] via-[#102a52] to-[#08172e] border border-[#1e3a66] rounded-2xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-md text-white group">
+          <!-- Aspas em Marca d'Água Decorativa Translúcida -->
+          <div class="absolute -top-3 -right-2 w-24 h-24 text-white/[0.05] pointer-events-none select-none transition-transform duration-500 group-hover:scale-105 group-hover:text-white/[0.08]">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
             </svg>
-            <p class="text-[#0b1e3a] font-medium text-base sm:text-lg leading-relaxed mb-6">
-              "Mais do que ferramentas, acredito no pensamento crítico para transformar dados em ações que geram impacto."
+          </div>
+
+          <div class="relative z-10">
+            <span class="inline-block text-[10px] font-bold text-[#38bdf8] uppercase tracking-[0.2em] mb-4">
+              MANIFESTO
+            </span>
+            <p class="text-white font-medium text-base sm:text-lg leading-relaxed mb-6 tracking-tight">
+              “Mais do que ferramentas, acredito no pensamento crítico para transformar dados em ações que geram impacto.”
             </p>
           </div>
 
-          <div>
-            <div class="w-8 h-0.5 bg-[#2563eb] mb-3"></div>
-            <div class="font-bold text-sm text-[#0b1e3a]">Marcos Aurélio</div>
-            <div class="text-xs text-[#64748b] mt-0.5">Economista. Analista. Curioso.</div>
+          <div class="relative z-10">
+            <div class="w-8 h-0.5 bg-[#38bdf8] mb-3"></div>
+            <div class="font-bold text-sm text-white">Marcos Aurélio</div>
+            <div class="text-xs text-slate-300/80 mt-0.5">Economista. Analista. Curioso.</div>
           </div>
         </div>
 
@@ -497,20 +566,19 @@
   <!-- ═══════════════════════════════════════════════════════
      SEÇÃO 3: PROJETOS EM DESTAQUE & BIBLIOTECA (LADO A LADO)
   ═══════════════════════════════════════════════════════ -->
-  <section class="py-7 sm:py-9 px-5 sm:px-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-start">
+  <section class="py-12 sm:py-16 px-5 sm:px-8 section-surface-workbench border-b border-[#e2e8f0] relative">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-start">
 
-      <!-- ── BLOCO ESQUERDO: PROJETOS EM DESTAQUE (7 COLS) ── -->
+      <!-- ── BLOCO ESQUERDO: PROJETOS (7 COLS) ── -->
       <div class="lg:col-span-7">
         
         <!-- Header -->
         <div class="flex items-end justify-between mb-6">
           <div>
-            <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">PROJETOS EM DESTAQUE</span>
-            <h2 class="text-xl sm:text-2xl font-bold text-[#0b1e3a] tracking-tight">Dados na prática.</h2>
-            <div class="w-8 h-[3.75px] bg-[#2563eb] rounded-full mt-2"></div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Projetos práticos.</h2>
+            <p class="text-xs text-[#656d76] mt-1">Soluções com Power BI, Databricks e analytics engineering.</p>
           </div>
-          <a href="projetos.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-normal text-[#2563eb] hover:text-[#1d4ed8] group">
+          <a href="projetos.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
             <span>Ver todos os projetos</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
           </a>
@@ -520,19 +588,19 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
           <!-- Projeto 1: Power BI -->
-          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col group">
-            <div class="h-32 bg-[#070f1e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#e2e8f0]">
-              <img src="assets/img/projects/project-sales-dashboard.svg" alt="Sales Dashboard" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" />
+          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
+            <div class="h-32 bg-[#070f1e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
+              <img src="assets/img/projects/project-sales-dashboard.svg" alt="Sales Dashboard" class="w-full h-full object-cover rounded-lg" />
             </div>
             <div class="p-4 flex-1 flex flex-col justify-between">
               <div>
-                <span class="inline-block px-1.5 py-0.5 rounded bg-[#0b1e3a] text-white text-[9px] font-bold uppercase tracking-wider mb-2">
+                <span class="inline-block px-2 py-0.5 rounded bg-[#11376e] text-white text-[10px] font-semibold uppercase tracking-wider mb-2">
                   POWER BI
                 </span>
-                <h3 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-1">
-                  Sales Dashboard – South America
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1">
+                  Sales Dashboard - South America
                 </h3>
-                <p class="text-[11px] text-[#64748b] line-clamp-2 leading-relaxed">
+                <p class="text-[11px] text-[#656d76] line-clamp-2 leading-relaxed">
                   Dashboard interativo de vendas para a região.
                 </p>
               </div>
@@ -540,19 +608,19 @@
           </a>
 
           <!-- Projeto 2: Data Engineering -->
-          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col group">
-            <div class="h-32 bg-[#080e18] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#e2e8f0]">
-              <img src="assets/img/projects/project-etl-databricks.svg" alt="ETL Databricks" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" />
+          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
+            <div class="h-32 bg-[#080e18] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
+              <img src="assets/img/projects/project-etl-databricks.svg" alt="ETL Databricks" class="w-full h-full object-cover rounded-lg" />
             </div>
             <div class="p-4 flex-1 flex flex-col justify-between">
               <div>
-                <span class="inline-block px-1.5 py-0.5 rounded bg-[#0b1e3a] text-white text-[9px] font-bold uppercase tracking-wider mb-2">
+                <span class="inline-block px-2 py-0.5 rounded bg-[#11376e] text-white text-[10px] font-semibold uppercase tracking-wider mb-2">
                   DATA ENGINEERING
                 </span>
-                <h3 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-1">
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1">
                   ETL com Databricks (Scala)
                 </h3>
-                <p class="text-[11px] text-[#64748b] line-clamp-2 leading-relaxed">
+                <p class="text-[11px] text-[#656d76] line-clamp-2 leading-relaxed">
                   Pipeline de dados para análises escaláveis.
                 </p>
               </div>
@@ -560,19 +628,19 @@
           </a>
 
           <!-- Projeto 3: Product Analytics -->
-          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden flex flex-col group">
-            <div class="h-32 bg-[#07101e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#e2e8f0]">
-              <img src="assets/img/projects/project-credit-portfolio.svg" alt="Credit Portfolio Monitoring" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" />
+          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
+            <div class="h-32 bg-[#07101e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
+              <img src="assets/img/projects/project-credit-portfolio.svg" alt="Credit Portfolio Monitoring" class="w-full h-full object-cover rounded-lg" />
             </div>
             <div class="p-4 flex-1 flex flex-col justify-between">
               <div>
-                <span class="inline-block px-1.5 py-0.5 rounded bg-[#0b1e3a] text-white text-[9px] font-bold uppercase tracking-wider mb-2">
+                <span class="inline-block px-2 py-0.5 rounded bg-[#11376e] text-white text-[10px] font-semibold uppercase tracking-wider mb-2">
                   PRODUCT ANALYTICS
                 </span>
-                <h3 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug mb-1">
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1">
                   Credit Portfolio Monitoring
                 </h3>
-                <p class="text-[11px] text-[#64748b] line-clamp-2 leading-relaxed">
+                <p class="text-[11px] text-[#656d76] line-clamp-2 leading-relaxed">
                   Monitoramento de métricas e risco de crédito.
                 </p>
               </div>
@@ -589,12 +657,11 @@
         <!-- Header -->
         <div class="flex items-end justify-between mb-6">
           <div>
-            <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">BIBLIOTECA</span>
-            <h2 class="text-xl sm:text-2xl font-bold text-[#0b1e3a] tracking-tight">Livros que ampliam meu repertório.</h2>
-            <div class="w-8 h-[3.75px] bg-[#2563eb] rounded-full mt-2"></div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Leituras & repertório.</h2>
+            <p class="text-xs text-[#656d76] mt-1">Livros que moldam meu modelo mental.</p>
           </div>
-          <a href="biblioteca.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-normal text-[#2563eb] hover:text-[#1d4ed8] group">
-            <span>Ver todas as indicações</span>
+          <a href="biblioteca.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
+            <span>Ver indicações</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
           </a>
         </div>
@@ -604,35 +671,35 @@
 
           <!-- Livro 1: Estatística -->
           <a href="biblioteca.html" class="flex flex-col group">
-            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center">
+            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
               <img src="assets/img/books/cover-estatistica-o-que-e.webp" alt="Estatística - Charles Wheelan" class="w-full h-full object-contain" />
             </div>
-            <h4 class="font-bold text-xs text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-tight line-clamp-2">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
               Estatística
-            </h4>
-            <span class="text-[10px] text-[#64748b] mt-0.5">Charles Wheelan</span>
+            </h3>
+            <span class="text-[10px] text-[#656d76] mt-0.5">Charles Wheelan</span>
           </a>
 
           <!-- Livro 2: Inspired -->
           <a href="biblioteca.html" class="flex flex-col group">
-            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#0f2b48]">
+            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#0f2b48] border border-[#d0d7de]">
               <img src="assets/img/books/cover-inspired.svg" alt="Inspired - Marty Cagan" class="w-full h-full object-cover" />
             </div>
-            <h4 class="font-bold text-xs text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-tight line-clamp-2">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
               Inspired
-            </h4>
-            <span class="text-[10px] text-[#64748b] mt-0.5">Marty Cagan</span>
+            </h3>
+            <span class="text-[10px] text-[#656d76] mt-0.5">Marty Cagan</span>
           </a>
 
           <!-- Livro 3: A Lógica do Cisne Negro -->
           <a href="biblioteca.html" class="flex flex-col group">
-            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#fafafa]">
+            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#fafafa] border border-[#d0d7de]">
               <img src="assets/img/books/cover-cisne-negro.svg" alt="A Lógica do Cisne Negro - Nassim Nicholas Taleb" class="w-full h-full object-cover" />
             </div>
-            <h4 class="font-bold text-xs text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-tight line-clamp-2">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
               A Lógica do Cisne Negro
-            </h4>
-            <span class="text-[10px] text-[#64748b] mt-0.5">Nassim Nicholas Taleb</span>
+            </h3>
+            <span class="text-[10px] text-[#656d76] mt-0.5">Nassim Nicholas Taleb</span>
           </a>
 
         </div>
@@ -646,30 +713,30 @@
   <!-- ═══════════════════════════════════════════════════════
      SEÇÃO 4: POR TRÁS DO CONTEÚDO (MARCOS / SOBRE)
   ═══════════════════════════════════════════════════════ -->
-  <section id="sobre" class="py-8 sm:py-12 px-5 sm:px-8">
+  <section id="sobre" class="py-12 sm:py-20 px-5 sm:px-8 bg-white">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 lg:gap-14 justify-between">
 
         <!-- Foto de Marcos à Esquerda (Altura sincronizada com o bloco de texto) -->
-        <div class="flex-shrink-0 w-[190px] sm:w-[210px] md:w-[210px] lg:w-[230px] aspect-[4/5] md:aspect-auto self-stretch overflow-hidden flex items-center justify-center">
+        <div class="flex-shrink-0 w-[190px] sm:w-[210px] md:w-[210px] lg:w-[230px] aspect-[4/5] md:aspect-auto self-stretch overflow-hidden flex items-center justify-center rounded-2xl border border-[#d0d7de]">
           <img src="assets/img/foto-marcos-aurelio.webp" alt="Marcos Aurélio" class="w-full h-full object-cover object-top" />
         </div>
 
         <!-- Texto e Apresentação (Determina a altura do bloco) -->
         <div class="flex-1 max-w-2xl flex flex-col justify-between py-0.5">
           <div>
-            <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-2">POR TRÁS DO CONTEÚDO</span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#0b1e3a] tracking-tight mb-2.5">
+            <span class="text-xs font-bold text-[#11376e] uppercase tracking-wider block mb-2">POR TRÁS DO CONTEÚDO</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-[#1f2328] tracking-tight mb-2.5">
               Olá, eu sou o Marcos.
             </h2>
-            <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mb-4"></div>
-            <p class="text-sm sm:text-base text-[#64748b] leading-relaxed mb-6 max-w-xl">
+            <div class="w-10 h-[3.75px] bg-[#11376e] rounded-full mb-4"></div>
+            <p class="text-sm sm:text-base text-[#656d76] leading-relaxed mb-6 max-w-xl">
               Economista de formação, analista por profissão e curioso por natureza. Aqui compartilho o que tenho aprendido, construído e aplicado ao longo da minha jornada com dados, negócios e tecnologia.
             </p>
           </div>
           <div>
-            <a href="sobre.html" class="px-7 py-3 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-sm font-semibold inline-flex items-center gap-2 shadow-sm hover:shadow transition-all hover:-translate-y-0.5">
-              <span>Conheça minha história</span>
+            <a href="sobre.html" class="btn-tactile px-7 py-3 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-sm font-semibold inline-flex items-center gap-2 shadow-sm hover:shadow">
+              <span>Conhecer trajetória completa</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
           </div>
@@ -677,14 +744,14 @@
 
         <!-- Coluna Editorial Lateral (Col 11 a 12) -->
         <div class="hidden md:flex flex-shrink-0 flex-col items-center justify-center text-center px-2">
-          <div class="w-7 h-[1.5px] bg-[#94a3b8] mb-5"></div>
-          <div class="text-[11px] font-semibold text-[#64748b] tracking-widest space-y-3.5 font-mono leading-tight">
+          <div class="w-7 h-[1.5px] bg-[#8c959f] mb-5"></div>
+          <div class="text-[11px] font-semibold text-[#656d76] tracking-widest space-y-3.5 font-mono leading-tight">
             <div>APRENDER</div>
             <div>ANALISAR</div>
             <div>COMPARTILHAR</div>
             <div>EVOLUIR</div>
           </div>
-          <div class="w-7 h-[1.5px] bg-[#94a3b8] mt-5"></div>
+          <div class="w-7 h-[1.5px] bg-[#8c959f] mt-5"></div>
         </div>
 
       </div>
@@ -736,59 +803,59 @@
      MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
   ═══════════════════════════════════════════════════════ -->
   <div id="search-modal" class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
-    <div class="bg-white rounded-2xl max-w-xl w-full border border-[#e2e8f0] shadow-2xl overflow-hidden transform scale-95 transition-transform" id="search-modal-container">
+    <div class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform" id="search-modal-container">
       
       <!-- Input Header -->
-      <div class="p-4 border-b border-[#e2e8f0] flex items-center gap-3">
-        <i data-lucide="search" class="w-5 h-5 text-[#2563eb]"></i>
-        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..." class="w-full text-sm outline-none text-[#0b1e3a] placeholder-[#94a3b8]" autofocus />
-        <button id="search-modal-close" class="p-1 rounded-lg text-[#94a3b8] hover:text-[#0b1e3a] hover:bg-slate-100">
+      <div class="p-4 border-b border-[#d0d7de] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#11376e]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..." class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#8c959f] hover:text-[#1f2328] hover:bg-slate-100">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <!-- Quick Results / Suggestions -->
       <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
-        <div class="text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Sugestões rápidas</div>
-        <a href="blog/agentes-ia-business-analytics.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+        <div class="text-[11px] font-bold text-[#8c959f] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <a href="blog/agentes-ia-business-analytics.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#0b1e3a] text-white flex items-center justify-center text-xs"><i data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Agentes Autônomos de IA em Business Analytics</div>
-              <div class="text-[10px] text-[#64748b]">Artigo • IA e RAG</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • IA e RAG</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="blog/media-moda-e-mediana.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+        <a href="blog/media-moda-e-mediana.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#2563eb] text-white flex items-center justify-center text-xs"><i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Média, Moda e Mediana: O que os números escondem</div>
-              <div class="text-[10px] text-[#64748b]">Artigo • Estatística e Negócios</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Média, Moda e Mediana: O que os números escondem</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • Estatística e Negócios</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="biblioteca.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+        <a href="biblioteca.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#f1f5f9] text-[#2563eb] flex items-center justify-center text-xs"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#f6f8fa] text-[#11376e] flex items-center justify-center text-xs border border-[#d0d7de]"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Biblioteca de Leituras</div>
-              <div class="text-[10px] text-[#64748b]">Curadoria de livros e referências recomendadas</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca de Leituras</div>
+              <div class="text-[10px] text-[#656d76]">Curadoria de livros e referências recomendadas</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="projetos.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#eff6ff] transition-colors group">
+        <a href="projetos.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#f1f5f9] text-[#2563eb] flex items-center justify-center text-xs"><i data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#f6f8fa] text-[#11376e] flex items-center justify-center text-xs border border-[#d0d7de]"><i data-lucide="layers" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#0b1e3a] group-hover:text-[#2563eb]">Projetos & Cases de Estudo</div>
-              <div class="text-[10px] text-[#64748b]">Soluções práticas com Power BI, Python e Databricks</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Projetos & Cases de Estudo</div>
+              <div class="text-[10px] text-[#656d76]">Soluções práticas com Power BI, Python e Databricks</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
       </div>
 

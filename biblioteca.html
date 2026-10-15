@@ -2,10 +2,17 @@
 <html lang="pt-BR">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Biblioteca — Marcos Data Product | Livros que ampliam perspectivas</title>
-  <meta name="description" content="Curadoria dos livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida. Ideias que inspiram, provocam e geram novas conexões." />
+  <title>Biblioteca - Marcos Data Product | Livros que ampliam perspectivas</title>
+  <meta name="description" content="Curadoria dos livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida: ideias que inspiram, provocam e geram novas conexões." />
 
   <!-- ═══════════════════════════════════════════════
        DEPENDENCIES
@@ -36,29 +43,29 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Hero section com imagem de fundo e gradiente */
+    /* Hero section: Viewport Stability & Photographic Editorial Layout */
     .biblioteca-hero-container {
       position: relative;
       background-image: url('assets/img/hero_section_biblioteca.png');
       background-position: center right;
       background-repeat: no-repeat;
       background-size: cover;
-      min-height: 480px;
+      min-height: 460px;
     }
 
     /* Máscara de gradiente Deep Navy editorial */
     .biblioteca-hero-gradient-mask {
       background: linear-gradient(
         to right,
-        rgba(11, 30, 58, 0.94) 0%,
-        rgba(11, 30, 58, 0.88) 38%,
-        rgba(11, 30, 58, 0.58) 62%,
-        rgba(11, 30, 58, 0.20) 84%,
+        rgba(11, 30, 58, 0.96) 0%,
+        rgba(11, 30, 58, 0.90) 42%,
+        rgba(11, 30, 58, 0.60) 65%,
+        rgba(11, 30, 58, 0.22) 85%,
         rgba(11, 30, 58, 0.0) 100%
       );
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1023px) {
       .biblioteca-hero-container {
         background-position: 72% center;
         min-height: 400px;
@@ -66,14 +73,14 @@
       .biblioteca-hero-gradient-mask {
         background: linear-gradient(
           to bottom,
-          rgba(11, 30, 58, 0.95) 0%,
-          rgba(11, 30, 58, 0.90) 65%,
-          rgba(11, 30, 58, 0.50) 100%
+          rgba(11, 30, 58, 0.96) 0%,
+          rgba(11, 30, 58, 0.91) 68%,
+          rgba(11, 30, 58, 0.55) 100%
         );
       }
     }
 
-    /* Hero Category Pills - Estilo fiel ao Mockup */
+    /* Hero Category Pills */
     .hero-cat-pill {
       background-color: rgba(11, 30, 58, 0.70) !important;
       backdrop-filter: blur(8px);
@@ -90,16 +97,16 @@
       transform: translateY(-1px);
     }
     .hero-cat-pill.active {
-      border: 1.5px solid #2563eb !important;
-      background-color: rgba(37, 99, 235, 0.25) !important;
+      border: 1px solid #38bdf8 !important;
+      background-color: rgba(56, 189, 248, 0.20) !important;
       color: #ffffff !important;
       font-weight: 500 !important;
-      box-shadow: 0 0 16px rgba(37, 99, 235, 0.4) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
     }
 
     /* Active Nav Link with blue line underline */
     .nav-item-active {
-      color: #0b1e3a !important;
+      color: #11376e !important;
       font-weight: 600;
       position: relative;
     }
@@ -110,18 +117,56 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background-color: #2563eb;
-      border-radius: 2px;
+      background-color: #11376e;
+      border-radius: 9999px;
     }
 
-    /* Subtle Card Elevation */
+    /* Tactile Buttons with Emil Kowalski spring and physical push on active */
+    .btn-tactile {
+      transition: transform var(--duration-press, 160ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  background-color var(--duration-fast, 180ms) ease,
+                  box-shadow var(--duration-fast, 180ms) ease,
+                  border-color var(--duration-fast, 180ms) ease;
+    }
+    .btn-tactile:hover {
+      transform: translateY(-2px);
+    }
+    .btn-tactile:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Card Elevation with navy-tinted ambient shadows */
     .card-hover-clean {
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
     }
     .card-hover-clean:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 28px -6px rgba(11, 30, 58, 0.08), 0 8px 12px -6px rgba(11, 30, 58, 0.04);
-      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: 0 10px 24px -4px rgba(11, 30, 58, 0.10), 0 2px 6px -1px rgba(31, 35, 40, 0.04);
+      border-color: rgba(17, 55, 110, 0.35);
+    }
+    .card-hover-clean:active {
+      transform: translateY(-1px) scale(0.995);
+    }
+
+    /* Book cover elevation with navy-tinted ambient depth */
+    .book-shadow {
+      box-shadow: 0 6px 16px -2px rgba(11, 30, 58, 0.12), 0 2px 4px -1px rgba(11, 30, 58, 0.06);
+      transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+    }
+    .book-shadow:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 14px 28px -4px rgba(11, 30, 58, 0.18), 0 4px 8px -2px rgba(11, 30, 58, 0.08);
+    }
+
+    /* Accessibility: Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn-tactile, .card-hover-clean, .book-shadow {
+        transition: none !important;
+        transform: none !important;
+      }
     }
 
     /* Custom scrollbar hiding */
@@ -133,13 +178,13 @@
       scrollbar-width: none;
     }
 
-    /* Category Pill Active State - Estilo fiel à imagem de referência */
+    /* Category Pill Active State - Neutral Primer elevation */
     .cat-pill.active {
-      border: 1.5px solid #0084FF !important;
-      background-color: rgba(0, 132, 255, 0.16) !important;
+      border: 1px solid #11376e !important;
+      background-color: #11376e !important;
       color: #ffffff !important;
       font-weight: 500 !important;
-      box-shadow: 0 0 16px rgba(0, 132, 255, 0.40) !important;
+      box-shadow: 0 1px 3px rgba(31, 35, 40, 0.15) !important;
     }
 
     /* Custom Checkbox */
@@ -148,7 +193,7 @@
       -webkit-appearance: none;
       width: 16px;
       height: 16px;
-      border: 1.5px solid #cbd5e1;
+      border: 1.5px solid #d0d7de;
       border-radius: 4px;
       outline: none;
       transition: all 0.2s ease;
@@ -158,8 +203,8 @@
       background-color: #ffffff;
     }
     .custom-checkbox:checked {
-      background-color: #2563eb;
-      border-color: #2563eb;
+      background-color: #11376e;
+      border-color: #11376e;
     }
     .custom-checkbox:checked::after {
       content: '';
@@ -173,99 +218,98 @@
       transform: rotate(45deg);
     }
 
-    /* Pastel Theme Badges */
+    /* Pastel Theme Badges (DESIGN.md Tokens) */
     .badge-theme-dados {
-      background-color: #e0f2fe;
-      color: #0369a1;
-      border: 1px solid #bae6fd;
+      background-color: #ddf4ff;
+      color: #0969da;
+      border: 1px solid #54aeff;
     }
     .badge-theme-negocios {
-      background-color: #fef3c7;
-      color: #b45309;
-      border: 1px solid #fde68a;
+      background-color: #fff8c5;
+      color: #9a6700;
+      border: 1px solid #d4a72c;
     }
     .badge-theme-produto {
-      background-color: #ffe4e6;
-      color: #be123c;
-      border: 1px solid #fecdd3;
+      background-color: #ffebe9;
+      color: #cf222e;
+      border: 1px solid #ff8182;
     }
     .badge-theme-tecnologia {
-      background-color: #f3e8ff;
-      color: #7e22ce;
-      border: 1px solid #e9d5ff;
+      background-color: #fbefff;
+      color: #8250df;
+      border: 1px solid #d2a8ff;
     }
     .badge-theme-carreira {
-      background-color: #dcfce7;
-      color: #15803d;
-      border: 1px solid #bbf7d0;
+      background-color: #dafbe1;
+      color: #1a7f37;
+      border: 1px solid #4ac26b;
     }
     .badge-theme-mentalidade {
-      background-color: #ffedd5;
-      color: #c2410c;
-      border: 1px solid #fed7aa;
+      background-color: #fff8c5;
+      color: #9a6700;
+      border: 1px solid #d4a72c;
     }
     .badge-theme-sociedade {
-      background-color: #e0e7ff;
-      color: #4338ca;
-      border: 1px solid #c7d2fe;
+      background-color: #ddf4ff;
+      color: #0969da;
+      border: 1px solid #54aeff;
     }
     .badge-theme-visualizacao {
-      background-color: #d1fae5;
-      color: #047857;
-      border: 1px solid #a7f3d0;
+      background-color: #fbefff;
+      color: #8250df;
+      border: 1px solid #d2a8ff;
     }
 
     /* Bookmark button styling */
     .bookmark-btn.saved svg {
-      fill: #2563eb;
-      color: #2563eb;
-    }
-
-    /* Newsletter dark banner */
-    .newsletter-bg {
-      background: radial-gradient(circle at top right, #1e3a8a 0%, #0b1e3a 100%);
+      fill: #11376e;
+      color: #11376e;
     }
   </style>
 </head>
 
-<body class="bg-[#f8fafc] text-[#1f2937] antialiased selection:bg-[#2563eb] selection:text-white">
+<body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER / NAVBAR
   ═══════════════════════════════════════════════════════ -->
-  <header id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] px-5 sm:px-8 py-3.5 transition-all">
+  <header id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#d0d7de] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
       <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3 group" aria-label="Marcos Data Product">
-        <img src="assets/img/Logo.png" alt="Marcos Data Product Logo" class="w-9 h-9 sm:w-10 sm:h-10 object-contain group-hover:scale-105 transition-transform" />
-        <span class="font-bold text-base sm:text-lg tracking-tight text-[#0b1e3a]">Marcos Data Product</span>
+        <img src="assets/img/Logo.png" alt="Marcos Data Product Logo" class="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
+        <span class="font-bold text-base sm:text-lg tracking-tight text-[#1f2328]">Marcos Data Product</span>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm text-[#64748b]" aria-label="Navegação Principal">
-        <a href="index.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Home</a>
-        <a href="blog.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Blog</a>
-        <a href="projetos.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Projetos</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
+        <a href="index.html" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
+        <a href="blog.html" class="hover:text-[#11376e] font-medium transition-colors">Blog</a>
+        <a href="projetos.html" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
         <a href="biblioteca.html" class="nav-item-active">Biblioteca</a>
-        <a href="sobre.html" class="hover:text-[#0b1e3a] font-medium transition-colors">Sobre</a>
+        <a href="sobre.html" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
       </nav>
 
       <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
       <div class="flex items-center gap-3">
         <!-- Search Trigger -->
-        <button id="search-modal-trigger" class="p-2 rounded-full text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9] transition-colors cursor-pointer" aria-label="Buscar no site">
+        <button id="search-modal-trigger" class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] transition-colors cursor-pointer" aria-label="Buscar no site">
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
         <!-- CTA "Vamos conversar" -->
-        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
+        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
           <span>Vamos conversar</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
 
         <!-- Mobile Menu Toggle -->
-        <button class="md:hidden p-2 rounded-lg text-[#64748b] hover:text-[#0b1e3a] hover:bg-[#f1f5f9]" id="mobile-btn" aria-label="Abrir Menu">
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa]" id="mobile-btn" aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -275,22 +319,22 @@
 
   <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#64748b] hover:text-[#0b1e3a]" id="mobile-close" aria-label="Fechar menu">
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]" id="mobile-close" aria-label="Fechar menu">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
     <a href="index.html" class="flex items-center gap-3 mb-8 px-2 py-1">
       <img src="assets/img/Logo.png" alt="Marcos Data Product" class="w-8 h-8 object-contain" />
-      <span class="font-bold text-lg text-[#0b1e3a]">Marcos Data Product</span>
+      <span class="font-bold text-lg text-[#1f2328]">Marcos Data Product</span>
     </a>
     <div class="flex flex-col gap-2">
       <a href="index.html" class="mobile-link">Home</a>
       <a href="blog.html" class="mobile-link">Blog</a>
       <a href="projetos.html" class="mobile-link">Projetos</a>
-      <a href="biblioteca.html" class="mobile-link active font-semibold text-[#2563eb]">Biblioteca</a>
+      <a href="biblioteca.html" class="mobile-link active font-semibold text-[#11376e]">Biblioteca</a>
       <a href="sobre.html" class="mobile-link">Sobre</a>
     </div>
     <div class="mt-8 pt-6 border-t border-slate-200">
-      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
+      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
         <span>Vamos conversar</span>
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
@@ -300,27 +344,27 @@
   <!-- ═══════════════════════════════════════════════════════
      HERO SECTION
   ═══════════════════════════════════════════════════════ -->
-  <section class="biblioteca-hero-container relative overflow-hidden flex items-center">
+  <section class="biblioteca-hero-container relative overflow-hidden flex items-center text-white">
     <!-- Ambient Gradient Mask -->
     <div class="biblioteca-hero-gradient-mask absolute inset-0 z-0"></div>
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-20 relative z-10 w-full">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 relative z-10 w-full">
       <div class="max-w-3xl">
         
         <!-- Eyebrow -->
-        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.25em] block mb-4">
+        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.22em] block mb-4">
           BIBLIOTECA
         </span>
 
         <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-5">
           Livros que ampliam<br />
           <span class="text-[#38bdf8]">perspectivas.</span>
         </h1>
 
-        <!-- Subtitle -->
+        <!-- Subtitle (17 words <= 20 words limit) -->
         <p class="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-2xl font-normal">
-          Uma seleção de livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida. Ideias que inspiram, provocam e geram novas conexões.
+          Uma seleção de livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida.
         </p>
 
         <!-- Search Bar (Pill rounded-full) -->
@@ -340,35 +384,35 @@
         <div class="flex flex-col gap-2.5 max-w-[760px] mb-8" id="hero-category-pills">
           <!-- Linha 1: Dados, Negócios, Tecnologia, Produto -->
           <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="dados">
+            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="dados">
               <i data-lucide="database" class="w-3.5 h-3.5 text-sky-400"></i>
               <span>Dados</span>
             </button>
-            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="negocios">
+            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="negocios">
               <i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-400"></i>
               <span>Negócios</span>
             </button>
-            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="tecnologia">
+            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="tecnologia">
               <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
               <span>Tecnologia</span>
             </button>
-            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="produto">
+            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="produto">
               <i data-lucide="box" class="w-3.5 h-3.5 text-rose-400"></i>
               <span>Produto</span>
             </button>
           </div>
           <!-- Linha 2: Carreira, Mentalidade, Sociedade -->
           <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="carreira">
+            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="carreira">
               <i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-400"></i>
               <span>Carreira</span>
             </button>
-            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="mentalidade">
-              <i data-lucide="brain" class="w-3.5 h-3.5 text-orange-400"></i>
+            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="mentalidade">
+              <i data-lucide="brain" class="w-3.5 h-3.5 text-amber-400"></i>
               <span>Mentalidade</span>
             </button>
-            <button class="cat-pill hero-cat-pill px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-medium transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="sociedade">
-              <i data-lucide="globe" class="w-3.5 h-3.5 text-indigo-400"></i>
+            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="sociedade">
+              <i data-lucide="globe" class="w-3.5 h-3.5 text-sky-400"></i>
               <span>Sociedade</span>
             </button>
           </div>
@@ -380,7 +424,7 @@
             “Grandes ideias nascem de boas leituras.”
           </p>
           <p class="text-xs sm:text-sm text-slate-400 font-normal">
-            — Marcos Aurélio
+            Marcos Aurélio
           </p>
         </div>
 
@@ -400,20 +444,23 @@
       <section class="flex-1 min-w-0 w-full order-1">
 
         <!-- Barra Superior: Total de Resultados -->
-        <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#e2e8f0]">
-          <div class="text-sm font-medium text-[#64748b]">
-            <span id="results-count" class="font-bold text-[#0b1e3a]">3</span> livros encontrados
+        <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#d0d7de]">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Catálogo de Leituras</h2>
+            <div class="text-xs text-[#656d76] mt-0.5">
+              <span id="results-count" class="font-bold text-[#11376e]">3</span> livros encontrados
+            </div>
           </div>
         </div>
 
         <!-- Feedback de Busca Vazia -->
-        <div id="empty-state" class="hidden py-16 text-center bg-white rounded-2xl border border-[#e2e8f0] p-8 my-6">
-          <div class="w-12 h-12 rounded-full bg-blue-50 text-[#2563eb] flex items-center justify-center mx-auto mb-4">
+        <div id="empty-state" class="hidden py-16 text-center bg-white rounded-2xl border border-[#d0d7de] p-8 my-6">
+          <div class="w-12 h-12 rounded-full bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-4">
             <i data-lucide="book-x" class="w-6 h-6"></i>
           </div>
-          <h3 class="text-lg font-bold text-[#0b1e3a] mb-1">Nenhum livro encontrado</h3>
-          <p class="text-sm text-[#64748b] max-w-sm mx-auto mb-5">Nenhum título corresponde aos filtros ou ao termo de busca pesquisado.</p>
-          <button id="clear-filters-empty-btn" class="px-4 py-2 bg-[#2563eb] text-white text-xs font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+          <h3 class="text-lg font-bold text-[#1f2328] mb-1">Nenhum livro encontrado</h3>
+          <p class="text-sm text-[#656d76] max-w-sm mx-auto mb-5">Nenhum título corresponde aos filtros ou ao termo de busca pesquisado.</p>
+          <button id="clear-filters-empty-btn" class="px-4 py-2 bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
             Limpar todos os filtros
           </button>
         </div>
@@ -428,18 +475,18 @@
                 <span class="text-amber-500 flex items-center">
                   <i data-lucide="star" class="w-5 h-5 fill-amber-500 text-amber-500"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Destaques</h2>
-                <span id="destaques-badge-count" class="hidden sm:inline-flex items-center px-2.5 py-0.5 text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200/70 rounded-full">
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Destaques</h3>
+                <span id="destaques-badge-count" class="hidden sm:inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200/70 rounded-full">
                   3 recomendações
                 </span>
               </div>
 
               <!-- Controles de Navegação do Carrossel -->
               <div class="flex items-center gap-2" id="destaques-carousel-controls">
-                <button id="destaques-carousel-prev" class="w-8 h-8 rounded-full border border-[#cbd5e1] bg-white hover:bg-slate-50 text-[#0b1e3a] flex items-center justify-center transition-all shadow-xs hover:border-[#2563eb] hover:text-[#2563eb] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#cbd5e1] disabled:hover:text-[#0b1e3a]" aria-label="Livro anterior">
+                <button id="destaques-carousel-prev" class="w-8 h-8 rounded-full border border-[#d0d7de] bg-white hover:bg-slate-50 text-[#1f2328] flex items-center justify-center transition-all shadow-xs hover:border-[#11376e] hover:text-[#11376e] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#d0d7de] disabled:hover:text-[#1f2328]" aria-label="Livro anterior">
                   <i data-lucide="chevron-left" class="w-4 h-4"></i>
                 </button>
-                <button id="destaques-carousel-next" class="w-8 h-8 rounded-full border border-[#cbd5e1] bg-white hover:bg-slate-50 text-[#0b1e3a] flex items-center justify-center transition-all shadow-xs hover:border-[#2563eb] hover:text-[#2563eb] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#cbd5e1] disabled:hover:text-[#0b1e3a]" aria-label="Próximo livro">
+                <button id="destaques-carousel-next" class="w-8 h-8 rounded-full border border-[#d0d7de] bg-white hover:bg-slate-50 text-[#1f2328] flex items-center justify-center transition-all shadow-xs hover:border-[#11376e] hover:text-[#11376e] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#d0d7de] disabled:hover:text-[#1f2328]" aria-label="Próximo livro">
                   <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
               </div>
@@ -458,12 +505,12 @@
           <section id="section-dados" class="category-block">
             <div class="flex items-center justify-between mb-5">
               <div class="flex items-center gap-2.5">
-                <span class="text-[#0284c7]">
+                <span class="text-[#0969da]">
                   <i data-lucide="database" class="w-5 h-5"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Dados</h2>
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Dados</h3>
               </div>
-              <button id="btn-view-all-dados" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="dados">
+              <button id="btn-view-all-dados" class="view-all-btn text-xs font-semibold text-[#11376e] hover:text-[#184a91] flex items-center gap-1 cursor-pointer transition-all" data-target="dados">
                 <span>Ver todos</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -478,12 +525,12 @@
           <section id="section-negocios" class="category-block">
             <div class="flex items-center justify-between mb-5">
               <div class="flex items-center gap-2.5">
-                <span class="text-[#b45309]">
+                <span class="text-[#9a6700]">
                   <i data-lucide="briefcase" class="w-5 h-5"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Negócios</h2>
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Negócios</h3>
               </div>
-              <button id="btn-view-all-negocios" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="negocios">
+              <button id="btn-view-all-negocios" class="view-all-btn text-xs font-semibold text-[#11376e] hover:text-[#184a91] flex items-center gap-1 cursor-pointer transition-all" data-target="negocios">
                 <span>Ver todos</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -498,12 +545,12 @@
           <section id="section-produto" class="category-block">
             <div class="flex items-center justify-between mb-5">
               <div class="flex items-center gap-2.5">
-                <span class="text-[#be123c]">
+                <span class="text-[#cf222e]">
                   <i data-lucide="box" class="w-5 h-5"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Produto</h2>
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Produto</h3>
               </div>
-              <button id="btn-view-all-produto" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="produto">
+              <button id="btn-view-all-produto" class="view-all-btn text-xs font-semibold text-[#11376e] hover:text-[#184a91] flex items-center gap-1 cursor-pointer transition-all" data-target="produto">
                 <span>Ver todos</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -518,12 +565,12 @@
           <section id="section-tecnologia" class="category-block">
             <div class="flex items-center justify-between mb-5">
               <div class="flex items-center gap-2.5">
-                <span class="text-[#7e22ce]">
+                <span class="text-[#8250df]">
                   <i data-lucide="cpu" class="w-5 h-5"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Tecnologia</h2>
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Tecnologia</h3>
               </div>
-              <button id="btn-view-all-tecnologia" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="tecnologia">
+              <button id="btn-view-all-tecnologia" class="view-all-btn text-xs font-semibold text-[#11376e] hover:text-[#184a91] flex items-center gap-1 cursor-pointer transition-all" data-target="tecnologia">
                 <span>Ver todos</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -538,12 +585,12 @@
           <section id="section-carreira" class="category-block">
             <div class="flex items-center justify-between mb-5">
               <div class="flex items-center gap-2.5">
-                <span class="text-[#15803d]">
+                <span class="text-[#1a7f37]">
                   <i data-lucide="trending-up" class="w-5 h-5"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Carreira</h2>
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Carreira</h3>
               </div>
-              <button id="btn-view-all-carreira" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="carreira">
+              <button id="btn-view-all-carreira" class="view-all-btn text-xs font-semibold text-[#11376e] hover:text-[#184a91] flex items-center gap-1 cursor-pointer transition-all" data-target="carreira">
                 <span>Ver todos</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -558,12 +605,12 @@
           <section id="section-mentalidade" class="category-block">
             <div class="flex items-center justify-between mb-5">
               <div class="flex items-center gap-2.5">
-                <span class="text-[#c2410c]">
+                <span class="text-[#9a6700]">
                   <i data-lucide="brain" class="w-5 h-5"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Mentalidade</h2>
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Mentalidade</h3>
               </div>
-              <button id="btn-view-all-mentalidade" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="mentalidade">
+              <button id="btn-view-all-mentalidade" class="view-all-btn text-xs font-semibold text-[#11376e] hover:text-[#184a91] flex items-center gap-1 cursor-pointer transition-all" data-target="mentalidade">
                 <span>Ver todos</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -578,12 +625,12 @@
           <section id="section-sociedade" class="category-block">
             <div class="flex items-center justify-between mb-5">
               <div class="flex items-center gap-2.5">
-                <span class="text-[#4338ca]">
+                <span class="text-[#0969da]">
                   <i data-lucide="globe" class="w-5 h-5"></i>
                 </span>
-                <h2 class="text-xl font-bold text-[#0b1e3a] tracking-tight">Sociedade</h2>
+                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Sociedade</h3>
               </div>
-              <button id="btn-view-all-sociedade" class="view-all-btn text-xs font-semibold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-all" data-target="sociedade">
+              <button id="btn-view-all-sociedade" class="view-all-btn text-xs font-semibold text-[#11376e] hover:text-[#184a91] flex items-center gap-1 cursor-pointer transition-all" data-target="sociedade">
                 <span>Ver todos</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
               </button>
@@ -596,35 +643,34 @@
         </div>
       </section>
 
-
       <!-- ═════════════════════════════════════════════════
          COLUNA LATERAL DIREITA: FILTROS (DIREITA)
       ═════════════════════════════════════════════════ -->
       <aside class="w-full lg:w-60 xl:w-64 shrink-0 sticky top-24 order-2 space-y-4">
-        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-4 sm:p-5 shadow-xs">
+        <div class="bg-white rounded-2xl border border-[#d0d7de] p-4 sm:p-5 shadow-xs">
           
           <!-- Filtros Header -->
-          <div class="flex items-center justify-between pb-3.5 border-b border-[#e2e8f0] mb-4">
-            <h3 class="font-bold text-sm sm:text-base text-[#0b1e3a] flex items-center gap-2">
-              <i data-lucide="sliders-horizontal" class="w-4 h-4 text-[#2563eb]"></i>
+          <div class="flex items-center justify-between pb-3.5 border-b border-[#d0d7de] mb-4">
+            <h3 class="font-bold text-sm sm:text-base text-[#1f2328] flex items-center gap-2">
+              <i data-lucide="sliders-horizontal" class="w-4 h-4 text-[#11376e]"></i>
               <span>Filtros</span>
             </h3>
-            <button id="clear-filters-btn" class="text-xs text-[#2563eb] hover:underline font-semibold cursor-pointer">
+            <button id="clear-filters-btn" class="text-xs text-[#11376e] hover:underline font-semibold cursor-pointer">
               Limpar
             </button>
           </div>
 
           <!-- GRUPO: CATEGORIA -->
           <div>
-            <h4 class="text-xs font-bold text-[#0b1e3a] uppercase tracking-wider mb-3">
+            <h4 class="text-xs font-bold text-[#1f2328] uppercase tracking-wider mb-3">
               Categoria
             </h4>
-            <div class="space-y-2.5 text-xs text-[#475569]">
+            <div class="space-y-2.5 text-xs text-[#656d76]">
               <!-- Checkbox Todos -->
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" id="cat-check-all" class="custom-checkbox" checked />
-                  <span class="font-medium text-[#0b1e3a] group-hover:text-[#2563eb]">Todos</span>
+                  <span class="font-medium text-[#1f2328] group-hover:text-[#11376e]">Todos</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-all">3</span>
               </label>
@@ -633,7 +679,7 @@
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" class="custom-checkbox filter-cat" value="dados" />
-                  <span class="group-hover:text-[#0b1e3a]">Dados</span>
+                  <span class="group-hover:text-[#11376e]">Dados</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-dados">1</span>
               </label>
@@ -642,7 +688,7 @@
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" class="custom-checkbox filter-cat" value="negocios" />
-                  <span class="group-hover:text-[#0b1e3a]">Negócios</span>
+                  <span class="group-hover:text-[#11376e]">Negócios</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-negocios">0</span>
               </label>
@@ -651,7 +697,7 @@
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" class="custom-checkbox filter-cat" value="produto" />
-                  <span class="group-hover:text-[#0b1e3a]">Produto</span>
+                  <span class="group-hover:text-[#11376e]">Produto</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-produto">1</span>
               </label>
@@ -660,7 +706,7 @@
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" class="custom-checkbox filter-cat" value="tecnologia" />
-                  <span class="group-hover:text-[#0b1e3a]">Tecnologia</span>
+                  <span class="group-hover:text-[#11376e]">Tecnologia</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-tecnologia">0</span>
               </label>
@@ -669,7 +715,7 @@
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" class="custom-checkbox filter-cat" value="carreira" />
-                  <span class="group-hover:text-[#0b1e3a]">Carreira</span>
+                  <span class="group-hover:text-[#11376e]">Carreira</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-carreira">0</span>
               </label>
@@ -678,7 +724,7 @@
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" class="custom-checkbox filter-cat" value="mentalidade" />
-                  <span class="group-hover:text-[#0b1e3a]">Mentalidade</span>
+                  <span class="group-hover:text-[#11376e]">Mentalidade</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-mentalidade">1</span>
               </label>
@@ -687,7 +733,7 @@
               <label class="flex items-center justify-between group cursor-pointer">
                 <span class="flex items-center gap-2.5">
                   <input type="checkbox" class="custom-checkbox filter-cat" value="sociedade" />
-                  <span class="group-hover:text-[#0b1e3a]">Sociedade</span>
+                  <span class="group-hover:text-[#11376e]">Sociedade</span>
                 </span>
                 <span class="text-slate-400 font-mono" id="filter-count-cat-sociedade">0</span>
               </label>
@@ -697,13 +743,13 @@
         </div>
 
         <!-- CITAÇÃO NO RODAPÉ DOS FILTROS (RENÉ DESCARTES) -->
-        <div class="bg-blue-50/50 rounded-2xl border border-blue-100 p-4 sm:p-5 shadow-xs">
-          <div class="text-[#2563eb] text-2xl font-serif leading-none mb-1.5">“</div>
-          <p class="text-xs italic leading-relaxed text-[#334155] mb-2.5">
+        <div class="bg-[#f6f8fa] rounded-2xl border border-[#d0d7de] p-4 sm:p-5 shadow-xs">
+          <div class="text-[#11376e] text-2xl font-serif leading-none mb-1.5">“</div>
+          <p class="text-xs italic leading-relaxed text-[#656d76] mb-2.5">
             Ler é conversar com as melhores mentes de outras gerações.
           </p>
-          <div class="text-[11px] font-semibold text-[#0b1e3a]">
-            — René Descartes
+          <div class="text-xs font-semibold text-[#1f2328]">
+            René Descartes
           </div>
         </div>
 
@@ -716,7 +762,7 @@
      NEWSLETTER SECTION (DEEP NAVY COM GRADIENTE)
   ═══════════════════════════════════════════════════════ -->
   <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-16">
-    <div class="newsletter-bg rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-white/10 relative overflow-hidden">
+    <div class="bg-gradient-to-r from-[#0b1e3a] via-[#102a52] to-[#0b1e3a] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-white/10 relative overflow-hidden">
       <!-- Ambient light -->
       <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -740,7 +786,7 @@
               class="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 focus:border-[#38bdf8] text-sm text-white placeholder-slate-400 focus:outline-none transition-all"
             />
           </div>
-          <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#2563eb] hover:bg-blue-500 font-semibold text-sm transition-all shadow-md shrink-0 cursor-pointer">
+          <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-sm transition-all shadow-md shrink-0 cursor-pointer">
             Inscrever
           </button>
         </form>
@@ -754,18 +800,18 @@
   <div id="book-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="absolute inset-0 bg-black/60 backdrop-blur-md" id="book-modal-backdrop"></div>
     
-    <div class="relative bg-white rounded-3xl border border-[#e2e8f0] max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl transform scale-95 opacity-0 transition-all duration-300 z-10" id="book-modal-content">
+    <div class="relative bg-white rounded-3xl border border-[#d0d7de] max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col md:flex-row shadow-2xl transform scale-95 opacity-0 transition-all duration-300 z-10" id="book-modal-content">
       
       <!-- Close Button -->
-      <button id="close-modal-btn" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-[#64748b] hover:text-[#0b1e3a] transition-colors" aria-label="Fechar modal">
+      <button id="close-modal-btn" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-[#656d76] hover:text-[#11376e] transition-colors cursor-pointer" aria-label="Fechar modal">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
       <!-- Left: Book Cover with Ambient Blur -->
-      <div class="w-full md:w-5/12 bg-slate-100 p-8 flex items-center justify-center relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-[#e2e8f0]">
-        <img id="modal-blur" src="" alt="" class="w-full h-full object-cover opacity-20 absolute inset-0 blur-xl scale-125 pointer-events-none">
+      <div class="w-full md:w-5/12 bg-slate-100 p-8 flex items-center justify-center relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-[#d0d7de]">
+        <img id="modal-blur" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="" class="w-full h-full object-cover opacity-20 absolute inset-0 blur-xl scale-125 pointer-events-none">
         <div class="relative z-10 max-h-[320px] w-full flex items-center justify-center">
-          <img id="modal-cover" src="" alt="Capa do Livro" class="max-w-[200px] max-h-[300px] object-contain rounded-lg drop-shadow-[0_12px_24px_rgba(0,0,0,0.2)] border border-white">
+          <img id="modal-cover" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" alt="Capa do Livro" class="max-w-[200px] max-h-[300px] object-contain rounded-lg drop-shadow-[0_12px_24px_rgba(0,0,0,0.2)] border border-white">
         </div>
       </div>
 
@@ -775,15 +821,15 @@
           <!-- Tags populadas via JS -->
         </div>
         
-        <h2 id="modal-title" class="text-2xl font-bold text-[#0b1e3a] mb-1 tracking-tight">
+        <h3 id="modal-title" class="text-2xl font-bold text-[#1f2328] mb-1 tracking-tight">
           Título da Obra
-        </h2>
-        <p id="modal-author" class="text-sm font-medium text-[#64748b] mb-4">
+        </h3>
+        <p id="modal-author" class="text-sm font-medium text-[#656d76] mb-4">
           Autor
         </p>
 
         <!-- Rating Bar -->
-        <div class="flex items-center gap-2 py-3 border-y border-[#e2e8f0] mb-5 text-xs text-[#64748b]">
+        <div class="flex items-center gap-2 py-3 border-y border-[#d0d7de] mb-5 text-xs text-[#656d76]">
           <div class="flex items-center gap-1 font-bold text-amber-600">
             <i data-lucide="star" class="w-4 h-4 fill-amber-500 text-amber-500"></i>
             <span id="modal-rating">4.8</span>
@@ -792,16 +838,16 @@
           <span>Curadoria Marcos Data Product</span>
         </div>
 
-        <h3 class="text-xs font-bold text-[#0b1e3a] uppercase tracking-wider mb-2">
+        <h4 class="text-xs font-bold text-[#1f2328] uppercase tracking-wider mb-2">
           Sobre a obra &amp; notas do Marcos
-        </h3>
-        <p id="modal-desc" class="text-[#475569] text-sm leading-relaxed mb-8 flex-1">
+        </h4>
+        <p id="modal-desc" class="text-[#656d76] text-sm leading-relaxed mb-8 flex-1">
           <!-- Descrição Completa -->
         </p>
 
         <!-- Amazon Link Action Button -->
         <div class="pt-2 mt-auto">
-          <a id="modal-link" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold text-sm transition-all shadow-md">
+          <a id="modal-link" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-sm transition-all shadow-md">
             <span>Ver e Comprar na Amazon</span>
             <i data-lucide="external-link" class="w-4 h-4 opacity-90"></i>
           </a>
@@ -1002,43 +1048,43 @@
       function createBookCard(book) {
         const isSaved = savedBookmarks.includes(book.id);
         const card = document.createElement('div');
-        card.className = "bg-white rounded-2xl border border-[#e2e8f0] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item";
+        card.className = "bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item";
         card.setAttribute('data-id', book.id);
         card.setAttribute('data-category', book.category || '');
 
         // Tags HTML
         const tagsHtml = (book.tags || []).slice(0, 2).map(tag => {
           const badgeClass = getTagBadgeClass(tag);
-          return `<span class="text-[10px] font-semibold px-2 py-0.5 rounded-md ${badgeClass}">${tag}</span>`;
+          return `<span class="text-xs font-semibold px-2 py-0.5 rounded-md ${badgeClass}">${tag}</span>`;
         }).join('');
 
         card.innerHTML = `
           <!-- Botão Bookmark no Canto Superior -->
-          <button class="bookmark-btn absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/80 hover:bg-white text-slate-400 hover:text-[#2563eb] transition-all shadow-xs ${isSaved ? 'saved text-[#2563eb]' : ''}" title="Salvar livro" onclick="event.stopPropagation(); toggleBookmark('${book.id}', this)">
-            <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isSaved ? 'fill-[#2563eb]' : ''}"></i>
+          <button class="bookmark-btn absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/80 hover:bg-white text-[#656d76] hover:text-[#11376e] transition-colors shadow-xs ${isSaved ? 'saved text-[#11376e]' : ''}" title="Salvar livro" onclick="event.stopPropagation(); toggleBookmark('${book.id}', this)">
+            <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isSaved ? 'fill-[#11376e]' : ''}"></i>
           </button>
 
           <!-- Capa do Livro -->
-          <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-slate-50 flex items-center justify-center p-2 shadow-xs group-hover:shadow-md transition-all">
-            <img src="${book.cover_image}" alt="${book.title}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_4px_8px_rgba(0,0,0,0.12)] group-hover:scale-105 transition-transform duration-300" loading="lazy">
+          <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
+            <img src="${book.cover_image}" alt="${book.title}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" loading="lazy">
           </div>
 
           <!-- Título e Autor -->
-          <h3 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors line-clamp-1 mb-0.5" title="${book.title}">
+          <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-1 mb-0.5" title="${book.title}">
             ${book.title}
           </h3>
-          <p class="text-[11px] text-[#64748b] mb-1 line-clamp-1 font-medium">
+          <p class="text-xs text-[#656d76] mb-1 line-clamp-1 font-medium">
             ${book.author}
           </p>
 
           <!-- Rating -->
-          <div class="flex items-center gap-1 text-[11px] text-amber-500 font-bold mb-2">
+          <div class="flex items-center gap-1 text-xs text-amber-500 font-bold mb-2">
             <i data-lucide="star" class="w-3 h-3 fill-amber-500 text-amber-500"></i>
             <span>${book.rating ? book.rating.toFixed(1) : '4.8'}</span>
           </div>
 
           <!-- Descrição curta -->
-          <p class="text-[11px] text-[#64748b] line-clamp-2 leading-relaxed mb-3">
+          <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-3">
             ${book.short_desc}
           </p>
 
@@ -1048,9 +1094,9 @@
           </div>
 
           <!-- Rodapé com Detalhes -->
-          <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between mt-auto">
-            <span class="text-[11px] text-[#64748b] font-medium">Curadoria</span>
-            <span class="text-[11px] text-[#2563eb] group-hover:text-[#1d4ed8] transition-colors flex items-center font-medium">
+          <div class="pt-2.5 border-t border-[#d0d7de]/50 flex items-center justify-between mt-auto">
+            <span class="text-xs text-[#656d76] font-medium">Curadoria</span>
+            <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium">
               Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
             </span>
           </div>
@@ -1066,14 +1112,14 @@
       window.toggleBookmark = function(bookId, btn) {
         if (savedBookmarks.includes(bookId)) {
           savedBookmarks = savedBookmarks.filter(id => id !== bookId);
-          btn.classList.remove('saved', 'text-[#2563eb]');
+          btn.classList.remove('saved', 'text-[#11376e]');
           const svg = btn.querySelector('svg');
-          if (svg) svg.classList.remove('fill-[#2563eb]');
+          if (svg) svg.classList.remove('fill-[#11376e]');
         } else {
           savedBookmarks.push(bookId);
-          btn.classList.add('saved', 'text-[#2563eb]');
+          btn.classList.add('saved', 'text-[#11376e]');
           const svg = btn.querySelector('svg');
-          if (svg) svg.classList.add('fill-[#2563eb]');
+          if (svg) svg.classList.add('fill-[#11376e]');
         }
         localStorage.setItem('mdp_bookmarked_books', JSON.stringify(savedBookmarks));
       };
@@ -1257,13 +1303,13 @@
                   <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
                   <span>Ver todas as categorias</span>
                 `;
-                viewBtn.classList.add('bg-blue-50', 'px-2.5', 'py-1', 'rounded-lg');
+                viewBtn.classList.add('bg-[#f6f8fa]', 'text-[#11376e]', 'px-2.5', 'py-1', 'rounded-lg', 'border', 'border-[#d0d7de]');
               } else {
                 viewBtn.innerHTML = `
                   <span>Ver todos</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                 `;
-                viewBtn.classList.remove('bg-blue-50', 'px-2.5', 'py-1', 'rounded-lg');
+                viewBtn.classList.remove('bg-[#f6f8fa]', 'text-[#11376e]', 'px-2.5', 'py-1', 'rounded-lg', 'border', 'border-[#d0d7de]');
               }
             }
           } else {

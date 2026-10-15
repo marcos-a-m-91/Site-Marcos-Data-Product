@@ -40,11 +40,19 @@ def parse_post(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
+    content = content.lstrip('\ufeff')
     meta = {}
     body = content
 
-    # YAML Frontmatter
-    if content.startswith('---'):
+    # YAML Frontmatter delimitado por linhas estritas com '---'
+    fm_match = re.match(r'^---\s*\r?\n(.*?)\r?\n---\s*\r?\n(.*)$', content, re.DOTALL)
+    if fm_match:
+        try:
+            meta = yaml.safe_load(fm_match.group(1)) or {}
+            body = fm_match.group(2).strip()
+        except Exception as e:
+            print(f"Erro ao parsear frontmatter em {file_path}: {e}")
+    elif content.startswith('---'):
         parts = content.split('---', 2)
         if len(parts) >= 3:
             meta = yaml.safe_load(parts[1]) or {}
@@ -55,6 +63,9 @@ def parse_post(file_path):
         base = os.path.splitext(os.path.basename(file_path))[0]
         # Remover data no inicio se existir (YYYY-MM-DD-)
         slug = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', base)
+
+    # Sanitizar múltiplos hífens consecutivos no slug
+    slug = re.sub(r'-+', '-', str(slug)).strip('-')
 
     meta['slug'] = slug
     meta['raw_body'] = body
@@ -247,6 +258,13 @@ def generate_post_page(post, all_posts):
 <html lang="pt-BR">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
+  new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  }})(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>{post.get('title')} — Marcos Data Product</title>
@@ -365,6 +383,10 @@ def generate_post_page(post, all_posts):
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div id="reading-bar"></div>
 
   <!-- Three.js Canvas -->
@@ -600,6 +622,53 @@ def generate_post_page(post, all_posts):
   <!-- Scripts -->
   <script src="../assets/js/main.js"></script>
   <script>
+    // Verificação de Artigo Agendado (Programação de Publicação)
+    const publishDate = '{post.get("date", "")}';
+    const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true' || window.location.hash === '#preview';
+    if (publishDate) {{
+      const now = new Date();
+      const todayStr = `${{now.getFullYear()}}-${{String(now.getMonth() + 1).padStart(2, '0')}}-${{String(now.getDate()).padStart(2, '0')}}`;
+      if (publishDate > todayStr && !isPreview) {{
+        document.addEventListener('DOMContentLoaded', () => {{
+          const mainEl = document.querySelector('main');
+          if (mainEl) {{
+            mainEl.innerHTML = `
+              <div class="max-w-xl mx-auto my-16 text-center p-8 sm:p-12 rounded-3xl bg-white border border-[#d0d7de] shadow-sm">
+                <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mx-auto mb-5">
+                  <i data-lucide="clock" class="w-8 h-8"></i>
+                </div>
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 mb-3">
+                  Artigo Programado
+                </span>
+                <h1 class="text-2xl sm:text-3xl font-bold text-[#1f2328] mb-3">
+                  Publicação em breve!
+                </h1>
+                <p class="text-sm text-[#656d76] leading-relaxed mb-6">
+                  Este artigo está agendado para ser publicado em <strong>{post.get('formatted_date')}</strong>. Volte nessa data para conferir o conteúdo completo!
+                </p>
+                <a href="../blog.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#11376e] text-white text-xs font-semibold hover:bg-[#184a91] transition-all">
+                  <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para o Blog
+                </a>
+              </div>
+            `;
+            const tocNav = document.querySelector('.toc-nav');
+            if (tocNav) tocNav.style.display = 'none';
+            const readingBar = document.getElementById('reading-bar');
+            if (readingBar) readingBar.style.display = 'none';
+            if (window.lucide) lucide.createIcons();
+          }}
+        }});
+      }} else if (publishDate > todayStr && isPreview) {{
+        document.addEventListener('DOMContentLoaded', () => {{
+          const banner = document.createElement('div');
+          banner.className = 'fixed bottom-4 right-4 z-50 bg-[#11376e] text-white px-4 py-2.5 rounded-xl shadow-lg border border-white/20 text-xs flex items-center gap-2 font-medium';
+          banner.innerHTML = '<i data-lucide="eye" class="w-4 h-4 text-sky-400"></i> Modo Prévia: Agendado para {post.get("formatted_date")}';
+          document.body.appendChild(banner);
+          if (window.lucide) lucide.createIcons();
+        }});
+      }}
+    }}
+
     // Reading Progress Bar
     window.addEventListener('scroll', () => {{
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -778,6 +847,13 @@ def generate_blog_hub(all_posts):
 <html lang="pt-BR">
 
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':
+  new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  }})(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Blog — Marcos Data Product | Insights, Power BI & IA</title>
@@ -813,6 +889,10 @@ def generate_blog_hub(all_posts):
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- Three.js Canvas -->
   <canvas id="canvas"></canvas>
@@ -1045,6 +1125,106 @@ def generate_blog_hub(all_posts):
     sync_blog_featured_sidebar(all_posts)
     print("Hub blog.html preservado com o novo design system e hero section.")
 
+def get_filter_category(cat):
+    c = str(cat).lower()
+    if 'ai' in c or 'ia' in c or 'inteligência artificial' in c:
+        return 'ai'
+    if 'dataviz' in c or 'viz' in c:
+        return 'dataviz'
+    if 'analytics' in c:
+        return 'analytics'
+    if 'business' in c:
+        return 'business'
+    if 'product' in c:
+        return 'product'
+    return 'data'
+
+def get_theme_badge(cat):
+    c = str(cat).lower()
+    if 'ai' in c or 'ia' in c or 'inteligência artificial' in c:
+        return 'badge-theme-ai', 'AI'
+    if 'dataviz' in c or 'viz' in c:
+        return 'badge-theme-dataviz', 'DataViz'
+    if 'analytics' in c:
+        return 'badge-theme-analytics', 'Analytics'
+    if 'business' in c:
+        return 'badge-theme-business', 'Business'
+    if 'product' in c:
+        return 'badge-theme-product', 'Product'
+    return 'badge-theme-data', 'Data'
+
+def sync_blog_posts_grid(posts):
+    """Atualiza o grid de artigos em blog.html entre <!-- BLOG_POSTS_START --> e <!-- BLOG_POSTS_END -->"""
+    if not os.path.exists(BLOG_HUB_FILE):
+        return
+
+    with open(BLOG_HUB_FILE, 'r', encoding='utf-8') as f:
+        hub_content = f.read()
+
+    start_marker = "<!-- BLOG_POSTS_START -->"
+    end_marker = "<!-- BLOG_POSTS_END -->"
+
+    if start_marker not in hub_content or end_marker not in hub_content:
+        return
+
+    sorted_posts = sorted(posts, key=lambda x: str(x.get('date', '')), reverse=True)
+    meses_abrv = {1:'jan', 2:'fev', 3:'mar', 4:'abr', 5:'mai', 6:'jun', 7:'jul', 8:'ago', 9:'set', 10:'out', 11:'nov', 12:'dez'}
+
+    cards_html = []
+    for p in sorted_posts:
+        title = p.get('title', 'Sem título')
+        slug = p.get('slug', '')
+        read_time = p.get('read_time', '5 min')
+        dt_str = str(p.get('date', '')).strip()
+        try:
+            dt = datetime.strptime(dt_str, '%Y-%m-%d')
+            formatted_date = f"{dt.day:02d} {meses_abrv[dt.month]} {dt.year}"
+        except Exception:
+            formatted_date = dt_str
+
+        cover = p.get('cover', 'assets/img/blog/cover-star-schema.svg')
+        excerpt = p.get('excerpt', '')
+        cat = p.get('category', 'Data')
+        filter_cat = get_filter_category(cat)
+        badge_cls, badge_label = get_theme_badge(cat)
+
+        cards_html.append(f'''          <!-- Post: {title} ({formatted_date}) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all" data-category="{filter_cat}" data-date="{dt_str}">
+            <a href="blog/{slug}.html" class="block flex-1 flex flex-col">
+              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="{cover}" alt="{title}" class="w-full h-full object-cover rounded-xl" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="{badge_cls} inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
+                    {badge_label}
+                  </span>
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
+                    {title}
+                  </h3>
+                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
+                    {excerpt}
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-xs text-[#656d76] pt-3 border-t border-[#d0d7de]/50">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
+                    <span class="text-[#656d76]">{read_time} de leitura</span>
+                  </span>
+                  <span>{formatted_date}</span>
+                </div>
+              </div>
+            </a>
+          </article>''')
+
+    new_inner = '\n\n' + '\n\n'.join(cards_html) + '\n\n          '
+    pattern = re.compile(f"{re.escape(start_marker)}.*?{re.escape(end_marker)}", re.DOTALL)
+    updated_content = pattern.sub(f"{start_marker}{new_inner}{end_marker}", hub_content)
+
+    with open(BLOG_HUB_FILE, 'w', encoding='utf-8') as f:
+        f.write(updated_content)
+    print(f"Atualizado grid de posts em blog.html ({len(sorted_posts)} artigos).")
+
 def sync_blog_featured_sidebar(posts):
     """Atualiza automaticamente os artigos destacados na barra lateral do blog.html com base no frontmatter 'featured: true'"""
     if not os.path.exists(BLOG_HUB_FILE):
@@ -1078,7 +1258,7 @@ def sync_blog_featured_sidebar(posts):
         cover = p.get('cover', 'assets/img/blog/cover-star-schema.svg')
 
         items_html.append(f'''            <!-- Item: {title} -->
-            <a href="blog/{slug}.html" class="flex items-center gap-3 group transition-all">
+            <a href="blog/{slug}.html" class="flex items-center gap-3 group transition-all" data-date="{dt_str}">
               <img src="{cover}" alt="{title}" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" />
               <div class="flex-1 min-w-0">
                 <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
@@ -1122,7 +1302,7 @@ def build_all():
     for p in posts:
         generate_post_page(p, posts)
 
-    generate_blog_hub(posts)
+    sync_blog_posts_grid(posts)
     sync_blog_featured_sidebar(posts)
     print("All blog pages generated successfully!")
 
