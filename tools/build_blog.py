@@ -9,6 +9,7 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 POSTS_DIR = os.path.join(ROOT_DIR, 'content', 'posts')
 BLOG_OUT_DIR = os.path.join(ROOT_DIR, 'blog')
 BLOG_HUB_FILE = os.path.join(ROOT_DIR, 'blog.html')
+INDEX_FILE = os.path.join(ROOT_DIR, 'index.html')
 
 os.makedirs(BLOG_OUT_DIR, exist_ok=True)
 
@@ -1284,6 +1285,94 @@ def sync_blog_featured_sidebar(posts):
         f.write(updated_content)
     print(f"Atualizado widget 'Artigos em destaque' em blog.html ({len(featured)} artigos destacados).")
 
+def get_home_category_badge(post):
+    cat = post.get('category', 'Analytics')
+    color = post.get('category_color', '')
+    c_cat = str(cat).lower()
+    c_col = str(color).lower()
+
+    if 'amber' in c_col or 'amarelo' in c_col or 'power' in c_col or 'analytics' in c_cat:
+        return 'bg-[#9a6700]/10 text-[#9a6700]', cat
+    if 'emerald' in c_col or 'green' in c_col or 'verde' in c_col or 'viz' in c_cat:
+        return 'bg-[#1a7f37]/10 text-[#1a7f37]', cat
+    if 'purple' in c_col or 'roxo' in c_col or 'ai' in c_cat or 'ia' in c_cat:
+        return 'bg-[#8250df]/10 text-[#8250df]', cat
+    return 'bg-[#11376e]/10 text-[#11376e]', cat
+
+def sync_home_recent_posts(posts):
+    """Atualiza automaticamente os 3 artigos mais recentes exibidos na HOME (index.html)"""
+    if not os.path.exists(INDEX_FILE):
+        return
+
+    with open(INDEX_FILE, 'r', encoding='utf-8') as f:
+        index_content = f.read()
+
+    start_marker = "<!-- HOME_RECENT_POSTS_START -->"
+    end_marker = "<!-- HOME_RECENT_POSTS_END -->"
+
+    if start_marker not in index_content or end_marker not in index_content:
+        return
+
+    sorted_posts = sorted(posts, key=lambda x: str(x.get('date', '')), reverse=True)
+    recent_3 = sorted_posts[:3]
+    meses_abrv = {1:'jan', 2:'fev', 3:'mar', 4:'abr', 5:'mai', 6:'jun', 7:'jul', 8:'ago', 9:'set', 10:'out', 11:'nov', 12:'dez'}
+
+    cards_html = []
+    for i, p in enumerate(recent_3, start=1):
+        title = p.get('title', 'Sem título')
+        title_attr = title.replace('"', '&quot;')
+        slug = p.get('slug', '')
+        read_time = p.get('read_time', '5 min')
+        dt_str = str(p.get('date', '')).strip()
+        try:
+            dt = datetime.strptime(dt_str, '%Y-%m-%d')
+            formatted_date = f"{dt.day} {meses_abrv[dt.month]} {dt.year}"
+        except Exception:
+            formatted_date = dt_str
+
+        cover = p.get('cover', 'assets/img/blog/cover-star-schema.svg')
+        excerpt = p.get('excerpt', '')
+        badge_style, badge_label = get_home_category_badge(p)
+
+        cards_html.append(f'''          <!-- Post {i}: {title} -->
+          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
+            <a href="blog/{slug}.html" class="block flex-1 flex flex-col">
+              <!-- Capa -->
+              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="{cover}" alt="{title_attr}" class="w-full h-full object-cover rounded-xl" />
+              </div>
+              <!-- Corpo -->
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 {badge_style}">
+                    {badge_label}
+                  </span>
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
+                    {title}
+                  </h3>
+                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
+                    {excerpt}
+                  </p>
+                </div>
+                <!-- Metadados -->
+                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> {read_time} de leitura
+                  </span>
+                  <span>{formatted_date}</span>
+                </div>
+              </div>
+            </a>
+          </article>''')
+
+    new_inner = '\n\n' + '\n\n'.join(cards_html) + '\n\n          '
+    pattern = re.compile(f"{re.escape(start_marker)}.*?{re.escape(end_marker)}", re.DOTALL)
+    updated_content = pattern.sub(f"{start_marker}{new_inner}{end_marker}", index_content)
+
+    with open(INDEX_FILE, 'w', encoding='utf-8') as f:
+        f.write(updated_content)
+    print(f"Atualizado os 3 artigos recentes na HOME (index.html).")
+
 def build_all():
     files = glob.glob(os.path.join(POSTS_DIR, '*.md'))
     if not files:
@@ -1304,6 +1393,7 @@ def build_all():
 
     sync_blog_posts_grid(posts)
     sync_blog_featured_sidebar(posts)
+    sync_home_recent_posts(posts)
     print("All blog pages generated successfully!")
 
 if __name__ == '__main__':
