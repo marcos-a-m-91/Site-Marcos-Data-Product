@@ -17,6 +17,7 @@ SITE_DIR = next((p for p in possible_paths if os.path.exists(os.path.join(p, 'bi
 CONTENT_DIR = os.path.join(SITE_DIR, 'content')
 BOOKS_JSON_PATH = os.path.join(CONTENT_DIR, 'books.json')
 BIBLIOTECA_HTML_PATH = os.path.join(SITE_DIR, 'biblioteca.html')
+INDEX_HTML_PATH = os.path.join(SITE_DIR, 'index.html')
 COVERS_DIR = os.path.join(SITE_DIR, 'assets', 'img', 'Biblioteca page')
 
 os.makedirs(CONTENT_DIR, exist_ok=True)
@@ -184,6 +185,71 @@ def render_book_card(book):
         </div>
       </div>'''
 
+def render_home_book_card(book):
+    title = html.escape(book.get('title', 'Sem título'), quote=True)
+    author = html.escape(book.get('author', 'Autor desconhecido'), quote=True)
+    cover_image = book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp')
+    
+    return f'''          <!-- Livro: {title} -->
+          <a href="biblioteca.html" class="flex flex-col group" title="{title}">
+            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
+              <img src="{cover_image}" alt="{title} - {author}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
+            </div>
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
+              {title}
+            </h3>
+            <span class="text-[10px] text-[#656d76] mt-0.5 line-clamp-1">{author}</span>
+          </a>'''
+
+def update_home_books(books):
+    if not os.path.exists(INDEX_HTML_PATH):
+        print(f'Arquivo {INDEX_HTML_PATH} não encontrado.')
+        return False
+        
+    with open(INDEX_HTML_PATH, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Priorizar livros marcados como destaque (ou os mais recentes)
+    destaques = [b for b in books if b.get('destaque')]
+    if len(destaques) < 3:
+        for b in books:
+            if b not in destaques:
+                destaques.append(b)
+            if len(destaques) >= 3:
+                break
+                
+    featured_books = destaques[:3]
+    cards_html = '\n\n'.join(render_home_book_card(b) for b in featured_books)
+    
+    start_marker = '<!-- HOME_BOOKS_START -->'
+    end_marker = '<!-- HOME_BOOKS_END -->'
+    
+    if start_marker in content and end_marker in content:
+        s_idx = content.find(start_marker)
+        e_idx = content.find(end_marker) + len(end_marker)
+        new_content = content[:s_idx] + f"{start_marker}\n\n{cards_html}\n\n          {end_marker}" + content[e_idx:]
+    else:
+        leituras_idx = content.find('Leituras & Repertório')
+        if leituras_idx == -1:
+            leituras_idx = content.find('3 Capas de Livros')
+        if leituras_idx == -1:
+            print("Seção de Leituras não encontrada em index.html")
+            return False
+            
+        grid_start_tag = '<div class="grid grid-cols-3 gap-3.5">'
+        g_start = content.find(grid_start_tag, leituras_idx)
+        if g_start == -1:
+            print("Grid de livros não encontrado em index.html")
+            return False
+            
+        g_end = content.find('</div>', g_start)
+        new_grid = f'{grid_start_tag}\n\n          {start_marker}\n\n{cards_html}\n\n          {end_marker}\n        '
+        new_content = content[:g_start] + new_grid + content[g_end:]
+
+    atomic_write(INDEX_HTML_PATH, new_content)
+    print(f'Home (index.html) atualizada com sucesso! {len(featured_books)} destaques sincronizados.')
+    return True
+
 def build_all():
     books = normalize_books(load_books())
     if not os.path.exists(BIBLIOTECA_HTML_PATH):
@@ -217,8 +283,10 @@ def build_all():
             new_content = pattern.sub(f'\\1\n\n      {start_marker}\n\n{cards_html}\n\n      {end_marker}\n    \\3', new_content)
         
     atomic_write(BIBLIOTECA_HTML_PATH, new_content)
-        
     print(f'Biblioteca compilada com sucesso! {len(books)} livros atualizados em {BIBLIOTECA_HTML_PATH}')
+    
+    # 3. Atualizar destaques da biblioteca na Home (index.html)
+    update_home_books(books)
     return True
 
 if __name__ == '__main__':

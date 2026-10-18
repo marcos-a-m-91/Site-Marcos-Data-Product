@@ -481,7 +481,7 @@ def sync_biblioteca_endpoint():
             'success': True,
             'count': len(books),
             'build_success': build_success,
-            'message': f'Biblioteca sincronizada com sucesso! {len(books)} livros compilados e atualizados na página biblioteca.html.'
+            'message': f'Biblioteca sincronizada com sucesso! {len(books)} livros atualizados na Biblioteca e destaques sincronizados na Home.'
         })
     except Exception as e:
         print(f'Erro na sincronização manual da biblioteca: {e}')
