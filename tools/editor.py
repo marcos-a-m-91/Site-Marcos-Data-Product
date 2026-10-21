@@ -62,6 +62,19 @@ def serve_content(filename):
 def serve_blog(filename):
     return send_from_directory(os.path.join(SITE_DIR, 'blog'), filename)
 
+@app.route('/index.html')
+@app.route('/home')
+def serve_home_hub():
+    return send_from_directory(SITE_DIR, 'index.html')
+
+@app.route('/projetos.html')
+def serve_projetos_hub():
+    return send_from_directory(SITE_DIR, 'projetos.html')
+
+@app.route('/sobre.html')
+def serve_sobre_hub():
+    return send_from_directory(SITE_DIR, 'sobre.html')
+
 @app.route('/blog.html')
 def serve_blog_hub():
     return send_from_directory(SITE_DIR, 'blog.html')

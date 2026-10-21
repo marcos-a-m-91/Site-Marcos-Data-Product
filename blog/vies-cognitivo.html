@@ -31,6 +31,7 @@
   <link href="../assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
   <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16x16.png" />
@@ -141,10 +142,9 @@
   ═══════════════════════════════════════════════════════ -->
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Home">
-        <img src="../assets/img/Logo.png" alt="Marcos Data Product"
-          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data Product</span>
+      <a href="../index.html" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="../assets/img/logo-clara.png" alt="Marcos Data Product Logo"
+          class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
       <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
@@ -172,9 +172,8 @@
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
-    <a href="../index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
-      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
-      <span class="font-semibold text-lg text-[#1f2328]">Marcos Data Product</span>
+    <a href="../index.html" class="flex items-center mb-6 px-2 py-1 group" aria-label="Marcos Data Product">
+      <img src="../assets/img/logo-clara.png" alt="Marcos Data Product" class="h-8 w-auto object-contain" />
     </a>
     <a href="../index.html" class="mobile-link">Home</a>
     <a href="../blog.html" class="mobile-link active">Blog</a>
@@ -415,18 +414,45 @@
   <!-- ═══════════════════════════════════════════════════════
      FOOTER
   ═══════════════════════════════════════════════════════ -->
-  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
-      <a href="../index.html" class="flex items-center gap-3 group text-inherit hover:text-[#11376e] transition-colors" aria-label="Home - Marcos Data Product">
-        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
-        <span>&copy; 2026 Marcos Data Product</span>
+    <!-- ═══════════════════════════════════════════════════════
+     FOOTER INSTITUCIONAL (DEEP NAVY)
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo e Nome da Marca -->
+      <a href="../index.html" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="../assets/img/logo-escura.png" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
-      <div class="flex items-center gap-4">
-        <a href="../blog.html" class="hover:text-[#11376e]">Blog</a>
-        <a href="../projetos.html" class="hover:text-[#11376e]">Projetos</a>
-        <a href="../biblioteca.html" class="hover:text-[#11376e]">Biblioteca</a>
-        <a href="../sobre.html" class="hover:text-[#11376e]">Sobre</a>
+
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
       </div>
+
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
     </div>
   </footer>
 
