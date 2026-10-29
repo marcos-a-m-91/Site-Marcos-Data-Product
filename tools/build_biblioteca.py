@@ -195,10 +195,10 @@ def render_home_book_card(book):
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
               <img src="{cover_image}" alt="{title} - {author}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
             </div>
-            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               {title}
             </h3>
-            <span class="text-[10px] text-[#656d76] mt-0.5 line-clamp-1">{author}</span>
+            <span class="text-[10px] text-[#656d76] mt-1 block">{author}</span>
           </a>'''
 
 def update_home_books(books):

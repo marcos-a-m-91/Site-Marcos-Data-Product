@@ -37,6 +37,7 @@
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="preload" as="image" href="assets/img/hero_section_home.jpg" fetchpriority="high">
 
   <style>
     /* Official Inter Typography & Design System Overrides */
@@ -44,48 +45,261 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Hero section: Viewport Stability & Photographic Editorial Layout */
-    .hero-container {
+    /* ═══════════════════════════════════════════════
+       HERO HOME: editorial claro + cena fotográfica
+       com cards analíticos flutuantes
+    ═══════════════════════════════════════════════ */
+    .hero-home {
+      --hero-ease: cubic-bezier(0.23, 1, 0.32, 1);
+      --hero-navy: #0b1e3a;
+      --hero-blue: #1d4ed8;
       position: relative;
-      background-image: url('assets/img/imagem_hero_1.png');
-      background-position: right center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      min-height: 560px;
+      isolation: isolate;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f8fafe 0%, #eef3fb 100%);
     }
 
     @media (min-width: 1024px) {
-      .hero-container {
-        min-height: min(680px, calc(100dvh - 72px));
+      .hero-home {
+        display: flex;
+        align-items: center;
+        min-height: min(700px, calc(100dvh - 65px));
+      }
+    }
+
+    /* Cena fotográfica (direita no desktop, abaixo do texto no mobile) */
+    .hero-home__media {
+      position: relative;
+      height: 360px;
+      background: url('assets/img/hero_section_home.jpg') right center / cover no-repeat;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
+              mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
+    }
+
+    @media (min-width: 640px) {
+      .hero-home__media { height: 440px; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-home__media {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 58%;
+        height: auto;
+        z-index: 0;
         background-position: right center;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.2) 18%, rgba(0,0,0,.75) 34%, #000 48%);
+                mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.2) 18%, rgba(0,0,0,.75) 34%, #000 48%);
       }
     }
 
-    /* Máscara de gradiente Deep Navy editorial para contraste e autoridade */
-    .hero-gradient-mask {
-      background: linear-gradient(
-        to right,
-        rgba(11, 30, 58, 0.96) 0%,
-        rgba(11, 30, 58, 0.90) 42%,
-        rgba(11, 30, 58, 0.60) 66%,
-        rgba(11, 30, 58, 0.22) 86%,
-        rgba(11, 30, 58, 0.0) 100%
-      );
+    /* Malha de pontos analítica decorativa */
+    .hero-home__dots {
+      position: absolute;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(37, 99, 235, 0.38) 1.2px, transparent 1.7px);
+      background-size: 14px 14px;
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 25%, transparent 72%);
+              mask-image: radial-gradient(ellipse at center, #000 25%, transparent 72%);
     }
 
+    /* Eyebrow com traço */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--hero-blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+    .hero-eyebrow::after {
+      content: '';
+      width: 52px;
+      height: 1.5px;
+      background: currentColor;
+      opacity: 0.8;
+    }
+
+    .hero-title {
+      color: var(--hero-navy);
+      font-size: clamp(2.375rem, 3.6vw + 0.4rem, 3.75rem);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+    }
+    .hero-title .accent { color: var(--hero-blue); }
+
+    /* Pilares (Aprender, Interpretar, Demonstrar, Explorar) */
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 12px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    @media (min-width: 640px) {
+      .hero-pillars { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+      .hero-pillar + .hero-pillar { border-left: 1px solid rgba(17, 55, 110, 0.14); }
+    }
+    .hero-pillar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4px 10px;
+    }
+    .hero-pillar__icon {
+      color: var(--hero-blue);
+      margin-bottom: 10px;
+    }
+    .hero-pillar__title {
+      color: var(--hero-navy);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .hero-pillar__desc {
+      color: #5b6676;
+      font-size: 0.75rem;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    /* Cards analíticos em vidro escuro */
+    .hero-card {
+      position: absolute;
+      z-index: 2;
+      color: #e2e8f0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: linear-gradient(160deg, rgba(16, 36, 72, 0.80), rgba(8, 20, 42, 0.70));
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      box-shadow: 0 18px 40px -14px rgba(2, 8, 23, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      -webkit-backdrop-filter: blur(10px);
+              backdrop-filter: blur(10px);
+    }
+    .hero-card__label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-card--metrics { width: 210px; top: 12%; left: 5%; }
+    .hero-card--insights { width: 118px; top: 46%; right: 5%; }
+    .hero-card--decision { width: 168px; top: 64%; left: 9%; display: none; }
+
+    @media (min-width: 640px) {
+      .hero-card--metrics { width: 250px; left: 6%; }
+      .hero-card--insights { top: 16%; right: 8%; }
+      .hero-card--decision { display: block; top: 60%; left: auto; right: 6%; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-card--metrics { top: 11%; left: 22%; }
+      .hero-card--insights { top: 33%; right: 17%; }
+      .hero-card--decision { top: 52%; right: 3%; }
+    }
+
+    /* Conector com nó (linha de dados saindo do card) */
+    .hero-card--metrics::before,
+    .hero-card--decision::before {
+      content: '';
+      position: absolute;
+      top: 62%;
+      right: 100%;
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.85));
+    }
+    .hero-card--metrics::after,
+    .hero-card--decision::after {
+      content: '';
+      position: absolute;
+      top: calc(62% - 3px);
+      right: calc(100% + 56px);
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18), 0 0 12px rgba(59, 130, 246, 0.7);
+    }
     @media (max-width: 1023px) {
-      .hero-container {
-        background-position: 75% center;
-        min-height: 500px;
-      }
-      .hero-gradient-mask {
-        background: linear-gradient(
-          to bottom,
-          rgba(11, 30, 58, 0.97) 0%,
-          rgba(11, 30, 58, 0.92) 68%,
-          rgba(11, 30, 58, 0.60) 100%
-        );
-      }
+      .hero-card--metrics::before, .hero-card--metrics::after,
+      .hero-card--decision::before, .hero-card--decision::after { display: none; }
+    }
+
+    /* Mini gráfico de linhas */
+    .hero-chart-line {
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: heroDraw 1400ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 900ms);
+    }
+    .hero-chart-dots circle {
+      opacity: 0;
+      animation: heroFade 400ms ease forwards;
+      animation-delay: 1900ms;
+    }
+
+    /* Mini gráfico de barras */
+    .hero-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      height: 48px;
+      margin-top: 10px;
+    }
+    .hero-bars span {
+      flex: 1;
+      border-radius: 2px 2px 0 0;
+      background: linear-gradient(to top, #1d4ed8, #60a5fa);
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.35);
+      transform-origin: bottom;
+      transform: scaleY(0);
+      animation: heroGrow 700ms var(--hero-ease) forwards;
+    }
+
+    /* Coreografia de entrada: `translate` na entrada e `transform` na flutuação
+       para que as duas animações nunca disputem a mesma propriedade */
+    .hero-reveal {
+      opacity: 0;
+      animation: heroReveal 800ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 0ms);
+    }
+    .hero-card.hero-reveal {
+      animation: heroReveal 900ms var(--hero-ease) forwards,
+                 heroFloat 7s ease-in-out infinite;
+      animation-delay: var(--d, 0ms), calc(var(--d, 0ms) + 900ms);
+    }
+
+    @keyframes heroReveal {
+      from { opacity: 0; translate: 0 14px; }
+      to   { opacity: 1; translate: 0 0; }
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    @keyframes heroDraw { to { stroke-dashoffset: 0; } }
+    @keyframes heroFade { to { opacity: 1; } }
+    @keyframes heroGrow { to { transform: scaleY(1); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-reveal, .hero-card.hero-reveal { animation: none; opacity: 1; }
+      .hero-chart-line { animation: none; stroke-dashoffset: 0; }
+      .hero-chart-dots circle { animation: none; opacity: 1; }
+      .hero-bars span { animation: none; transform: none; }
     }
 
     /* Active Nav Link with brand blue line underline */
@@ -195,13 +409,7 @@
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
-        <!-- CTA "Vamos conversar" -->
-        <a href="mailto:marcos.a.m@live.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
-          <span>Vamos conversar</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
-
-        <!-- Mobile Menu Toggle -->
+<!-- Mobile Menu Toggle -->
         <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f1f5f9]" id="mobile-btn" aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
@@ -225,54 +433,125 @@
       <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
       <a href="sobre.html" class="mobile-link">Sobre</a>
     </div>
-    <div class="mt-8 pt-6 border-t border-slate-200">
-      <a href="mailto:marcos.a.m@live.com" class="w-full py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
-        <span>Vamos conversar</span>
-        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    </div>
-  </div>
+</div>
 
 
   <!-- ═══════════════════════════════════════════════════════
-     HERO SECTION (TASTE-SKILL REFINED)
+     HERO SECTION: DADOS, INSIGHTS E MELHORES DECISÕES
   ═══════════════════════════════════════════════════════ -->
-  <section class="hero-container relative overflow-hidden flex items-center">
-    <!-- Ambient Gradient Blend Overlay -->
-    <div class="hero-gradient-mask absolute inset-0 z-0"></div>
+  <section id="hero-home" class="hero-home" aria-labelledby="hero-title">
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 relative z-10 w-full">
-      <div class="max-w-2xl">
+    <!-- Malhas de pontos decorativas (desktop) -->
+    <div class="hero-home__dots hidden lg:block" style="top: 12%; left: 37%; width: 200px; height: 130px;" aria-hidden="true"></div>
+    <div class="hero-home__dots hidden lg:block" style="top: 22%; left: 30%; width: 120px; height: 90px; opacity: .6;" aria-hidden="true"></div>
 
-        <!-- Eyebrow (Hero allowed per 1-per-3 section restraint) -->
-        <div class="flex items-center gap-2 text-[#38bdf8] text-xs sm:text-sm font-bold tracking-[0.22em] uppercase mb-4">
-          <span>DADOS, IDEIAS, ANÁLISE, AÇÃO, IMPACTO</span>
-        </div>
+    <!-- Conteúdo editorial -->
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-12 pb-8 sm:pt-16 lg:py-20 relative z-10 w-full">
+      <div class="max-w-[540px] xl:max-w-[580px]">
 
-        <!-- Headline (Max 2 lines, punchy) -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-5">
-          Do dado<br />
-          à <span class="text-[#38bdf8]">decisão.</span>
+        <span class="hero-eyebrow hero-reveal mb-5 sm:mb-6" style="--d: 60ms;">Marcos Data Product</span>
+
+        <h1 id="hero-title" class="hero-title hero-reveal mb-6" style="--d: 140ms;">
+          Dados,<br />
+          insights e<br />
+          <span class="accent">melhores decisões.</span>
         </h1>
 
-        <!-- Subtitle (16 words <= 20 words limit, crisp, authoritative, zero em-dash) -->
-        <p class="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-xl">
-          Conteúdo, projetos e aprendizados sobre dados, negócios, produto e tecnologia: do conceito à aplicação no mundo real.
+        <p class="hero-reveal text-base sm:text-[1.0625rem] text-[#475569] leading-relaxed max-w-[500px] mb-10 lg:mb-14" style="--d: 240ms;">
+          Conteúdo, projetos e aprendizados sobre Data, Analytics, Business Intelligence, Inteligência Artificial e Produtos Digitais para transformar conhecimento em aplicação real.
         </p>
 
-        <!-- CTA Buttons (1 primary + 1 secondary, tactile feedback, no wrap) -->
-        <div class="flex flex-wrap items-center gap-3 sm:gap-4">
-          <a href="#conteudo-recente" class="btn-tactile px-6 sm:px-7 py-3.5 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-sm inline-flex items-center gap-2 shadow-sm hover:shadow-md">
-            <span>Explorar conteúdos</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-          <a href="projetos.html" class="btn-tactile px-6 sm:px-7 py-3.5 rounded-full border border-white/25 hover:border-white/45 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm font-semibold text-sm shadow-sm inline-flex items-center gap-2">
-            <span>Ver projetos</span>
-            <i data-lucide="layers" class="w-4 h-4 text-white/80"></i>
-          </a>
-        </div>
+        <!-- Pilares do conteúdo (informativos, não clicáveis) -->
+        <ul class="hero-pillars hero-reveal" style="--d: 340ms;" aria-label="O que você encontra aqui">
+          <li id="hero-pillar-aprender" class="hero-pillar">
+            <i data-lucide="book-open" class="hero-pillar__icon w-6 h-6" stroke-width="1.6" aria-hidden="true"></i>
+            <span class="hero-pillar__title">Aprender</span>
+            <span class="hero-pillar__desc">Fundamentos<br />e aplicações</span>
+          </li>
+          <li id="hero-pillar-interpretar" class="hero-pillar">
+            <i data-lucide="bar-chart-3" class="hero-pillar__icon w-6 h-6" stroke-width="1.6" aria-hidden="true"></i>
+            <span class="hero-pillar__title">Interpretar</span>
+            <span class="hero-pillar__desc">Análises e<br />insights</span>
+          </li>
+          <li id="hero-pillar-demonstrar" class="hero-pillar">
+            <i data-lucide="box" class="hero-pillar__icon w-6 h-6" stroke-width="1.6" aria-hidden="true"></i>
+            <span class="hero-pillar__title">Demonstrar</span>
+            <span class="hero-pillar__desc">Projetos reais<br />e cases</span>
+          </li>
+          <li id="hero-pillar-explorar" class="hero-pillar">
+            <i data-lucide="flask-conical" class="hero-pillar__icon w-6 h-6" stroke-width="1.6" aria-hidden="true"></i>
+            <span class="hero-pillar__title">Explorar</span>
+            <span class="hero-pillar__desc">Ideias, ferramentas<br />e experimentos</span>
+          </li>
+        </ul>
 
       </div>
+    </div>
+
+    <!-- Cena fotográfica + cards analíticos -->
+    <div class="hero-home__media" aria-hidden="true">
+
+      <!-- Card: Evolução de métricas -->
+      <div class="hero-card hero-card--metrics hero-reveal" style="--d: 520ms;">
+        <div class="flex items-center justify-between mb-2">
+          <span class="hero-card__label">Evolução de métricas</span>
+          <span class="text-[10px] font-semibold text-[#34d399] bg-[#34d399]/10 px-1.5 py-0.5 rounded">+18,4%</span>
+        </div>
+        <svg viewBox="0 0 220 84" class="w-full h-auto block" role="presentation">
+          <g stroke="rgba(148,163,184,.14)" stroke-width="1">
+            <line x1="0" y1="20" x2="220" y2="20" />
+            <line x1="0" y1="42" x2="220" y2="42" />
+            <line x1="0" y1="64" x2="220" y2="64" />
+          </g>
+          <polyline class="hero-chart-line" pathLength="1" stroke="#34d399" style="--d: 1000ms;"
+            points="8,78 36,76 64,73 92,70 120,67 148,62 176,57 210,50" />
+          <polyline class="hero-chart-line" pathLength="1" stroke="#60a5fa" style="--d: 900ms;"
+            points="8,74 36,70 64,60 92,62 120,54 148,50 176,40 210,30" />
+          <polyline class="hero-chart-line" pathLength="1" stroke="#22d3ee" style="--d: 800ms;"
+            points="8,70 36,63 64,66 92,52 120,47 148,36 176,30 210,12" />
+          <g class="hero-chart-dots">
+            <circle cx="92" cy="52" r="2.4" fill="#22d3ee" />
+            <circle cx="148" cy="36" r="2.4" fill="#22d3ee" />
+            <circle cx="210" cy="12" r="3" fill="#22d3ee" />
+            <circle cx="120" cy="54" r="2.2" fill="#60a5fa" />
+            <circle cx="176" cy="40" r="2.2" fill="#60a5fa" />
+            <circle cx="210" cy="50" r="2.2" fill="#34d399" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Card: Insights -->
+      <div class="hero-card hero-card--insights hero-reveal" style="--d: 680ms;">
+        <span class="hero-card__label">Insights</span>
+        <div class="hero-bars">
+          <span style="height: 30%; animation-delay: 1150ms;"></span>
+          <span style="height: 48%; animation-delay: 1230ms;"></span>
+          <span style="height: 40%; animation-delay: 1310ms;"></span>
+          <span style="height: 70%; animation-delay: 1390ms;"></span>
+          <span style="height: 100%; animation-delay: 1470ms;"></span>
+        </div>
+      </div>
+
+      <!-- Card: Decisão -->
+      <div class="hero-card hero-card--decision hero-reveal" style="--d: 820ms;">
+        <div class="flex items-center gap-2.5 mb-3">
+          <svg viewBox="0 0 24 24" class="w-6 h-6 text-[#93c5fd]" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="6" />
+            <circle cx="12" cy="12" r="2" fill="currentColor" />
+          </svg>
+          <span class="hero-card__label">Decisão</span>
+        </div>
+        <div class="flex items-center justify-between text-[10px] text-slate-300/80 mb-1.5">
+          <span>Confiança</span>
+          <span class="font-semibold text-white">86%</span>
+        </div>
+        <div class="h-1 rounded-full bg-white/10 overflow-hidden">
+          <div class="hero-bars-h h-full rounded-full bg-gradient-to-r from-[#1d4ed8] to-[#60a5fa]" style="width: 86%;"></div>
+        </div>
+        <div class="h-1 w-3/5 rounded-full bg-white/10 mt-2"></div>
+      </div>
+
     </div>
   </section>
 
@@ -431,12 +710,12 @@
         <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           <!-- HOME_RECENT_POSTS_START -->
 
-          <!-- Post 1: Viés Cognitivo - Um dos maiores sabotadores da sua análise -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
-            <a href="blog/vies-cognitivo.html" class="block flex-1 flex flex-col">
+          <!-- Post 1: Viés Cognitivo - Um dos maiores sabotadores da sua análise2 -->
+          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full">
+            <a href="blog/vies-cognitivo-um-dos-maiores-sabotadores-da-sua-analise2.html" class="block flex-1 flex flex-col">
               <!-- Capa -->
-              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/e7b6c629-1ed9-4f3b-b269-5075ce183e88_1790648416.png" alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise" class="w-full h-full object-cover rounded-xl" />
+              <div class="h-44 sm:h-48 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/87abc137-81c3-4e3b-8e98-693655e7d0cc_1792675591.png" alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise2" class="w-full h-full object-cover rounded-xl" />
               </div>
               <!-- Corpo -->
               <div class="p-5 flex-1 flex flex-col justify-between">
@@ -444,11 +723,11 @@
                   <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#9a6700]/10 text-[#9a6700]">
                     Business Analytics
                   </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
-                    Viés Cognitivo - Um dos maiores sabotadores da sua análise
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
+                    Viés Cognitivo - Um dos maiores sabotadores da sua análise2
                   </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
-                    Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam vulneráveis a vieses cognitivos. Entenda o impacto na análise de dados e como se proteger.
+                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
+                    Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam sujeitas a vieses cognitivos. Entenda como esses atalhos mentais podem distorcer a interpretação dos dados, comprometer análises e influenciar decisões — e conheça práticas para reduzir seus efeitos.
                   </p>
                 </div>
                 <!-- Metadados -->
@@ -456,69 +735,7 @@
                   <span class="flex items-center gap-1">
                     <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 3 min de leitura
                   </span>
-                  <span>28 set 2026</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <!-- Post 2: Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
-            <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
-              <!-- Capa -->
-              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-agentes-ia.svg" alt="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção" class="w-full h-full object-cover rounded-xl" />
-              </div>
-              <!-- Corpo -->
-              <div class="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#8250df]/10 text-[#8250df]">
-                    Inteligência Artificial
-                  </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
-                    Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
-                  </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
-                    Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
-                  </p>
-                </div>
-                <!-- Metadados -->
-                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
-                  <span class="flex items-center gap-1">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 8 min de leitura
-                  </span>
-                  <span>12 set 2026</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <!-- Post 3: Média, Moda e Mediana: O que os números escondem -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
-            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
-              <!-- Capa -->
-              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-full h-full object-cover rounded-xl" />
-              </div>
-              <!-- Corpo -->
-              <div class="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#9a6700]/10 text-[#9a6700]">
-                    Business Analytics
-                  </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
-                    Média, Moda e Mediana: O que os números escondem
-                  </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
-                    Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
-                  </p>
-                </div>
-                <!-- Metadados -->
-                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
-                  <span class="flex items-center gap-1">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 8 min de leitura
-                  </span>
-                  <span>11 set 2026</span>
+                  <span>22 out 2026</span>
                 </div>
               </div>
             </a>
@@ -580,68 +797,20 @@
         </div>
 
         <!-- 3 Cards de Projetos -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="home-projects-container">
+          <!-- HOME_PROJECTS_START -->
 
-          <!-- Projeto 1: Power BI -->
-          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
-            <div class="h-32 bg-[#070f1e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
-              <img src="assets/img/projects/project-sales-dashboard.svg" alt="Sales Dashboard" class="w-full h-full object-cover rounded-lg" />
+          <div class="col-span-1 sm:col-span-3 bg-white rounded-2xl border border-[#d0d7de] p-8 text-center">
+            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-3">
+              <i data-lucide="folder-kanban" class="w-6 h-6"></i>
             </div>
-            <div class="p-4 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="inline-block px-2 py-0.5 rounded bg-[#11376e] text-white text-[10px] font-semibold uppercase tracking-wider mb-2">
-                  POWER BI
-                </span>
-                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1">
-                  Sales Dashboard - South America
-                </h3>
-                <p class="text-[11px] text-[#656d76] line-clamp-2 leading-relaxed">
-                  Dashboard interativo de vendas para a região.
-                </p>
-              </div>
-            </div>
-          </a>
+            <h3 class="text-sm font-bold text-[#1f2328] mb-1">Novos projetos em desenvolvimento</h3>
+            <p class="text-xs text-[#656d76] max-w-sm mx-auto leading-relaxed">
+              Casos de estudo práticos em Power BI, Databricks e Analytics estão sendo preparados. Em breve estarão disponíveis aqui e na página de projetos.
+            </p>
+          </div>
 
-          <!-- Projeto 2: Data Engineering -->
-          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
-            <div class="h-32 bg-[#080e18] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
-              <img src="assets/img/projects/project-etl-databricks.svg" alt="ETL Databricks" class="w-full h-full object-cover rounded-lg" />
-            </div>
-            <div class="p-4 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="inline-block px-2 py-0.5 rounded bg-[#11376e] text-white text-[10px] font-semibold uppercase tracking-wider mb-2">
-                  DATA ENGINEERING
-                </span>
-                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1">
-                  ETL com Databricks (Scala)
-                </h3>
-                <p class="text-[11px] text-[#656d76] line-clamp-2 leading-relaxed">
-                  Pipeline de dados para análises escaláveis.
-                </p>
-              </div>
-            </div>
-          </a>
-
-          <!-- Projeto 3: Product Analytics -->
-          <a href="projetos.html" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
-            <div class="h-32 bg-[#07101e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
-              <img src="assets/img/projects/project-credit-portfolio.svg" alt="Credit Portfolio Monitoring" class="w-full h-full object-cover rounded-lg" />
-            </div>
-            <div class="p-4 flex-1 flex flex-col justify-between">
-              <div>
-                <span class="inline-block px-2 py-0.5 rounded bg-[#11376e] text-white text-[10px] font-semibold uppercase tracking-wider mb-2">
-                  PRODUCT ANALYTICS
-                </span>
-                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1">
-                  Credit Portfolio Monitoring
-                </h3>
-                <p class="text-[11px] text-[#656d76] line-clamp-2 leading-relaxed">
-                  Monitoramento de métricas e risco de crédito.
-                </p>
-              </div>
-            </div>
-          </a>
-
+          <!-- HOME_PROJECTS_END -->
         </div>
 
       </div>
@@ -655,7 +824,7 @@
             <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Leituras & Repertório.</h2>
             <p class="text-xs text-[#656d76] mt-1">Livros interessantes que te ajudarão a ver os dados de outra forma.</p>
           </div>
-          <a href="biblioteca.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
+          <a href="biblioteca.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group whitespace-nowrap shrink-0">
             <span>Ver indicações</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
           </a>
@@ -671,10 +840,10 @@
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
               <img src="assets/img/Biblioteca page/hábitos_atômicos_1792111870.jpg" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus - James Clear" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
             </div>
-            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus
             </h3>
-            <span class="text-[10px] text-[#656d76] mt-0.5 line-clamp-1">James Clear</span>
+            <span class="text-[10px] text-[#656d76] mt-1 block">James Clear</span>
           </a>
 
           <!-- Livro: Como mentir com estatística -->
@@ -682,10 +851,10 @@
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
               <img src="assets/img/Biblioteca page/como_mentir_com_estatística_1792110793.jpg" alt="Como mentir com estatística - Darrell Huff" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
             </div>
-            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               Como mentir com estatística
             </h3>
-            <span class="text-[10px] text-[#656d76] mt-0.5 line-clamp-1">Darrell Huff</span>
+            <span class="text-[10px] text-[#656d76] mt-1 block">Darrell Huff</span>
           </a>
 
           <!-- Livro: Estatística: O que é, para que serve, como funciona -->
@@ -693,10 +862,10 @@
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
               <img src="assets/img/Biblioteca page/estatística_1792107395.jpg" alt="Estatística: O que é, para que serve, como funciona - Charles Wheelan" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
             </div>
-            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               Estatística: O que é, para que serve, como funciona
             </h3>
-            <span class="text-[10px] text-[#656d76] mt-0.5 line-clamp-1">Charles Wheelan</span>
+            <span class="text-[10px] text-[#656d76] mt-1 block">Charles Wheelan</span>
           </a>
 
           <!-- HOME_BOOKS_END -->
@@ -927,6 +1096,66 @@
           openSearch();
         }
       });
+
+      // Sincronização Dinâmica em Tempo Real de Projetos na Home
+      async function syncLiveHomeProjects() {
+        const container = document.getElementById('home-projects-container');
+        if (!container || !window.location.protocol.startsWith('http')) return;
+        try {
+          const res = await fetch('content/projects.json?t=' + Date.now(), { cache: 'no-store' });
+          if (res.ok) {
+            const projects = await res.json();
+            if (Array.isArray(projects)) {
+              if (projects.length === 0) {
+                container.innerHTML = `
+                  <div class="col-span-1 sm:col-span-3 bg-white rounded-2xl border border-[#d0d7de] p-8 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-3">
+                      <i data-lucide="folder-kanban" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-[#1f2328] mb-1">Novos projetos em desenvolvimento</h3>
+                    <p class="text-xs text-[#656d76] max-w-sm mx-auto leading-relaxed">
+                      Casos de estudo práticos em Power BI, Databricks e Analytics estão sendo preparados. Em breve estarão disponíveis aqui e na página de projetos.
+                    </p>
+                  </div>`;
+              } else {
+                const featured = projects.filter(p => p.featured_home !== false).slice(0, 3);
+                const tagLabels = {
+                  dataviz: 'POWER BI',
+                  data: 'DATA ENGINEERING',
+                  analytics: 'ANALYTICS',
+                  ai: 'INTELIGÊNCIA ARTIFICIAL',
+                  product: 'PRODUCT ANALYTICS',
+                  business: 'BUSINESS ANALYTICS'
+                };
+                container.innerHTML = featured.map(p => `
+                  <a href="${p.href || 'projetos.html'}" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
+                    <div class="h-32 bg-[#070f1e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
+                      <img src="${p.image || p.cover || 'assets/img/projects/project-sales-dashboard.svg'}" alt="${p.title || ''}" class="w-full h-full object-cover rounded-lg" />
+                    </div>
+                    <div class="p-4 flex-1 flex flex-col justify-between">
+                      <div>
+                        <span class="inline-block px-2 py-0.5 rounded bg-[#11376e] text-white text-[10px] font-semibold uppercase tracking-wider mb-2">
+                          ${p.tag_label || tagLabels[p.category] || 'PROJETO'}
+                        </span>
+                        <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1">
+                          ${p.title || 'Sem título'}
+                        </h3>
+                        <p class="text-[11px] text-[#656d76] line-clamp-2 leading-relaxed">
+                          ${p.short_desc || p.excerpt || ''}
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                `).join('');
+              }
+              if (window.lucide) window.lucide.createIcons();
+            }
+          }
+        } catch (e) {
+          // Mantém o HTML estático pré-renderizado sem erros
+        }
+      }
+      syncLiveHomeProjects();
     });
   </script>
 

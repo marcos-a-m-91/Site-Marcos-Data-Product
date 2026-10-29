@@ -313,6 +313,22 @@ def generate_post_page(post, all_posts):
       z-index: 9999;
       transition: width 0.1s ease-out;
     }}
+    /* Active Nav Link with blue line underline */
+    .nav-item-active {{
+      color: #11376e !important;
+      font-weight: 600;
+      position: relative;
+    }}
+    .nav-item-active::after {{
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #11376e;
+      border-radius: 9999px;
+    }}
     .article-prose {{
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
       color: #1f2328;
@@ -383,67 +399,76 @@ def generate_post_page(post, all_posts):
   </style>
 </head>
 
-<body>
+<body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div id="reading-bar"></div>
 
-  <!-- Three.js Canvas -->
-  <canvas id="canvas"></canvas>
-
   <!-- ═══════════════════════════════════════════════════════
-     NAVBAR
+     HEADER / NAVBAR
   ═══════════════════════════════════════════════════════ -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#d0d7de] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="../index.html" class="flex items-center gap-3 group" aria-label="Home">
-        <img src="../assets/img/Logo.png" alt="Marcos Data Product"
-          class="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-        <span class="font-semibold text-base sm:text-lg tracking-tight text-[#1f2328] hidden sm:inline">Marcos Data Product</span>
+
+      <!-- Logo -->
+      <a href="../index.html" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="../assets/img/logo-clara.png" alt="Marcos Data Product Logo"
+          class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
-      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
-        <a href="../index.html" class="nav-link">Home</a>
-        <a href="../blog.html" class="nav-link active">Blog</a>
-        <a href="../projetos.html" class="nav-link">Projetos</a>
-        <a href="../biblioteca.html" class="nav-link">Biblioteca</a>
-        <a href="../sobre.html" class="nav-link">Sobre</a>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
+        <a href="../index.html" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
+        <a href="../blog.html" class="nav-item-active">Blog</a>
+        <a href="../projetos.html" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
+        <a href="../biblioteca.html" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
+        <a href="../sobre.html" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
       </nav>
 
-      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-      </button>
+      <!-- Right Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] transition-colors cursor-pointer"
+          aria-label="Buscar no site" title="Buscar (Ctrl+K)">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer"
+          id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Mobile menu -->
+  <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close" aria-label="Fechar menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]"
+      id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="../index.html" class="flex items-center gap-3 mb-6 px-2 py-1 group" aria-label="Home">
-      <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-9 h-9 object-contain" />
-      <span class="font-semibold text-lg text-[#1f2328]">Marcos Data Product</span>
+    <a href="../index.html" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
+      <img src="../assets/img/logo-clara.png" alt="Marcos Data Product" class="h-8 w-auto object-contain" />
     </a>
-    <a href="../index.html" class="mobile-link">Home</a>
-    <a href="../blog.html" class="mobile-link active">Blog</a>
-    <a href="../projetos.html" class="mobile-link">Projetos</a>
-    <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
-    <a href="../sobre.html" class="mobile-link">Sobre</a>
+    <div class="flex flex-col gap-2">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="../blog.html" class="mobile-link active font-semibold text-[#11376e]">Blog</a>
+      <a href="../projetos.html" class="mobile-link">Projetos</a>
+      <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
+      <a href="../sobre.html" class="mobile-link">Sobre</a>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER DO POST
   ═══════════════════════════════════════════════════════ -->
-  <main class="relative z-10 pt-36 sm:pt-40 pb-20 px-5 sm:px-8">
+  <main class="relative z-10 pt-8 sm:pt-12 pb-20 px-5 sm:px-8">
     <div class="max-w-4xl mx-auto">
       
       <!-- Breadcrumb -->
@@ -480,7 +505,7 @@ def generate_post_page(post, all_posts):
       <!-- Author Chip -->
       <div class="flex items-center justify-between py-4 border-y border-[#d0d7de] mb-10">
         <div class="flex items-center gap-3">
-          <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de]" />
+          <img src="../assets/img/minha-imagem-notion.png" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de] bg-[#f6f8fa]" />
           <div>
             <span class="font-bold text-sm text-[#1f2328] block">{post.get('author', 'Marcos Aurélio')}</span>
             <span class="text-xs text-[#656d76]">Senior Business Analytics &bull; Autor</span>
@@ -536,12 +561,12 @@ def generate_post_page(post, all_posts):
 
           <!-- Author Bio Card -->
           <div class="glass p-6 sm:p-8 rounded-2xl border border-[#d0d7de] mt-10 flex flex-col sm:flex-row items-center gap-6">
-            <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-20 h-20 rounded-2xl object-cover border border-[#d0d7de] shadow-sm" />
+            <img src="../assets/img/minha-imagem-notion.png" alt="Marcos Aurélio" class="w-20 h-20 rounded-2xl object-cover border border-[#d0d7de] shadow-sm bg-[#f6f8fa]" />
             <div class="text-center sm:text-left">
               <span class="badge badge-blue text-[11px] mb-2">Sobre o Autor</span>
               <h3 class="text-lg font-bold text-[#1f2328] mb-1">Marcos Aurélio</h3>
               <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-4">
-                Senior Business Analytics com passagens por Nubank, Google e Asimov Academy. Especialista em traduzir dados complexos em decisões estratégicas de produto, IA e governança.
+                Entender o problema é o primeiro passo para encontrar boas respostas. Escrevo sobre dados, analytics, negócios, produtos digitais e IA, explorando métricas, questionando interpretações e investigando como a tecnologia pode apoiar decisões melhores.
               </p>
               <div class="flex items-center justify-center sm:justify-start gap-3 text-xs">
                 <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="text-[#0A66C2] font-semibold flex items-center gap-1 hover:underline">
@@ -568,14 +593,14 @@ def generate_post_page(post, all_posts):
           <!-- Newsletter / Connect Box -->
           <div class="glass p-6 rounded-2xl border border-[#d0d7de]">
             <div class="w-10 h-10 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mb-4">
-              <i data-lucide="bell" class="w-5 h-5"></i>
+              <i data-lucide="message-square" class="w-5 h-5"></i>
             </div>
-            <h4 class="font-bold text-sm text-[#1f2328] mb-1">Acompanhe novos insights</h4>
+            <h4 class="font-bold text-sm text-[#1f2328] mb-1">Vamos continuar essa conversa?</h4>
             <p class="text-xs text-[#656d76] leading-relaxed mb-4">
-              Publico regularmente novos artigos práticos e casos reais de Power BI, IA e Analytics no meu perfil.
+              Compartilho no LinkedIn novos artigos, aprendizados e reflexões sobre dados, analytics, produtos digitais e inteligência artificial.
             </p>
             <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="btn-primary w-full justify-center text-xs py-2.5">
-              <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i> Seguir no LinkedIn
+              <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i> Me acompanhe no LinkedIn
             </a>
           </div>
         </aside>
@@ -603,26 +628,171 @@ def generate_post_page(post, all_posts):
   </main>
 
   <!-- ═══════════════════════════════════════════════════════
-     FOOTER
+     FOOTER INSTITUCIONAL (DEEP NAVY)
   ═══════════════════════════════════════════════════════ -->
-  <footer class="relative z-10 border-t border-[#d0d7de] px-5 sm:px-8 py-8 mt-12 bg-white/50">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#656d76]">
-      <a href="../index.html" class="flex items-center gap-3 group text-inherit hover:text-[#11376e] transition-colors" aria-label="Home - Marcos Data Product">
-        <img src="../assets/img/Logo.png" alt="Marcos Data Product" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 transition-opacity" />
-        <span>&copy; 2026 Marcos Data Product</span>
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo e Nome da Marca -->
+      <a href="../index.html" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="../assets/img/logo-escura.png" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
-      <div class="flex items-center gap-4">
-        <a href="../blog.html" class="hover:text-[#11376e]">Blog</a>
-        <a href="../projetos.html" class="hover:text-[#11376e]">Projetos</a>
-        <a href="../biblioteca.html" class="hover:text-[#11376e]">Biblioteca</a>
-        <a href="../sobre.html" class="hover:text-[#11376e]">Sobre</a>
+
+      <!-- Frase Central da Marca -->
+      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
+        Dados para um mundo mais consciente.
       </div>
+
+      <!-- Ícones de Redes Sociais -->
+      <div class="flex items-center gap-4 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
+          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-4.5 h-4.5"></i>
+        </a>
+        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        </a>
+      </div>
+
     </div>
   </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+     MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="search-modal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      id="search-modal-container">
+
+      <!-- Input Header -->
+      <div class="p-4 border-b border-[#d0d7de] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#11376e]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
+          class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer" aria-label="Fechar busca">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Quick Results / Suggestions -->
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+        <div class="text-[11px] font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <a href="../blog/agentes-ia-business-analytics.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • IA e RAG</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../blog/media-moda-e-mediana.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Média, Moda e Mediana: O que os números escondem</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • Estatística e Negócios</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../blog/modelagem-star-schema-powerbi.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="database" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Modelagem Star Schema no Power BI</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • Power BI & Modelagem Dimensional</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../projetos.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Casos de Estudo & Portfólio</div>
+              <div class="text-[10px] text-[#656d76]">Projetos • Soluções de dados ponta a ponta</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="../assets/js/main.js"></script>
   <script>
+    // Search Modal Handlers
+    const searchTrigger = document.getElementById("search-modal-trigger");
+    const searchModal = document.getElementById("search-modal");
+    const searchClose = document.getElementById("search-modal-close");
+    const siteSearchInput = document.getElementById("site-search-input");
+    const modalContainer = document.getElementById("search-modal-container");
+
+    function openGlobalSearch() {{
+      if (!searchModal) return;
+      searchModal.classList.remove("hidden");
+      searchModal.classList.add("flex");
+      setTimeout(() => {{
+        searchModal.classList.remove("opacity-0");
+        if (modalContainer) {{
+          modalContainer.classList.remove("scale-95");
+          modalContainer.classList.add("scale-100");
+        }}
+        if (siteSearchInput) siteSearchInput.focus();
+      }}, 10);
+    }}
+
+    function closeGlobalSearch() {{
+      if (!searchModal) return;
+      searchModal.classList.add("opacity-0");
+      if (modalContainer) {{
+        modalContainer.classList.remove("scale-100");
+        modalContainer.classList.add("scale-95");
+      }}
+      setTimeout(() => {{
+        searchModal.classList.remove("flex");
+        searchModal.classList.add("hidden");
+      }}, 200);
+    }}
+
+    if (searchTrigger) searchTrigger.addEventListener("click", openGlobalSearch);
+    if (searchClose) searchClose.addEventListener("click", closeGlobalSearch);
+    if (searchModal) {{
+      searchModal.addEventListener("click", (e) => {{
+        if (e.target === searchModal) closeGlobalSearch();
+      }});
+    }}
+    document.addEventListener("keydown", (e) => {{
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {{
+        e.preventDefault();
+        openGlobalSearch();
+      }}
+      if (e.key === "Escape" && searchModal && !searchModal.classList.contains("hidden")) {{
+        closeGlobalSearch();
+      }}
+    }});
     // Verificação de Artigo Agendado (Programação de Publicação)
     const publishDate = '{post.get("date", "")}';
     const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true' || window.location.hash === '#preview';
@@ -775,7 +945,7 @@ def generate_blog_hub(all_posts):
 
               <div class="flex items-center justify-between pt-6 border-t border-[#d0d7de]">
                 <div class="flex items-center gap-2.5">
-                  <img src="assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-8 h-8 rounded-full object-cover border border-[#d0d7de]" />
+                  <img src="assets/img/minha-imagem-notion.png" alt="Marcos Aurélio" class="w-8 h-8 rounded-full object-cover border border-[#d0d7de]" />
                   <span class="text-xs font-semibold text-[#1f2328]">Marcos Aurélio</span>
                 </div>
                 <a href="blog/{featured_post['slug']}.html" class="btn-primary text-xs py-2 px-4 inline-flex items-center gap-1.5">
@@ -1190,9 +1360,9 @@ def sync_blog_posts_grid(posts):
         badge_cls, badge_label = get_theme_badge(cat)
 
         cards_html.append(f'''          <!-- Post: {title} ({formatted_date}) -->
-          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all" data-category="{filter_cat}" data-date="{dt_str}">
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full" data-category="{filter_cat}" data-date="{dt_str}">
             <a href="blog/{slug}.html" class="block flex-1 flex flex-col">
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+              <div class="h-44 sm:h-48 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
                 <img src="{cover}" alt="{title}" class="w-full h-full object-cover rounded-xl" />
               </div>
               <div class="p-5 flex-1 flex flex-col justify-between">
@@ -1200,10 +1370,10 @@ def sync_blog_posts_grid(posts):
                   <span class="{badge_cls} inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
                     {badge_label}
                   </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
                     {title}
                   </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
+                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
                     {excerpt}
                   </p>
                 </div>
@@ -1335,10 +1505,10 @@ def sync_home_recent_posts(posts):
         badge_style, badge_label = get_home_category_badge(p)
 
         cards_html.append(f'''          <!-- Post {i}: {title} -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group">
+          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full">
             <a href="blog/{slug}.html" class="block flex-1 flex flex-col">
               <!-- Capa -->
-              <div class="h-40 sm:h-44 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+              <div class="h-44 sm:h-48 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
                 <img src="{cover}" alt="{title_attr}" class="w-full h-full object-cover rounded-xl" />
               </div>
               <!-- Corpo -->
@@ -1347,10 +1517,10 @@ def sync_home_recent_posts(posts):
                   <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 {badge_style}">
                     {badge_label}
                   </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
                     {title}
                   </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
+                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
                     {excerpt}
                   </p>
                 </div>

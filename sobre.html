@@ -3,17 +3,20 @@
 
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KXNS2HLN');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Sobre Mim - Marcos Data Product | Economista & Analista de Negócios</title>
+  <title>Sobre Mim - Marcos Data Product | Uma jornada conectando dados, tecnologia e pessoas</title>
   <meta name="description"
-    content="Conectando dados, negócios e pessoas: conheça a trajetória de Marcos Aurélio e o que move o Marcos Data Product." />
+    content="Minha trajetória, estudos, projetos e aprendizados na interseção entre dados, business, produto e inteligência artificial." />
 
   <!-- ═══════════════════════════════════════════════
        DEPENDENCIES (Vendor + Main Assets)
@@ -38,6 +41,9 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Preload High-Resolution Hero Background Image -->
+  <link rel="preload" as="image" href="assets/img/hero_section_sobre_v3.jpg" fetchpriority="high">
 
   <style>
     /* Inter Typography & Design System Overrides */
@@ -80,71 +86,153 @@
       border-radius: 2px;
     }
 
-    /* Hero section: Viewport Stability & Photographic Editorial Layout */
-    .sobre-hero-container {
+    /* ═══════════════════════════════════════════════
+       HERO SOBRE: EDITORIAL LIGHT + FOTOGRAFIA & PILARES
+       ═══════════════════════════════════════════════ */
+    :root {
+      --hero-blue: #0055ff;
+      --hero-navy: #0b1e3a;
+    }
+
+    .hero-sobre {
       position: relative;
-      background-image: url('assets/img/hero_section_sobre.webp');
-      background-position: center right;
-      background-repeat: no-repeat;
-      background-size: cover;
-      min-height: 460px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      overflow: hidden;
     }
 
-    /* Máscara de gradiente editorial Deep Navy */
-    .sobre-hero-gradient-mask {
-      background: linear-gradient(
-        to right,
-        rgba(11, 30, 58, 0.96) 0%,
-        rgba(11, 30, 58, 0.90) 42%,
-        rgba(11, 30, 58, 0.60) 65%,
-        rgba(11, 30, 58, 0.22) 85%,
-        rgba(11, 30, 58, 0.0) 100%
-      );
-    }
-
-    @media (max-width: 1023px) {
-      .sobre-hero-container {
-        background-position: 72% center;
-        min-height: 400px;
+    @media (min-width: 1024px) {
+      .hero-sobre {
+        display: flex;
+        align-items: flex-start;
+        min-height: 600px;
+        background-color: #ffffff;
       }
 
-      .sobre-hero-gradient-mask {
-        background: linear-gradient(
-          to bottom,
-          rgba(11, 30, 58, 0.96) 0%,
-          rgba(11, 30, 58, 0.91) 68%,
-          rgba(11, 30, 58, 0.55) 100%
-        );
+      /* Cena fotográfica no desktop: alinhada à referência com pilha de 5 livros na base esquerda e retrato à direita */
+      .hero-sobre__media {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        max-width: 1360px;
+        margin: 0 auto;
+        height: 100%;
+        background: url('assets/img/hero_section_sobre_v3.jpg') right bottom / cover no-repeat;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 8%, #000 16%);
+        mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 8%, #000 16%);
+        z-index: 1;
+        pointer-events: none;
       }
     }
 
-    /* Glass Social Buttons no Hero */
-    .hero-social-btn {
-      background-color: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.20);
-      color: #ffffff;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    @media (min-width: 1280px) {
+      .hero-sobre {
+        min-height: 630px;
+      }
     }
 
-    .hero-social-btn:hover {
-      background-color: rgba(255, 255, 255, 0.22);
-      border-color: rgba(255, 255, 255, 0.45);
-      color: #38bdf8;
-      transform: translateY(-2px);
+    @media (min-width: 1440px) {
+      .hero-sobre {
+        min-height: 650px;
+      }
+
+      .hero-sobre__media {
+        max-width: 1440px;
+      }
+    }
+
+    /* Imagem fotográfica no mobile (abaixo do texto para visualização perfeita) */
+    .hero-sobre__media-mobile {
+      position: relative;
+      height: 330px;
+      background: url('assets/img/hero_section_sobre_v3.jpg') 72% center / cover no-repeat;
+      border-top: 1px solid #e2e8f0;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 12%);
+    }
+
+    @media (min-width: 640px) {
+      .hero-sobre__media-mobile {
+        height: 400px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-sobre__media-mobile {
+        display: none;
+      }
+    }
+
+    /* Kicker com traço azul */
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #0055ff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::after {
+      content: '';
+      width: 48px;
+      height: 1.5px;
+      background-color: #0055ff;
+      border-radius: 9999px;
+    }
+
+    /* Pilares visuais no Hero (estáticos/desativados como botões, mantendo visibilidade) */
+    .hero-pillar-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.625rem 0.5rem;
+      border-radius: 12px;
+      background-color: transparent;
+      border: 1px solid transparent;
+      cursor: default;
+      pointer-events: none;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .hero-pillar-card__icon {
+      color: #0052cc;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-pillar-card__title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #0b1e3a;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+
+    .hero-pillar-card__sub {
+      font-size: 0.6875rem;
+      color: #64748b;
+      line-height: 1.3;
     }
 
     /* Tactile Buttons with Emil Kowalski spring and physical push on active */
     .btn-tactile {
       transition: transform var(--duration-press, 160ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
-                  background-color var(--duration-fast, 180ms) ease,
-                  box-shadow var(--duration-fast, 180ms) ease,
-                  border-color var(--duration-fast, 180ms) ease;
+        background-color var(--duration-fast, 180ms) ease,
+        box-shadow var(--duration-fast, 180ms) ease,
+        border-color var(--duration-fast, 180ms) ease;
     }
+
     .btn-tactile:hover {
       transform: translateY(-2px);
     }
+
     .btn-tactile:active {
       transform: translateY(0) scale(0.98);
     }
@@ -152,8 +240,8 @@
     /* Card Elevation & Hover Clean following DESIGN.md */
     .card-hover-clean {
       transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
-                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
-                  border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+        box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+        border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
     }
 
     .card-hover-clean:hover {
@@ -168,7 +256,13 @@
 
     /* Accessibility: Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
-      .btn-tactile, .card-hover-clean, .hero-social-btn, .timeline-card, .timeline-node, .timeline-v-item {
+
+      .btn-tactile,
+      .card-hover-clean,
+      .hero-social-btn,
+      .timeline-card,
+      .timeline-node,
+      .timeline-v-item {
         transition: none !important;
         transform: none !important;
       }
@@ -181,22 +275,27 @@
       --company-color: #0b3b6f;
       --company-color-rgb: 11, 59, 111;
     }
+
     .timeline-item-kroton {
       --company-color: #621391;
       --company-color-rgb: 98, 19, 145;
     }
+
     .timeline-item-neoenergia {
       --company-color: #44681e;
       --company-color-rgb: 68, 104, 30;
     }
+
     .timeline-item-alelo {
       --company-color: #008542;
       --company-color-rgb: 0, 133, 66;
     }
+
     .timeline-item-nubank {
       --company-color: #820ad1;
       --company-color-rgb: 130, 10, 209;
     }
+
     .timeline-item-ford {
       --company-color: #002c6c;
       --company-color-rgb: 0, 44, 108;
@@ -216,8 +315,8 @@
       border: 1px solid #d0d7de !important;
       padding: 1.5rem !important;
       transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.28s ease !important;
+        box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.28s ease !important;
       transform-origin: center center;
       will-change: transform, box-shadow, border-color;
     }
@@ -283,6 +382,7 @@
       .timeline-v-item.is-active .timeline-card {
         transform: scale(1.02) translateY(-2px) !important;
       }
+
       .timeline-v-item.is-active .timeline-card:hover {
         transform: scale(1.025) translateY(-3px) !important;
       }
@@ -402,8 +502,8 @@
 
 <body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- ═══════════════════════════════════════════════════════
@@ -437,13 +537,6 @@
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
-        <!-- CTA "Vamos conversar" -->
-        <a href="mailto:contato@marcosdataproduct.com"
-          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
-          <span>Vamos conversar</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
-
         <!-- Mobile Menu Toggle -->
         <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f1f5f9]" id="mobile-btn"
           aria-label="Abrir Menu">
@@ -470,84 +563,67 @@
       <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
       <a href="sobre.html" class="mobile-link active font-semibold text-[#2563eb]">Sobre</a>
     </div>
-    <div class="mt-8 pt-6 border-t border-slate-200">
-      <a href="mailto:contato@marcosdataproduct.com"
-        class="w-full py-3 rounded-xl bg-[#2563eb] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
-        <span>Vamos conversar</span>
-        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    </div>
   </div>
 
 
   <!-- ═══════════════════════════════════════════════════════
-     1. HERO SECTION ("SOBRE")
+     1. HERO SECTION: SOBRE ("Uma jornada conectando dados, tecnologia e pessoas.")
   ═══════════════════════════════════════════════════════ -->
-  <section class="sobre-hero-container relative overflow-hidden flex items-center">
-    <!-- Ambient Gradient Mask -->
-    <div class="sobre-hero-gradient-mask absolute inset-0 z-0"></div>
+  <section class="hero-sobre" aria-labelledby="hero-sobre-title">
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 relative z-10 w-full">
-      <div class="max-w-2xl">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-12 sm:pt-14 lg:pt-16 pb-10 sm:pb-12 lg:pb-44 relative z-10 w-full">
+      <div class="max-w-[490px] xl:max-w-[520px]">
 
-        <!-- Eyebrow -->
-        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.25em] block mb-4">
-          SOBRE
-        </span>
+        <!-- Kicker: MARCOS DATA PRODUCT ——— -->
+        <div class="mb-6">
+          <span class="hero-kicker">Marcos Data Product</span>
+        </div>
 
-        <!-- Main Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] mb-5">
-          Dados conectam pessoas, negócios e <span class="text-[#38bdf8]">oportunidades.</span>
+        <!-- Label: SOBRE -->
+        <div class="mb-3">
+          <span class="text-xs font-bold text-[#0b1e3a] uppercase tracking-[0.22em] block">
+            SOBRE
+          </span>
+        </div>
+
+        <!-- Headline: Uma jornada conectando dados, tecnologia e pessoas. -->
+        <h1 id="hero-sobre-title"
+          class="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3rem] font-extrabold text-[#0b1e3a] tracking-[-0.03em] leading-[1.08] mb-5">
+          Uma jornada<br />
+          conectando <span class="text-[#0055ff]">dados,</span><br />
+          <span class="text-[#0055ff]">tecnologia e pessoas.</span>
         </h1>
 
-        <!-- Subtitle -->
-        <p class="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-xl">
-          Aqui você encontra um pouco da minha história, do que me move e o que estou construindo com o Marcos Data Product.
+        <!-- Descrição -->
+        <p class="text-sm sm:text-[0.95rem] text-[#334155] font-medium leading-[1.6] max-w-[445px]">
+          Sou Marcos, economista e profissional de dados e negócios. Criei o Marcos Data Product para compartilhar
+          conhecimento, análises e aprendizados sobre data, analytics, business, produtos digitais e inteligência
+          artificial.
         </p>
-
-        <!-- Social Action Buttons -->
-        <div class="flex items-center gap-3">
-          <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="LinkedIn">
-            <i data-lucide="linkedin" class="w-5 h-5"></i>
-          </a>
-          <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="GitHub">
-            <i data-lucide="github" class="w-5 h-5"></i>
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="YouTube">
-            <i data-lucide="youtube" class="w-5 h-5"></i>
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl hero-social-btn btn-tactile flex items-center justify-center" aria-label="Instagram">
-            <i data-lucide="instagram" class="w-5 h-5"></i>
-          </a>
-        </div>
 
       </div>
     </div>
+
+    <!-- Cena Fotográfica no Desktop (Marcos, pilha de 5 livros à esquerda e estante ao fundo) -->
+    <div class="hero-sobre__media hidden lg:block" aria-hidden="true"></div>
+
+    <!-- Cena Fotográfica exibida no mobile abaixo do bloco de texto -->
+    <div class="hero-sobre__media-mobile lg:hidden" aria-hidden="true"></div>
+
   </section>
 
 
   <!-- ═══════════════════════════════════════════════════════
-     2. BIO / PROFILE SECTION ("Olá, eu sou o Marcos Aurélio")
+     2. BIO / PROFILE SECTION ("Sobre Marcos Aurélio")
   ═══════════════════════════════════════════════════════ -->
-  <section class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+  <section id="bio-section" class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
 
-      <!-- Coluna Esquerda: Foto oficial -->
-      <div class="lg:col-span-4 flex justify-center lg:justify-start">
-        <div
-          class="relative w-full max-w-sm aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-slate-200/80 bg-white group">
-          <img src="assets/img/marcos_sobre.jpg" alt="Foto de Marcos Aurélio"
-            class="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500 ease-out" />
-        </div>
-      </div>
-
-      <!-- Coluna Central: História & Assinatura -->
-      <div class="lg:col-span-5 flex flex-col">
-        <h2 class="text-3xl sm:text-4xl font-bold text-[#0b1e3a] tracking-tight">
+      <!-- Coluna Esquerda: História & Contexto Editorial -->
+      <div class="lg:col-span-7 flex flex-col">
+        <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">SOBRE MIM
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#0b1e3a] tracking-tight">
           Marcos Aurélio
         </h2>
         <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5 mb-3"></div>
@@ -555,79 +631,85 @@
           Economista, Business Analyst e curioso por dados e tecnologia
         </p>
 
-        <div class="space-y-4 text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
+        <div class="space-y-4 text-sm sm:text-[15px] text-[#475569] leading-relaxed">
           <p>
             Sou formado em Economia e trabalho com dados, analytics e estratégia. Ao longo da minha trajetória, passei
-            por diferentes empresas e contextos de negócio, sempre buscando entender o que os dados estão mostrando,
-            investigar o que está por trás dos números e transformar análises em informações que ajudem na tomada de
-            decisão.
+            por diferentes empresas e contextos de negócio, desenvolvendo o hábito de investigar problemas, questionar
+            números e buscar entender o que está por trás dos resultados. Gosto de transformar informações em
+            conhecimento que ajude a compreender melhor os problemas e tomar decisões.
           </p>
           <p>
-            Gosto de fazer deep dives, encontrar padrões, construir visualizações que contem histórias e, mais
-            recentemente, explorar como Python, IA e automação podem transformar problemas do dia a dia em soluções mais
-            simples e produtivas.
+            Tenho interesse por tecnologia, visualização de dados, Python, inteligência artificial e automação. Gosto de
+            explorar ferramentas, testar ideias e descobrir maneiras diferentes de resolver problemas. Mas minha
+            curiosidade não se limita ao trabalho: também gosto de estudar assuntos novos, conectar ideias e explorar
+            temas que me ajudam a enxergar o mundo por outras perspectivas.
           </p>
           <p>
-            Criei o Marcos Data Product para compartilhar esse caminho: o que aprendo, estudo e construo, sem falar
-            apenas sobre o que já sei. Quero também mostrar as dúvidas, descobertas, ferramentas e ideias que encontro
-            pelo caminho: porque acredito que aprender fica mais interessante quando a gente compartilha o processo.
+            Criei o Marcos Data Product como um espaço para reunir e compartilhar essa jornada. Aqui, quero registrar o
+            que aprendo, os projetos que desenvolvo, as ideias que me fazem pensar e as descobertas que considero
+            interessantes. Não apenas sobre o que já sei, mas também sobre o que estou tentando entender.
+          </p>
+          <p>
+            Acredito que aprender não precisa ser um processo solitário. Compartilhar dúvidas, experimentos e
+            descobertas é uma forma de organizar o pensamento, aprofundar o conhecimento e, quem sabe, ajudar outras
+            pessoas que também estão nessa jornada.
           </p>
         </div>
-
       </div>
 
-      <!-- Coluna Direita: Quick Fact Cards (4 destaques verticais) -->
-      <div class="lg:col-span-3 flex flex-col gap-3.5">
+      <!-- Coluna Direita: Quick Fact Cards (Grid 2x2 de Destaques) -->
+      <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:pt-8">
 
         <!-- Fact 1 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
+          class="flex flex-col justify-between p-5 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-11 h-11 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center mb-4 border border-blue-100/80">
             <i data-lucide="graduation-cap" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Economista</h3>
-            <p class="text-[11px] text-[#656d76]">de formação</p>
+            <h3 class="font-bold text-sm sm:text-base text-[#0b1e3a] mb-0.5">Economista</h3>
+            <p class="text-xs text-[#64748b] leading-snug">Formação com foco em análise de cenários e tomada de decisão
+            </p>
           </div>
         </div>
 
         <!-- Fact 2 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
+          class="flex flex-col justify-between p-5 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-11 h-11 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center mb-4 border border-blue-100/80">
             <i data-lucide="briefcase" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">10+</h3>
-            <p class="text-[11px] text-[#656d76]">anos de experiência</p>
+            <h3 class="font-bold text-sm sm:text-base text-[#0b1e3a] mb-0.5">10+ anos</h3>
+            <p class="text-xs text-[#64748b] leading-snug">Experiência conectando dados, estratégia e operação</p>
           </div>
         </div>
 
         <!-- Fact 3 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
+          class="flex flex-col justify-between p-5 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-11 h-11 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center mb-4 border border-blue-100/80">
             <i data-lucide="book-open" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Aprendizado</h3>
-            <p class="text-[11px] text-[#656d76]">contínuo</p>
+            <h3 class="font-bold text-sm sm:text-base text-[#0b1e3a] mb-0.5">Aprendizado contínuo</h3>
+            <p class="text-xs text-[#64748b] leading-snug">Estudos práticos em analytics, produto, Python e IA</p>
           </div>
         </div>
 
         <!-- Fact 4 -->
         <div
-          class="flex items-center gap-3.5 p-3 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
+          class="flex flex-col justify-between p-5 rounded-2xl bg-white border border-[#d0d7de] shadow-2xs card-hover-clean">
           <div
-            class="w-10 h-10 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center flex-shrink-0 border border-blue-100/80">
+            class="w-11 h-11 rounded-xl bg-blue-50 text-[#11376e] flex items-center justify-center mb-4 border border-blue-100/80">
             <i data-lucide="users" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Compartilhar</h3>
-            <p class="text-[11px] text-[#656d76]">para multiplicar</p>
+            <h3 class="font-bold text-sm sm:text-base text-[#0b1e3a] mb-0.5">Compartilhar</h3>
+            <p class="text-xs text-[#64748b] leading-snug">Ideias, aprendizados e descobertas para compartilhar</p>
           </div>
         </div>
 
@@ -641,7 +723,7 @@
      3. TIMELINE VERTICAL ("Minha trajetória")
   ═══════════════════════════════════════════════════════ -->
   <section id="trajetoria-section"
-    class="max-w-5xl mx-auto px-5 sm:px-8 py-16 sm:py-24 border-t border-slate-200/80 relative">
+    class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 border-t border-slate-200/80 relative">
 
     <!-- Section Header (Fiel ao padrão da Home: CONTEÚDO RECENTE / Barra Azul) -->
     <div class="mb-12 sm:mb-16">
@@ -651,12 +733,13 @@
       </h2>
       <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5 mb-3"></div>
       <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed max-w-2xl">
-        Experiências que moldaram minha forma de pensar e trabalhar, conectando dados, negócios e pessoas ao longo da jornada.
+        Uma seleção das principais empresas que marcaram minha trajetória profissional e contribuíram para a forma como
+        penso e trabalho.
       </p>
     </div>
 
     <!-- Container da Linha do Tempo Vertical -->
-    <div id="timeline-container" class="relative py-4">
+    <div id="timeline-container" class="relative py-4 max-w-5xl mx-auto">
 
       <!-- Linha Vertical de Fundo (Track Cinza Base) -->
       <div id="timeline-track-line"
@@ -681,13 +764,12 @@
           class="timeline-v-item timeline-item-bauminas relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Card (Esquerda no Desktop) -->
           <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-1">
-            <div
-              class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 p-2 flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="assets/img/bauminas.png" alt="Bauminas" class="w-full h-full object-contain" />
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="assets/img/bauminas.png" alt="Bauminas" class="w-full h-full object-cover" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
@@ -697,12 +779,17 @@
                       2015-2018
                     </span>
                   </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Assistente de Controladoria Comercial</p>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Assistente de
+                    Controladoria Comercial</p>
                 </div>
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Foi onde comecei a transformar meu interesse por análise em prática profissional. Trabalhando próximo da área comercial, comecei a criar indicadores, dashboards e automações para tornar as informações mais úteis para a gestão. O Excel e o VBA, que inicialmente eram ferramentas que eu queria dominar melhor, acabaram se tornando parte importante da minha entrada no mundo dos dados.
+                Foi onde transformei meu interesse por análise em prática profissional.
+                Trabalhando próximo à área comercial, desenvolvi indicadores, dashboards e automações para tornar as
+                informações mais úteis à gestão.
+                O Excel e o VBA, que inicialmente eram ferramentas que eu queria dominar melhor, acabaram se tornando
+                importantes na minha entrada no mundo dos dados.
               </p>
 
               <!-- Ferramentas mais utilizadas -->
@@ -713,7 +800,8 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado"
+                      class="w-3.5 h-3.5 object-contain" />
                     Excel Avançado
                   </span>
                   <span
@@ -723,17 +811,20 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power Point
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs"
+                      class="w-3.5 h-3.5 object-contain" />
                     Totvs
                   </span>
                 </div>
@@ -746,7 +837,8 @@
             class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
             <div
               class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all" style="background-color: var(--company-color);"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
+                style="background-color: var(--company-color);"></div>
             </div>
           </div>
 
@@ -775,19 +867,19 @@
             class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
             <div
               class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all" style="background-color: var(--company-color);"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
+                style="background-color: var(--company-color);"></div>
             </div>
           </div>
 
           <!-- Card (Direita no Desktop) -->
           <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-3">
-            <div
-              class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 p-2 flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="assets/img/Cogna.jpeg" alt="Kroton" class="w-full h-full object-contain rounded-lg" />
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="assets/img/Cogna.jpeg" alt="Kroton" class="w-full h-full object-cover" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
@@ -797,12 +889,16 @@
                       2018-2019
                     </span>
                   </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista em Gestão Financeira Orçamentária</p>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista em Gestão
+                    Financeira Orçamentária</p>
                 </div>
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Aqui, os dados passaram a estar mais diretamente ligados a planejamento e decisões financeiras. Trabalhei acompanhando orçamento, forecasts e indicadores de performance, aprendendo a olhar para os números não apenas como registros do que aconteceu, mas como uma forma de acompanhar o que estava por vir.
+                Aqui, os dados passaram a ter um papel mais direto no planejamento e nas decisões financeiras. Trabalhei
+                com orçamento, forecasts e indicadores de performance, aprendendo a olhar para os números não apenas
+                como registros do que aconteceu, mas também como instrumentos para acompanhar resultados e apoiar
+                decisões futuras.
               </p>
 
               <!-- Ferramentas mais utilizadas -->
@@ -813,12 +909,14 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado"
+                      class="w-3.5 h-3.5 object-contain" />
                     Excel Avançado
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
@@ -828,12 +926,14 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Totvs--Streamline-Simple-Icons.svg" alt="Totvs"
+                      class="w-3.5 h-3.5 object-contain" />
                     Totvs
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power Point
                   </span>
                 </div>
@@ -847,13 +947,12 @@
           class="timeline-v-item timeline-item-neoenergia relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Card (Esquerda no Desktop) -->
           <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-1">
-            <div
-              class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 p-2 flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="assets/img/Neoenergia.png" alt="Neoenergia" class="w-full h-full object-contain" />
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="assets/img/Neoenergia.png" alt="Neoenergia" class="w-full h-full object-cover" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
@@ -863,12 +962,17 @@
                       2020-2021
                     </span>
                   </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Qualidade do Atendimento</p>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Qualidade
+                    do Atendimento</p>
                 </div>
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Na Neoenergia, tive a oportunidade de estruturar uma área de BI praticamente do zero. Centralizar informações, criar indicadores e dar uma visão mais clara da operação mostrou na prática como dados bem organizados podem mudar a forma como uma equipe acompanha seus problemas e toma decisões.
+                Transformar dados operacionais em informações estratégicas foi o principal desafio dessa experiência.
+                Trabalhei com indicadores de atendimento, como NPS e FCR, e com o desenvolvimento de um projeto de BI no
+                Power BI para centralizar informações e facilitar o acompanhamento dos resultados. Também atuei com
+                análises de sentimento e dos principais temas das ligações, gerando insumos para a gestão compreender
+                melhor a experiência dos clientes e identificar oportunidades de melhoria.
               </p>
 
               <!-- Ferramentas mais utilizadas -->
@@ -879,7 +983,8 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
@@ -889,7 +994,8 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/excel_color.svg" alt="Excel Avançado"
+                      class="w-3.5 h-3.5 object-contain" />
                     Excel Avançado
                   </span>
                 </div>
@@ -902,7 +1008,8 @@
             class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
             <div
               class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all" style="background-color: var(--company-color);"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
+                style="background-color: var(--company-color);"></div>
             </div>
           </div>
 
@@ -931,19 +1038,19 @@
             class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
             <div
               class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all" style="background-color: var(--company-color);"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
+                style="background-color: var(--company-color);"></div>
             </div>
           </div>
 
           <!-- Card (Direita no Desktop) -->
           <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-3">
-            <div
-              class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 p-2 flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="assets/img/Alelo.png" alt="Alelo" class="w-full h-full object-contain rounded-lg" />
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="assets/img/Alelo.png" alt="Alelo" class="w-full h-full object-cover" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
@@ -953,12 +1060,17 @@
                       2022-2024
                     </span>
                   </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Negócios - Product Operations & Analytics</p>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Negócios -
+                    Product Operations & Analytics</p>
                 </div>
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Na Alelo, dados e produto começaram a se encontrar de maneira mais intensa. Trabalhei próximo às squads de produto, métricas, tracking e experiência do cliente, além de atuar na coordenação de uma squad de Product Operations. Foi uma fase importante para entender que dados também podem ajudar a responder perguntas sobre como as pessoas usam um produto e onde podemos melhorá-lo.
+                A conexão entre dados e produto ganhou força nessa etapa da minha trajetória. Trabalhei próximo às
+                squads de produto, com métricas, tracking e experiência do cliente, além de coordenar uma squad de
+                Product Operations. Essa experiência ampliou minha visão sobre o papel dos dados no desenvolvimento de
+                produtos, ajudando a entender como as pessoas interagem com eles, identificar oportunidades de melhoria
+                e orientar decisões a partir do comportamento dos usuários.
               </p>
 
               <!-- Ferramentas mais utilizadas -->
@@ -969,12 +1081,14 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/python_color.svg" alt="Python" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/python_color.svg" alt="Python"
+                      class="w-3.5 h-3.5 object-contain" />
                     Python
                   </span>
                   <span
@@ -984,7 +1098,8 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/Data Studio.svg" alt="Data Studio" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Data Studio.svg" alt="Data Studio"
+                      class="w-3.5 h-3.5 object-contain" />
                     Data Studio
                   </span>
                   <span
@@ -994,7 +1109,8 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/PowerPoint.svg" alt="Power Point"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power Point
                   </span>
                   <span
@@ -1023,13 +1139,12 @@
           class="timeline-v-item timeline-item-nubank relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
           <!-- Card (Esquerda no Desktop) -->
           <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-1">
-            <div
-              class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 p-2 flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="assets/img/Nubank.png" alt="Nubank" class="w-full h-full object-contain rounded-lg" />
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="assets/img/Nubank.png" alt="Nubank" class="w-full h-full object-cover" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
@@ -1044,7 +1159,13 @@
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                No Nubank, aprofundei minha experiência em análise e estratégia. Trabalhei com diferentes mercados e problemas relacionados a crédito, investigando desvios de performance e buscando suas causas. Também construí um projeto de benchmarking competitivo do zero. Foi uma experiência que consolidou algo que já vinha aprendendo ao longo da carreira: uma boa análise não termina quando encontramos um padrão; ela começa a ficar realmente útil quando conseguimos entender o que aquele padrão significa para uma decisão.
+                Atuei na estratégia de crédito em diferentes mercados, monitorando indicadores de performance,
+                investigando desvios e identificando fatores que explicavam as variações nos resultados. Também
+                desenvolvi do zero um projeto de benchmarking competitivo, estruturando comparações de métricas de
+                crédito entre Brasil, México e Colômbia para ampliar a visão sobre o desempenho da operação em cada
+                mercado. Essa experiência fortaleceu minha capacidade de transformar análises em diagnósticos que ajudam
+                a identificar oportunidades, compreender diferenças de performance e apoiar decisões estratégicas de
+                crédito.
               </p>
 
               <!-- Ferramentas mais utilizadas -->
@@ -1055,12 +1176,14 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/databricks.svg" alt="Databricks" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/databricks.svg" alt="Databricks"
+                      class="w-3.5 h-3.5 object-contain" />
                     Databricks
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/python_color.svg" alt="Python" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/python_color.svg" alt="Python"
+                      class="w-3.5 h-3.5 object-contain" />
                     Python
                   </span>
                   <span
@@ -1075,8 +1198,14 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/Confluence.svg" alt="Confluence" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Confluence.svg" alt="Confluence"
+                      class="w-3.5 h-3.5 object-contain" />
                     Confluence
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                    <img src="assets/img/icons-stacks/Cursor.svg" alt="Cursor" class="w-3.5 h-3.5 object-contain" />
+                    Cursor
                   </span>
                 </div>
               </div>
@@ -1088,7 +1217,8 @@
             class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
             <div
               class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all" style="background-color: var(--company-color);"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
+                style="background-color: var(--company-color);"></div>
             </div>
           </div>
 
@@ -1117,19 +1247,19 @@
             class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
             <div
               class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all" style="background-color: var(--company-color);"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
+                style="background-color: var(--company-color);"></div>
             </div>
           </div>
 
           <!-- Card (Direita no Desktop) -->
           <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-3">
-            <div
-              class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 p-2 flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="assets/img/Ford.png" alt="Ford" class="w-full h-full object-contain" />
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="assets/img/Ford.png" alt="Ford" class="w-full h-full object-cover" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
@@ -1144,7 +1274,11 @@
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Descobrindo ainda
+                Na Ford América do Sul, minha atuação combina Business Intelligence, análise de dados e governança da
+                informação. Trabalho no desenvolvimento de dashboards e relatórios gerenciais que facilitam o
+                acompanhamento dos indicadores e dão mais visibilidade ao desempenho do negócio. Essa experiência tem
+                ampliado minha visão sobre como estruturar informações, conectar diferentes necessidades das áreas e
+                transformar dados em ferramentas que apoiam o monitoramento dos resultados e a tomada de decisões.
               </p>
 
               <!-- Ferramentas mais utilizadas -->
@@ -1155,7 +1289,8 @@
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/power_bi_color.svg" alt="Power BI"
+                      class="w-3.5 h-3.5 object-contain" />
                     Power BI
                   </span>
                   <span
@@ -1165,7 +1300,8 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/Sharepoint.svg" alt="Sharepoint" class="w-3.5 h-3.5 object-contain" />
+                    <img src="assets/img/icons-stacks/Sharepoint.svg" alt="Sharepoint"
+                      class="w-3.5 h-3.5 object-contain" />
                     Sharepoint
                   </span>
                   <span
@@ -1185,8 +1321,15 @@
                   </span>
                   <span
                     class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="assets/img/icons-stacks/Copilot.svg" alt="Github Copilot Studio" class="w-3.5 h-3.5 object-contain" />
-                    Github Copilot Studio
+                    <img src="assets/img/icons-stacks/Copilot.svg" alt="GitHub Copilot"
+                      class="w-3.5 h-3.5 object-contain" />
+                    GitHub Copilot
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                    <img src="assets/img/icons-stacks/CopilotStudio.svg" alt="Copilot Studio"
+                      class="w-3.5 h-3.5 object-contain" />
+                    Copilot Studio
                   </span>
                 </div>
               </div>
@@ -1211,7 +1354,7 @@
         </h2>
         <div class="w-10 h-[3.75px] bg-[#11376e] rounded-full mt-2.5 mb-3"></div>
         <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed max-w-2xl">
-          Alguns depoimentos que recebi no LinkedIn e que me motivam a seguir compartilhando.
+          Impressões e experiências compartilhadas por pessoas com quem tive a oportunidade de trabalhar.
         </p>
       </div>
       <div class="flex items-center gap-4 flex-shrink-0">
@@ -1253,8 +1396,8 @@
               <img src="assets/img/Lucas Sorreano.jpeg" alt="Lucas Sorreano"
                 class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Nubank</h3>
-                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Lucas Sorreano</h3>
+                <p class="text-[11px] text-[#656d76]"></p>
               </div>
             </div>
           </div>
@@ -1278,8 +1421,8 @@
               <img src="assets/img/Leidiana de Carli.jpeg" alt="Leidiana de Carli"
                 class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Alelo</h3>
-                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Leidiana de Carli</h3>
+                <p class="text-[11px] text-[#656d76]"></p>
               </div>
             </div>
           </div>
@@ -1303,8 +1446,8 @@
               <img src="assets/img/Carolina Pazinato.jpeg" alt="Carolina Pazinato"
                 class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega da Ford</h3>
-                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Carolina Pazinato</h3>
+                <p class="text-[11px] text-[#656d76]"></p>
               </div>
             </div>
           </div>
@@ -1328,8 +1471,8 @@
               <img src="assets/img/VIviane Vieira.jpeg" alt="Viviane Vieira"
                 class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
-                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Negócios</h3>
-                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
+                <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Viviane Vieira</h3>
+                <p class="text-[11px] text-[#656d76]"></p>
               </div>
             </div>
           </div>
@@ -1359,7 +1502,7 @@
                 class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
                 <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Nubank</h3>
-                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
+                <p class="text-[11px] text-[#656d76]"></p>
               </div>
             </div>
           </div>
@@ -1384,7 +1527,7 @@
                 class="w-10 h-10 rounded-full object-cover border border-[#d0d7de]" />
               <div>
                 <h3 class="font-bold text-xs sm:text-sm text-[#1f2328]">Ex-colega de Alelo</h3>
-                <p class="text-[11px] text-[#656d76]">no LinkedIn</p>
+                <p class="text-[11px] text-[#656d76]"></p>
               </div>
             </div>
           </div>
@@ -1489,7 +1632,8 @@
 
       <!-- Logo e Nome da Marca -->
       <a href="index.html" class="flex items-center group" aria-label="Marcos Data Product">
-        <img src="assets/img/logo-escura.png" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
+        <img src="assets/img/logo-escura.png" alt="Marcos Data Product"
+          class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
       <!-- Frase Central da Marca -->
@@ -1499,16 +1643,20 @@
 
       <!-- Ícones de Redes Sociais -->
       <div class="flex items-center gap-4 text-[#94a3b8]">
-        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="LinkedIn">
           <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="Instagram">
           <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="YouTube">
           <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="GitHub">
           <i data-lucide="github" class="w-4.5 h-4.5"></i>
         </a>
         <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">

@@ -3,16 +3,20 @@
 
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KXNS2HLN');</script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Blog - Marcos Data Product | Ideias que conectam dados ao mundo real</title>
-  <meta name="description" content="Análises, aprendizados e reflexões sobre dados, negócios, produto e tecnologia: do conceito à aplicação no mundo real." />
+  <meta name="description"
+    content="Análises, aprendizados e reflexões sobre dados, negócios, produto e tecnologia: do conceito à aplicação no mundo real." />
 
   <!-- ═══════════════════════════════════════════════
        DEPENDENCIES
@@ -26,7 +30,8 @@
   <!-- Google Font: Inter (Identidade Visual Oficial) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
@@ -37,47 +42,470 @@
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="preload" as="image" href="assets/img/hero_section_blog_v2.jpg" fetchpriority="high">
 
   <style>
     /* Inter Typography & Design System Overrides */
-    body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote {
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    button,
+    input,
+    span,
+    blockquote {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Hero section: Viewport Stability & Photographic Editorial Layout */
-    .blog-hero-container {
+    /* ═══════════════════════════════════════════════
+       HERO BLOG: editorial claro + cena fotográfica
+       com monitor analítico e categorias conceituais
+    ═══════════════════════════════════════════════ */
+    .hero-blog {
+      --hero-ease: cubic-bezier(0.23, 1, 0.32, 1);
+      --hero-navy: #0b1e3a;
+      --hero-blue: #1d4ed8;
       position: relative;
-      background-image: url('assets/img/hero_section_blog.png');
-      background-position: center right;
-      background-repeat: no-repeat;
-      background-size: cover;
-      min-height: 440px;
+      isolation: isolate;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f8fafe 0%, #eef3fb 100%);
     }
 
-    /* Máscara de gradiente Deep Navy editorial para contraste e legibilidade */
-    .blog-hero-gradient-mask {
-      background: linear-gradient(
-        to right,
-        rgba(11, 30, 58, 0.96) 0%,
-        rgba(11, 30, 58, 0.90) 42%,
-        rgba(11, 30, 58, 0.60) 65%,
-        rgba(11, 30, 58, 0.22) 85%,
-        rgba(11, 30, 58, 0.0) 100%
-      );
+    @media (min-width: 1024px) {
+      .hero-blog {
+        display: flex;
+        align-items: center;
+        min-height: min(720px, calc(100dvh - 65px));
+      }
+    }
+
+    /* Cena fotográfica (direita no desktop, abaixo do texto no mobile) */
+    .hero-blog__media {
+      position: relative;
+      height: 480px;
+      background: url('assets/img/hero_section_blog_v2.jpg') right center / cover no-repeat;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 18%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .hero-blog__media {
+        height: 540px;
+        padding: 24px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-blog__media {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 58%;
+        height: auto;
+        z-index: 0;
+        padding: 0;
+        background-position: right center;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, .18) 18%, rgba(0, 0, 0, .75) 34%, #000 48%);
+        mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, .18) 18%, rgba(0, 0, 0, .75) 34%, #000 48%);
+        display: block;
+      }
+    }
+
+    /* Malha de pontos analítica decorativa */
+    .hero-blog__dots {
+      position: absolute;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(37, 99, 235, 0.38) 1.2px, transparent 1.7px);
+      background-size: 14px 14px;
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 25%, transparent 72%);
+      mask-image: radial-gradient(ellipse at center, #000 25%, transparent 72%);
+    }
+
+    /* Eyebrow com traço oficial */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--hero-blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .hero-eyebrow::after {
+      content: '';
+      width: 52px;
+      height: 1.5px;
+      background: currentColor;
+      opacity: 0.8;
+    }
+
+    .hero-tag-blog {
+      display: inline-block;
+      color: var(--hero-blue);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      color: var(--hero-navy);
+      font-size: clamp(2.35rem, 3.5vw + 0.4rem, 3.75rem);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-title .accent {
+      color: var(--hero-blue);
+    }
+
+    /* 6 Categorias como Botões de Filtro Interativos */
+    .hero-categories {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px 6px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (min-width: 640px) {
+      .hero-categories {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0;
+      }
+
+      .hero-filter-btn+.hero-filter-btn {
+        border-left: 1px solid rgba(17, 55, 110, 0.14);
+      }
+    }
+
+    .hero-filter-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 8px 6px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 180ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms ease, border-color 180ms ease;
+      position: relative;
+      user-select: none;
+    }
+
+    .hero-filter-btn:hover {
+      background-color: rgba(17, 55, 110, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .hero-filter-btn:hover .hero-cat-item__icon {
+      transform: scale(1.08);
+      color: #11376e;
+    }
+
+    .hero-filter-btn:hover .hero-cat-item__title {
+      color: #11376e;
+    }
+
+    .hero-filter-btn:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .hero-filter-btn.active {
+      background-color: #ffffff;
+      border-color: rgba(17, 55, 110, 0.3);
+      box-shadow: 0 6px 16px -2px rgba(17, 55, 110, 0.12), 0 2px 4px -1px rgba(31, 35, 40, 0.04);
+      transform: translateY(-2px);
+    }
+
+    .hero-filter-btn.active .hero-cat-item__icon {
+      color: #11376e;
+      transform: scale(1.1);
+    }
+
+    .hero-filter-btn.active .hero-cat-item__title {
+      color: #11376e;
+      font-weight: 800;
+    }
+
+    .hero-filter-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 18%;
+      right: 18%;
+      height: 2px;
+      background: #11376e;
+      border-radius: 9999px;
+    }
+
+    .hero-cat-item__icon {
+      color: var(--hero-blue);
+      margin-bottom: 8px;
+      transition: transform 180ms ease, color 180ms ease;
+    }
+
+    .hero-cat-item__title {
+      color: var(--hero-navy);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+      text-transform: capitalize;
+      transition: color 180ms ease, font-weight 180ms ease;
+    }
+
+    /* ═══════════════════════════════════════════════
+       MONITOR COM DASHBOARD ANALÍTICO
+    ═══════════════════════════════════════════════ */
+    .hero-monitor {
+      width: 100%;
+      max-width: 580px;
+      border-radius: 14px;
+      background: linear-gradient(170deg, rgba(13, 27, 54, 0.94), rgba(7, 15, 30, 0.96));
+      border: 1px solid rgba(96, 165, 250, 0.32);
+      box-shadow: 0 24px 50px -12px rgba(2, 8, 23, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      padding: 14px;
+      color: #e2e8f0;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-monitor {
+        position: absolute;
+        top: 6%;
+        right: 4%;
+        width: 88%;
+        max-width: 540px;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .hero-monitor {
+        top: 8%;
+        right: 5%;
+        max-width: 580px;
+      }
+    }
+
+    /* Linhas de conexão luminosa conectando ao texto */
+    .hero-monitor::before {
+      content: '';
+      position: absolute;
+      top: 36%;
+      right: 100%;
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(59, 130, 246, 0), rgba(59, 130, 246, 0.85));
+    }
+
+    .hero-monitor::after {
+      content: '';
+      position: absolute;
+      top: calc(36% - 3px);
+      right: calc(100% + 48px);
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2), 0 0 12px rgba(59, 130, 246, 0.7);
     }
 
     @media (max-width: 1023px) {
-      .blog-hero-container {
-        background-position: 70% center;
-        min-height: 380px;
+
+      .hero-monitor::before,
+      .hero-monitor::after {
+        display: none;
       }
-      .blog-hero-gradient-mask {
-        background: linear-gradient(
-          to bottom,
-          rgba(11, 30, 58, 0.96) 0%,
-          rgba(11, 30, 58, 0.91) 68%,
-          rgba(11, 30, 58, 0.55) 100%
-        );
+    }
+
+    /* Sub-cards do monitor */
+    .hero-monitor__card {
+      background: rgba(10, 20, 42, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .hero-monitor__title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 8px;
+      display: block;
+      letter-spacing: 0.01em;
+    }
+
+    /* Barras da categoria */
+    .hero-cat-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      color: #cbd5e1;
+      margin-bottom: 4.5px;
+    }
+
+    .hero-cat-bar:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-cat-bar__name {
+      width: 98px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-shrink: 0;
+    }
+
+    .hero-cat-bar__track {
+      flex: 1;
+      height: 6px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .hero-cat-bar__fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #1d4ed8, #38bdf8);
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: heroGrowX 800ms var(--hero-ease) forwards;
+    }
+
+    .hero-cat-bar__val {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      width: 18px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Gráfico de crescimento SVG */
+    .hero-growth-line {
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: heroDraw 1400ms var(--hero-ease) forwards;
+    }
+
+    /* Mini cards de artigos em destaque */
+    .hero-feat-card {
+      background: rgba(14, 26, 52, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .hero-feat-card__thumb {
+      height: 48px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .hero-feat-card__body {
+      padding: 7px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    /* Animações e orquestração */
+    .hero-reveal {
+      opacity: 0;
+      animation: heroReveal 800ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 0ms);
+    }
+
+    .hero-monitor.hero-reveal {
+      animation: heroReveal 900ms var(--hero-ease) forwards,
+        heroMonitorFloat 7s ease-in-out infinite;
+      animation-delay: var(--d, 0ms), calc(var(--d, 0ms) + 900ms);
+    }
+
+    @keyframes heroReveal {
+      from {
+        opacity: 0;
+        translate: 0 14px;
+      }
+
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+
+    @keyframes heroMonitorFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes heroDraw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes heroGrowX {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .hero-reveal,
+      .hero-monitor.hero-reveal {
+        animation: none;
+        opacity: 1;
+      }
+
+      .hero-growth-line {
+        animation: none;
+        stroke-dashoffset: 0;
+      }
+
+      .hero-cat-bar__fill {
+        animation: none;
+        transform: none;
       }
     }
 
@@ -87,6 +515,7 @@
       font-weight: 600;
       position: relative;
     }
+
     .nav-item-active::after {
       content: '';
       position: absolute;
@@ -101,13 +530,15 @@
     /* Tactile Buttons with Emil Kowalski spring and physical push on active */
     .btn-tactile {
       transition: transform var(--duration-press, 160ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
-                  background-color var(--duration-fast, 180ms) ease,
-                  box-shadow var(--duration-fast, 180ms) ease,
-                  border-color var(--duration-fast, 180ms) ease;
+        background-color var(--duration-fast, 180ms) ease,
+        box-shadow var(--duration-fast, 180ms) ease,
+        border-color var(--duration-fast, 180ms) ease;
     }
+
     .btn-tactile:hover {
       transform: translateY(-2px);
     }
+
     .btn-tactile:active {
       transform: translateY(0) scale(0.98);
     }
@@ -115,21 +546,25 @@
     /* Card Elevation with navy-tinted ambient shadows */
     .card-hover-clean {
       transition: transform var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
-                  box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
-                  border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
+        box-shadow var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1)),
+        border-color var(--duration-fast, 180ms) var(--ease-spring, cubic-bezier(0.16, 1, 0.3, 1));
     }
+
     .card-hover-clean:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 24px -4px rgba(11, 30, 58, 0.10), 0 2px 6px -1px rgba(31, 35, 40, 0.04);
       border-color: rgba(17, 55, 110, 0.35);
     }
+
     .card-hover-clean:active {
       transform: translateY(-1px) scale(0.995);
     }
 
     /* Accessibility: Reduced Motion */
     @media (prefers-reduced-motion: reduce) {
-      .btn-tactile, .card-hover-clean {
+
+      .btn-tactile,
+      .card-hover-clean {
         transition: none !important;
         transform: none !important;
       }
@@ -139,6 +574,7 @@
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
+
     .no-scrollbar {
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -152,7 +588,9 @@
       font-weight: 600 !important;
       box-shadow: 0 1px 3px rgba(31, 35, 40, 0.15) !important;
     }
-    .cat-pill.active i, .cat-pill.active svg {
+
+    .cat-pill.active i,
+    .cat-pill.active svg {
       color: #ffffff !important;
     }
 
@@ -167,26 +605,31 @@
       color: #0969da;
       border: 1px solid #54aeff;
     }
+
     .badge-theme-dataviz {
       background-color: #fbefff;
       color: #8250df;
       border: 1px solid #d2a8ff;
     }
+
     .badge-theme-analytics {
       background-color: #fff8c5;
       color: #9a6700;
       border: 1px solid #d4a72c;
     }
+
     .badge-theme-business {
       background-color: #dafbe1;
       color: #1a7f37;
       border: 1px solid #4ac26b;
     }
+
     .badge-theme-product {
       background-color: #ffebe9;
       color: #cf222e;
       border: 1px solid #ff8182;
     }
+
     .badge-theme-ai {
       background-color: #ddf4ff;
       color: #0969da;
@@ -197,19 +640,21 @@
 
 <body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER / NAVBAR
   ═══════════════════════════════════════════════════════ -->
-  <header id="navbar" class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#d0d7de] px-5 sm:px-8 py-3.5 transition-all">
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#d0d7de] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
-      
+
       <!-- Logo -->
       <a href="index.html" class="flex items-center group" aria-label="Marcos Data Product">
-        <img src="assets/img/logo-clara.png" alt="Marcos Data Product Logo" class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />
+        <img src="assets/img/logo-clara.png" alt="Marcos Data Product Logo"
+          class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
       <!-- Desktop Nav Links -->
@@ -224,18 +669,15 @@
       <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
       <div class="flex items-center gap-3">
         <!-- Search Trigger -->
-        <button id="search-modal-trigger" class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] transition-colors cursor-pointer" aria-label="Buscar no site">
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] transition-colors cursor-pointer"
+          aria-label="Buscar no site">
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
-        <!-- CTA "Vamos conversar" -->
-        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
-          <span>Vamos conversar</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
-
         <!-- Mobile Menu Toggle -->
-        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa]" id="mobile-btn" aria-label="Abrir Menu">
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa]" id="mobile-btn"
+          aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -245,7 +687,8 @@
 
   <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]" id="mobile-close" aria-label="Fechar menu">
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]"
+      id="mobile-close" aria-label="Fechar menu">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
     <a href="index.html" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
@@ -258,130 +701,326 @@
       <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
       <a href="sobre.html" class="mobile-link">Sobre</a>
     </div>
-    <div class="mt-8 pt-6 border-t border-slate-200">
-      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
-        <span>Vamos conversar</span>
-        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    </div>
   </div>
 
 
   <!-- ═══════════════════════════════════════════════════════
-     HERO SECTION
+     HERO BLOG: IDEIAS, ANÁLISES E CONTEÚDO SOBRE DADOS E TECNOLOGIA
   ═══════════════════════════════════════════════════════ -->
-  <section class="blog-hero-container relative overflow-hidden flex items-center">
-    <!-- Ambient Gradient Mask -->
-    <div class="blog-hero-gradient-mask absolute inset-0 z-0"></div>
+  <section id="hero-blog" class="hero-blog" aria-labelledby="hero-title">
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 relative z-10 w-full">
-      <div class="max-w-xl">
+    <!-- Malhas de pontos analíticas decorativas (desktop) -->
+    <div class="hero-blog__dots hidden lg:block" style="top: 14%; left: 36%; width: 190px; height: 130px;"
+      aria-hidden="true"></div>
+    <div class="hero-blog__dots hidden lg:block" style="top: 28%; left: 30%; width: 120px; height: 90px; opacity: .5;"
+      aria-hidden="true"></div>
 
-        <!-- Eyebrow (1 per 3 sections restraint) -->
-        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.22em] block mb-4">
-          BLOG
-        </span>
+    <!-- Conteúdo Editorial -->
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-12 pb-8 sm:pt-16 lg:py-20 relative z-10 w-full">
+      <div class="max-w-[540px] xl:max-w-[580px]">
+
+        <!-- Eyebrows -->
+        <span class="hero-eyebrow hero-reveal mb-4 sm:mb-5" style="--d: 60ms;">Marcos Data Product</span>
+        <span class="hero-tag-blog hero-reveal mb-3 block" style="--d: 100ms;">BLOG</span>
 
         <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-5">
-          Ideias que<br />
-          conectam dados<br />
-          ao <span class="text-[#38bdf8]">mundo real.</span>
+        <h1 id="hero-title" class="hero-title hero-reveal mb-5 sm:mb-6" style="--d: 140ms;">
+          Ideias, análises e<br />
+          conteúdo sobre<br />
+          <span class="accent">dados e tecnologia.</span>
         </h1>
 
-        <!-- Subtitle (11 words <= 20 words limit) -->
-        <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl">
-          Análises, aprendizados e reflexões sobre dados, negócios, produto e tecnologia.
+        <!-- Descrição -->
+        <p class="hero-reveal text-base sm:text-[1.0625rem] text-[#475569] leading-relaxed max-w-[520px] mb-8 lg:mb-12"
+          style="--d: 240ms;">
+          Ideias, reflexões, aprendizados e descobertas sobre assuntos que despertam minha curiosidade e merecem ser
+          compartilhados.
         </p>
 
+        <!-- 6 Categorias como Botões de Filtro Interativos -->
+        <div class="hero-categories hero-reveal" style="--d: 340ms;" role="toolbar" aria-label="Filtrar por categoria">
+          <button type="button" class="hero-filter-btn" data-filter="data" aria-label="Filtrar por Data"
+            title="Filtrar artigos por Data">
+            <i data-lucide="database" class="hero-cat-item__icon w-5 h-5 sm:w-6 sm:h-6" stroke-width="1.6"
+              aria-hidden="true"></i>
+            <span class="hero-cat-item__title">Data</span>
+          </button>
+          <button type="button" class="hero-filter-btn" data-filter="dataviz"
+            aria-label="Filtrar por Data Visualization" title="Filtrar artigos por Data Visualization">
+            <i data-lucide="bar-chart-2" class="hero-cat-item__icon w-5 h-5 sm:w-6 sm:h-6" stroke-width="1.6"
+              aria-hidden="true"></i>
+            <span class="hero-cat-item__title">Data<br class="hidden sm:inline" /> Visualization</span>
+          </button>
+          <button type="button" class="hero-filter-btn" data-filter="analytics" aria-label="Filtrar por Analytics"
+            title="Filtrar artigos por Analytics">
+            <i data-lucide="trending-up" class="hero-cat-item__icon w-5 h-5 sm:w-6 sm:h-6" stroke-width="1.6"
+              aria-hidden="true"></i>
+            <span class="hero-cat-item__title">Analytics</span>
+          </button>
+          <button type="button" class="hero-filter-btn" data-filter="business" aria-label="Filtrar por Business"
+            title="Filtrar artigos por Business">
+            <i data-lucide="briefcase" class="hero-cat-item__icon w-5 h-5 sm:w-6 sm:h-6" stroke-width="1.6"
+              aria-hidden="true"></i>
+            <span class="hero-cat-item__title">Business</span>
+          </button>
+          <button type="button" class="hero-filter-btn" data-filter="product" aria-label="Filtrar por Product"
+            title="Filtrar artigos por Product">
+            <i data-lucide="box" class="hero-cat-item__icon w-5 h-5 sm:w-6 sm:h-6" stroke-width="1.6"
+              aria-hidden="true"></i>
+            <span class="hero-cat-item__title">Product</span>
+          </button>
+          <button type="button" class="hero-filter-btn" data-filter="ai" aria-label="Filtrar por AI"
+            title="Filtrar artigos por AI">
+            <i data-lucide="cpu" class="hero-cat-item__icon w-5 h-5 sm:w-6 sm:h-6" stroke-width="1.6"
+              aria-hidden="true"></i>
+            <span class="hero-cat-item__title">AI</span>
+          </button>
+        </div>
+
       </div>
+    </div>
+
+    <!-- Cena fotográfica + Monitor com Dashboard Analítico -->
+    <div class="hero-blog__media" aria-hidden="true">
+
+      <!-- Monitor com Dashboard Analítico -->
+      <div class="hero-monitor hero-reveal" style="--d: 480ms;">
+
+        <!-- Top Row: Artigos por categoria & Crescimento -->
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 mb-2.5">
+
+          <!-- Card 1: Artigos por categoria (7 cols) -->
+          <div class="sm:col-span-7 hero-monitor__card">
+            <span class="hero-monitor__title">Artigos por categoria</span>
+            <div class="space-y-1.5">
+              <div class="hero-cat-bar">
+                <span class="hero-cat-bar__name">Data</span>
+                <div class="hero-cat-bar__track">
+                  <div class="hero-cat-bar__fill" style="width: 88%; animation-delay: 800ms;"></div>
+                </div>
+                <span class="hero-cat-bar__val">42</span>
+              </div>
+              <div class="hero-cat-bar">
+                <span class="hero-cat-bar__name">Data Visualization</span>
+                <div class="hero-cat-bar__track">
+                  <div class="hero-cat-bar__fill" style="width: 72%; animation-delay: 880ms;"></div>
+                </div>
+                <span class="hero-cat-bar__val">34</span>
+              </div>
+              <div class="hero-cat-bar">
+                <span class="hero-cat-bar__name">Analytics</span>
+                <div class="hero-cat-bar__track">
+                  <div class="hero-cat-bar__fill" style="width: 60%; animation-delay: 960ms;"></div>
+                </div>
+                <span class="hero-cat-bar__val">28</span>
+              </div>
+              <div class="hero-cat-bar">
+                <span class="hero-cat-bar__name">Business</span>
+                <div class="hero-cat-bar__track">
+                  <div class="hero-cat-bar__fill" style="width: 52%; animation-delay: 1040ms;"></div>
+                </div>
+                <span class="hero-cat-bar__val">24</span>
+              </div>
+              <div class="hero-cat-bar">
+                <span class="hero-cat-bar__name">Product</span>
+                <div class="hero-cat-bar__track">
+                  <div class="hero-cat-bar__fill" style="width: 38%; animation-delay: 1120ms;"></div>
+                </div>
+                <span class="hero-cat-bar__val">18</span>
+              </div>
+              <div class="hero-cat-bar">
+                <span class="hero-cat-bar__name">AI</span>
+                <div class="hero-cat-bar__track">
+                  <div class="hero-cat-bar__fill" style="width: 34%; animation-delay: 1200ms;"></div>
+                </div>
+                <span class="hero-cat-bar__val">16</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Crescimento (5 cols) -->
+          <div class="sm:col-span-5 hero-monitor__card flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-1">
+              <span class="hero-monitor__title mb-0">Crescimento</span>
+              <span class="text-[9px] font-semibold text-[#38bdf8] bg-[#38bdf8]/10 px-1.5 py-0.5 rounded">2026</span>
+            </div>
+
+            <div class="relative py-1">
+              <!-- Gridlines e Eixo Y -->
+              <div class="flex items-stretch justify-between h-24 text-[8px] text-slate-400/70 font-mono">
+                <div class="flex flex-col justify-between pr-1 text-right tabular-nums select-none">
+                  <span>150</span>
+                  <span>100</span>
+                  <span>50</span>
+                  <span>0</span>
+                </div>
+                <div class="flex-1 relative border-l border-b border-slate-700/50">
+                  <svg viewBox="0 0 160 86" class="w-full h-full block overflow-visible" role="presentation">
+                    <line x1="0" y1="2" x2="160" y2="2" stroke="rgba(148,163,184,.1)" stroke-dasharray="2,2" />
+                    <line x1="0" y1="28" x2="160" y2="28" stroke="rgba(148,163,184,.1)" stroke-dasharray="2,2" />
+                    <line x1="0" y1="56" x2="160" y2="56" stroke="rgba(148,163,184,.1)" stroke-dasharray="2,2" />
+
+                    <!-- Linha 2 (azul escuro) -->
+                    <polyline class="hero-growth-line" pathLength="1" stroke="#3b82f6" stroke-width="1.6"
+                      style="animation-delay: 1000ms;" points="4,78 34,74 64,68 94,60 124,52 154,42" />
+
+                    <!-- Linha 1 (ciano com pontos) -->
+                    <polyline class="hero-growth-line" pathLength="1" stroke="#22d3ee" stroke-width="2"
+                      style="animation-delay: 850ms;" points="4,70 34,62 64,50 94,42 124,28 154,8" />
+
+                    <g fill="#22d3ee">
+                      <circle cx="4" cy="70" r="2" />
+                      <circle cx="34" cy="62" r="2" />
+                      <circle cx="64" cy="50" r="2.2" />
+                      <circle cx="94" cy="42" r="2.2" />
+                      <circle cx="124" cy="28" r="2.5" />
+                      <circle cx="154" cy="8" r="3" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Eixo X com meses -->
+              <div class="flex justify-between pl-5 pt-1 text-[8px] text-slate-400/80 font-mono select-none">
+                <span>Jan</span>
+                <span>Fev</span>
+                <span>Mar</span>
+                <span>Abr</span>
+                <span>Mai</span>
+                <span>Jun</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Row: Conteúdo em destaque -->
+        <div class="hero-monitor__card">
+          <span class="hero-monitor__title">Conteúdo em destaque</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+
+            <!-- Mini Post 1: Analytics -->
+            <div class="hero-feat-card">
+              <div class="hero-feat-card__thumb"
+                style="background: linear-gradient(135deg, #0f274a, #163e72), radial-gradient(circle at top right, rgba(56,189,248,.3), transparent);">
+                <div
+                  class="absolute inset-0 opacity-40 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:6px_6px]">
+                </div>
+              </div>
+              <div class="hero-feat-card__body">
+                <div>
+                  <span class="text-[9px] font-bold text-[#38bdf8] uppercase tracking-wider block mb-1">Analytics</span>
+                  <h4 class="text-[10px] font-bold text-white line-clamp-2 leading-snug">Como transformar métricas em
+                    decisões melhores</h4>
+                </div>
+                <span class="text-[9px] text-slate-400 mt-1 block">5 min de leitura</span>
+              </div>
+            </div>
+
+            <!-- Mini Post 2: AI -->
+            <div class="hero-feat-card">
+              <div class="hero-feat-card__thumb"
+                style="background: linear-gradient(135deg, #101c40, #1e3a8a), radial-gradient(circle at bottom left, rgba(96,165,250,.4), transparent);">
+                <div
+                  class="absolute inset-0 opacity-30 bg-[linear-gradient(45deg,transparent_40%,rgba(56,189,248,.3)_50%,transparent_60%)]">
+                </div>
+              </div>
+              <div class="hero-feat-card__body">
+                <div>
+                  <span class="text-[9px] font-bold text-[#60a5fa] uppercase tracking-wider block mb-1">AI</span>
+                  <h4 class="text-[10px] font-bold text-white line-clamp-2 leading-snug">IA na prática: casos reais e
+                    aprendizados</h4>
+                </div>
+                <span class="text-[9px] text-slate-400 mt-1 block">8 min de leitura</span>
+              </div>
+            </div>
+
+            <!-- Mini Post 3: Product -->
+            <div class="hero-feat-card">
+              <div class="hero-feat-card__thumb"
+                style="background: linear-gradient(135deg, #0b1a33, #15315b), radial-gradient(circle at top left, rgba(34,211,238,.35), transparent);">
+                <div
+                  class="absolute inset-0 opacity-35 bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:8px_8px]">
+                </div>
+              </div>
+              <div class="hero-feat-card__body">
+                <div>
+                  <span class="text-[9px] font-bold text-[#38bdf8] uppercase tracking-wider block mb-1">Product</span>
+                  <h4 class="text-[10px] font-bold text-white line-clamp-2 leading-snug">Product Analytics na prática:
+                    do dado à ação</h4>
+                </div>
+                <span class="text-[9px] text-slate-400 mt-1 block">6 min de leitura</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
 
-
-
-  <!-- ═══════════════════════════════════════════════════════
-     CATEGORY FILTER PILLS & LIVE SEARCH (INTEGRADO AO FUNDO BRANCO)
-  ═══════════════════════════════════════════════════════ -->
-  <section class="bg-white sticky top-[61px] z-30 pt-6 pb-2.5 px-5 sm:px-8 border-b border-[#e2e8f0]/80">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      
-      <!-- Pills Bar -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 w-full md:w-auto" id="category-pills">
-        <button class="cat-pill btn-tactile active px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 cursor-pointer flex-shrink-0" data-filter="all">
-          Todos
-        </button>
-        <button class="cat-pill btn-tactile px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 cursor-pointer border border-[#d0d7de] bg-white text-[#656d76] hover:bg-[#f6f8fa] hover:text-[#11376e] flex-shrink-0" data-filter="data">
-          <i data-lucide="database" class="w-3.5 h-3.5 text-[#0969da]"></i>
-          <span>Data</span>
-        </button>
-        <button class="cat-pill btn-tactile px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 cursor-pointer border border-[#d0d7de] bg-white text-[#656d76] hover:bg-[#f6f8fa] hover:text-[#11376e] flex-shrink-0" data-filter="dataviz">
-          <i data-lucide="pie-chart" class="w-3.5 h-3.5 text-[#8250df]"></i>
-          <span>DataViz</span>
-        </button>
-        <button class="cat-pill btn-tactile px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 cursor-pointer border border-[#d0d7de] bg-white text-[#656d76] hover:bg-[#f6f8fa] hover:text-[#11376e] flex-shrink-0" data-filter="analytics">
-          <i data-lucide="trending-up" class="w-3.5 h-3.5 text-[#9a6700]"></i>
-          <span>Analytics</span>
-        </button>
-        <button class="cat-pill btn-tactile px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 cursor-pointer border border-[#d0d7de] bg-white text-[#656d76] hover:bg-[#f6f8fa] hover:text-[#11376e] flex-shrink-0" data-filter="business">
-          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-[#1a7f37]"></i>
-          <span>Business</span>
-        </button>
-        <button class="cat-pill btn-tactile px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 cursor-pointer border border-[#d0d7de] bg-white text-[#656d76] hover:bg-[#f6f8fa] hover:text-[#11376e] flex-shrink-0" data-filter="product">
-          <i data-lucide="package" class="w-3.5 h-3.5 text-[#cf222e]"></i>
-          <span>Product</span>
-        </button>
-        <button class="cat-pill btn-tactile px-4 py-2 rounded-full text-xs font-medium flex items-center gap-2 cursor-pointer border border-[#d0d7de] bg-white text-[#656d76] hover:bg-[#f6f8fa] hover:text-[#11376e] flex-shrink-0" data-filter="ai">
-          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#0969da]"></i>
-          <span>AI</span>
-        </button>
-      </div>
-
-      <!-- Live Search Box -->
-      <div class="relative w-full md:w-80 flex-shrink-0">
-        <i data-lucide="search" class="w-4 h-4 text-[#8c959f] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-        <input type="text" id="filter-search-input" placeholder="Pesquisar por palavras-chave..." class="w-full pl-9 pr-8 py-2 rounded-full border border-[#d0d7de] bg-white text-xs text-[#1f2328] placeholder-[#8c959f] outline-none focus:border-[#11376e] focus:ring-2 focus:ring-[#11376e]/15 transition-all shadow-xs" />
-        <button id="filter-search-clear" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-[#656d76] hover:text-[#11376e] cursor-pointer" aria-label="Limpar pesquisa">
-          <i data-lucide="x" class="w-3.5 h-3.5"></i>
-        </button>
-      </div>
-
-    </div>
-  </section>
 
 
   <!-- ═══════════════════════════════════════════════════════
      MAIN CONTENT AREA (FEED + SIDEBAR)
   ═══════════════════════════════════════════════════════ -->
-  <main class="max-w-7xl mx-auto px-5 sm:px-8 pt-5 sm:pt-6 pb-16">
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-16">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      
+
       <!-- ───────────────────────────────────────────────────
            LEFT COLUMN: FEED DE ARTIGOS (75% / 3 POR LINHA)
       ─────────────────────────────────────────────────── -->
       <div class="lg:col-span-9 flex flex-col" id="blog-feed-container">
 
-        <!-- Header da Seção de Artigos (Taste-Skill: Eyebrow dropped, confident headline) -->
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7 pt-1">
+        <!-- Header da Seção de Artigos com Busca Integrada -->
+        <div
+          class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7 pb-5 border-b border-[#d0d7de]/70">
           <div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#1f2328] tracking-tight">
-              Todos os artigos.
-            </h2>
-            <p class="text-xs sm:text-sm text-[#656d76] mt-1">Publicações organizadas por mais recentes</p>
+            <div class="flex items-center gap-3">
+              <h2 id="feed-title" class="text-2xl sm:text-3xl font-extrabold text-[#1f2328] tracking-tight">
+                Todos os artigos.
+              </h2>
+              <button id="clear-active-category"
+                class="hidden text-xs font-semibold text-[#11376e] bg-[#11376e]/10 hover:bg-[#11376e]/15 px-2.5 py-1 rounded-full transition-colors inline-flex items-center gap-1 cursor-pointer"
+                title="Remover filtro de categoria">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <span>Ver todos</span>
+              </button>
+            </div>
+            <p id="feed-subtitle" class="text-xs sm:text-sm text-[#656d76] mt-1">Publicações organizadas por mais
+              recentes</p>
+          </div>
+
+          <!-- Live Search Box Integrado -->
+          <div class="relative w-full sm:w-72 lg:w-80 flex-shrink-0">
+            <i data-lucide="search"
+              class="w-4 h-4 text-[#8c959f] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+            <input type="text" id="filter-search-input" placeholder="Pesquisar por palavras-chave..."
+              class="w-full pl-9 pr-8 py-2 rounded-full border border-[#d0d7de] bg-white text-xs text-[#1f2328] placeholder-[#8c959f] outline-none focus:border-[#11376e] focus:ring-2 focus:ring-[#11376e]/15 transition-all shadow-xs" />
+            <button id="filter-search-clear"
+              class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-[#656d76] hover:text-[#11376e] cursor-pointer"
+              aria-label="Limpar pesquisa">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
           </div>
         </div>
 
         <!-- Estado Vazio de Busca -->
-        <div id="empty-search-state" class="hidden text-center py-16 px-4 bg-white rounded-2xl border border-[#d0d7de] shadow-xs mb-8">
-          <div class="w-14 h-14 rounded-2xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-4">
+        <div id="empty-search-state"
+          class="hidden text-center py-16 px-4 bg-white rounded-2xl border border-[#d0d7de] shadow-xs mb-8">
+          <div
+            class="w-14 h-14 rounded-2xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-4">
             <i data-lucide="search-x" class="w-7 h-7"></i>
           </div>
           <h3 class="text-base sm:text-lg font-bold text-[#1f2328] mb-1">Nenhum artigo encontrado</h3>
           <p class="text-xs text-[#656d76] max-w-sm mx-auto mb-5" id="empty-search-desc">
             Não encontramos artigos com as palavras-chave pesquisadas. Tente outros termos ou limpe o filtro.
           </p>
-          <button id="reset-search-btn" class="px-5 py-2.5 rounded-full bg-[#11376e] text-white text-xs font-semibold hover:bg-[#184a91] transition-all cursor-pointer inline-flex items-center gap-1.5 shadow-sm">
+          <button id="reset-search-btn"
+            class="px-5 py-2.5 rounded-full bg-[#11376e] text-white text-xs font-semibold hover:bg-[#184a91] transition-all cursor-pointer inline-flex items-center gap-1.5 shadow-sm">
             <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
             <span>Limpar pesquisa</span>
           </button>
@@ -391,22 +1030,32 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" id="blog-posts-grid">
           <!-- BLOG_POSTS_START -->
 
-          <!-- Post: Viés Cognitivo - Um dos maiores sabotadores da sua análise (28 set 2026) -->
-          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all" data-category="analytics" data-date="2026-09-28">
-            <a href="blog/vies-cognitivo.html" class="block flex-1 flex flex-col">
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/e7b6c629-1ed9-4f3b-b269-5075ce183e88_1790648416.png" alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise" class="w-full h-full object-cover rounded-xl" />
+          <!-- Post: Viés Cognitivo - Um dos maiores sabotadores da sua análise2 (22 out 2026) -->
+          <article
+            class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full"
+            data-category="analytics" data-date="2026-10-22">
+            <a href="blog/vies-cognitivo-um-dos-maiores-sabotadores-da-sua-analise2.html"
+              class="block flex-1 flex flex-col">
+              <div
+                class="h-44 sm:h-48 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/87abc137-81c3-4e3b-8e98-693655e7d0cc_1792675591.png"
+                  alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise2"
+                  class="w-full h-full object-cover rounded-xl" />
               </div>
               <div class="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
+                  <span
+                    class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
                     Analytics
                   </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
-                    Viés Cognitivo - Um dos maiores sabotadores da sua análise
+                  <h3
+                    class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
+                    Viés Cognitivo - Um dos maiores sabotadores da sua análise2
                   </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
-                    Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam vulneráveis a vieses cognitivos. Entenda o impacto na análise de dados e como se proteger.
+                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
+                    Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam
+                    sujeitas a vieses cognitivos. Entenda como esses atalhos mentais podem distorcer a interpretação dos
+                    dados, comprometer análises e influenciar decisões — e conheça práticas para reduzir seus efeitos.
                   </p>
                 </div>
                 <div class="flex items-center justify-between text-xs text-[#656d76] pt-3 border-t border-[#d0d7de]/50">
@@ -414,94 +1063,7 @@
                     <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
                     <span class="text-[#656d76]">3 min de leitura</span>
                   </span>
-                  <span>28 set 2026</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <!-- Post: Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção (12 set 2026) -->
-          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all" data-category="ai" data-date="2026-09-12">
-            <a href="blog/agentes-ia-business-analytics.html" class="block flex-1 flex flex-col">
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-agentes-ia.svg" alt="Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção" class="w-full h-full object-cover rounded-xl" />
-              </div>
-              <div class="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
-                    AI
-                  </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
-                    Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
-                  </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
-                    Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
-                  </p>
-                </div>
-                <div class="flex items-center justify-between text-xs text-[#656d76] pt-3 border-t border-[#d0d7de]/50">
-                  <span class="flex items-center gap-1.5">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
-                    <span class="text-[#656d76]">8 min de leitura</span>
-                  </span>
-                  <span>12 set 2026</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <!-- Post: Média, Moda e Mediana: O que os números escondem (11 set 2026) -->
-          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all" data-category="analytics" data-date="2026-09-11">
-            <a href="blog/media-moda-e-mediana.html" class="block flex-1 flex flex-col">
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-full h-full object-cover rounded-xl" />
-              </div>
-              <div class="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
-                    Analytics
-                  </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
-                    Média, Moda e Mediana: O que os números escondem
-                  </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
-                    Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
-                  </p>
-                </div>
-                <div class="flex items-center justify-between text-xs text-[#656d76] pt-3 border-t border-[#d0d7de]/50">
-                  <span class="flex items-center gap-1.5">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
-                    <span class="text-[#656d76]">8 min de leitura</span>
-                  </span>
-                  <span>11 set 2026</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <!-- Post: Como estruturar Modelagem Star Schema no Power BI para Alta Performance (10 set 2026) -->
-          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all" data-category="data" data-date="2026-09-10">
-            <a href="blog/modelagem-star-schema-powerbi.html" class="block flex-1 flex flex-col">
-              <div class="h-40 sm:h-44 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/cover-star-schema.svg" alt="Como estruturar Modelagem Star Schema no Power BI para Alta Performance" class="w-full h-full object-cover rounded-xl" />
-              </div>
-              <div class="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
-                    Data
-                  </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2 line-clamp-2">
-                    Como estruturar Modelagem Star Schema no Power BI para Alta Performance
-                  </h3>
-                  <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-4">
-                    Aprenda por que o modelo dimensional Star Schema supera tabelas 'flat' únicas na engine VertiPaq, simplifica medidas DAX e garante relatórios corporativos escaláveis.
-                  </p>
-                </div>
-                <div class="flex items-center justify-between text-xs text-[#656d76] pt-3 border-t border-[#d0d7de]/50">
-                  <span class="flex items-center gap-1.5">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
-                    <span class="text-[#656d76]">7 min de leitura</span>
-                  </span>
-                  <span>10 set 2026</span>
+                  <span>22 out 2026</span>
                 </div>
               </div>
             </a>
@@ -513,9 +1075,11 @@
 
         <!-- Feedback de Artigos Carregados -->
         <div id="load-more-container" class="mt-10 sm:mt-12 text-center flex flex-col items-center justify-center">
-          <button id="load-more-btn" class="hidden inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-[#11376e] text-xs font-semibold shadow-xs hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer group">
+          <button id="load-more-btn"
+            class="hidden inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-[#11376e] text-xs font-semibold shadow-xs hover:shadow-md transition-all hover:-translate-y-0.5 cursor-pointer group">
             <span>Ver mais artigos</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-[#656d76] group-hover:text-[#11376e] group-hover:translate-y-0.5 transition-transform"></i>
+            <i data-lucide="chevron-down"
+              class="w-4 h-4 text-[#656d76] group-hover:text-[#11376e] group-hover:translate-y-0.5 transition-transform"></i>
           </button>
           <p id="posts-counter" class="text-xs text-[#656d76] mt-3 font-medium">
             Mostrando todos os <span id="displayed-count" class="font-semibold text-[#1f2328]">3</span> artigos
@@ -529,43 +1093,16 @@
            RIGHT COLUMN: SIDEBAR (25% / DIMINUÍDA)
       ─────────────────────────────────────────────────── -->
       <aside class="lg:col-span-3 space-y-6 lg:sticky lg:top-28">
-        
+
         <!-- Artigos em Destaque Sidebar Widget -->
-        <div class="bg-white rounded-2xl p-5 border border-[#d0d7de] shadow-sm card-hover-clean" id="sidebar-featured-widget">
+        <div class="bg-white rounded-2xl p-5 border border-[#d0d7de] shadow-sm card-hover-clean"
+          id="sidebar-featured-widget">
           <h3 class="font-bold text-base text-[#1f2328] mb-4 tracking-tight">
             Artigos em destaque
           </h3>
           <div class="space-y-3.5" id="sidebar-featured-list">
             <!-- FEATURED_POSTS_START -->
-            <!-- Item: Média, Moda e Mediana: O que os números escondem -->
-            <a href="blog/media-moda-e-mediana.html" class="flex items-center gap-3 group transition-all" data-date="2026-09-11">
-              <img src="assets/img/blog/cover-media-moda-mediana.svg" alt="Média, Moda e Mediana: O que os números escondem" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" />
-              <div class="flex-1 min-w-0">
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
-                  Média, Moda e Mediana: O que os números escondem
-                </h4>
-                <p class="text-[11px] text-[#64748b] mt-1 flex items-center gap-1 font-medium">
-                  <span>8 min</span>
-                  <span class="text-slate-300">•</span>
-                  <span>11 set 2026</span>
-                </p>
-              </div>
-            </a>
-
-            <!-- Item: Como estruturar Modelagem Star Schema no Power BI para Alta Performance -->
-            <a href="blog/modelagem-star-schema-powerbi.html" class="flex items-center gap-3 group transition-all" data-date="2026-09-10">
-              <img src="assets/img/blog/cover-star-schema.svg" alt="Como estruturar Modelagem Star Schema no Power BI para Alta Performance" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" />
-              <div class="flex-1 min-w-0">
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
-                  Como estruturar Modelagem Star Schema no Power BI para Alta Performance
-                </h4>
-                <p class="text-[11px] text-[#64748b] mt-1 flex items-center gap-1 font-medium">
-                  <span>7 min</span>
-                  <span class="text-slate-300">•</span>
-                  <span>10 set 2026</span>
-                </p>
-              </div>
-            </a>
+            <p class="text-xs text-[#64748b]">Nenhum artigo em destaque no momento.</p>
             <!-- FEATURED_POSTS_END -->
           </div>
         </div>
@@ -577,114 +1114,78 @@
           </h3>
           <ul class="space-y-2.5">
             <li>
-              <a href="#section-data" data-filter="data" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
+              <a href="#section-data" data-filter="data"
+                class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#0969da]"></span>
                   <span>Data</span>
                 </span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-data tabular-nums" id="count-data">1</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-data tabular-nums"
+                  id="count-data">1</span>
               </a>
             </li>
             <li>
-              <a href="#section-dataviz" data-filter="dataviz" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
+              <a href="#section-dataviz" data-filter="dataviz"
+                class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#8250df]"></span>
                   <span>Data Visualization</span>
                 </span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-dataviz tabular-nums" id="count-dataviz">1</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-dataviz tabular-nums"
+                  id="count-dataviz">1</span>
               </a>
             </li>
             <li>
-              <a href="#section-analytics" data-filter="analytics" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
+              <a href="#section-analytics" data-filter="analytics"
+                class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#9a6700]"></span>
                   <span>Analytics</span>
                 </span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-analytics tabular-nums" id="count-analytics">0</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-analytics tabular-nums"
+                  id="count-analytics">0</span>
               </a>
             </li>
             <li>
-              <a href="#section-business" data-filter="business" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
+              <a href="#section-business" data-filter="business"
+                class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#1a7f37]"></span>
                   <span>Business</span>
                 </span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-business tabular-nums" id="count-business">0</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-business tabular-nums"
+                  id="count-business">0</span>
               </a>
             </li>
             <li>
-              <a href="#section-product" data-filter="product" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
+              <a href="#section-product" data-filter="product"
+                class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#cf222e]"></span>
                   <span>Product</span>
                 </span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-product tabular-nums" id="count-product">0</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-product tabular-nums"
+                  id="count-product">0</span>
               </a>
             </li>
             <li>
-              <a href="#section-ai" data-filter="ai" class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
+              <a href="#section-ai" data-filter="ai"
+                class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#0969da]"></span>
                   <span>AI</span>
                 </span>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-ai tabular-nums" id="count-ai">1</span>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full badge-theme-ai tabular-nums"
+                  id="count-ai">1</span>
               </a>
             </li>
           </ul>
-        </div>
-
-        <!-- Quote Card -->
-        <div class="bg-white rounded-2xl p-5 border border-[#d0d7de] shadow-sm relative overflow-hidden">
-          <div class="text-[#11376e] text-3xl font-serif leading-none mb-2 select-none">“</div>
-          <blockquote class="text-xs sm:text-sm font-medium text-[#656d76] leading-relaxed italic mb-4">
-            “Mais do que ferramentas, acredito no pensamento crítico para transformar dados em ações que geram impacto.”
-          </blockquote>
-          <div class="w-8 h-[2px] bg-[#11376e] rounded-full mb-3"></div>
-          <div class="text-xs font-bold text-[#1f2328]">
-            Marcos Aurélio
-          </div>
         </div>
 
       </aside>
 
     </div>
   </main>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-     BANNER INFERIOR: VAMOS CONVERSAR?
-  ═══════════════════════════════════════════════════════ -->
-  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-16">
-    <div class="bg-gradient-to-r from-[#0b1e3a] via-[#102a52] to-[#0b1e3a] text-white rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-xl">
-      
-      <!-- Background Ambient Glow -->
-      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-xl z-10">
-        <span class="text-xs font-bold text-[#38bdf8] uppercase tracking-wider block mb-2">VAMOS CONVERSAR?</span>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2 leading-tight">
-          Tem uma ideia, feedback<br />
-          ou quer trocar uma ideia?
-        </h2>
-        <p class="text-xs sm:text-sm text-[#94a3b8] max-w-md mb-6 leading-relaxed">
-          Estou sempre aberto a novas conversas, oportunidades e colaborações.
-        </p>
-        <a href="mailto:contato@marcosdataproduct.com" class="px-6 py-3 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
-          <span>Fale comigo</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-
-      <div class="flex items-center gap-4 z-10 self-start md:self-center">
-        <img src="assets/img/logo-simples-white.png" alt="Marcos Data Product" class="w-12 h-12 object-contain" />
-        <div class="text-sm font-semibold text-white/90 leading-tight">
-          Dados. Ideias.<br />
-          Pessoas. Impacto.
-        </div>
-      </div>
-
-    </div>
-  </section>
 
 
   <!-- ═══════════════════════════════════════════════════════
@@ -695,7 +1196,8 @@
 
       <!-- Logo e Nome da Marca -->
       <a href="index.html" class="flex items-center group" aria-label="Marcos Data Product">
-        <img src="assets/img/logo-escura.png" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
+        <img src="assets/img/logo-escura.png" alt="Marcos Data Product"
+          class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
       <!-- Frase Central da Marca -->
@@ -705,16 +1207,20 @@
 
       <!-- Ícones de Redes Sociais -->
       <div class="flex items-center gap-4 text-[#94a3b8]">
-        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="LinkedIn">
           <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="Instagram">
           <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="YouTube">
           <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors" aria-label="GitHub">
           <i data-lucide="github" class="w-4.5 h-4.5"></i>
         </a>
         <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
@@ -729,14 +1235,20 @@
   <!-- ═══════════════════════════════════════════════════════
      MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
   ═══════════════════════════════════════════════════════ -->
-  <div id="search-modal" class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
-    <div class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform" id="search-modal-container">
-      
+  <div id="search-modal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      id="search-modal-container">
+
       <!-- Input Header -->
       <div class="p-4 border-b border-[#d0d7de] flex items-center gap-3">
         <i data-lucide="search" class="w-5 h-5 text-[#11376e]"></i>
-        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..." class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
-        <button id="search-modal-close" class="p-1 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer" aria-label="Fechar busca">
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
+          class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
+        <button id="search-modal-close"
+          class="p-1 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer"
+          aria-label="Fechar busca">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -744,45 +1256,61 @@
       <!-- Quick Results / Suggestions -->
       <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
         <div class="text-xs font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões rápidas</div>
-        <a href="blog/agentes-ia-business-analytics.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <a href="blog/agentes-ia-business-analytics.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em
+                Business Analytics</div>
               <div class="text-xs text-[#656d76]">Artigo • IA e RAG</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right"
+            class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="blog/media-moda-e-mediana.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <a href="blog/media-moda-e-mediana.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Média, Moda e Mediana: O que os números escondem</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Média, Moda e Mediana: O que
+                os números escondem</div>
               <div class="text-xs text-[#656d76]">Artigo • Estatística e Negócios</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right"
+            class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="blog/modelagem-star-schema-powerbi.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <a href="blog/modelagem-star-schema-powerbi.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="database" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="database" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Modelagem Star Schema no Power BI</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Modelagem Star Schema no
+                Power BI</div>
               <div class="text-xs text-[#656d76]">Artigo • Power BI & Modelagem Dimensional</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right"
+            class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="biblioteca.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <a href="biblioteca.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#f6f8fa] border border-[#d0d7de] text-[#11376e] flex items-center justify-center text-xs"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <span
+              class="w-7 h-7 rounded-lg bg-[#f6f8fa] border border-[#d0d7de] text-[#11376e] flex items-center justify-center text-xs"><i
+                data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
             <div>
               <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca de Leituras</div>
               <div class="text-xs text-[#656d76]">Curadoria de livros e referências recomendadas</div>
             </div>
           </div>
-          <i data-lucide="chevron-right" class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
+          <i data-lucide="chevron-right"
+            class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
       </div>
 
@@ -802,8 +1330,8 @@
         window.lucide.createIcons();
       }
 
-      // 2. Filtros de Categoria (Pills) & Busca Dinâmica por Palavras-chave
-      const pills = document.querySelectorAll('.cat-pill');
+      // 2. Filtros de Categoria da Hero & Busca Dinâmica por Palavras-chave
+      const heroFilterBtns = document.querySelectorAll('.hero-filter-btn');
       const cards = document.querySelectorAll('.blog-post-card');
       const postsGrid = document.getElementById('blog-posts-grid');
       const filterSearchInput = document.getElementById('filter-search-input');
@@ -811,6 +1339,9 @@
       const emptySearchState = document.getElementById('empty-search-state');
       const emptySearchDesc = document.getElementById('empty-search-desc');
       const resetSearchBtn = document.getElementById('reset-search-btn');
+      const feedTitle = document.getElementById('feed-title');
+      const clearActiveCategoryBtn = document.getElementById('clear-active-category');
+      const blogFeedContainer = document.getElementById('blog-feed-container');
 
       const loadMoreContainer = document.getElementById('load-more-container');
       const loadMoreBtn = document.getElementById('load-more-btn');
@@ -824,6 +1355,79 @@
 
       let currentCategory = 'all';
       let currentQuery = '';
+
+      const categoryLabels = {
+        all: 'Todos os artigos.',
+        data: 'Artigos sobre Data.',
+        dataviz: 'Artigos sobre Data Visualization.',
+        analytics: 'Artigos sobre Analytics.',
+        business: 'Artigos sobre Business.',
+        product: 'Artigos sobre Product.',
+        ai: 'Artigos sobre Inteligência Artificial.'
+      };
+
+      function setCategory(filter, shouldScroll = false) {
+        // Toggle: se clicar na mesma categoria já ativa, desmarca e volta para "Todos"
+        if (currentCategory === filter && filter !== 'all') {
+          currentCategory = 'all';
+        } else {
+          currentCategory = filter || 'all';
+        }
+
+        visibleLimit = POSTS_PER_PAGE;
+
+        // Atualiza estado visual dos botões na Hero
+        heroFilterBtns.forEach(btn => {
+          const btnFilter = btn.getAttribute('data-filter');
+          if (currentCategory !== 'all' && btnFilter === currentCategory) {
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+          } else {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-pressed', 'false');
+          }
+        });
+
+        // Atualiza título do feed e botão de limpar
+        if (feedTitle) {
+          feedTitle.textContent = categoryLabels[currentCategory] || 'Todos os artigos.';
+        }
+        if (clearActiveCategoryBtn) {
+          if (currentCategory !== 'all') {
+            clearActiveCategoryBtn.classList.remove('hidden');
+          } else {
+            clearActiveCategoryBtn.classList.add('hidden');
+          }
+        }
+
+        filterFeed();
+
+        // Rolagem suave até o feed de artigos se acionado pelo usuário
+        if (shouldScroll && blogFeedContainer) {
+          const headerOffset = 80;
+          const elementPosition = blogFeedContainer.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      // Conexão dos botões da Hero com o filtro
+      heroFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          setCategory(filter, true);
+        });
+      });
+
+      // Botão "Ver todos" ao lado do título do feed
+      if (clearActiveCategoryBtn) {
+        clearActiveCategoryBtn.addEventListener('click', () => {
+          setCategory('all', false);
+        });
+      }
 
       // Agendamento de posts: obter data atual do navegador (YYYY-MM-DD)
       const now = new Date();
@@ -1050,46 +1654,20 @@
       if (resetSearchBtn) {
         resetSearchBtn.addEventListener('click', () => {
           clearSearch();
-          const allPill = document.querySelector('.cat-pill[data-filter="all"]');
-          if (allPill) allPill.click();
+          setCategory('all', false);
         });
       }
-
-      // Filtro de Categorias (Pills)
-      pills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          const filter = pill.getAttribute('data-filter') || 'all';
-          currentCategory = filter;
-          visibleLimit = POSTS_PER_PAGE;
-
-          pills.forEach(p => {
-            p.classList.remove('active');
-            p.classList.add('border', 'border-[#d0d7de]', 'bg-white', 'text-[#656d76]');
-          });
-          pill.classList.add('active');
-          pill.classList.remove('border-[#d0d7de]', 'bg-white', 'text-[#656d76]');
-
-          filterFeed();
-        });
-      });
 
       // Executa filtro inicial para exibir os primeiros 9 artigos (3 linhas)
       filterFeed();
 
-      // Conexão dos links de Categorias da Sidebar com os Filtros
+      // Conexão dos links de Categorias da Sidebar com os Filtros da Hero
       const sidebarLinks = document.querySelectorAll('.cat-sidebar-link');
       sidebarLinks.forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
           const filter = link.getAttribute('data-filter');
-          const matchingPill = document.querySelector(`.cat-pill[data-filter="${filter}"]`);
-          if (matchingPill) {
-            matchingPill.click();
-            const filterBar = document.querySelector('section.border-y');
-            if (filterBar) {
-              filterBar.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }
+          setCategory(filter, true);
         });
       });
 

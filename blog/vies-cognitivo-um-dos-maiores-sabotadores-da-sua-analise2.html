@@ -11,14 +11,14 @@
   <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Viés Cognitivo - Um dos maiores sabotadores da sua análise — Marcos Data Product</title>
-  <meta name="description" content="Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam vulneráveis a vieses cognitivos. Entenda o impacto na análise de dados e como se proteger." />
+  <title>Viés Cognitivo - Um dos maiores sabotadores da sua análise2 — Marcos Data Product</title>
+  <meta name="description" content="Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam sujeitas a vieses cognitivos. Entenda como esses atalhos mentais podem distorcer a interpretação dos dados, comprometer análises e influenciar decisões — e conheça práticas para reduzir seus efeitos." />
 
   <!-- OpenGraph / Social -->
-  <meta property="og:title" content="Viés Cognitivo - Um dos maiores sabotadores da sua análise — Marcos Data Product" />
-  <meta property="og:description" content="Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam vulneráveis a vieses cognitivos. Entenda o impacto na análise de dados e como se proteger." />
+  <meta property="og:title" content="Viés Cognitivo - Um dos maiores sabotadores da sua análise2 — Marcos Data Product" />
+  <meta property="og:description" content="Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam sujeitas a vieses cognitivos. Entenda como esses atalhos mentais podem distorcer a interpretação dos dados, comprometer análises e influenciar decisões — e conheça práticas para reduzir seus efeitos." />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="../assets/img/blog/e7b6c629-1ed9-4f3b-b269-5075ce183e88_1790648416.png" />
+  <meta property="og:image" content="../assets/img/blog/87abc137-81c3-4e3b-8e98-693655e7d0cc_1792675591.png" />
 
   <!-- Vendor Libraries (Local) -->
   <script src="../assets/vendor/gsap_4a57399e4113.js"></script>
@@ -31,7 +31,6 @@
   <link href="../assets/vendor/css2_9b8bf743d4a8.css" rel="stylesheet" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16x16.png" />
@@ -56,6 +55,22 @@
       width: 0%;
       z-index: 9999;
       transition: width 0.1s ease-out;
+    }
+    /* Active Nav Link with blue line underline */
+    .nav-item-active {
+      color: #11376e !important;
+      font-weight: 600;
+      position: relative;
+    }
+    .nav-item-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #11376e;
+      border-radius: 9999px;
     }
     .article-prose {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
@@ -127,65 +142,76 @@
   </style>
 </head>
 
-<body>
+<body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div id="reading-bar"></div>
 
-  <!-- Three.js Canvas -->
-  <canvas id="canvas"></canvas>
-
   <!-- ═══════════════════════════════════════════════════════
-     NAVBAR
+     HEADER / NAVBAR
   ═══════════════════════════════════════════════════════ -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#d0d7de] px-5 sm:px-8 py-3.5 transition-all">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
       <a href="../index.html" class="flex items-center group" aria-label="Marcos Data Product">
         <img src="../assets/img/logo-clara.png" alt="Marcos Data Product Logo"
           class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
-      <nav class="hidden md:flex items-center nav-pill-group" aria-label="Navegação principal">
-        <a href="../index.html" class="nav-link">Home</a>
-        <a href="../blog.html" class="nav-link active">Blog</a>
-        <a href="../projetos.html" class="nav-link">Projetos</a>
-        <a href="../biblioteca.html" class="nav-link">Biblioteca</a>
-        <a href="../sobre.html" class="nav-link">Sobre</a>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
+        <a href="../index.html" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
+        <a href="../blog.html" class="nav-item-active">Blog</a>
+        <a href="../projetos.html" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
+        <a href="../biblioteca.html" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
+        <a href="../sobre.html" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
       </nav>
 
-      <button class="md:hidden glass rounded-xl p-3 text-[#656d76] hover:text-[#1f2328] transition-colors" id="mobile-btn" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="4" y1="6" x2="20" y2="6" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-      </button>
+      <!-- Right Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Search Trigger -->
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] transition-colors cursor-pointer"
+          aria-label="Buscar no site" title="Buscar (Ctrl+K)">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer"
+          id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Mobile menu -->
+  <!-- Mobile Menu Drawer -->
   <div class="mobile-menu" id="mobile-menu">
-    <button class="absolute top-5 right-5 glass rounded-xl p-2.5 text-[#656d76] hover:text-[#1f2328]" id="mobile-close" aria-label="Fechar menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]"
+      id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="../index.html" class="flex items-center mb-6 px-2 py-1 group" aria-label="Marcos Data Product">
+    <a href="../index.html" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
       <img src="../assets/img/logo-clara.png" alt="Marcos Data Product" class="h-8 w-auto object-contain" />
     </a>
-    <a href="../index.html" class="mobile-link">Home</a>
-    <a href="../blog.html" class="mobile-link active">Blog</a>
-    <a href="../projetos.html" class="mobile-link">Projetos</a>
-    <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
-    <a href="../sobre.html" class="mobile-link">Sobre</a>
+    <div class="flex flex-col gap-2">
+      <a href="../index.html" class="mobile-link">Home</a>
+      <a href="../blog.html" class="mobile-link active font-semibold text-[#11376e]">Blog</a>
+      <a href="../projetos.html" class="mobile-link">Projetos</a>
+      <a href="../biblioteca.html" class="mobile-link">Biblioteca</a>
+      <a href="../sobre.html" class="mobile-link">Sobre</a>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════
      HEADER DO POST
   ═══════════════════════════════════════════════════════ -->
-  <main class="relative z-10 pt-36 sm:pt-40 pb-20 px-5 sm:px-8">
+  <main class="relative z-10 pt-8 sm:pt-12 pb-20 px-5 sm:px-8">
     <div class="max-w-4xl mx-auto">
       
       <!-- Breadcrumb -->
@@ -201,7 +227,7 @@
       <div class="flex flex-wrap items-center gap-3 mb-5">
         <span class="badge badge-blue text-xs">Business Analytics</span>
         <span class="text-xs text-[#656d76] flex items-center gap-1.5">
-          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 28 de Setembro de 2026
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 22 de Outubro de 2026
         </span>
         <span class="text-[#d0d7de]">•</span>
         <span class="text-xs text-[#656d76] flex items-center gap-1.5">
@@ -211,18 +237,18 @@
 
       <!-- Main Title -->
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1f2328] tracking-tight leading-[1.18] mb-6" style="font-family:'Space Grotesk',sans-serif">
-        Viés Cognitivo - Um dos maiores sabotadores da sua análise
+        Viés Cognitivo - Um dos maiores sabotadores da sua análise2
       </h1>
 
       <!-- Excerpt -->
       <p class="text-lg sm:text-xl text-[#57606a] leading-relaxed mb-8" style="font-family:'Manrope',sans-serif">
-        Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam vulneráveis a vieses cognitivos. Entenda o impacto na análise de dados e como se proteger.
+        Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam sujeitas a vieses cognitivos. Entenda como esses atalhos mentais podem distorcer a interpretação dos dados, comprometer análises e influenciar decisões — e conheça práticas para reduzir seus efeitos.
       </p>
 
       <!-- Author Chip -->
       <div class="flex items-center justify-between py-4 border-y border-[#d0d7de] mb-10">
         <div class="flex items-center gap-3">
-          <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de]" />
+          <img src="../assets/img/minha-imagem-notion.png" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de] bg-[#f6f8fa]" />
           <div>
             <span class="font-bold text-sm text-[#1f2328] block">Marcos Aurélio</span>
             <span class="text-xs text-[#656d76]">Senior Business Analytics &bull; Autor</span>
@@ -244,7 +270,7 @@
       </div>
 
       <!-- Featured Image / Cover -->
-      <div class="rounded-2xl overflow-hidden border border-[#d0d7de] shadow-sm mb-12 bg-white max-h-[440px] flex items-center justify-center"><img src="../assets/img/blog/e7b6c629-1ed9-4f3b-b269-5075ce183e88_1790648416.png" alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise" class="w-full h-full object-cover max-h-[440px]" /></div>
+      <div class="rounded-2xl overflow-hidden border border-[#d0d7de] shadow-sm mb-12 bg-white max-h-[440px] flex items-center justify-center"><img src="../assets/img/blog/87abc137-81c3-4e3b-8e98-693655e7d0cc_1792675591.png" alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise2" class="w-full h-full object-cover max-h-[440px]" /></div>
 
       <!-- ═══════════════════════════════════════════════════════
          CORPO DO ARTIGO + SIDEBAR
@@ -253,44 +279,33 @@
         
         <!-- Main Content -->
         <article class="lg:col-span-8 article-prose">
-          <h2 id="um-dos-maiores-sabotadores-da-sua-analise">🧠 Um dos maiores sabotadores da sua análise</h2>
-<p>Vivemos na era dos dados. Decisões estratégicas, análises de mercados, experiências de usuários e até mesmo formulação de políticas públicas estão cada vez mais <em>data decision</em> resultado de uma cultura <em>data driven</em> (usando esses termos pois certamente você já ouviu e para mostrar o quão na moda está).</p>
-<p>Agora, o grande ponto é: tomar decisões baseadas em dados é o suficiente para evitar erros?</p>
-<p>Quem dera que a resposta fosse sim, mas como um bom economista, vou ter que responder um grande <strong>DEPENDE</strong>. Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam vulneráveis a um inimigo silencioso e invisível: <strong>os vieses cognitivos</strong>.</p>
-<h2 id="o-que-sao-vieses">O que são vieses?</h2>
-<p>Robert Dobelli em seu livro “A arte de pensar claramente” explica que viés é um erro sistemático de pensamento ou erros cognitivos. Segundo Dobelli, vieses são desvios previsíveis da lógica e da racionalidade que todos nós cometemos tanto na nossa vida pessoal, quanto profissional. </p>
-<p>Os vieses podem surgir de atalhos mentais, pressões sociais, hábitos e padrões de comportamento. O mais preocupante é que são quase sempre inconscientes e distorce a realidade pois nos fazem enxergar o que queremos ver e ignorar o que realmente importa. Por isso, saber e compreender os vieses é essencial para quem trabalha com dados e análises, pois eles não afetam apenas a interpretação das informações, mas pode afetar toda cadeia da análise, pois pode atingir a forma como dados são coletados, analisados e comunicados. E a lista de vieses só cresce, abaixo uma imagem com a maioria dos vieses existentes:</p>
-<figure class="my-8 rounded-2xl overflow-hidden border border-[#d0d7de] bg-white p-2 sm:p-3 shadow-sm">
-  <img src="../assets/img/blog/e7b6c629-1ed9-4f3b-b269-5075ce183e88_1790648416.png" alt="Principais Vieses Cognitivos em Dados" class="w-full h-auto rounded-xl object-contain max-h-[600px] mx-auto" loading="lazy" />
-  <figcaption class="text-xs text-[#656d76] text-center mt-2.5">Principais Vieses Cognitivos em Dados</figcaption>
-</figure>
-<h2 id="por-que-isso-e-importante-para-dados-e-analytics">Por que isso é importante para dados e analytics?</h2>
-<p>Em 2014, o time de Machine Learning, da área de people analytics da Amazon desenvolveu um algoritmo para apoiar o time de people analytics recrutamento e seleção, automatizando a triagem de currículos. Partindo do pressuposto de que os processos da empresa eram eficientes, usaram dados históricos de contratações da própria Amazon para treinar o modelo.</p>
-<p>No entanto, esses dados estavam enviesados, refletindo um histórico majoritariamente masculino. Como resultado, o algoritmo passou a discriminar candidatas mulheres, mesmo quando altamente qualificadas. O vies envolvido foi o de treinamento, causado pela base histórica desigual.</p>
-<p>Como disse, os vieses pode contaminar toda a cadeia de análise, por isso devemos olhar também para a como as informações foram coletadas e até mesmo como o dataset foi construído. Um dataset enviesado irá gerar modelos enviesados. A forma que um dashboard é construído pode induzir conclusões equivocadas. Além de tudo isso, uma decisão sem consciência dos vieses que está por trás pode custar muito caro. </p>
-<p>📍 <em>Se você trabalha com dados, aqui vão 3 dicas práticas:</em></p>
-<ol>
-<li><strong>Crie processos de revisão</strong> para validar interpretações e suposições.</li>
-<li><strong>Trabalhe com diversidade</strong> — de pessoas, dados e visões.</li>
-<li><strong>Use vieses a seu favor</strong> em design de produto, mas com responsabilidade.</li>
-</ol>
-<hr />
-<h2 id="conclusao">Conclusão</h2>
-<p>Os vieses não são defeitos do cérebro ou inimigos, eles são adaptações que funcionam na maioria dos casos. O problema é quando eles agem sem nossa percepção, principalmente em ambientes onde as decisões têm grande impacto.</p>
-<p>Conhecer os tipos de viés é o primeiro passo para criar produtos mais justos, análises mais precisas e decisões mais equilibradas.</p>
-<div class="callout-box my-6 p-4 rounded-r-xl border-l-4 border-blue-500 bg-blue-50/70 text-blue-950"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="info" class="w-4 h-4"></i> Destaque</div><div class="text-sm leading-relaxed callout-content"><p>📚</p>
-<p>Fontes:</p>
-<ol>
-<li>A arte de pensar claramente, de Robert Dobelli</li>
-<li>Rápido e Devagar, Daniel Kahbenan</li>
-<li>Insight - Amazon scraps secret AI recruiting tool that showed bias against women. Acessado: 03.05.25 às 11:30)</li>
-</ol></div></div>
+          <p>Vivemos na era dos dados. Decisões estratégicas, análises de mercados, experiências de usuários e até mesmo formulação de políticas públicas estão cada vez mais data decision resultado de uma cultura data driven (usando esses termos pois certamente você já ouviu e para mostrar o quão na moda está).<br />
+Agora, o grande ponto é: tomar decisões baseadas em dados é o suficiente para evitar erros?<br />
+Quem dera que a resposta fosse sim, mas como um bom economista, vou ter que responder um grande DEPENDE. Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam vulneráveis a um inimigo silencioso e invisível: os vieses cognitivos.<br />
+O que são vieses?<br />
+Robert Dobelli em seu livro “A arte de pensar claramente” explica que viés é um erro sistemático de pensamento ou erros cognitivos. Segundo Dobelli, vieses são desvios previsíveis da lógica e da racionalidade que todos nós cometemos tanto na nossa vida pessoal, quanto profissional. </p>
+<p>Os vieses podem surgir de atalhos mentais, pressões sociais, hábitos e padrões de comportamento. O mais preocupante é que são quase sempre inconscientes e distorce a realidade pois nos fazem enxergar o que queremos ver e ignorar o que realmente importa. Por isso, saber e compreender os vieses é essencial para quem trabalha com dados e análises, pois eles não afetam apenas a interpretação das informações, mas pode afetar toda cadeia da análise, pois pode atingir a forma como dados são coletados, analisados e comunicados. E a lista de vieses só cresce, abaixo uma imagem com a maioria dos vieses existentes.<br />
+Por que isso é importante para dados e analytics?<br />
+Em 2014, o time de Machine Learning, da área de people analytics da Amazon desenvolveu um algoritmo para apoiar o time de people analytics recrutamento e seleção, automatizando a triagem de currículos. Partindo do pressuposto de que os processos da empresa eram eficientes, usaram dados históricos de contratações da própria Amazon para treinar o modelo.<br />
+No entanto, esses dados estavam enviesados, refletindo um histórico majoritariamente masculino. Como resultado, o algoritmo passou a discriminar candidatas mulheres, mesmo quando altamente qualificadas. O viés envolvido foi o de treinamento, causado pela base histórica desigual.<br />
+Como disse, os vieses pode contaminar toda a cadeia de análise, por isso devemos olhar também para a como as informações foram coletadas e até mesmo como o dataset foi construído. Um dataset enviesado irá gerar modelos enviesados. A forma que um dashboard é construído pode induzir conclusões equivocadas. Além de tudo isso, uma decisão sem consciência dos vieses que está por trás pode custar muito caro. </p>
+<p>📍 Se você trabalha com dados, aqui vão 3 dicas práticas:<br />
+Crie processos de revisão para validar interpretações e suposições.<br />
+Trabalhe com diversidade — de pessoas, dados e visões.<br />
+Use vieses a seu favor em design de produto, mas com responsabilidade.<br />
+Conclusão<br />
+Os vieses não são defeitos do cérebro ou inimigos, eles são adaptações que funcionam na maioria dos casos. O problema é quando eles agem sem nossa percepção, principalmente em ambientes onde as decisões têm grande impacto.<br />
+Conhecer os tipos de viés é o primeiro passo para criar produtos mais justos, análises mais precisas e decisões mais equilibradas.<br />
+Fontes:<br />
+A arte de pensar claramente, de Robert Dobelli<br />
+Rápido e Devagar, Daniel Kahbenan<br />
+Insight - Amazon scraps secret AI recruiting tool that showed bias against women. Acessado: 03.05.25 às 11:30)</p>
 
           <!-- Tags & Share Footer -->
           <div class="mt-12 pt-8 border-t border-[#d0d7de]">
             <div class="flex flex-wrap items-center justify-between gap-4">
               <div class="flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Viés</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Análises</span> 
+                <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Viés Cognitivo</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Data Analytics</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Análise de Dados</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Tomada de Decisão</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Pensamento Crítico</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Inteligência Artificial</span> 
               </div>
               <div class="flex items-center gap-2 text-xs font-semibold text-[#656d76]">
                 <span>Compartilhar:</span>
@@ -309,12 +324,12 @@
 
           <!-- Author Bio Card -->
           <div class="glass p-6 sm:p-8 rounded-2xl border border-[#d0d7de] mt-10 flex flex-col sm:flex-row items-center gap-6">
-            <img src="../assets/img/Foto Marcos Aurélio.webp" alt="Marcos Aurélio" class="w-20 h-20 rounded-2xl object-cover border border-[#d0d7de] shadow-sm" />
+            <img src="../assets/img/minha-imagem-notion.png" alt="Marcos Aurélio" class="w-20 h-20 rounded-2xl object-cover border border-[#d0d7de] shadow-sm bg-[#f6f8fa]" />
             <div class="text-center sm:text-left">
               <span class="badge badge-blue text-[11px] mb-2">Sobre o Autor</span>
               <h3 class="text-lg font-bold text-[#1f2328] mb-1">Marcos Aurélio</h3>
               <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-4">
-                Senior Business Analytics com passagens por Nubank, Google e Asimov Academy. Especialista em traduzir dados complexos em decisões estratégicas de produto, IA e governança.
+                Entender o problema é o primeiro passo para encontrar boas respostas. Escrevo sobre dados, analytics, negócios, produtos digitais e IA, explorando métricas, questionando interpretações e investigando como a tecnologia pode apoiar decisões melhores.
               </p>
               <div class="flex items-center justify-center sm:justify-start gap-3 text-xs">
                 <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="text-[#0A66C2] font-semibold flex items-center gap-1 hover:underline">
@@ -341,14 +356,14 @@
           <!-- Newsletter / Connect Box -->
           <div class="glass p-6 rounded-2xl border border-[#d0d7de]">
             <div class="w-10 h-10 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mb-4">
-              <i data-lucide="bell" class="w-5 h-5"></i>
+              <i data-lucide="message-square" class="w-5 h-5"></i>
             </div>
-            <h4 class="font-bold text-sm text-[#1f2328] mb-1">Acompanhe novos insights</h4>
+            <h4 class="font-bold text-sm text-[#1f2328] mb-1">Vamos continuar essa conversa?</h4>
             <p class="text-xs text-[#656d76] leading-relaxed mb-4">
-              Publico regularmente novos artigos práticos e casos reais de Power BI, IA e Analytics no meu perfil.
+              Compartilho no LinkedIn novos artigos, aprendizados e reflexões sobre dados, analytics, produtos digitais e inteligência artificial.
             </p>
             <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="btn-primary w-full justify-center text-xs py-2.5">
-              <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i> Seguir no LinkedIn
+              <i data-lucide="linkedin" class="w-4 h-4 text-[#0A66C2]"></i> Me acompanhe no LinkedIn
             </a>
           </div>
         </aside>
@@ -359,62 +374,11 @@
          ARTIGOS RELACIONADOS
       ═══════════════════════════════════════════════════════ -->
       
-      <section class="mt-20 pt-12 border-t border-[#d0d7de]">
-        <div class="flex items-center justify-between mb-8">
-          <h3 class="text-xl font-bold text-[#1f2328]" style="font-family:'Space Grotesk',sans-serif">Artigos Relacionados</h3>
-          <a href="../blog.html" class="text-xs font-semibold text-[#11376e] hover:underline flex items-center gap-1">
-            Ver todos <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-        <a href="agentes-ia-business-analytics.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-2 mb-3">
-              <span class="badge badge-blue text-[11px]">Inteligência Artificial</span>
-              <span class="text-xs text-[#656d76]">8 min</span>
-            </div>
-            <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
-              Agentes Autônomos de IA em Business Analytics: Da Teoria à Produção
-            </h4>
-            <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
-              Como sair de simples prompts no ChatGPT e implementar pipelines com múltiplos agentes autônomos e RAG para detectar anomalias financeiras e automatizar relatórios executivos.
-            </p>
-          </div>
-          <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
-            Ler artigo <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-          </span>
-        </a>
-        
-        <a href="media-moda-e-mediana.html" class="glass rounded-2xl p-5 border border-[#d0d7de] hover:border-[#11376e]/50 hover:shadow-md transition-all group flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-2 mb-3">
-              <span class="badge badge-blue text-[11px]">Business Analytics</span>
-              <span class="text-xs text-[#656d76]">8 min</span>
-            </div>
-            <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
-              Média, Moda e Mediana: O que os números escondem
-            </h4>
-            <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
-              Por que uma nota 5.0 no Airbnb pode ser uma armadilha? Entenda os conceitos fundamentais de média, moda e mediana e como identificar outliers sem fórmulas intimidadoras.
-            </p>
-          </div>
-          <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
-            Ler artigo <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-          </span>
-        </a>
-        
-        </div>
-      </section>
-      
 
     </div>
   </main>
 
   <!-- ═══════════════════════════════════════════════════════
-     FOOTER
-  ═══════════════════════════════════════════════════════ -->
-    <!-- ═══════════════════════════════════════════════════════
      FOOTER INSTITUCIONAL (DEEP NAVY)
   ═══════════════════════════════════════════════════════ -->
   <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
@@ -432,20 +396,16 @@
 
       <!-- Ícones de Redes Sociais -->
       <div class="flex items-center gap-4 text-[#94a3b8]">
-        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
           <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="Instagram">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
           <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="YouTube">
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
           <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
         </a>
-        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="GitHub">
+        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
           <i data-lucide="github" class="w-4.5 h-4.5"></i>
         </a>
         <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
@@ -456,11 +416,136 @@
     </div>
   </footer>
 
+  <!-- ═══════════════════════════════════════════════════════
+     MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="search-modal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      id="search-modal-container">
+
+      <!-- Input Header -->
+      <div class="p-4 border-b border-[#d0d7de] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#11376e]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
+          class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer" aria-label="Fechar busca">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Quick Results / Suggestions -->
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+        <div class="text-[11px] font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões rápidas</div>
+        <a href="../blog/agentes-ia-business-analytics.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em Business Analytics</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • IA e RAG</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../blog/media-moda-e-mediana.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Média, Moda e Mediana: O que os números escondem</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • Estatística e Negócios</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../blog/modelagem-star-schema-powerbi.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="database" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Modelagem Star Schema no Power BI</div>
+              <div class="text-[10px] text-[#656d76]">Artigo • Power BI & Modelagem Dimensional</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="../projetos.html"
+          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
+                data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Casos de Estudo & Portfólio</div>
+              <div class="text-[10px] text-[#656d76]">Projetos • Soluções de dados ponta a ponta</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="../assets/js/main.js"></script>
   <script>
+    // Search Modal Handlers
+    const searchTrigger = document.getElementById("search-modal-trigger");
+    const searchModal = document.getElementById("search-modal");
+    const searchClose = document.getElementById("search-modal-close");
+    const siteSearchInput = document.getElementById("site-search-input");
+    const modalContainer = document.getElementById("search-modal-container");
+
+    function openGlobalSearch() {
+      if (!searchModal) return;
+      searchModal.classList.remove("hidden");
+      searchModal.classList.add("flex");
+      setTimeout(() => {
+        searchModal.classList.remove("opacity-0");
+        if (modalContainer) {
+          modalContainer.classList.remove("scale-95");
+          modalContainer.classList.add("scale-100");
+        }
+        if (siteSearchInput) siteSearchInput.focus();
+      }, 10);
+    }
+
+    function closeGlobalSearch() {
+      if (!searchModal) return;
+      searchModal.classList.add("opacity-0");
+      if (modalContainer) {
+        modalContainer.classList.remove("scale-100");
+        modalContainer.classList.add("scale-95");
+      }
+      setTimeout(() => {
+        searchModal.classList.remove("flex");
+        searchModal.classList.add("hidden");
+      }, 200);
+    }
+
+    if (searchTrigger) searchTrigger.addEventListener("click", openGlobalSearch);
+    if (searchClose) searchClose.addEventListener("click", closeGlobalSearch);
+    if (searchModal) {
+      searchModal.addEventListener("click", (e) => {
+        if (e.target === searchModal) closeGlobalSearch();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        openGlobalSearch();
+      }
+      if (e.key === "Escape" && searchModal && !searchModal.classList.contains("hidden")) {
+        closeGlobalSearch();
+      }
+    });
     // Verificação de Artigo Agendado (Programação de Publicação)
-    const publishDate = '2026-09-28';
+    const publishDate = '2026-10-22';
     const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true' || window.location.hash === '#preview';
     if (publishDate) {
       const now = new Date();
@@ -481,7 +566,7 @@
                   Publicação em breve!
                 </h1>
                 <p class="text-sm text-[#656d76] leading-relaxed mb-6">
-                  Este artigo está agendado para ser publicado em <strong>28 de Setembro de 2026</strong>. Volte nessa data para conferir o conteúdo completo!
+                  Este artigo está agendado para ser publicado em <strong>22 de Outubro de 2026</strong>. Volte nessa data para conferir o conteúdo completo!
                 </p>
                 <a href="../blog.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#11376e] text-white text-xs font-semibold hover:bg-[#184a91] transition-all">
                   <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para o Blog
@@ -499,7 +584,7 @@
         document.addEventListener('DOMContentLoaded', () => {
           const banner = document.createElement('div');
           banner.className = 'fixed bottom-4 right-4 z-50 bg-[#11376e] text-white px-4 py-2.5 rounded-xl shadow-lg border border-white/20 text-xs flex items-center gap-2 font-medium';
-          banner.innerHTML = '<i data-lucide="eye" class="w-4 h-4 text-sky-400"></i> Modo Prévia: Agendado para 28 de Setembro de 2026';
+          banner.innerHTML = '<i data-lucide="eye" class="w-4 h-4 text-sky-400"></i> Modo Prévia: Agendado para 22 de Outubro de 2026';
           document.body.appendChild(banner);
           if (window.lucide) lucide.createIcons();
         });

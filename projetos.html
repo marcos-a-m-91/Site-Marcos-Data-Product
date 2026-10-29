@@ -37,6 +37,7 @@
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="preload" as="image" href="assets/img/hero_section_projetos_v4.jpg" fetchpriority="high">
 
   <style>
     /* Inter Typography & Design System Overrides */
@@ -57,42 +58,218 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Hero section: Viewport Stability & Photographic Editorial Layout */
-    .projetos-hero-container {
+    /* ═══════════════════════════════════════════════
+       HERO PROJETOS: EDITORIAL LIGHT + FOTOGRAFIA
+       ═══════════════════════════════════════════════ */
+    :root {
+      --hero-blue: #0052cc;
+      --hero-navy: #0b1e3a;
+      --hero-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-projetos {
       position: relative;
-      background-image: url('assets/img/hero_section_projetos.png');
-      background-position: center right;
-      background-repeat: no-repeat;
-      background-size: cover;
-      min-height: 440px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      overflow: hidden;
     }
 
-    /* Máscara de gradiente Deep Navy editorial para contraste e legibilidade */
-    .projetos-hero-gradient-mask {
-      background: linear-gradient(
-        to right,
-        rgba(11, 30, 58, 0.96) 0%,
-        rgba(11, 30, 58, 0.90) 42%,
-        rgba(11, 30, 58, 0.60) 65%,
-        rgba(11, 30, 58, 0.22) 85%,
-        rgba(11, 30, 58, 0.0) 100%
-      );
+    /* Cena fotográfica + Dashboard Analítico vivo no notebook (mobile abaixo do texto, desktop à direita) */
+    .hero-projetos__media {
+      position: relative;
+      height: 330px;
+      border-top: 1px solid #e2e8f0;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 15%);
+              mask-image: linear-gradient(to bottom, transparent 0%, #000 15%);
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .hero-projetos__media { height: 410px; }
     }
 
-    @media (max-width: 1023px) {
-      .projetos-hero-container {
-        background-position: 70% center;
-        min-height: 380px;
+    @media (min-width: 1024px) {
+      .hero-projetos {
+        display: flex;
+        align-items: center;
+        min-height: 560px;
+        background-color: #ffffff;
       }
 
-      .projetos-hero-gradient-mask {
-        background: linear-gradient(
-          to bottom,
-          rgba(11, 30, 58, 0.96) 0%,
-          rgba(11, 30, 58, 0.91) 68%,
-          rgba(11, 30, 58, 0.55) 100%
-        );
+      .hero-projetos__media {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 62%;
+        height: 100%;
+        border-top: none;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.22) 6%, rgba(0,0,0,0.82) 16%, #000 26%);
+                mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.22) 6%, rgba(0,0,0,0.82) 16%, #000 26%);
+        z-index: 1;
       }
+    }
+    @media (min-width: 1440px) {
+      .hero-projetos {
+        min-height: 580px;
+      }
+      .hero-projetos__media {
+        width: 60%;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════
+       ANIMAÇÕES DOS GRÁFICOS DINÂMICOS NO NOTEBOOK
+    ═══════════════════════════════════════════════ */
+    .laptop-line-draw {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: laptopDrawLine 1500ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 500ms);
+    }
+    .laptop-area-fade {
+      opacity: 0;
+      animation: laptopFadeIn 1000ms ease forwards;
+      animation-delay: var(--d, 900ms);
+    }
+    .laptop-bar-x {
+      transform-box: fill-box;
+      transform-origin: left center;
+      transform: scaleX(0);
+      animation: laptopGrowX 900ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 600ms);
+    }
+    .laptop-bar-y {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      transform: scaleY(0);
+      animation: laptopGrowY 750ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 600ms);
+    }
+    .laptop-donut-seg {
+      stroke-dashoffset: 100;
+      animation: laptopDonutSweep 1200ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 600ms);
+    }
+    .laptop-dot-pop {
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: laptopPopIn 450ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 1400ms);
+    }
+    .laptop-pulse-ring {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: laptopPulseRing 2.4s ease-out infinite;
+      animation-delay: var(--d, 1600ms);
+    }
+    .laptop-live-dot {
+      animation: laptopLiveBlink 2s ease-in-out infinite;
+    }
+    .laptop-card-group {
+      transition: filter 250ms ease;
+    }
+    .laptop-card-group:hover {
+      filter: brightness(1.18);
+    }
+
+    @keyframes laptopDrawLine {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes laptopFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes laptopGrowX {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes laptopGrowY {
+      from { transform: scaleY(0); }
+      to   { transform: scaleY(1); }
+    }
+    @keyframes laptopDonutSweep {
+      to { stroke-dashoffset: var(--target-offset, 0); }
+    }
+    @keyframes laptopPopIn {
+      0%   { opacity: 0; transform: scale(0.3); }
+      80%  { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes laptopPulseRing {
+      0%   { opacity: 0.85; transform: scale(0.8); }
+      75%  { opacity: 0; transform: scale(2.4); }
+      100% { opacity: 0; transform: scale(2.4); }
+    }
+    @keyframes laptopLiveBlink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.35; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .laptop-line-draw { animation: none; stroke-dashoffset: 0; }
+      .laptop-area-fade, .laptop-dot-pop { animation: none; opacity: 1; }
+      .laptop-bar-x, .laptop-bar-y { animation: none; transform: none; }
+      .laptop-donut-seg { animation: none; stroke-dashoffset: var(--target-offset, 0); }
+      .laptop-pulse-ring, .laptop-live-dot { animation: none; }
+    }
+
+    /* Malha de pontos analítica decorativa */
+    .hero-projetos__dots {
+      position: absolute;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(37, 99, 235, 0.45) 1.2px, transparent 1.6px);
+      background-size: 15px 15px;
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 80%);
+              mask-image: radial-gradient(ellipse at center, #000 40%, transparent 80%);
+    }
+
+    /* Kicker com traço azul */
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #0052cc;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .hero-kicker::after {
+      content: '';
+      width: 44px;
+      height: 2px;
+      background: #0052cc;
+      border-radius: 9999px;
+    }
+
+    /* Título principal */
+    .hero-projetos-title {
+      color: #0b1e3a;
+      font-size: clamp(2.25rem, 3.8vw + 0.5rem, 3.75rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+    .hero-projetos-title .accent-blue {
+      color: #0052cc;
+    }
+
+    /* Animações suaves de entrada */
+    .hero-reveal {
+      opacity: 0;
+      animation: heroReveal 800ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 0ms);
+    }
+    @keyframes heroReveal {
+      from { opacity: 0; translate: 0 14px; }
+      to   { opacity: 1; translate: 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-reveal { animation: none; opacity: 1; }
     }
 
     /* Active Nav Link with blue line underline */
@@ -252,14 +429,7 @@
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
-        <!-- CTA "Vamos conversar" -->
-        <a href="mailto:contato@marcosdataproduct.com"
-          class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
-          <span>Vamos conversar</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
-
-        <!-- Mobile Menu Toggle -->
+<!-- Mobile Menu Toggle -->
         <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer"
           id="mobile-btn" aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
@@ -285,44 +455,395 @@
       <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
       <a href="sobre.html" class="mobile-link">Sobre</a>
     </div>
-    <div class="mt-8 pt-6 border-t border-slate-200">
-      <a href="mailto:contato@marcosdataproduct.com"
-        class="w-full py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
-        <span>Vamos conversar</span>
-        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    </div>
-  </div>
+</div>
 
 
   <!-- ═══════════════════════════════════════════════════════
-     HERO SECTION
+     HERO SECTION: DADOS EM PRÁTICA PARA GERAR INSIGHTS REAIS
   ═══════════════════════════════════════════════════════ -->
-  <section class="projetos-hero-container relative overflow-hidden flex items-center">
-    <!-- Ambient Gradient Mask -->
-    <div class="projetos-hero-gradient-mask absolute inset-0 z-0"></div>
+  <section class="hero-projetos" aria-labelledby="hero-projetos-title">
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 relative z-10 w-full">
-      <div class="max-w-2xl">
+    <!-- Malha de pontos analítica decorativa (desktop) -->
+    <div class="hero-projetos__dots hidden lg:block" style="top: 8%; left: 34%; width: 140px; height: 120px;" aria-hidden="true"></div>
 
-        <!-- Eyebrow -->
-        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.22em] block mb-4">
-          PROJETOS
-        </span>
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-14 sm:pb-20 relative z-10 w-full">
+      <div class="max-w-[530px] xl:max-w-[570px]">
 
-        <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-5">
-          Produtos de dados reais,<br />
-          <span class="text-[#38bdf8]">do conceito à decisão.</span>
+        <!-- Kicker: MARCOS DATA PRODUCT ——— -->
+        <div class="hero-reveal mb-5" style="--d: 50ms;">
+          <span class="hero-kicker">Marcos Data Product</span>
+        </div>
+
+        <!-- Label: PROJETOS -->
+        <div class="hero-reveal mb-3.5" style="--d: 100ms;">
+          <span class="text-xs font-bold text-[#0b1e3a] uppercase tracking-[0.2em] block">
+            PROJETOS
+          </span>
+        </div>
+
+        <!-- Headline: Dados em prática para gerar insights reais. -->
+        <h1 id="hero-projetos-title" class="hero-projetos-title hero-reveal mb-6" style="--d: 160ms;">
+          Dados em prática<br />
+          para gerar<br />
+          <span class="accent-blue">insights reais.</span>
         </h1>
 
-        <!-- Subtitle (17 words <= 20 words limit) -->
-        <p class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl">
-          Soluções arquitetadas de ponta a ponta: governança, engenharia de dados, machine learning e inteligência de negócios gerando impacto mensurável.
+        <!-- Descrição: Parágrafo 1 -->
+        <p class="hero-reveal text-sm sm:text-[0.9375rem] text-[#475569] leading-relaxed mb-4 max-w-[530px]" style="--d: 230ms;">
+          Aqui você encontra projetos que conectam dados, analytics e tecnologia a problemas reais de negócio, produto e sociedade.
+        </p>
+
+        <!-- Descrição: Parágrafo 2 -->
+        <p class="hero-reveal text-sm sm:text-[0.9375rem] text-[#475569] leading-relaxed max-w-[530px]" style="--d: 290ms;">
+          São análises, dashboards, experimentos e estudos que exploram diferentes desafios. Alguns partem de problemas que encontrei na minha trajetória profissional, reconstruídos com dados fictícios, enquanto outros são iniciativas autorais para testar ideias, explorar métodos e descobrir novas formas de transformar dados em insights e decisões.
         </p>
 
       </div>
     </div>
+
+    <!-- Cena Fotográfica + Dashboard Analítico Dinâmico em SVG Vetorial na Tela do Notebook -->
+    <div class="hero-projetos__media" aria-hidden="true">
+      <svg viewBox="0 0 2048 1024" preserveAspectRatio="xMaxYMid slice" class="w-full h-full block select-none" role="presentation">
+        <defs>
+          <!-- Recorte exato da moldura interna da tela do notebook -->
+          <clipPath id="laptopScreenClip">
+            <polygon points="1266,302 1898,274 1832,758 1200,704" />
+          </clipPath>
+
+          <!-- Fundo escuro Deep Navy da tela do notebook -->
+          <linearGradient id="laptopScreenBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#040d1e" />
+            <stop offset="55%" stop-color="#06142c" />
+            <stop offset="100%" stop-color="#030a18" />
+          </linearGradient>
+
+          <!-- Fundo translúcido dos cards do dashboard -->
+          <linearGradient id="laptopCardBg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#0c2144" stop-opacity="0.72" />
+            <stop offset="100%" stop-color="#07152e" stop-opacity="0.82" />
+          </linearGradient>
+
+          <!-- Gradiente de preenchimento da curva de Receita -->
+          <linearGradient id="laptopChartArea" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.42" />
+            <stop offset="65%" stop-color="#2563eb" stop-opacity="0.16" />
+            <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.0" />
+          </linearGradient>
+
+          <!-- Gradiente das barras horizontais -->
+          <linearGradient id="laptopBarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#1d4ed8" />
+            <stop offset="100%" stop-color="#38bdf8" />
+          </linearGradient>
+
+          <!-- Reflexo sutil de vidro na tela -->
+          <linearGradient id="laptopScreenGlare" x1="0%" y1="0%" x2="70%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.045" />
+            <stop offset="40%" stop-color="#ffffff" stop-opacity="0.01" />
+            <stop offset="41%" stop-color="#ffffff" stop-opacity="0.0" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Fotografia Base em Alta Resolução (2048x1024) -->
+        <image href="assets/img/hero_section_projetos_v4.jpg" width="2048" height="1024" preserveAspectRatio="none" />
+
+        <!-- ═══════════════════════════════════════════════════════════
+             TELA DO NOTEBOOK: DASHBOARD VETORIAL ANIMADO EM PERSPECTIVA
+        ═══════════════════════════════════════════════════════════ -->
+        <g clip-path="url(#laptopScreenClip)" id="laptop-dynamic-dashboard">
+
+          <!-- Superfície interna da tela cobrindo os pixels estáticos do JPG -->
+          <polygon points="1264,300 1900,272 1834,760 1198,706" fill="url(#laptopScreenBg)" />
+
+          <!-- 1. HEADER: Análise de Mercado & Período -->
+          <g transform="matrix(0.9875,-0.0350,-0.1500,1.0068,1281.98,310.66)">
+            <!-- Barra superior minimalista -->
+            <circle cx="4" cy="2" r="2.2" fill="#38bdf8" opacity="0.85" />
+            <rect x="10" y="0.5" width="32" height="3" rx="1.5" fill="#1e3a8a" opacity="0.8" />
+
+            <text x="2" y="21" fill="#f8fafc" font-size="14" font-weight="700" letter-spacing="-0.02em">Análise de Mercado</text>
+            <text x="2" y="33" fill="#94a3b8" font-size="8.5" font-weight="500">Visão geral e principais indicadores</text>
+
+            <!-- Indicador Ao Vivo + Período -->
+            <g transform="translate(476, 12)">
+              <rect x="0" y="0" width="124" height="18" rx="9" fill="#0c2246" stroke="#1e3a8a" stroke-width="0.8" />
+              <circle class="laptop-live-dot" cx="10" cy="9" r="3" fill="#34d399" />
+              <text x="18" y="12.2" fill="#e2e8f0" font-size="8.5" font-weight="600" letter-spacing="0.01em">Jan 2023 – Dez 2024</text>
+            </g>
+          </g>
+
+          <!-- 2. KPI CARD 1: RECEITA (R$ 2,4M) -->
+          <g class="laptop-card-group" transform="matrix(0.9875,-0.0129,-0.1500,0.9468,1275.67,349.38)">
+            <rect x="0" y="0" width="192" height="104" rx="9" fill="url(#laptopCardBg)" stroke="#1e3a8a" stroke-opacity="0.65" stroke-width="1" />
+            <text x="14" y="24" fill="#94a3b8" font-size="9.5" font-weight="500">Receita</text>
+            <text id="laptop-kpi-receita" x="14" y="58" fill="#ffffff" font-size="24" font-weight="800" letter-spacing="-0.03em">R$ 2,4M</text>
+            <!-- Badge de Crescimento -->
+            <g transform="translate(14, 72)">
+              <rect x="0" y="0" width="54" height="16" rx="4" fill="#064e3b" fill-opacity="0.45" />
+              <text x="6" y="11.5" fill="#34d399" font-size="9.5" font-weight="700">↑ 12,5%</text>
+            </g>
+            <!-- Mini Spark-bars Animadas -->
+            <g transform="translate(136, 50)">
+              <rect class="laptop-bar-y" style="--d: 650ms;" x="0" y="20" width="5" height="18" rx="1.5" fill="#1e40af" />
+              <rect class="laptop-bar-y" style="--d: 730ms;" x="8" y="14" width="5" height="24" rx="1.5" fill="#2563eb" />
+              <rect class="laptop-bar-y" style="--d: 810ms;" x="16" y="17" width="5" height="21" rx="1.5" fill="#2563eb" />
+              <rect class="laptop-bar-y" style="--d: 890ms;" x="24" y="8" width="5" height="30" rx="1.5" fill="#3b82f6" />
+              <rect class="laptop-bar-y" style="--d: 970ms;" x="32" y="0" width="5" height="38" rx="1.5" fill="#38bdf8" />
+            </g>
+          </g>
+
+          <!-- 3. KPI CARD 2: USUÁRIOS (148 mil) -->
+          <g class="laptop-card-group" transform="matrix(0.9875,-0.0129,-0.1500,1.0062,1477.12,343.66)">
+            <rect x="0" y="0" width="192" height="104" rx="9" fill="url(#laptopCardBg)" stroke="#1e3a8a" stroke-opacity="0.65" stroke-width="1" />
+            <text x="14" y="24" fill="#94a3b8" font-size="9.5" font-weight="500">Usuários</text>
+            <text id="laptop-kpi-usuarios" x="14" y="58" fill="#ffffff" font-size="24" font-weight="800" letter-spacing="-0.03em">148 mil</text>
+            <g transform="translate(14, 72)">
+              <rect x="0" y="0" width="50" height="16" rx="4" fill="#064e3b" fill-opacity="0.45" />
+              <text x="6" y="11.5" fill="#34d399" font-size="9.5" font-weight="700">↑ 8,3%</text>
+            </g>
+            <!-- Mini Spark-bars Animadas -->
+            <g transform="translate(136, 52)">
+              <rect class="laptop-bar-y" style="--d: 720ms;" x="0" y="18" width="5" height="18" rx="1.5" fill="#1e40af" />
+              <rect class="laptop-bar-y" style="--d: 800ms;" x="8" y="15" width="5" height="21" rx="1.5" fill="#1d4ed8" />
+              <rect class="laptop-bar-y" style="--d: 880ms;" x="16" y="10" width="5" height="26" rx="1.5" fill="#2563eb" />
+              <rect class="laptop-bar-y" style="--d: 960ms;" x="24" y="6" width="5" height="30" rx="1.5" fill="#3b82f6" />
+              <rect class="laptop-bar-y" style="--d: 1040ms;" x="32" y="0" width="5" height="36" rx="1.5" fill="#38bdf8" />
+            </g>
+          </g>
+
+          <!-- 4. KPI CARD 3: CONVERSÃO (3,2%) -->
+          <g class="laptop-card-group" transform="matrix(0.9875,-0.0129,-0.1500,1.0662,1678.57,337.91)">
+            <rect x="0" y="0" width="196" height="104" rx="9" fill="url(#laptopCardBg)" stroke="#1e3a8a" stroke-opacity="0.65" stroke-width="1" />
+            <text x="14" y="24" fill="#94a3b8" font-size="9.5" font-weight="500">Conversão</text>
+            <!-- Ícone circular sutil no canto -->
+            <path d="M174 16 a4.5 4.5 0 1 1 -3.2 1.3" fill="none" stroke="#64748b" stroke-width="1.2" stroke-linecap="round" />
+            <text id="laptop-kpi-conversao" x="14" y="58" fill="#ffffff" font-size="24" font-weight="800" letter-spacing="-0.03em">3,2%</text>
+            <!-- Chevron lateral azul -->
+            <polyline points="170,45 177,52 170,59" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            <g transform="translate(14, 72)">
+              <rect x="0" y="0" width="60" height="16" rx="4" fill="#064e3b" fill-opacity="0.45" />
+              <text x="6" y="11.5" fill="#34d399" font-size="9.5" font-weight="700">↑ 0,6 p.p.</text>
+            </g>
+          </g>
+
+          <!-- 5. CHART 1: RECEITA AO LONGO DO TEMPO (LINHA + ÁREA ANIMADA) -->
+          <g class="laptop-card-group" transform="matrix(0.9875,0.0293,-0.1500,0.9716,1258.28,453.15)">
+            <rect x="0" y="0" width="362" height="162" rx="9" fill="url(#laptopCardBg)" stroke="#1e3a8a" stroke-opacity="0.65" stroke-width="1" />
+            <text x="14" y="21" fill="#f1f5f9" font-size="10.5" font-weight="700">Receita ao longo do tempo</text>
+            <path d="M344 13 a3.5 3.5 0 1 1 -2.5 1" fill="none" stroke="#64748b" stroke-width="1.1" stroke-linecap="round" />
+
+            <!-- Eixo Y e Gridlines -->
+            <g fill="#64748b" font-size="7.5" font-family="monospace" text-anchor="end">
+              <text x="28" y="42">400</text>
+              <text x="28" y="65">300</text>
+              <text x="28" y="88">200</text>
+              <text x="28" y="111">100</text>
+              <text x="28" y="134">0</text>
+            </g>
+            <g stroke="#1e293b" stroke-width="0.8" stroke-dasharray="2,2">
+              <line x1="34" y1="39" x2="346" y2="39" />
+              <line x1="34" y1="62" x2="346" y2="62" />
+              <line x1="34" y1="85" x2="346" y2="85" />
+              <line x1="34" y1="108" x2="346" y2="108" />
+              <line x1="34" y1="131" x2="346" y2="131" stroke-dasharray="none" stroke="#1e3a8a" stroke-opacity="0.6" />
+            </g>
+
+            <!-- Área sob a curva com fade-in suave -->
+            <path class="laptop-area-fade" style="--d: 950ms;"
+              d="M36,105 L64,95 L92,102 L120,89 L148,96 L176,81 L204,88 L232,76 L260,57 L288,69 L316,52 L344,44 L344,131 L36,131 Z"
+              fill="url(#laptopChartArea)" />
+
+            <!-- Linha de meta / comparação secundária -->
+            <polyline class="laptop-line-draw" pathLength="1" style="--d: 750ms;"
+              stroke="#1d4ed8" stroke-width="1.4" stroke-dasharray="1" opacity="0.65"
+              points="36,114 64,110 92,106 120,101 148,98 176,92 204,89 232,83 260,76 288,73 316,66 344,60" />
+
+            <!-- Curva principal de Receita animada -->
+            <polyline class="laptop-line-draw" pathLength="1" style="--d: 550ms;"
+              stroke="#38bdf8" stroke-width="2.2"
+              points="36,105 64,95 92,102 120,89 148,96 176,81 204,88 232,76 260,57 288,69 316,52 344,44" />
+
+            <!-- Pontos de dados animados + Scanner Pulse no pico -->
+            <g fill="#38bdf8">
+              <circle class="laptop-dot-pop" style="--d: 1100ms;" cx="36" cy="105" r="2" />
+              <circle class="laptop-dot-pop" style="--d: 1160ms;" cx="64" cy="95" r="2" />
+              <circle class="laptop-dot-pop" style="--d: 1220ms;" cx="92" cy="102" r="2" />
+              <circle class="laptop-dot-pop" style="--d: 1280ms;" cx="120" cy="89" r="2" />
+              <circle class="laptop-dot-pop" style="--d: 1340ms;" cx="148" cy="96" r="2" />
+              <circle class="laptop-dot-pop" style="--d: 1400ms;" cx="176" cy="81" r="2.2" />
+              <circle class="laptop-dot-pop" style="--d: 1460ms;" cx="204" cy="88" r="2" />
+              <circle class="laptop-dot-pop" style="--d: 1520ms;" cx="232" cy="76" r="2.2" />
+              <circle class="laptop-dot-pop" style="--d: 1580ms;" cx="260" cy="57" r="2.6" fill="#7dd3fc" />
+              <circle class="laptop-dot-pop" style="--d: 1640ms;" cx="288" cy="69" r="2.2" />
+              <circle class="laptop-dot-pop" style="--d: 1700ms;" cx="316" cy="52" r="2.5" />
+              <!-- Último ponto (Dez) com pulso luminoso contínuo -->
+              <circle class="laptop-pulse-ring" style="--d: 1800ms;" cx="344" cy="44" r="5" fill="none" stroke="#38bdf8" stroke-width="1.5" />
+              <circle class="laptop-dot-pop" style="--d: 1760ms;" cx="344" cy="44" r="3.2" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" />
+            </g>
+
+            <!-- Tooltip flutuante sobre o pico de Dezembro -->
+            <g class="laptop-dot-pop" style="--d: 1850ms;" transform="translate(298, 22)">
+              <rect x="0" y="0" width="48" height="15" rx="4" fill="#0f2952" stroke="#38bdf8" stroke-width="0.8" />
+              <text x="24" y="10.5" fill="#f8fafc" font-size="7.5" font-weight="700" text-anchor="middle">R$ 384k</text>
+            </g>
+
+            <!-- Eixo X: Meses -->
+            <g fill="#94a3b8" font-size="7.5" text-anchor="middle">
+              <text x="36" y="147">Jan</text>
+              <text x="64" y="147">Fev</text>
+              <text x="92" y="147">Mar</text>
+              <text x="120" y="147">Abr</text>
+              <text x="148" y="147">Mai</text>
+              <text x="176" y="147">Jun</text>
+              <text x="204" y="147">Jul</text>
+              <text x="232" y="147">Ago</text>
+              <text x="260" y="147">Set</text>
+              <text x="288" y="147">Out</text>
+              <text x="316" y="147">Nov</text>
+              <text x="344" y="147">Dez</text>
+            </g>
+          </g>
+
+          <!-- 6. CHART 2: DISTRIBUIÇÃO POR CATEGORIA (DONUT ANIMADO) -->
+          <g class="laptop-card-group" transform="matrix(0.9875,0.0293,-0.1500,1.0613,1627.60,456.86)">
+            <rect x="0" y="0" width="230" height="162" rx="9" fill="url(#laptopCardBg)" stroke="#1e3a8a" stroke-opacity="0.65" stroke-width="1" />
+            <text x="14" y="21" fill="#f1f5f9" font-size="10.5" font-weight="700">Distribuição por categoria</text>
+
+            <!-- Anel Donut SVG com 4 segmentos animados -->
+            <g transform="translate(58, 95)">
+              <!-- Trilha de fundo -->
+              <circle cx="0" cy="0" r="34" fill="none" stroke="#0f2447" stroke-width="15" />
+              <!-- Produto A: 38% -->
+              <circle class="laptop-donut-seg" style="--d: 650ms; --target-offset: 0;"
+                cx="0" cy="0" r="34" fill="none" stroke="#2563eb" stroke-width="15"
+                pathLength="100" stroke-dasharray="38 100" transform="rotate(-90)" />
+              <!-- Produto B: 28% -->
+              <circle class="laptop-donut-seg" style="--d: 820ms; --target-offset: 0;"
+                cx="0" cy="0" r="34" fill="none" stroke="#1d4ed8" stroke-width="15"
+                pathLength="100" stroke-dasharray="28 100" transform="rotate(46.8)" />
+              <!-- Produto C: 19% -->
+              <circle class="laptop-donut-seg" style="--d: 980ms; --target-offset: 0;"
+                cx="0" cy="0" r="34" fill="none" stroke="#38bdf8" stroke-width="15"
+                pathLength="100" stroke-dasharray="19 100" transform="rotate(147.6)" />
+              <!-- Produto D: 15% -->
+              <circle class="laptop-donut-seg" style="--d: 1120ms; --target-offset: 0;"
+                cx="0" cy="0" r="34" fill="none" stroke="#0284c7" stroke-width="15"
+                pathLength="100" stroke-dasharray="15 100" transform="rotate(216)" />
+              <!-- Rótulo Central -->
+              <text x="0" y="3" fill="#e2e8f0" font-size="9.5" font-weight="800" text-anchor="middle">100%</text>
+            </g>
+
+            <!-- Legenda com percentuais alinhados -->
+            <g transform="translate(112, 56)" font-size="8.5" font-weight="500" fill="#cbd5e1">
+              <g transform="translate(0, 0)">
+                <rect x="0" y="-7" width="6.5" height="6.5" rx="1.5" fill="#2563eb" />
+                <text x="11" y="-0.5">Produto A</text>
+                <text x="102" y="-0.5" fill="#ffffff" font-weight="700" text-anchor="end">38%</text>
+              </g>
+              <g transform="translate(0, 22)">
+                <rect x="0" y="-7" width="6.5" height="6.5" rx="1.5" fill="#1d4ed8" />
+                <text x="11" y="-0.5">Produto B</text>
+                <text x="102" y="-0.5" fill="#ffffff" font-weight="700" text-anchor="end">28%</text>
+              </g>
+              <g transform="translate(0, 44)">
+                <rect x="0" y="-7" width="6.5" height="6.5" rx="1.5" fill="#38bdf8" />
+                <text x="11" y="-0.5">Produto C</text>
+                <text x="102" y="-0.5" fill="#ffffff" font-weight="700" text-anchor="end">19%</text>
+              </g>
+              <g transform="translate(0, 66)">
+                <rect x="0" y="-7" width="6.5" height="6.5" rx="1.5" fill="#0284c7" />
+                <text x="11" y="-0.5">Produto D</text>
+                <text x="102" y="-0.5" fill="#ffffff" font-weight="700" text-anchor="end">15%</text>
+              </g>
+            </g>
+          </g>
+
+          <!-- 7. BOTTOM CARD 1: PRINCIPAIS INSIGHTS (BARRAS PROGRESSIVAS) -->
+          <g class="laptop-card-group" transform="matrix(0.9875,0.0684,-0.1500,0.9649,1232.48,613.49)">
+            <rect x="0" y="0" width="316" height="86" rx="9" fill="url(#laptopCardBg)" stroke="#1e3a8a" stroke-opacity="0.65" stroke-width="1" />
+            <text x="14" y="20" fill="#f1f5f9" font-size="10.5" font-weight="700">Principais Insights</text>
+            <polyline points="298,13 302,17 298,21" fill="none" stroke="#64748b" stroke-width="1.3" stroke-linecap="round" />
+
+            <!-- Ícone Analítico à Esquerda -->
+            <g transform="translate(14, 34)">
+              <rect x="0" y="0" width="26" height="32" rx="5" fill="#0f2952" stroke="#2563eb" stroke-width="1.2" />
+              <path d="M8,10 H18 M8,16 H18 M8,22 H14" stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round" />
+            </g>
+
+            <!-- 3 Barras Horizontais Animadas (estilo Hero Blog) -->
+            <g transform="translate(52, 36)">
+              <rect x="0" y="0" width="244" height="5.5" rx="2.75" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 900ms;" x="0" y="0" width="218" height="5.5" rx="2.75" fill="url(#laptopBarGrad)" />
+
+              <rect x="0" y="13" width="244" height="5.5" rx="2.75" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 1050ms;" x="0" y="13" width="174" height="5.5" rx="2.75" fill="url(#laptopBarGrad)" opacity="0.85" />
+
+              <rect x="0" y="26" width="244" height="5.5" rx="2.75" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 1200ms;" x="0" y="26" width="112" height="5.5" rx="2.75" fill="#3b82f6" opacity="0.7" />
+            </g>
+          </g>
+
+          <!-- 8. BOTTOM CARD 2: REGIÕES (MAPA DO BRASIL + BARRAS REGIONAIS ANIMADAS) -->
+          <g class="laptop-card-group" transform="matrix(0.9875,0.0684,-0.1500,1.0546,1556.38,632.06)">
+            <rect x="0" y="0" width="276" height="86" rx="9" fill="url(#laptopCardBg)" stroke="#1e3a8a" stroke-opacity="0.65" stroke-width="1" />
+
+            <!-- Mapa do Brasil Vetorial Estilizado por Regiões -->
+            <g transform="translate(14, 8) scale(0.95)">
+              <!-- Norte -->
+              <path d="M8,22 L24,10 L44,14 L52,26 L36,36 L14,34 Z" fill="#1e3a8a" stroke="#091936" stroke-width="1" />
+              <!-- Nordeste -->
+              <path d="M52,20 L74,26 L78,42 L60,48 L50,36 Z" fill="#2563eb" stroke="#091936" stroke-width="1" />
+              <!-- Centro-Oeste -->
+              <path d="M30,36 L50,36 L54,54 L34,56 Z" fill="#1d4ed8" stroke="#091936" stroke-width="1" />
+              <!-- Sudeste (Destaque Ciano Brilhante) -->
+              <path d="M52,48 L68,46 L64,62 L46,60 Z" fill="#38bdf8" stroke="#091936" stroke-width="1" />
+              <!-- Sul -->
+              <path d="M38,56 L54,60 L46,76 L34,68 Z" fill="#60a5fa" stroke="#091936" stroke-width="1" />
+
+              <!-- Beacons pulsantes sobre Sudeste e Sul -->
+              <circle class="laptop-pulse-ring" style="--d: 1500ms;" cx="56" cy="54" r="4.5" fill="none" stroke="#7dd3fc" stroke-width="1.3" />
+              <circle cx="56" cy="54" r="2.2" fill="#ffffff" />
+            </g>
+
+            <!-- Barras Regionais Animadas à Direita -->
+            <g transform="translate(114, 14)">
+              <text x="0" y="6" fill="#f1f5f9" font-size="9.5" font-weight="700">Regiões</text>
+
+              <!-- Barra 1 (SE) -->
+              <circle cx="3" cy="18" r="1.8" fill="#38bdf8" />
+              <rect x="10" y="15.5" width="136" height="5" rx="2.5" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 850ms;" x="10" y="15.5" width="118" height="5" rx="2.5" fill="url(#laptopBarGrad)" />
+
+              <!-- Barra 2 (S) -->
+              <circle cx="3" cy="29" r="1.8" fill="#60a5fa" />
+              <rect x="10" y="26.5" width="136" height="5" rx="2.5" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 950ms;" x="10" y="26.5" width="92" height="5" rx="2.5" fill="url(#laptopBarGrad)" />
+
+              <!-- Barra 3 (NE) -->
+              <circle cx="3" cy="40" r="1.8" fill="#2563eb" />
+              <rect x="10" y="37.5" width="136" height="5" rx="2.5" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 1050ms;" x="10" y="37.5" width="68" height="5" rx="2.5" fill="#2563eb" />
+
+              <!-- Barra 4 (CO) -->
+              <circle cx="3" cy="51" r="1.8" fill="#1d4ed8" />
+              <rect x="10" y="48.5" width="136" height="5" rx="2.5" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 1150ms;" x="10" y="48.5" width="48" height="5" rx="2.5" fill="#1d4ed8" />
+
+              <!-- Barra 5 (N) -->
+              <circle cx="3" cy="62" r="1.8" fill="#1e3a8a" />
+              <rect x="10" y="59.5" width="136" height="5" rx="2.5" fill="#0f2344" />
+              <rect class="laptop-bar-x" style="--d: 1250ms;" x="10" y="59.5" width="32" height="5" rx="2.5" fill="#1e40af" />
+            </g>
+          </g>
+
+          <!-- Reflexo diagonal sutil da tela do notebook -->
+          <polygon points="1266,302 1898,274 1832,758 1200,704" fill="url(#laptopScreenGlare)" pointer-events="none" />
+
+        </g>
+      </svg>
+    </div>
+
   </section>
 
 
@@ -368,7 +889,7 @@
           data-filter="all">
           <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-[#11376e]"></i>
           <span>Todos os Casos</span>
-          <span class="text-xs opacity-80 font-mono font-semibold" id="pill-count-all">(6)</span>
+          <span class="text-xs opacity-80 font-mono font-semibold" id="pill-count-all">(0)</span>
         </button>
 
         <button
@@ -428,428 +949,33 @@
       <div class="flex items-center gap-2">
         <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Estudos de Caso</h2>
         <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-[#656d76]"
-          id="project-counter">6 projetos</span>
+          id="project-counter">0 projetos</span>
       </div>
-      <span class="text-xs text-[#656d76] hidden sm:inline">Clique no projeto para ver a análise completa</span>
+      <span class="text-xs text-[#656d76] hidden sm:inline">Projetos práticos e estudos de caso em Business Analytics</span>
     </div>
 
     <!-- Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="projects-grid">
+      <!-- PROJECTS_GRID_START -->
 
-      <!-- PROJETO 1: Motor de Risco & Crédito Dinâmico -->
-      <article
-        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
-        data-category="analytics"
-        data-href="projetos/motor-risco-credito.html"
-        data-tech="python aws athena fastapi power bi scikit-learn credit scoring analytics risco fintech">
-        <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#07101e] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
-          <img src="assets/img/projects/project-credit-portfolio.svg" alt="Credit Risk Intelligence"
-            class="w-full h-full object-cover" />
-          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
-            <span
-              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
-              <i data-lucide="building-2" class="w-3 h-3 text-[#38bdf8]"></i>
-              Fintech B2B
-            </span>
-          </div>
-        </div>
+      <!-- Nenhum projeto publicado no momento -->
 
-        <!-- Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                Analytics & Risco
-              </span>
-              <span class="text-xs font-semibold text-emerald-600 flex items-center gap-1">
-                <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
-                80% Automação
-              </span>
-            </div>
+    <!-- PROJECTS_GRID_END -->
+    </div>
 
-            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-              Motor de Risco & Crédito Dinâmico
-            </h3>
-
-            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
-              Unificação de 3 bases ERPs legadas e implantação de motor preditivo servido via API interna em FastAPI, automatizando 80% das decisões diárias de crédito.
-            </p>
-
-            <!-- Callout de Métrica -->
-            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
-                <i data-lucide="zap" class="w-4 h-4"></i>
-              </div>
-              <div class="text-xs text-[#1f2328] font-medium leading-tight">
-                Tempo de aprovação reduzido de <strong class="text-[#11376e]">4 dias</strong> para <strong class="text-[#11376e]">30 segundos</strong>.
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Footer -->
-          <div>
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Python</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">AWS Athena</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">FastAPI</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Power BI</span>
-            </div>
-
-            <a href="projetos/motor-risco-credito.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
-              <span>Ler Estudo de Caso</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJETO 2: Sales Intelligence & Performance LATAM -->
-      <article
-        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
-        data-category="dataviz"
-        data-href="projetos/sales-dashboard-latam.html"
-        data-tech="power bi dax sql server star schema modelagem dimensional dataviz dashboard vendas varejo">
-        <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#070f1e] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
-          <img src="assets/img/projects/project-sales-dashboard.svg" alt="Sales Intelligence LATAM"
-            class="w-full h-full object-cover" />
-          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
-            <span
-              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
-              <i data-lucide="globe-2" class="w-3 h-3 text-[#38bdf8]"></i>
-              Varejo LATAM
-            </span>
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-dataviz inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                Power BI & DataViz
-              </span>
-              <span class="text-xs font-semibold text-blue-600 flex items-center gap-1">
-                <i data-lucide="activity" class="w-3.5 h-3.5"></i>
-                US$ 14.8M
-              </span>
-            </div>
-
-            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-              Sales Intelligence & Performance LATAM
-            </h3>
-
-            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
-              Arquitetura analítica comercial completa para diretorias em 6 países. Modelagem Star Schema, DAX avançado, cálculo dinâmico de margem e conciliação cambial.
-            </p>
-
-            <!-- Callout de Métrica -->
-            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
-                <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
-              </div>
-              <div class="text-xs text-[#1f2328] font-medium leading-tight">
-                Aumento de <strong class="text-[#11376e]">+24%</strong> na assertividade de metas operacionais.
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Footer -->
-          <div>
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Power BI</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">DAX</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">SQL Server</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Star Schema</span>
-            </div>
-
-            <a href="projetos/sales-dashboard-latam.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
-              <span>Ler Estudo de Caso</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJETO 3: Lakehouse ETL & Pipelines Escaláveis -->
-      <article
-        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
-        data-category="data"
-        data-href="projetos/lakehouse-databricks-etl.html"
-        data-tech="databricks apache spark delta lake scala python aws s3 engenharia lakehouse etl pipeline">
-        <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#080e18] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
-          <img src="assets/img/projects/project-etl-databricks.svg" alt="Lakehouse Databricks ETL"
-            class="w-full h-full object-cover" />
-          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
-            <span
-              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
-              <i data-lucide="factory" class="w-3 h-3 text-[#38bdf8]"></i>
-              Indústria & Supply
-            </span>
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-data inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                Engenharia de Dados
-              </span>
-              <span class="text-xs font-semibold text-cyan-700 flex items-center gap-1">
-                <i data-lucide="database" class="w-3.5 h-3.5"></i>
-                +15M Eventos
-              </span>
-            </div>
-
-            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-              Lakehouse ETL & Pipelines Escaláveis
-            </h3>
-
-            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
-              Migração de processos batch para arquitetura Lakehouse Medalhão (Bronze, Silver e Gold) no Databricks, garantindo conformidade ACID e alto throughput.
-            </p>
-
-            <!-- Callout de Métrica -->
-            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
-                <i data-lucide="clock" class="w-4 h-4"></i>
-              </div>
-              <div class="text-xs text-[#1f2328] font-medium leading-tight">
-                Tempo de carga reduzido de <strong class="text-[#11376e]">4h30</strong> para <strong class="text-[#11376e]">35 min</strong> (-65% custo cloud).
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Footer -->
-          <div>
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Databricks</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Apache Spark</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Delta Lake</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Scala</span>
-            </div>
-
-            <a href="projetos/lakehouse-databricks-etl.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
-              <span>Ler Estudo de Caso</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJETO 4: Automação com IA & Agentes RAG -->
-      <article
-        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
-        data-category="ai"
-        data-href="projetos/agentes-ia-rag-automacao.html"
-        data-tech="genai llm langchain databricks python vector db agentes rag inteligencia artificial automacao">
-        <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#080e1c] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
-          <img src="assets/img/projects/project-ai-agents.svg" alt="AI Agents RAG"
-            class="w-full h-full object-cover" />
-          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
-            <span
-              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
-              <i data-lucide="zap" class="w-3 h-3 text-[#a78bfa]"></i>
-              Energy Sector
-            </span>
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-ai inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                Inteligência Artificial
-              </span>
-              <span class="text-xs font-semibold text-indigo-600 flex items-center gap-1">
-                <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
-                RAG 96.8%
-              </span>
-            </div>
-
-            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-              Automação com IA & Agentes RAG
-            </h3>
-
-            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
-              Substituição de um workflow manual letárgico por um Agente Autônomo de IA com RAG treinado nas normas corporativas da companhia, integrado ao chat corporativo.
-            </p>
-
-            <!-- Callout de Métrica -->
-            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
-                <i data-lucide="message-square" class="w-4 h-4"></i>
-              </div>
-              <div class="text-xs text-[#1f2328] font-medium leading-tight">
-                Redução de <strong class="text-[#11376e]">40%</strong> nos chamados e SLA caindo de 4h para 45s.
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Footer -->
-          <div>
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">GenAI / LLMs</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">LangChain</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Databricks</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Vector DB</span>
-            </div>
-
-            <a href="projetos/agentes-ia-rag-automacao.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
-              <span>Ler Estudo de Caso</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJETO 5: Governança & Tracking Server-Side -->
-      <article
-        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
-        data-category="product"
-        data-href="projetos/tracking-serverside-governanca.html"
-        data-tech="ga4 bigquery gtm server-side looker studio cloud run product analytics growth tracking">
-        <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#071222] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
-          <img src="assets/img/projects/project-tracking-analytics.svg" alt="Server-Side Tracking Pipeline"
-            class="w-full h-full object-cover" />
-          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
-            <span
-              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
-              <i data-lucide="shopping-bag" class="w-3 h-3 text-[#38bdf8]"></i>
-              E-commerce App
-            </span>
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-product inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                Product Analytics
-              </span>
-              <span class="text-xs font-semibold text-rose-600 flex items-center gap-1">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-                +92.4% Sinais
-              </span>
-            </div>
-
-            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-              Governança & Tracking Server-Side
-            </h3>
-
-            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
-              Infraestrutura de coleta de 1ª parte no GCP com GTM Server-Side. Eliminação de perdas decorrentes de bloqueadores e integração contínua de eventos no BigQuery.
-            </p>
-
-            <!-- Callout de Métrica -->
-            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
-                <i data-lucide="target" class="w-4 h-4"></i>
-              </div>
-              <div class="text-xs text-[#1f2328] font-medium leading-tight">
-                Aumento de <strong class="text-[#11376e]">+18% no ROAS</strong> de mídia por atribuição precisa.
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Footer -->
-          <div>
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">GA4</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">BigQuery</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">GTM Server-Side</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Cloud Run</span>
-            </div>
-
-            <a href="projetos/tracking-serverside-governanca.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
-              <span>Ler Estudo de Caso</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJETO 6: Predição de Churn & Retenção de Clientes -->
-      <article
-        class="project-card bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col card-hover-clean group cursor-pointer"
-        data-category="business"
-        data-href="projetos/churn-prediction-retencao.html"
-        data-tech="python scikit-learn xgboost postgresql metabase churn predicao machine learning business analytics saas">
-        <!-- Visual Header -->
-        <div class="aspect-[16/10] bg-[#09101d] relative overflow-hidden flex items-center justify-center border-b border-[#d0d7de]">
-          <img src="assets/img/projects/project-churn-prediction.svg" alt="Churn Prediction Machine Learning"
-            class="w-full h-full object-cover" />
-          <div class="absolute top-3.5 left-3.5 z-10 flex items-center gap-2">
-            <span
-              class="px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-[#0b1e3a]/90 text-white backdrop-blur-md border border-white/10 shadow-sm flex items-center gap-1.5">
-              <i data-lucide="briefcase" class="w-3 h-3 text-[#34d399]"></i>
-              SaaS B2B
-            </span>
-          </div>
-        </div>
-
-        <!-- Body -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2.5">
-              <span class="badge-theme-business inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                Business Analytics
-              </span>
-              <span class="text-xs font-semibold text-emerald-600 flex items-center gap-1">
-                <i data-lucide="dollar-sign" class="w-3.5 h-3.5"></i>
-                R$ 1.2M Salvo
-              </span>
-            </div>
-
-            <h3 class="font-bold text-lg text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-              Predição de Churn & Retenção de Clientes
-            </h3>
-
-            <p class="text-xs sm:text-sm text-[#656d76] leading-relaxed mb-5">
-              Modelo preditivo em Python identificando contas com risco de cancelamento com 45 dias de antecedência a partir da telemetria de produto e suporte.
-            </p>
-
-            <!-- Callout de Métrica -->
-            <div class="bg-[#f6f8fa] rounded-xl p-3 mb-5 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-[#11376e]/10 text-[#11376e] flex items-center justify-center shrink-0">
-                <i data-lucide="heart-handshake" class="w-4 h-4"></i>
-              </div>
-              <div class="text-xs text-[#1f2328] font-medium leading-tight">
-                Redução de <strong class="text-[#11376e]">4.1% para 1.8%</strong> na taxa mensal de churn voluntário.
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Footer -->
-          <div>
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Python</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">XGBoost</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">PostgreSQL</span>
-              <span class="px-2 py-0.5 bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76] rounded text-xs font-medium">Metabase</span>
-            </div>
-
-            <a href="projetos/churn-prediction-retencao.html"
-              class="w-full px-4 py-2.5 rounded-xl bg-[#f6f8fa] hover:bg-[#11376e] border border-[#d0d7de] hover:border-[#11376e] text-[#1f2328] hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer group/btn">
-              <span>Ler Estudo de Caso</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"></i>
-            </a>
-          </div>
-        </div>
-      </article>
-
+    <!-- Estado Vazio: Novos Projetos em Breve -->
+    <div id="empty-projects-state" class="bg-white rounded-2xl border border-[#d0d7de] p-10 sm:p-14 text-center max-w-xl mx-auto my-10 shadow-xs">
+      <div class="w-14 h-14 rounded-2xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="folder-kanban" class="w-7 h-7"></i>
+      </div>
+      <h3 class="text-lg font-bold text-[#1f2328] mb-2">Novos projetos em desenvolvimento</h3>
+      <p class="text-xs sm:text-sm text-[#656d76] max-w-md mx-auto leading-relaxed mb-6">
+        Estou preparando novos casos de estudo reais e produtos de dados para compartilhar aqui. Em breve, análises completas, arquiteturas e dashboards estarão disponíveis.
+      </p>
+      <a href="blog.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#11376e] text-white text-xs font-semibold hover:bg-[#184a91] transition-all shadow-sm">
+        <i data-lucide="book-open" class="w-4 h-4"></i>
+        <span>Explorar artigos do blog</span>
+      </a>
     </div>
 
     <!-- Empty State de Busca -->
@@ -868,44 +994,6 @@
     </div>
 
   </main>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-     CTA BANNER: CONECTAR E CONVERSAR
-  ═══════════════════════════════════════════════════════ -->
-  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-20">
-    <div
-      class="bg-gradient-to-r from-[#0b1e3a] via-[#102a52] to-[#0b1e3a] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border border-white/10 shadow-xl relative overflow-hidden">
-      <!-- Ambient light -->
-      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-xl z-10">
-        <div class="text-xs font-bold text-[#38bdf8] uppercase tracking-widest mb-2">VAMOS CONSTRUIR JUNTOS</div>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
-          Tem um desafio de dados ou quer trocar uma ideia?
-        </h2>
-        <p class="text-xs sm:text-sm text-slate-300 font-normal max-w-md mb-6 leading-relaxed">
-          Estou sempre aberto a novas conversas, parcerias, oportunidades e desafios em analytics, engenharia de dados e
-          produtos de IA.
-        </p>
-        <a href="mailto:contato@marcosdataproduct.com"
-          class="px-6 py-3 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-xs inline-flex items-center gap-2 shadow-md transition-all hover:-translate-y-0.5">
-          <span>Iniciar conversa</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-
-      <!-- Right Side Brand Badge -->
-      <div
-        class="flex items-center gap-4 z-10 self-start md:self-center pl-0 md:pl-8 border-t md:border-t-0 md:border-l border-white/10 pt-6 md:pt-0 w-full md:w-auto">
-        <img src="assets/img/logo-simples-white.png" alt="Marcos Data Product" class="w-12 h-12 object-contain" />
-        <div class="text-sm font-semibold text-white/90 leading-tight">
-          Dados. Ideias.<br />
-          Pessoas. Impacto.
-        </div>
-      </div>
-    </div>
-  </section>
 
 
   <!-- ═══════════════════════════════════════════════════════
@@ -1202,7 +1290,7 @@
         }
 
         if (emptyState) {
-          if (visibleCount === 0) {
+          if (visibleCount === 0 && cards.length > 0 && (currentQuery.trim() !== '' || currentFilter !== 'all')) {
             emptyState.classList.remove("hidden");
           } else {
             emptyState.classList.add("hidden");
@@ -1343,6 +1431,42 @@
           document.body.style.overflow = "";
         });
       }
+
+      // 6. Animação Dinâmica dos Indicadores no Dashboard do Notebook (Hero)
+      const kpiReceita = document.getElementById("laptop-kpi-receita");
+      const kpiUsuarios = document.getElementById("laptop-kpi-usuarios");
+      const kpiConversao = document.getElementById("laptop-kpi-conversao");
+
+      function animateLaptopKpis() {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const duration = 1200;
+        const start = performance.now();
+
+        function tick(now) {
+          const elapsed = Math.min(1, (now - start) / duration);
+          const ease = 1 - Math.pow(1 - elapsed, 3); // cubic ease-out
+
+          if (kpiReceita) {
+            const val = (2.4 * ease).toFixed(1).replace(".", ",");
+            kpiReceita.textContent = `R$ ${val}M`;
+          }
+          if (kpiUsuarios) {
+            const val = Math.round(148 * ease);
+            kpiUsuarios.textContent = `${val} mil`;
+          }
+          if (kpiConversao) {
+            const val = (3.2 * ease).toFixed(1).replace(".", ",");
+            kpiConversao.textContent = `${val}%`;
+          }
+
+          if (elapsed < 1) {
+            requestAnimationFrame(tick);
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+
+      setTimeout(animateLaptopKpis, 350);
     });
   </script>
 

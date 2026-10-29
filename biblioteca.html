@@ -37,6 +37,7 @@
 
   <!-- Main Styles -->
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="preload" as="image" href="assets/img/hero_section_biblioteca_v2.png" fetchpriority="high">
 
   <style>
     /* Inter Typography & Design System Overrides */
@@ -44,65 +45,154 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Hero section: Viewport Stability & Photographic Editorial Layout */
-    .biblioteca-hero-container {
+    /* ═══════════════════════════════════════════════
+       HERO BIBLIOTECA: EDITORIAL LIGHT + FOTOGRAFIA & PILARES
+       ═══════════════════════════════════════════════ */
+    :root {
+      --hero-blue: #0055ff;
+      --hero-navy: #0b1e3a;
+      --hero-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-biblioteca {
       position: relative;
-      background-image: url('assets/img/hero_section_biblioteca.png');
-      background-position: center right;
-      background-repeat: no-repeat;
-      background-size: cover;
-      min-height: 460px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      overflow: hidden;
     }
 
-    /* Máscara de gradiente Deep Navy editorial */
-    .biblioteca-hero-gradient-mask {
-      background: linear-gradient(
-        to right,
-        rgba(11, 30, 58, 0.96) 0%,
-        rgba(11, 30, 58, 0.90) 42%,
-        rgba(11, 30, 58, 0.60) 65%,
-        rgba(11, 30, 58, 0.22) 85%,
-        rgba(11, 30, 58, 0.0) 100%
-      );
-    }
-
-    @media (max-width: 1023px) {
-      .biblioteca-hero-container {
-        background-position: 72% center;
-        min-height: 400px;
+    @media (min-width: 1024px) {
+      .hero-biblioteca {
+        display: flex;
+        align-items: center;
+        min-height: 560px;
+        background-color: #ffffff;
       }
-      .biblioteca-hero-gradient-mask {
-        background: linear-gradient(
-          to bottom,
-          rgba(11, 30, 58, 0.96) 0%,
-          rgba(11, 30, 58, 0.91) 68%,
-          rgba(11, 30, 58, 0.55) 100%
-        );
+
+      /* Cena fotográfica no desktop: próxima ao título no topo e recuada suavemente na base para leitura dos 4 pilares */
+      .hero-biblioteca__media {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 60%;
+        height: 100%;
+        background: url('assets/img/hero_section_biblioteca_v2.png') right center / cover no-repeat;
+        -webkit-mask-image: linear-gradient(104deg, transparent 0%, rgba(0,0,0,0.08) 12%, rgba(0,0,0,0.68) 26%, #000 38%);
+                mask-image: linear-gradient(104deg, transparent 0%, rgba(0,0,0,0.08) 12%, rgba(0,0,0,0.68) 26%, #000 38%);
+        z-index: 1;
+        pointer-events: none;
       }
     }
 
-    /* Hero Category Pills */
-    .hero-cat-pill {
-      background-color: rgba(11, 30, 58, 0.70) !important;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.20) !important;
-      color: #e2e8f0 !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      white-space: nowrap;
+    @media (min-width: 1440px) {
+      .hero-biblioteca {
+        min-height: 580px;
+      }
+      .hero-biblioteca__media {
+        width: 58%;
+      }
     }
-    .hero-cat-pill:hover {
-      background-color: rgba(11, 30, 58, 0.95) !important;
-      border-color: rgba(255, 255, 255, 0.45) !important;
-      color: #ffffff !important;
-      transform: translateY(-1px);
+
+    /* Imagem fotográfica no mobile (abaixo do texto para contraste perfeito) */
+    .hero-biblioteca__media-mobile {
+      position: relative;
+      height: 320px;
+      background: url('assets/img/hero_section_biblioteca_v2.png') right center / cover no-repeat;
+      border-top: 1px solid #e2e8f0;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%);
+              mask-image: linear-gradient(to bottom, transparent 0%, #000 14%);
     }
-    .hero-cat-pill.active {
-      border: 1px solid #38bdf8 !important;
-      background-color: rgba(56, 189, 248, 0.20) !important;
-      color: #ffffff !important;
-      font-weight: 500 !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+    @media (min-width: 640px) {
+      .hero-biblioteca__media-mobile { height: 390px; }
+    }
+    @media (min-width: 1024px) {
+      .hero-biblioteca__media-mobile { display: none; }
+    }
+
+    /* Kicker com traço azul */
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #0052cc;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .hero-kicker::after {
+      content: '';
+      width: 48px;
+      height: 1.5px;
+      background-color: #0052cc;
+      border-radius: 9999px;
+    }
+
+    /* Título principal */
+    .hero-biblioteca-title {
+      color: #0b1e3a;
+      font-size: clamp(2.25rem, 3.8vw + 0.5rem, 3.65rem);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+    }
+    .hero-biblioteca-title .accent-blue {
+      color: #0055ff;
+    }
+
+    /* Pilares inferiores com divisórias verticais sutis e névoa branca protetora de contraste */
+    .hero-pillars-bar {
+      position: relative;
+      max-width: 520px;
+      padding: 0.6rem 0.5rem;
+      border-radius: 14px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.92) 78%, rgba(255,255,255,0.65) 100%);
+      box-shadow: 0 0 28px 14px rgba(255, 255, 255, 0.78);
+    }
+    .hero-pillar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0.25rem 0.5rem;
+      text-decoration: none;
+      cursor: default;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-pillar-col__icon {
+      color: #0055ff;
+      margin-bottom: 0.5rem;
+    }
+    .hero-pillar-col__title {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      color: #0b1e3a;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+    .hero-pillar-col__sub {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: #334155;
+      line-height: 1.35;
+    }
+
+    /* Animações suaves de entrada */
+    .hero-reveal {
+      opacity: 0;
+      animation: heroReveal 800ms var(--hero-ease) forwards;
+      animation-delay: var(--d, 0ms);
+    }
+    @keyframes heroReveal {
+      from { opacity: 0; translate: 0 14px; }
+      to   { opacity: 1; translate: 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-reveal { animation: none; opacity: 1; }
     }
 
     /* Active Nav Link with blue line underline */
@@ -302,13 +392,7 @@
           <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
         </button>
 
-        <!-- CTA "Vamos conversar" -->
-        <a href="mailto:contato@marcosdataproduct.com" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-xs font-semibold shadow-xs hover:shadow-sm transition-all hover:-translate-y-0.5">
-          <span>Vamos conversar</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
-
-        <!-- Mobile Menu Toggle -->
+<!-- Mobile Menu Toggle -->
         <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa]" id="mobile-btn" aria-label="Abrir Menu">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
@@ -332,109 +416,103 @@
       <a href="biblioteca.html" class="mobile-link active font-semibold text-[#11376e]">Biblioteca</a>
       <a href="sobre.html" class="mobile-link">Sobre</a>
     </div>
-    <div class="mt-8 pt-6 border-t border-slate-200">
-      <a href="mailto:contato@marcosdataproduct.com" class="w-full py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white text-center text-sm font-semibold flex items-center justify-center gap-2">
-        <span>Vamos conversar</span>
-        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </a>
-    </div>
-  </div>
+</div>
 
   <!-- ═══════════════════════════════════════════════════════
-     HERO SECTION
+     HERO SECTION: LIVROS QUE AMPLIAM O OLHAR SOBRE DADOS E TECNOLOGIA
   ═══════════════════════════════════════════════════════ -->
-  <section class="biblioteca-hero-container relative overflow-hidden flex items-center text-white">
-    <!-- Ambient Gradient Mask -->
-    <div class="biblioteca-hero-gradient-mask absolute inset-0 z-0"></div>
+  <section class="hero-biblioteca" aria-labelledby="hero-biblioteca-title">
 
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 sm:py-20 relative z-10 w-full">
-      <div class="max-w-3xl">
-        
-        <!-- Eyebrow -->
-        <span class="text-xs sm:text-sm font-bold text-[#38bdf8] uppercase tracking-[0.22em] block mb-4">
-          BIBLIOTECA
-        </span>
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-12 sm:pb-16 relative z-10 w-full">
+      <div class="max-w-[560px] xl:max-w-[600px]">
 
-        <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08] mb-5">
-          Livros que ampliam<br />
-          <span class="text-[#38bdf8]">perspectivas.</span>
+        <!-- Kicker: MARCOS DATA PRODUCT ——— -->
+        <div class="hero-reveal mb-5" style="--d: 50ms;">
+          <span class="hero-kicker">Marcos Data Product</span>
+        </div>
+
+        <!-- Label: BIBLIOTECA -->
+        <div class="hero-reveal mb-3.5" style="--d: 100ms;">
+          <span class="text-xs font-bold text-[#0b1e3a] uppercase tracking-[0.22em] block">
+            BIBLIOTECA
+          </span>
+        </div>
+
+        <!-- Headline: Livros que ampliam o olhar sobre dados e tecnologia. -->
+        <h1 id="hero-biblioteca-title" class="hero-biblioteca-title hero-reveal mb-5" style="--d: 160ms;">
+          Livros que<br />
+          ampliam o olhar<br />
+          <span class="accent-blue">sobre dados</span><br />
+          <span class="accent-blue">e tecnologia.</span>
         </h1>
 
-        <!-- Subtitle (17 words <= 20 words limit) -->
-        <p class="text-base sm:text-lg text-slate-200 leading-relaxed mb-8 max-w-2xl font-normal">
-          Uma seleção de livros que me ajudam a pensar melhor sobre dados, negócios, tecnologia e a vida.
+        <!-- Descrição -->
+        <p class="hero-reveal text-sm sm:text-[0.95rem] text-[#475569] font-medium leading-relaxed mb-8 max-w-[510px]" style="--d: 230ms;">
+          Uma seleção pessoal de livros que ajudam a entender, analisar e aplicar conceitos de dados, analytics, business, product e inteligência artificial.
         </p>
 
-        <!-- Search Bar (Pill rounded-full) -->
-        <div class="relative w-full max-w-[760px] mb-4">
-          <div class="flex items-center bg-[#0d1f38]/85 hover:bg-[#0d1f38] backdrop-blur-md border border-white/20 hover:border-white/35 rounded-full px-5 py-3.5 sm:py-4 text-white transition-all shadow-xl focus-within:border-[#38bdf8] focus-within:ring-2 focus-within:ring-[#38bdf8]/30">
-            <i data-lucide="search" class="w-5 h-5 text-slate-300 mr-3.5 shrink-0"></i>
-            <input 
-              type="text" 
-              id="library-search" 
-              placeholder="Buscar por título, autor ou tema..." 
-              class="bg-transparent border-none outline-none text-sm sm:text-base text-white placeholder-slate-400 w-full focus:outline-none"
-            />
-          </div>
-        </div>
+        <!-- 4 Pilares Inferiores com Divisórias Verticais (Exatamente como na imagem) -->
+        <div class="hero-pillars-bar hero-reveal grid grid-cols-2 sm:grid-cols-4 sm:divide-x sm:divide-slate-200/90 gap-y-4 -mx-2" style="--d: 290ms;">
 
-        <!-- Category Buttons directly in the Hero (Organizado em duas linhas para não cortar nenhuma categoria) -->
-        <div class="flex flex-col gap-2.5 max-w-[760px] mb-8" id="hero-category-pills">
-          <!-- Linha 1: Dados, Negócios, Tecnologia, Produto -->
-          <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="dados">
-              <i data-lucide="database" class="w-3.5 h-3.5 text-sky-400"></i>
-              <span>Dados</span>
-            </button>
-            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="negocios">
-              <i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-400"></i>
-              <span>Negócios</span>
-            </button>
-            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="tecnologia">
-              <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
-              <span>Tecnologia</span>
-            </button>
-            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="produto">
-              <i data-lucide="box" class="w-3.5 h-3.5 text-rose-400"></i>
-              <span>Produto</span>
-            </button>
+          <!-- Coluna 1: LIVROS -->
+          <div class="hero-pillar-col">
+            <div class="hero-pillar-col__icon">
+              <i data-lucide="book-open" class="w-5 h-5" stroke-width="1.8"></i>
+            </div>
+            <div class="hero-pillar-col__title">LIVROS</div>
+            <div class="hero-pillar-col__sub">Conceitos<br />e fundamentos</div>
           </div>
-          <!-- Linha 2: Carreira, Mentalidade, Sociedade -->
-          <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
-            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="carreira">
-              <i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-400"></i>
-              <span>Carreira</span>
-            </button>
-            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="mentalidade">
-              <i data-lucide="brain" class="w-3.5 h-3.5 text-amber-400"></i>
-              <span>Mentalidade</span>
-            </button>
-            <button class="cat-pill hero-cat-pill btn-tactile px-3.5 py-1.5 rounded-full text-xs font-medium cursor-pointer shrink-0 inline-flex items-center gap-1.5" data-cat="sociedade">
-              <i data-lucide="globe" class="w-3.5 h-3.5 text-sky-400"></i>
-              <span>Sociedade</span>
-            </button>
-          </div>
-        </div>
 
-        <!-- Quote at Bottom Left -->
-        <div class="pt-1">
-          <p class="text-sm sm:text-base italic text-slate-200 leading-relaxed mb-1">
-            “Grandes ideias nascem de boas leituras.”
-          </p>
-          <p class="text-xs sm:text-sm text-slate-400 font-normal">
-            Marcos Aurélio
-          </p>
+          <!-- Coluna 2: TEMAS -->
+          <div class="hero-pillar-col">
+            <div class="hero-pillar-col__icon">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="14" width="3.5" height="6" rx="0.6" />
+                <rect x="8.5" y="10" width="3.5" height="10" rx="0.6" />
+                <rect x="14" y="5" width="3.5" height="15" rx="0.6" />
+                <rect x="19.5" y="11" width="2.5" height="9" rx="0.6" />
+                <line x1="2" y1="20" x2="23" y2="20" />
+              </svg>
+            </div>
+            <div class="hero-pillar-col__title">TEMAS</div>
+            <div class="hero-pillar-col__sub">Dados, analytics,<br />business, product<br />e IA</div>
+          </div>
+
+          <!-- Coluna 3: RECOMENDAÇÕES -->
+          <div class="hero-pillar-col">
+            <div class="hero-pillar-col__icon">
+              <i data-lucide="search" class="w-5 h-5" stroke-width="1.8"></i>
+            </div>
+            <div class="hero-pillar-col__title">RECOMENDAÇÕES</div>
+            <div class="hero-pillar-col__sub">Seleção com<br />contexto e notas</div>
+          </div>
+
+          <!-- Coluna 4: SEMPRE EM EVOLUÇÃO -->
+          <div class="hero-pillar-col">
+            <div class="hero-pillar-col__icon">
+              <i data-lucide="bookmark" class="w-5 h-5" stroke-width="1.8"></i>
+            </div>
+            <div class="hero-pillar-col__title">SEMPRE EM EVOLUÇÃO</div>
+            <div class="hero-pillar-col__sub">Novas leituras<br />e descobertas</div>
+          </div>
+
         </div>
 
       </div>
     </div>
+
+    <!-- Cena Fotográfica no Desktop (6 livros empilhados, caneca, caderno e estante) -->
+    <div class="hero-biblioteca__media hidden lg:block" aria-hidden="true"></div>
+
+    <!-- Cena Fotográfica exibida no mobile abaixo do texto -->
+    <div class="hero-biblioteca__media-mobile lg:hidden" aria-hidden="true"></div>
+
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
      MAIN CONTENT AREA: 2 COLUNAS (CATÁLOGO À ESQUERDA, FILTROS À DIREITA)
   ═══════════════════════════════════════════════════════ -->
-  <main class="max-w-7xl mx-auto px-5 sm:px-8 py-10">
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 pt-10 pb-20">
     <div class="flex flex-col lg:flex-row gap-8 items-start">
       
       <!-- ═════════════════════════════════════════════════
@@ -442,13 +520,24 @@
       ═════════════════════════════════════════════════ -->
       <section class="flex-1 min-w-0 w-full order-1">
 
-        <!-- Barra Superior: Total de Resultados -->
-        <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#d0d7de]">
+        <!-- Barra Superior: Total de Resultados & Busca -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 pb-4 mb-6 border-b border-[#d0d7de]">
           <div>
             <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Catálogo de Leituras</h2>
             <div class="text-xs text-[#656d76] mt-0.5">
               <span id="results-count" class="font-bold text-[#11376e]">3</span> livros encontrados
             </div>
+          </div>
+
+          <!-- Busca em Tempo Real no Catálogo -->
+          <div class="relative w-full sm:w-72 md:w-80 shrink-0">
+            <i data-lucide="search" class="w-4 h-4 text-[#8c959f] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+            <input 
+              type="text" 
+              id="library-search" 
+              placeholder="Buscar por título, autor ou tema..." 
+              class="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-white border border-[#d0d7de] focus:border-[#11376e] rounded-xl outline-none transition-all placeholder-[#8c959f] text-[#1f2328] focus:ring-2 focus:ring-[#11376e]/15"
+            />
           </div>
         </div>
 
@@ -758,42 +847,6 @@
   </main>
 
   <!-- ═══════════════════════════════════════════════════════
-     NEWSLETTER SECTION (DEEP NAVY COM GRADIENTE)
-  ═══════════════════════════════════════════════════════ -->
-  <section class="max-w-7xl mx-auto px-5 sm:px-8 mb-16">
-    <div class="bg-gradient-to-r from-[#0b1e3a] via-[#102a52] to-[#0b1e3a] rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl border border-white/10 relative overflow-hidden">
-      <!-- Ambient light -->
-      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="max-w-xl z-10">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
-          Mais ideias, toda semana.
-        </h2>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-          Receba recomendações de livros, artigos e conteúdos sobre dados, negócios e tecnologia.
-        </p>
-      </div>
-
-      <div class="w-full md:w-auto z-10">
-        <form class="flex flex-col sm:flex-row items-center gap-3 w-full max-w-md" onsubmit="event.preventDefault(); alert('Obrigado por se inscrever na nossa curadoria semanal!');">
-          <div class="relative w-full sm:w-72">
-            <i data-lucide="mail" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-            <input 
-              type="email" 
-              placeholder="Seu e-mail" 
-              required
-              class="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 hover:bg-white/15 focus:bg-white/20 border border-white/20 focus:border-[#38bdf8] text-sm text-white placeholder-slate-400 focus:outline-none transition-all"
-            />
-          </div>
-          <button type="submit" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-sm transition-all shadow-md shrink-0 cursor-pointer">
-            Inscrever
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════
      MODAL DE DETALHES DO LIVRO
   ═══════════════════════════════════════════════════════ -->
   <div id="book-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300">
@@ -823,19 +876,9 @@
         <h3 id="modal-title" class="text-2xl font-bold text-[#1f2328] mb-1 tracking-tight">
           Título da Obra
         </h3>
-        <p id="modal-author" class="text-sm font-medium text-[#656d76] mb-4">
+        <p id="modal-author" class="text-sm font-medium text-[#656d76] mb-5">
           Autor
         </p>
-
-        <!-- Rating Bar -->
-        <div class="flex items-center gap-2 py-3 border-y border-[#d0d7de] mb-5 text-xs text-[#656d76]">
-          <div class="flex items-center gap-1 font-bold text-amber-600">
-            <i data-lucide="star" class="w-4 h-4 fill-amber-500 text-amber-500"></i>
-            <span id="modal-rating">4.8</span>
-          </div>
-          <span class="text-slate-300">·</span>
-          <span>Curadoria Marcos Data Product</span>
-        </div>
 
         <h4 class="text-xs font-bold text-[#1f2328] uppercase tracking-wider mb-2">
           Sobre a obra &amp; notas do Marcos
@@ -1054,7 +1097,6 @@
       function createBookCard(book) {
         if (!book) return document.createElement('div');
         const bookId = book.id || ('book-' + Math.random().toString(36).substr(2, 9));
-        const isSaved = Array.isArray(savedBookmarks) && savedBookmarks.includes(bookId);
         const card = document.createElement('div');
         card.className = "bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item";
         card.setAttribute('data-id', bookId);
@@ -1068,40 +1110,27 @@
           return `<span class="text-xs font-semibold px-2 py-0.5 rounded-md ${badgeClass}">${cleanTag}</span>`;
         }).join('');
 
-        const rawRating = parseFloat(book.rating);
-        const displayRating = !isNaN(rawRating) ? rawRating.toFixed(1) : '4.8';
         const titleSafe = (book.title || 'Sem título').replace(/"/g, '&quot;');
         const authorSafe = (book.author || 'Autor desconhecido').replace(/"/g, '&quot;');
         const coverSafe = book.cover_image || 'assets/img/books/cover-estatistica-o-que-e.webp';
         const descSafe = (book.short_desc || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
         card.innerHTML = `
-          <!-- Botão Bookmark no Canto Superior -->
-          <button class="bookmark-btn absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/80 hover:bg-white text-[#656d76] hover:text-[#11376e] transition-colors shadow-xs ${isSaved ? 'saved text-[#11376e]' : ''}" title="Salvar livro" onclick="event.stopPropagation(); toggleBookmark('${bookId}', this)">
-            <i data-lucide="bookmark" class="w-3.5 h-3.5 ${isSaved ? 'fill-[#11376e]' : ''}"></i>
-          </button>
-
           <!-- Capa do Livro -->
           <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
             <img src="${coverSafe}" alt="${titleSafe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" loading="lazy" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';">
           </div>
 
-          <!-- Título e Autor -->
-          <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-1 mb-0.5" title="${titleSafe}">
+          <!-- Título e Autor (Título inteiro sem truncamento) -->
+          <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="${titleSafe}">
             ${titleSafe}
           </h3>
-          <p class="text-xs text-[#656d76] mb-1 line-clamp-1 font-medium">
+          <p class="text-xs text-[#656d76] mb-2 font-medium">
             ${authorSafe}
           </p>
 
-          <!-- Rating -->
-          <div class="flex items-center gap-1 text-xs text-amber-500 font-bold mb-2">
-            <i data-lucide="star" class="w-3 h-3 fill-amber-500 text-amber-500"></i>
-            <span>${displayRating}</span>
-          </div>
-
-          <!-- Descrição curta -->
-          <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed mb-3">
+          <!-- Descrição curta / Subtítulo expandido -->
+          <p class="text-xs text-[#656d76] line-clamp-5 leading-relaxed mb-3.5">
             ${descSafe}
           </p>
 
@@ -1111,8 +1140,7 @@
           </div>
 
           <!-- Rodapé com Detalhes -->
-          <div class="pt-2.5 border-t border-[#d0d7de]/50 flex items-center justify-between mt-auto">
-            <span class="text-xs text-[#656d76] font-medium">Curadoria</span>
+          <div class="pt-2.5 border-t border-[#d0d7de]/50 flex items-center justify-end mt-auto">
             <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium">
               Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
             </span>
@@ -1125,21 +1153,8 @@
         return card;
       }
 
-      // Função de Salvar/Remover Bookmark
-      window.toggleBookmark = function(bookId, btn) {
-        if (savedBookmarks.includes(bookId)) {
-          savedBookmarks = savedBookmarks.filter(id => id !== bookId);
-          btn.classList.remove('saved', 'text-[#11376e]');
-          const svg = btn.querySelector('svg');
-          if (svg) svg.classList.remove('fill-[#11376e]');
-        } else {
-          savedBookmarks.push(bookId);
-          btn.classList.add('saved', 'text-[#11376e]');
-          const svg = btn.querySelector('svg');
-          if (svg) svg.classList.add('fill-[#11376e]');
-        }
-        localStorage.setItem('mdp_bookmarked_books', JSON.stringify(savedBookmarks));
-      };
+      // Função de Salvar/Remover Bookmark (mantida como no-op seguro caso referenciada externamente)
+      window.toggleBookmark = function(bookId, btn) {};
 
       // Modal Elements
       const modal = document.getElementById('book-modal');
@@ -1160,8 +1175,10 @@
         if (!book) return;
         modalTitle.textContent = book.title || 'Sem título';
         modalAuthor.textContent = book.author || 'Autor desconhecido';
-        const r = parseFloat(book.rating);
-        modalRating.textContent = !isNaN(r) ? r.toFixed(1) : '4.8';
+        if (modalRating) {
+          const r = parseFloat(book.rating);
+          modalRating.textContent = !isNaN(r) ? r.toFixed(1) : '4.8';
+        }
         modalDesc.textContent = book.desc_full || book.short_desc || '';
         modalLink.href = book.amazon_link || '#';
         const cover = book.cover_image || 'assets/img/books/cover-estatistica-o-que-e.webp';
