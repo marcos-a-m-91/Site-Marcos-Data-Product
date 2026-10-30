@@ -1,0 +1,22 @@
+<svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Moldura -->
+    <path d="
+      M20 40
+      Q20 25 35 25
+      L160 10
+      Q180 10 185 30
+      L185 120
+      Q185 140 165 145
+      L150 140
+    "></path>
+
+    <!-- Barras -->
+    <rect x="20" y="90" width="20" height="50" rx="10"></rect>
+    <rect x="55" y="70" width="20" height="70" rx="10"></rect>
+    <rect x="90" y="50" width="20" height="90" rx="10"></rect>
+    <rect x="125" y="30" width="20" height="110" rx="10"></rect>
+
+  </g>
+</svg>

@@ -14,18 +14,56 @@
   <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Blog - Marcos Data Product | Ideias que conectam dados ao mundo real</title>
-  <meta name="description"
-    content="Análises, aprendizados e reflexões sobre dados, negócios, produto e tecnologia: do conceito à aplicação no mundo real." />
+  <title>Blog de Business Analytics, Power BI e IA | Marcos Aurélio</title>
+  <meta name="description" content="Artigos práticos sobre Business Analytics, Power BI, Engenharia de Dados, Estatística e IA aplicada a decisões reais de negócio. Leia as análises." />
+
+    <link rel="canonical" href="https://marcosdataproduct.com/blog" />
+  <meta property="og:site_name" content="Marcos Data Product" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://marcosdataproduct.com/blog" />
+  <meta property="og:title" content="Blog de Business Analytics, Power BI e IA | Marcos Aurélio" />
+  <meta property="og:description" content="Artigos práticos sobre Business Analytics, Power BI, Engenharia de Dados, Estatística e IA aplicada a decisões reais de negócio. Leia as análises." />
+  <meta property="og:image" content="https://marcosdataproduct.com/assets/img/og-default.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Dados Estruturados JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "https://marcosdataproduct.com/blog#blog",
+        "url": "https://marcosdataproduct.com/blog",
+        "name": "Blog - Marcos Data Product",
+        "description": "Artigos práticos e análises sobre Business Analytics, Power BI e IA.",
+        "publisher": {
+          "@type": "Person",
+          "name": "Marcos Aurélio"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://marcosdataproduct.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://marcosdataproduct.com/blog"}
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- ═══════════════════════════════════════════════
        DEPENDENCIES
   ═══════════════════════════════════════════════ -->
   <!-- Vendor Libraries -->
-  <script src="assets/vendor/gsap_4a57399e4113.js"></script>
-  <script src="assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
-  <script src="assets/vendor/resource_3fa48481346f.js"></script>
-  <script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+  
+  
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <script defer src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
 
   <!-- Google Font: Inter (Identidade Visual Oficial) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,15 +72,15 @@
     rel="stylesheet">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
 
   <!-- Main Styles -->
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="preload" as="image" href="assets/img/hero_section_blog_v2.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preload" as="image" href="/assets/img/hero-blog.webp" fetchpriority="high">
 
   <style>
     /* Inter Typography & Design System Overrides */
@@ -88,7 +126,7 @@
     .hero-blog__media {
       position: relative;
       height: 480px;
-      background: url('assets/img/hero_section_blog_v2.jpg') right center / cover no-repeat;
+      background: url('/assets/img/hero-blog.webp') right center / cover no-repeat;
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%);
       mask-image: linear-gradient(to bottom, transparent 0%, #000 18%);
       display: flex;
@@ -652,18 +690,18 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between">
 
       <!-- Logo -->
-      <a href="index.html" class="flex items-center group" aria-label="Marcos Data Product">
-        <img src="assets/img/logo-clara.png" alt="Marcos Data Product Logo"
+      <a href="/" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="/assets/img/logo-clara.webp" width="180" height="40" alt="Marcos Data Product Logo"
           class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />
       </a>
 
       <!-- Desktop Nav Links -->
       <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
-        <a href="index.html" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
-        <a href="blog.html" class="nav-item-active">Blog</a>
-        <a href="projetos.html" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
-        <a href="biblioteca.html" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
-        <a href="sobre.html" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
+        <a href="/" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
+        <a href="/blog" class="nav-item-active">Blog</a>
+        <a href="/projetos" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
+        <a href="/biblioteca" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
+        <a href="/sobre" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
       </nav>
 
       <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
@@ -691,15 +729,15 @@
       id="mobile-close" aria-label="Fechar menu">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="index.html" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
-      <img src="assets/img/logo-clara.png" alt="Marcos Data Product" class="h-8 w-auto object-contain" />
+    <a href="/" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
+      <img src="/assets/img/logo-clara.webp" width="180" height="40" alt="Marcos Data Product" class="h-8 w-auto object-contain" />
     </a>
     <div class="flex flex-col gap-2">
-      <a href="index.html" class="mobile-link">Home</a>
-      <a href="blog.html" class="mobile-link active font-semibold text-[#11376e]">Blog</a>
-      <a href="projetos.html" class="mobile-link">Projetos</a>
-      <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
-      <a href="sobre.html" class="mobile-link">Sobre</a>
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/blog" class="mobile-link active font-semibold text-[#11376e]">Blog</a>
+      <a href="/projetos" class="mobile-link">Projetos</a>
+      <a href="/biblioteca" class="mobile-link">Biblioteca</a>
+      <a href="/sobre" class="mobile-link">Sobre</a>
     </div>
   </div>
 
@@ -725,16 +763,14 @@
 
         <!-- Headline -->
         <h1 id="hero-title" class="hero-title hero-reveal mb-5 sm:mb-6" style="--d: 140ms;">
-          Ideias, análises e<br />
-          conteúdo sobre<br />
-          <span class="accent">dados e tecnologia.</span>
+          Business Analytics,<br />
+          Power BI e<br />
+          <span class="accent">Inteligência Artificial.</span>
         </h1>
 
         <!-- Descrição -->
-        <p class="hero-reveal text-base sm:text-[1.0625rem] text-[#475569] leading-relaxed max-w-[520px] mb-8 lg:mb-12"
-          style="--d: 240ms;">
-          Ideias, reflexões, aprendizados e descobertas sobre assuntos que despertam minha curiosidade e merecem ser
-          compartilhados.
+        <p class="hero-reveal text-base sm:text-[1.0625rem] text-[#475569] leading-relaxed max-w-[520px] mb-8 lg:mb-12" style="--d: 240ms;">
+          Artigos práticos, tutoriais e reflexões de <strong>Marcos Aurélio</strong> sobre Business Analytics, Power BI, Engenharia de Dados, Estatística e Inteligência Artificial aplicada a decisões reais de negócio.
         </p>
 
         <!-- 6 Categorias como Botões de Filtro Interativos -->
@@ -910,7 +946,7 @@
               <div class="hero-feat-card__body">
                 <div>
                   <span class="text-[9px] font-bold text-[#38bdf8] uppercase tracking-wider block mb-1">Analytics</span>
-                  <h4 class="text-[10px] font-bold text-white line-clamp-2 leading-snug">Como transformar métricas em
+                  <p class="text-[10px] font-bold text-white line-clamp-2 leading-snug">Como transformar métricas em
                     decisões melhores</h4>
                 </div>
                 <span class="text-[9px] text-slate-400 mt-1 block">5 min de leitura</span>
@@ -928,7 +964,7 @@
               <div class="hero-feat-card__body">
                 <div>
                   <span class="text-[9px] font-bold text-[#60a5fa] uppercase tracking-wider block mb-1">AI</span>
-                  <h4 class="text-[10px] font-bold text-white line-clamp-2 leading-snug">IA na prática: casos reais e
+                  <p class="text-[10px] font-bold text-white line-clamp-2 leading-snug">IA na prática: casos reais e
                     aprendizados</h4>
                 </div>
                 <span class="text-[9px] text-slate-400 mt-1 block">8 min de leitura</span>
@@ -946,7 +982,7 @@
               <div class="hero-feat-card__body">
                 <div>
                   <span class="text-[9px] font-bold text-[#38bdf8] uppercase tracking-wider block mb-1">Product</span>
-                  <h4 class="text-[10px] font-bold text-white line-clamp-2 leading-snug">Product Analytics na prática:
+                  <p class="text-[10px] font-bold text-white line-clamp-2 leading-snug">Product Analytics na prática:
                     do dado à ação</h4>
                 </div>
                 <span class="text-[9px] text-slate-400 mt-1 block">6 min de leitura</span>
@@ -1029,46 +1065,16 @@
         <!-- Unified Posts Grid: 3 Artigos por Linha em Desktop -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" id="blog-posts-grid">
           <!-- BLOG_POSTS_START -->
-
-          <!-- Post: Viés Cognitivo - Um dos maiores sabotadores da sua análise2 (22 out 2026) -->
-          <article
-            class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full"
-            data-category="analytics" data-date="2026-10-22">
-            <a href="blog/vies-cognitivo-um-dos-maiores-sabotadores-da-sua-analise2.html"
-              class="block flex-1 flex flex-col">
-              <div
-                class="h-44 sm:h-48 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/87abc137-81c3-4e3b-8e98-693655e7d0cc_1792675591.png"
-                  alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise2"
-                  class="w-full h-full object-cover rounded-xl" />
-              </div>
-              <div class="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span
-                    class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
-                    Analytics
-                  </span>
-                  <h3
-                    class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-                    Viés Cognitivo - Um dos maiores sabotadores da sua análise2
-                  </h3>
-                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
-                    Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam
-                    sujeitas a vieses cognitivos. Entenda como esses atalhos mentais podem distorcer a interpretação dos
-                    dados, comprometer análises e influenciar decisões — e conheça práticas para reduzir seus efeitos.
-                  </p>
-                </div>
-                <div class="flex items-center justify-between text-xs text-[#656d76] pt-3 border-t border-[#d0d7de]/50">
-                  <span class="flex items-center gap-1.5">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
-                    <span class="text-[#656d76]">3 min de leitura</span>
-                  </span>
-                  <span>22 out 2026</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
+          <!-- Estado Vazio: Nenhum post -->
+          <div class="col-span-1 md:col-span-2 bg-white rounded-2xl border border-[#d0d7de] p-8 sm:p-12 text-center my-4">
+            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-3">
+              <i data-lucide="newspaper" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-base font-bold text-[#1f2328] mb-1">Novos artigos em breve</h3>
+            <p class="text-xs sm:text-sm text-[#64748b] max-w-md mx-auto leading-relaxed">
+              Estou redigindo novos artigos práticos sobre Business Analytics, Power BI, Engenharia de Dados e Inteligência Artificial. Volte em breve!
+            </p>
+          </div>
           <!-- BLOG_POSTS_END -->
 
         </div>
@@ -1097,9 +1103,9 @@
         <!-- Artigos em Destaque Sidebar Widget -->
         <div class="bg-white rounded-2xl p-5 border border-[#d0d7de] shadow-sm card-hover-clean"
           id="sidebar-featured-widget">
-          <h3 class="font-bold text-base text-[#1f2328] mb-4 tracking-tight">
+          <h2 class="font-bold text-base text-[#1f2328] mb-4 tracking-tight">
             Artigos em destaque
-          </h3>
+          </h2>
           <div class="space-y-3.5" id="sidebar-featured-list">
             <!-- FEATURED_POSTS_START -->
             <p class="text-xs text-[#64748b]">Nenhum artigo em destaque no momento.</p>
@@ -1109,12 +1115,12 @@
 
         <!-- Categorias Card -->
         <div class="bg-white rounded-2xl p-5 border border-[#d0d7de] shadow-sm card-hover-clean">
-          <h3 class="font-bold text-base text-[#1f2328] mb-4 pb-2 border-b border-[#d0d7de]/50">
+          <h2 class="font-bold text-base text-[#1f2328] mb-4 pb-2 border-b border-[#d0d7de]/50">
             Categorias
-          </h3>
+          </h2>
           <ul class="space-y-2.5">
             <li>
-              <a href="#section-data" data-filter="data"
+              <a href="#blog-feed-container" data-filter="data"
                 class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#0969da]"></span>
@@ -1125,7 +1131,7 @@
               </a>
             </li>
             <li>
-              <a href="#section-dataviz" data-filter="dataviz"
+              <a href="#blog-feed-container" data-filter="dataviz"
                 class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#8250df]"></span>
@@ -1136,7 +1142,7 @@
               </a>
             </li>
             <li>
-              <a href="#section-analytics" data-filter="analytics"
+              <a href="#blog-feed-container" data-filter="analytics"
                 class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#9a6700]"></span>
@@ -1147,7 +1153,7 @@
               </a>
             </li>
             <li>
-              <a href="#section-business" data-filter="business"
+              <a href="#blog-feed-container" data-filter="business"
                 class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#1a7f37]"></span>
@@ -1158,7 +1164,7 @@
               </a>
             </li>
             <li>
-              <a href="#section-product" data-filter="product"
+              <a href="#blog-feed-container" data-filter="product"
                 class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#cf222e]"></span>
@@ -1169,7 +1175,7 @@
               </a>
             </li>
             <li>
-              <a href="#section-ai" data-filter="ai"
+              <a href="#blog-feed-container" data-filter="ai"
                 class="cat-sidebar-link flex items-center justify-between py-1 text-xs sm:text-sm font-medium text-[#1f2328] hover:text-[#11376e] transition-colors group">
                 <span class="group-hover:translate-x-0.5 transition-transform flex items-center gap-2">
                   <span class="w-2 h-2 rounded-full bg-[#0969da]"></span>
@@ -1193,41 +1199,30 @@
   ═══════════════════════════════════════════════════════ -->
   <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-
-      <!-- Logo e Nome da Marca -->
-      <a href="index.html" class="flex items-center group" aria-label="Marcos Data Product">
-        <img src="assets/img/logo-escura.png" alt="Marcos Data Product"
-          class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
+      <a href="/" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="/assets/img/logo-escura.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />
       </a>
-
-      <!-- Frase Central da Marca -->
-      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
-        Dados para um mundo mais consciente.
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-[#94a3b8]">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <a href="/projetos" class="hover:text-white transition-colors">Projetos</a>
+        <a href="/biblioteca" class="hover:text-white transition-colors">Biblioteca</a>
+        <a href="/sobre" class="hover:text-white transition-colors">Sobre</a>
       </div>
-
-      <!-- Ícones de Redes Sociais -->
-      <div class="flex items-center gap-4 text-[#94a3b8]">
-        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="LinkedIn">
-          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+      <div class="flex items-center gap-2 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="Instagram">
-          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        <a href="https://www.instagram.com/marcos.dataproduct/" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-5 h-5"></i>
         </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="YouTube">
-          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        <a href="https://github.com/marcos-a-m-91" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
         </a>
-        <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" rel="noopener noreferrer"
-          class="hover:text-white transition-colors" aria-label="GitHub">
-          <i data-lucide="github" class="w-4.5 h-4.5"></i>
-        </a>
-        <a href="mailto:contato@marcosdataproduct.com" class="hover:text-white transition-colors" aria-label="E-mail">
-          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        <a href="mailto:marcos.a.m@live.com" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-5 h-5"></i>
         </a>
       </div>
-
     </div>
   </footer>
 
@@ -1255,22 +1250,89 @@
 
       <!-- Quick Results / Suggestions -->
       <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
-        <div class="text-xs font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões rápidas</div>
-        <a href="blog/agentes-ia-business-analytics.html"
-          class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <div class="text-[11px] font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões de navegação</div>
+        <a href="/blog" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
-                data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="newspaper" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em
-                Business Analytics</div>
-              <div class="text-xs text-[#656d76]">Artigo • IA e RAG</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Blog de Analytics e Dados</div>
+              <div class="text-[10px] text-[#656d76]">Artigos e análises técnicas</div>
             </div>
           </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/projetos" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Projetos e Casos Reais</div>
+              <div class="text-[10px] text-[#656d76]">Portfólio de soluções práticas</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/biblioteca" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca Recomendada</div>
+              <div class="text-[10px] text-[#656d76]">Curadoria de livros e referências</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/sobre" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="user" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Sobre Marcos Aurélio</div>
+              <div class="text-[10px] text-[#656d76]">Trajetória, experiências e stack</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/projetos" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Projetos e Casos Reais</div>
+              <div class="text-[10px] text-[#656d76]">Portfólio de soluções práticas</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/biblioteca" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca Recomendada</div>
+              <div class="text-[10px] text-[#656d76]">Curadoria de livros e referências</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/sobre" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="user" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Sobre Marcos Aurélio</div>
+              <div class="text-[10px] text-[#656d76]">Trajetória, experiências e stack</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+  </div>
           <i data-lucide="chevron-right"
             class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="blog/media-moda-e-mediana.html"
+        <a href="/blog"
           class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
             <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
@@ -1284,7 +1346,7 @@
           <i data-lucide="chevron-right"
             class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="blog/modelagem-star-schema-powerbi.html"
+        <a href="/blog"
           class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
             <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i
@@ -1298,7 +1360,7 @@
           <i data-lucide="chevron-right"
             class="w-4 h-4 text-[#656d76] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="biblioteca.html"
+        <a href="/biblioteca"
           class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
             <span
@@ -1321,7 +1383,7 @@
   <!-- ═══════════════════════════════════════════════════════
      UTILITY SCRIPTS
   ═══════════════════════════════════════════════════════ -->
-  <script src="assets/js/main.js"></script>
+  <script defer src="/assets/js/main.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {

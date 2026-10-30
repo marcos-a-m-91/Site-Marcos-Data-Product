@@ -1,0 +1,23 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Moldura -->
+    <path d="
+      M20 30
+      Q20 20 30 20
+      H90
+      Q100 20 100 30
+      V65
+      Q100 75 90 75
+    "></path>
+
+    <!-- Losango grande -->
+    <rect x="35" y="50" width="20" height="20" transform="rotate(45 45 60)"></rect>
+
+    <!-- Losangos pequenos -->
+    <rect x="65" y="40" width="10" height="10" transform="rotate(45 70 45)"></rect>
+    <rect x="75" y="50" width="10" height="10" transform="rotate(45 80 55)"></rect>
+    <rect x="65" y="60" width="10" height="10" transform="rotate(45 70 65)"></rect>
+
+  </g>
+</svg>

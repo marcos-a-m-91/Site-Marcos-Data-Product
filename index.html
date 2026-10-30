@@ -11,8 +11,54 @@
   <!-- End Google Tag Manager -->
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Marcos Data Product - Do dado à decisão</title>
-  <meta name="description" content="Conteúdo, projetos e aprendizados sobre dados, negócios, produto e tecnologia: do conceito à aplicação no mundo real." />
+  <title>Marcos Aurélio | Business Analytics, Power BI e Dados</title>
+  <meta name="description" content="Economista e especialista em Business Analytics (+10 anos de experiência) transformando dados brutos em decisões estratégicas. Conheça o trabalho." />
+
+    <link rel="canonical" href="https://marcosdataproduct.com/" />
+  <meta property="og:site_name" content="Marcos Data Product" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://marcosdataproduct.com/" />
+  <meta property="og:title" content="Marcos Aurélio | Business Analytics, Power BI e Dados" />
+  <meta property="og:description" content="Economista e especialista em Business Analytics (+10 anos de experiência) transformando dados brutos em decisões estratégicas. Conheça o trabalho." />
+  <meta property="og:image" content="https://marcosdataproduct.com/assets/img/og-default.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Dados Estruturados JSON-LD (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://marcosdataproduct.com/#website",
+        "url": "https://marcosdataproduct.com/",
+        "name": "Marcos Data Product",
+        "description": "Business Analytics, Power BI e Inteligência Artificial por Marcos Aurélio",
+        "publisher": {
+          "@type": "Person",
+          "@id": "https://marcosdataproduct.com/#person"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://marcosdataproduct.com/#person",
+        "name": "Marcos Aurélio",
+        "jobTitle": "Senior Business Analytics",
+        "url": "https://marcosdataproduct.com/sobre",
+        "image": "https://marcosdataproduct.com/assets/img/foto-marcos-aurelio.webp",
+        "description": "Economista e especialista em Business Analytics, Power BI, Databricks e Inteligência Artificial.",
+        "sameAs": [
+          "https://www.linkedin.com/in/marcos-a-m-m",
+          "https://github.com/marcos-a-m-91",
+          "https://www.instagram.com/marcos.dataproduct/"
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- ═══════════════════════════════════════════════
        DEPENDENCIES
@@ -20,8 +66,8 @@
   <!-- Vendor Libraries -->
   <script src="assets/vendor/gsap_4a57399e4113.js"></script>
   <script src="assets/vendor/ScrollTrigger_8669edfeb171.js"></script>
-  <script src="assets/vendor/resource_3fa48481346f.js"></script>
-  <script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <script defer src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
 
   <!-- Google Font: Inter (Official Visual Identity) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,15 +75,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
 
   <!-- Main Styles -->
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="preload" as="image" href="assets/img/hero_section_home.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preload" as="image" href="/assets/img/hero-home.webp" fetchpriority="high">
 
   <style>
     /* Official Inter Typography & Design System Overrides */
@@ -71,7 +117,7 @@
     .hero-home__media {
       position: relative;
       height: 360px;
-      background: url('assets/img/hero_section_home.jpg') right center / cover no-repeat;
+      background: url('/assets/img/hero-home.webp') right center / cover no-repeat;
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
               mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
     }
@@ -389,17 +435,17 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       
       <!-- Logo -->
-      <a href="index.html" class="flex items-center group" aria-label="Marcos Data Product">
-        <img src="assets/img/logo-clara.png" alt="Marcos Data Product Logo" class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />
+      <a href="/" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="/assets/img/logo-clara.webp" alt="Marcos Data Product" class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />
       </a>
 
       <!-- Desktop Nav Links -->
       <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
-        <a href="index.html" class="nav-item-active">Home</a>
-        <a href="blog.html" class="hover:text-[#11376e] font-medium transition-colors">Blog</a>
-        <a href="projetos.html" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
-        <a href="biblioteca.html" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
-        <a href="sobre.html" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
+        <a href="/" class="nav-item-active">Home</a>
+        <a href="/blog" class="hover:text-[#11376e] font-medium transition-colors">Blog</a>
+        <a href="/projetos" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
+        <a href="/biblioteca" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
+        <a href="/sobre" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
       </nav>
 
       <!-- Right Controls: Search, Contact CTA & Mobile Toggle -->
@@ -423,15 +469,15 @@
     <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]" id="mobile-close" aria-label="Fechar menu">
       <i data-lucide="x" class="w-5 h-5"></i>
     </button>
-    <a href="index.html" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
-      <img src="assets/img/logo-clara.png" alt="Marcos Data Product" class="h-8 w-auto object-contain" />
+    <a href="/" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
+      <img src="/assets/img/logo-clara.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain" width="180" height="40" />
     </a>
     <div class="flex flex-col gap-2">
-      <a href="index.html" class="mobile-link active font-semibold text-[#11376e]">Home</a>
-      <a href="blog.html" class="mobile-link">Blog</a>
-      <a href="projetos.html" class="mobile-link">Projetos</a>
-      <a href="biblioteca.html" class="mobile-link">Biblioteca</a>
-      <a href="sobre.html" class="mobile-link">Sobre</a>
+      <a href="/" class="mobile-link active font-semibold text-[#11376e]">Home</a>
+      <a href="/blog" class="mobile-link">Blog</a>
+      <a href="/projetos" class="mobile-link">Projetos</a>
+      <a href="/biblioteca" class="mobile-link">Biblioteca</a>
+      <a href="/sobre" class="mobile-link">Sobre</a>
     </div>
 </div>
 
@@ -606,7 +652,7 @@
           </h2>
           <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5"></div>
         </div>
-        <a href="blog.html" class="inline-flex items-center gap-1.5 text-sm font-normal text-[#2563eb] hover:text-[#1d4ed8] group">
+        <a href="/blog" class="inline-flex items-center gap-1.5 text-sm font-normal text-[#2563eb] hover:text-[#1d4ed8] group">
           <span>Explorar artigos</span>
           <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
         </a>
@@ -614,7 +660,7 @@
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
 
-        <a href="blog.html" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Data">
+        <a href="/blog" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Data">
           <div>
             <div class="text-[#2563eb] mb-4">
               <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
@@ -624,7 +670,7 @@
           </div>
         </a>
 
-        <a href="blog.html" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Data Visualization">
+        <a href="/blog" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Data Visualization">
           <div>
             <div class="text-[#2563eb] mb-4">
               <i data-lucide="pie-chart" class="w-6 h-6"></i>
@@ -634,7 +680,7 @@
           </div>
         </a>
 
-        <a href="blog.html" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Analytics">
+        <a href="/blog" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Analytics">
           <div>
             <div class="text-[#2563eb] mb-4">
               <i data-lucide="database" class="w-6 h-6"></i>
@@ -644,7 +690,7 @@
           </div>
         </a>
 
-        <a href="blog.html" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Business">
+        <a href="/blog" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Business">
           <div>
             <div class="text-[#2563eb] mb-4">
               <i data-lucide="briefcase" class="w-6 h-6"></i>
@@ -654,7 +700,7 @@
           </div>
         </a>
 
-        <a href="blog.html" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Product">
+        <a href="/blog" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de Product">
           <div>
             <div class="text-[#2563eb] mb-4">
               <i data-lucide="package" class="w-6 h-6"></i>
@@ -664,7 +710,7 @@
           </div>
         </a>
 
-        <a href="blog.html" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de AI">
+        <a href="/blog" class="card-hover-clean bg-white rounded-2xl p-5 border border-[#e2e8f0] flex flex-col justify-between group" aria-label="Conteúdos de AI">
           <div>
             <div class="text-[#2563eb] mb-4">
               <i data-lucide="cpu" class="w-6 h-6"></i>
@@ -697,7 +743,7 @@
             Artigos analíticos sobre produtos de dados, tomada de decisão e inteligência artificial aplicada.
           </p>
         </div>
-        <a href="blog.html" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
+        <a href="/blog" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
           <span>Ver todos os artigos</span>
           <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
         </a>
@@ -709,38 +755,15 @@
         <!-- 3 Posts Grid (col-span-12 lg:col-span-9) -->
         <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           <!-- HOME_RECENT_POSTS_START -->
-
-          <!-- Post 1: Viés Cognitivo - Um dos maiores sabotadores da sua análise2 -->
-          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full">
-            <a href="blog/vies-cognitivo-um-dos-maiores-sabotadores-da-sua-analise2.html" class="block flex-1 flex flex-col">
-              <!-- Capa -->
-              <div class="h-44 sm:h-48 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
-                <img src="assets/img/blog/87abc137-81c3-4e3b-8e98-693655e7d0cc_1792675591.png" alt="Viés Cognitivo - Um dos maiores sabotadores da sua análise2" class="w-full h-full object-cover rounded-xl" />
-              </div>
-              <!-- Corpo -->
-              <div class="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#9a6700]/10 text-[#9a6700]">
-                    Business Analytics
-                  </span>
-                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
-                    Viés Cognitivo - Um dos maiores sabotadores da sua análise2
-                  </h3>
-                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
-                    Mesmo com dashboards impecáveis e modelos preditivos sofisticados, nossas decisões continuam sujeitas a vieses cognitivos. Entenda como esses atalhos mentais podem distorcer a interpretação dos dados, comprometer análises e influenciar decisões — e conheça práticas para reduzir seus efeitos.
-                  </p>
-                </div>
-                <!-- Metadados -->
-                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
-                  <span class="flex items-center gap-1">
-                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 3 min de leitura
-                  </span>
-                  <span>22 out 2026</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
+          <div class="col-span-1 sm:col-span-3 bg-white rounded-2xl border border-[#d0d7de] p-8 text-center">
+            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-3">
+              <i data-lucide="newspaper" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-sm font-bold text-[#1f2328] mb-1">Novos artigos em produção</h3>
+            <p class="text-xs text-[#656d76] max-w-sm mx-auto leading-relaxed">
+              Artigos práticos sobre Business Analytics, Power BI, Engenharia de Dados e IA estão sendo preparados. Em breve estarão disponíveis aqui e no blog.
+            </p>
+          </div>
           <!-- HOME_RECENT_POSTS_END -->
         </div>
 
@@ -790,7 +813,7 @@
             <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Projetos práticos.</h2>
             <p class="text-xs text-[#656d76] mt-1">Soluções com Power BI, Databricks e analytics engineering.</p>
           </div>
-          <a href="projetos.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
+          <a href="/projetos" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group">
             <span>Ver todos os projetos</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
           </a>
@@ -824,7 +847,7 @@
             <h2 class="text-xl sm:text-2xl font-bold text-[#1f2328] tracking-tight">Leituras & Repertório.</h2>
             <p class="text-xs text-[#656d76] mt-1">Livros interessantes que te ajudarão a ver os dados de outra forma.</p>
           </div>
-          <a href="biblioteca.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group whitespace-nowrap shrink-0">
+          <a href="/biblioteca" class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-[#11376e] hover:text-[#184a91] group whitespace-nowrap shrink-0">
             <span>Ver indicações</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"></i>
           </a>
@@ -836,9 +859,9 @@
           <!-- HOME_BOOKS_START -->
 
           <!-- Livro: Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus -->
-          <a href="biblioteca.html" class="flex flex-col group" title="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus">
+          <a href="/biblioteca" class="flex flex-col group" title="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus">
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
-              <img src="assets/img/Biblioteca page/hábitos_atômicos_1792111870.jpg" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus - James Clear" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
+              <img src="assets/img/books/habitos-atomicos.webp" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus - James Clear" class="w-full h-full object-contain" width="190" height="285" loading="lazy" decoding="async" />
             </div>
             <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus
@@ -847,9 +870,9 @@
           </a>
 
           <!-- Livro: Como mentir com estatística -->
-          <a href="biblioteca.html" class="flex flex-col group" title="Como mentir com estatística">
+          <a href="/biblioteca" class="flex flex-col group" title="Como mentir com estatística">
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
-              <img src="assets/img/Biblioteca page/como_mentir_com_estatística_1792110793.jpg" alt="Como mentir com estatística - Darrell Huff" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
+              <img src="assets/img/books/como-mentir-com-estatistica.webp" alt="Como mentir com estatística - Darrell Huff" class="w-full h-full object-contain" width="190" height="285" loading="lazy" decoding="async" />
             </div>
             <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               Como mentir com estatística
@@ -858,9 +881,9 @@
           </a>
 
           <!-- Livro: Estatística: O que é, para que serve, como funciona -->
-          <a href="biblioteca.html" class="flex flex-col group" title="Estatística: O que é, para que serve, como funciona">
+          <a href="/biblioteca" class="flex flex-col group" title="Estatística: O que é, para que serve, como funciona">
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
-              <img src="assets/img/Biblioteca page/estatística_1792107395.jpg" alt="Estatística: O que é, para que serve, como funciona - Charles Wheelan" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
+              <img src="assets/img/books/estatistica-o-que-e.webp" alt="Estatística: O que é, para que serve, como funciona - Charles Wheelan" class="w-full h-full object-contain" width="190" height="285" loading="lazy" decoding="async" />
             </div>
             <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               Estatística: O que é, para que serve, como funciona
@@ -886,7 +909,7 @@
 
         <!-- Foto de Marcos à Esquerda (Altura sincronizada com o bloco de texto) -->
         <div class="flex-shrink-0 w-[190px] sm:w-[210px] md:w-[210px] lg:w-[230px] aspect-[4/5] md:aspect-auto self-stretch overflow-hidden flex items-center justify-center rounded-2xl border border-[#d0d7de]">
-          <img src="assets/img/foto-marcos-aurelio.webp" alt="Marcos Aurélio" class="w-full h-full object-cover object-top" />
+          <img src="/assets/img/foto-marcos-aurelio.webp" alt="Marcos Aurélio" class="w-full h-full object-cover object-top" width="230" height="288" loading="lazy" decoding="async" />
         </div>
 
         <!-- Texto e Apresentação (Determina a altura do bloco) -->
@@ -902,7 +925,7 @@
             </p>
           </div>
           <div>
-            <a href="sobre.html" class="btn-tactile px-7 py-3 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-sm font-semibold inline-flex items-center gap-2 shadow-sm hover:shadow">
+            <a href="/sobre" class="btn-tactile px-7 py-3 rounded-full bg-[#11376e] hover:bg-[#184a91] text-white text-sm font-semibold inline-flex items-center gap-2 shadow-sm hover:shadow">
               <span>Conhecer trajetória completa</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
@@ -931,41 +954,35 @@
   ═══════════════════════════════════════════════════════ -->
   <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-
-      <!-- Logo e Nome da Marca -->
-      <a href="index.html" class="flex items-center group" aria-label="Marcos Data Product">
-        <img src="assets/img/logo-escura.png" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />
+      <a href="/" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="/assets/img/logo-escura.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />
       </a>
-
-      <!-- Frase Central da Marca -->
-      <div class="text-sm text-[#94a3b8] font-normal tracking-wide text-center">
-        Dados. IA e muito café.
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-[#94a3b8]">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <a href="/projetos" class="hover:text-white transition-colors">Projetos</a>
+        <a href="/biblioteca" class="hover:text-white transition-colors">Biblioteca</a>
+        <a href="/sobre" class="hover:text-white transition-colors">Sobre</a>
       </div>
-
-      <!-- Ícones de Redes Sociais -->
-      <div class="flex items-center gap-4 text-[#94a3b8]">
-        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="LinkedIn">
-          <i data-lucide="linkedin" class="w-4.5 h-4.5"></i>
+      <div class="flex items-center gap-2 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
         </a>
-        <a href="https://www.instagram.com/marcos.dataproduct/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
-          <i data-lucide="instagram" class="w-4.5 h-4.5"></i>
+        <a href="https://www.instagram.com/marcos.dataproduct/" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-5 h-5"></i>
         </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="YouTube">
-          <i data-lucide="youtube" class="w-4.5 h-4.5"></i>
+        <a href="https://github.com/marcos-a-m-91" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
         </a>
-        <a href="https://github.com/marcos-a-m-91" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="GitHub">
-          <i data-lucide="github" class="w-4.5 h-4.5"></i>
-        </a>
-        <a href="mailto:marcos.a.m@live.com" class="hover:text-white transition-colors" aria-label="E-mail">
-          <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+        <a href="mailto:marcos.a.m@live.com" class="p-2.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-5 h-5"></i>
         </a>
       </div>
-
     </div>
   </footer>
 
 
-  <!-- ═══════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════
      MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
   ═══════════════════════════════════════════════════════ -->
   <div id="search-modal" class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
@@ -982,43 +999,43 @@
 
       <!-- Quick Results / Suggestions -->
       <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
-        <div class="text-[11px] font-bold text-[#8c959f] uppercase tracking-wider mb-2">Sugestões rápidas</div>
-        <a href="blog/agentes-ia-business-analytics.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <div class="text-[11px] font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões de navegação</div>
+        <a href="/blog" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="cpu" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="newspaper" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Agentes Autônomos de IA em Business Analytics</div>
-              <div class="text-[10px] text-[#656d76]">Artigo • IA e RAG</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Blog de Analytics e Dados</div>
+              <div class="text-[10px] text-[#656d76]">Artigos e análises técnicas</div>
             </div>
           </div>
           <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="blog/media-moda-e-mediana.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <a href="/projetos" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="layers" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Média, Moda e Mediana: O que os números escondem</div>
-              <div class="text-[10px] text-[#656d76]">Artigo • Estatística e Negócios</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Projetos e Casos Reais</div>
+              <div class="text-[10px] text-[#656d76]">Portfólio de soluções práticas</div>
             </div>
           </div>
           <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="biblioteca.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <a href="/biblioteca" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#f6f8fa] text-[#11376e] flex items-center justify-center text-xs border border-[#d0d7de]"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca de Leituras</div>
-              <div class="text-[10px] text-[#656d76]">Curadoria de livros e referências recomendadas</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca Recomendada</div>
+              <div class="text-[10px] text-[#656d76]">Curadoria de livros e referências</div>
             </div>
           </div>
           <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-        <a href="projetos.html" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+        <a href="/sobre" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded-lg bg-[#f6f8fa] text-[#11376e] flex items-center justify-center text-xs border border-[#d0d7de]"><i data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="user" class="w-3.5 h-3.5"></i></span>
             <div>
-              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Projetos & Cases de Estudo</div>
-              <div class="text-[10px] text-[#656d76]">Soluções práticas com Power BI, Python e Databricks</div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Sobre Marcos Aurélio</div>
+              <div class="text-[10px] text-[#656d76]">Trajetória, experiências e stack</div>
             </div>
           </div>
           <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
@@ -1032,7 +1049,7 @@
   <!-- ═══════════════════════════════════════════════════════
      UTILITY SCRIPTS
   ═══════════════════════════════════════════════════════ -->
-  <script src="assets/js/main.js"></script>
+  <script defer src="/assets/js/main.js"></script>
 
   <script>
     // Inicialização do Lucide Icons
@@ -1130,7 +1147,7 @@
                 container.innerHTML = featured.map(p => `
                   <a href="${p.href || 'projetos.html'}" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
                     <div class="h-32 bg-[#070f1e] overflow-hidden flex items-center justify-center p-1.5 border-b border-[#d0d7de]">
-                      <img src="${p.image || p.cover || 'assets/img/projects/project-sales-dashboard.svg'}" alt="${p.title || ''}" class="w-full h-full object-cover rounded-lg" />
+                      <img src="${p.image || p.cover || 'assets/img/projects/project-sales-dashboard.svg'}" alt="${p.title || ''}" class="w-full h-full object-cover rounded-lg" width="380" height="128" />
                     </div>
                     <div class="p-4 flex-1 flex flex-col justify-between">
                       <div>

@@ -3,31 +3,17 @@ import json
 import re
 import html
 import time
+from build_sitemap import build_sitemap
 
-APP_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Localizar o diretório do site
-possible_paths = [
-    os.path.abspath(os.path.join(APP_DIR, '..', 'Site-Marcos-Data-Product')),
-    os.path.abspath(os.path.join(APP_DIR, 'Site-Marcos-Data-Product')),
-    os.path.abspath(os.path.join(APP_DIR, '..'))
-]
-SITE_DIR = next((p for p in possible_paths if os.path.exists(os.path.join(p, 'biblioteca.html'))), possible_paths[0])
-
-CONTENT_DIR = os.path.join(SITE_DIR, 'content')
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONTENT_DIR = os.path.join(ROOT_DIR, 'content')
 BOOKS_JSON_PATH = os.path.join(CONTENT_DIR, 'books.json')
-BIBLIOTECA_HTML_PATH = os.path.join(SITE_DIR, 'biblioteca.html')
-INDEX_HTML_PATH = os.path.join(SITE_DIR, 'index.html')
-COVERS_DIR = os.path.join(SITE_DIR, 'assets', 'img', 'Biblioteca page')
+BIBLIOTECA_HTML_PATH = os.path.join(ROOT_DIR, 'biblioteca.html')
+INDEX_HTML_PATH = os.path.join(ROOT_DIR, 'index.html')
 
-os.makedirs(CONTENT_DIR, exist_ok=True)
-os.makedirs(COVERS_DIR, exist_ok=True)
+CATEGORIES = ['dados', 'negocios', 'produto', 'tecnologia', 'carreira', 'mentalidade', 'sociedade']
 
 def atomic_write(filepath, content, retries=5, delay=0.2):
-    """
-    Gravação atômica com arquivo temporário e substituição instantânea.
-    Protege contra travamento de arquivo do Google Drive ou corrupção por escrita incompleta.
-    """
     dirname, basename = os.path.split(filepath)
     os.makedirs(dirname, exist_ok=True)
     temp_path = os.path.join(dirname, f".{basename}.tmp.{int(time.time() * 1000)}")
@@ -48,44 +34,14 @@ def atomic_write(filepath, content, retries=5, delay=0.2):
             if attempt < retries - 1:
                 time.sleep(delay * (attempt + 1))
             else:
-                try:
-                    with open(filepath, 'w', encoding='utf-8') as f:
-                        f.write(content)
-                    if os.path.exists(temp_path):
-                        os.remove(temp_path)
-                    return True
-                except Exception as e:
-                    print(f"Erro ao gravar {filepath}: {e}")
-                    raise e
+                with open(filepath, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                if os.path.exists(temp_path):
+                    os.remove(temp_path)
+                return True
         except Exception as e:
-            print(f"Erro inesperado ao gravar {filepath}: {e}")
+            print(f"Erro ao gravar {filepath}: {e}")
             raise e
-
-TAG_COLORS = {
-    'dados': 'blue',
-    'visualização': 'emerald',
-    'visualizacao': 'emerald',
-    'produto': 'purple',
-    'tecnologia': 'pink',
-    'negócios': 'amber',
-    'negocios': 'amber',
-    'comportamento': 'orange',
-    'finanças': 'green',
-    'financas': 'green',
-    'ia': 'indigo',
-    'inteligência artificial': 'indigo',
-    'inteligencia artificial': 'indigo',
-    'liderança': 'rose',
-    'lideranca': 'rose',
-    'estratégia': 'cyan',
-    'estrategia': 'cyan',
-    'estatística': 'cyan',
-    'estatistica': 'cyan'
-}
-
-def get_tag_color(tag):
-    tag_clean = tag.strip().lower()
-    return TAG_COLORS.get(tag_clean, 'blue')
 
 def load_books():
     if not os.path.exists(BOOKS_JSON_PATH):
@@ -98,92 +54,95 @@ def load_books():
         print(f'Erro ao carregar {BOOKS_JSON_PATH}: {e}')
         return []
 
-def normalize_books(books):
-    for b in books:
-        if not b.get('category'):
-            tags_list = [t.lower() for t in b.get('tags', [])]
-            title_lower = (b.get('title') or '').lower()
-            text = ' ' + ' '.join(tags_list) + ' ' + title_lower + ' '
+def get_tag_badge_class(tag):
+    t = (tag or '').strip().lower()
+    if 'dado' in t or 'estatistica' in t or 'analise' in t or 'sql' in t:
+        return 'bg-blue-50 text-blue-700 border border-blue-200/80'
+    if 'produto' in t or 'ux' in t or 'discovery' in t:
+        return 'bg-red-50 text-red-700 border border-red-200/80'
+    if 'comportamento' in t or 'habito' in t or 'mentalidade' in t:
+        return 'bg-amber-50 text-amber-700 border border-amber-200/80'
+    if 'negocio' in t or 'estrategia' in t or 'gestao' in t:
+        return 'bg-amber-50 text-amber-700 border border-amber-200/80'
+    if 'tecno' in t or 'python' in t or 'ia' in t:
+        return 'bg-purple-50 text-purple-700 border border-purple-200/80'
+    if 'carreira' in t or 'lideran' in t:
+        return 'bg-emerald-50 text-emerald-700 border border-emerald-200/80'
+    if 'sociedade' in t or 'filosofia' in t or 'etica' in t:
+        return 'bg-sky-50 text-sky-700 border border-sky-200/80'
+    return 'bg-blue-50 text-blue-700 border border-blue-200/80'
 
-            if any(k in text for k in ['dado', 'estatistica', 'estatística', 'analise', 'análise', 'analytics', 'sql', 'bi ']):
-                b['category'] = 'dados'
-            elif any(k in text for k in ['produto', 'ux', 'discovery', 'design thinking']):
-                b['category'] = 'produto'
-            elif any(k in text for k in ['habito', 'hábito', 'mentalidade', 'comportamento', 'psicolog', 'mindset']):
-                b['category'] = 'mentalidade'
-            elif any(k in text for k in ['negocio', 'negócio', 'estrategia', 'estratégia', 'finan', 'gestao', 'gestão', 'economia']):
-                b['category'] = 'negocios'
-            elif any(k in text for k in ['tecno', 'python', 'inteligência artificial', 'inteligencia artificial', 'software', 'dev', 'computa']) or ' ia ' in text or ' ai ' in text:
-                b['category'] = 'tecnologia'
-            elif any(k in text for k in ['carreira', 'lideran', 'liderança', 'trabalho']):
-                b['category'] = 'carreira'
-            elif any(k in text for k in ['sociedade', 'filosofia', 'etica', 'ética', 'cultura']):
-                b['category'] = 'sociedade'
-            else:
-                b['category'] = 'dados'
-        if b.get('destaque') is None:
-            b['destaque'] = True
-        try:
-            b['rating'] = float(b.get('rating', 4.8))
-        except (ValueError, TypeError):
-            b['rating'] = 4.8
-    return books
+def get_effective_category(b):
+    if b.get('category'):
+        return b['category']
+    str_check = ' ' + ' '.join(b.get('tags', [])).lower() + ' ' + (b.get('title') or '').lower() + ' '
+    if any(k in str_check for k in ['dado', 'estatistica', 'estatística', 'analise', 'análise', 'sql']):
+        return 'dados'
+    if any(k in str_check for k in ['produto', 'ux']):
+        return 'produto'
+    if any(k in str_check for k in ['habito', 'hábito', 'mentalidade', 'comportamento']):
+        return 'mentalidade'
+    if any(k in str_check for k in ['negocio', 'negócio', 'estrategia', 'gestao']):
+        return 'negocios'
+    if any(k in str_check for k in ['tecno', 'python', ' ia ', ' ai ']):
+        return 'tecnologia'
+    if any(k in str_check for k in ['carreira', 'lideran']):
+        return 'carreira'
+    if any(k in str_check for k in ['sociedade', 'filosofia']):
+        return 'sociedade'
+    return 'dados'
 
-def save_books(books):
-    books = normalize_books(books)
-    os.makedirs(CONTENT_DIR, exist_ok=True)
-    books_json_str = json.dumps(books, ensure_ascii=False, indent=2)
-    atomic_write(BOOKS_JSON_PATH, books_json_str)
-    return build_all()
+def render_primer_book_card(book, is_carousel=False):
+    book_id = book.get('id', 'book-id')
+    cat = get_effective_category(book)
+    title_safe = html.escape(book.get('title', 'Sem título'), quote=True)
+    author_safe = html.escape(book.get('author', 'Autor desconhecido'), quote=True)
+    cover_safe = book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp')
+    desc_safe = html.escape(book.get('short_desc', ''), quote=False)
+    amazon_url = html.escape(book.get('amazon_link', '#'), quote=True)
 
-def render_book_card(book):
-    title = html.escape(book.get('title', 'Sem título'), quote=True)
-    author = html.escape(book.get('author', 'Autor desconhecido'), quote=True)
-    amazon_link = html.escape(book.get('amazon_link', '#'), quote=True)
-    cover_image = book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp')
-    short_desc = html.escape(book.get('short_desc', ''), quote=False)
-    desc_full = html.escape(book.get('desc_full', ''), quote=True)
-    
     tags = book.get('tags', [])
     if isinstance(tags, str):
         tags = [t.strip() for t in tags.split(',') if t.strip()]
     
-    tags_str = ' '.join(t.lower() for t in tags)
-    
-    tag_spans = []
-    for t in tags:
-        c = get_tag_color(t)
-        t_label = html.escape(t, quote=False)
-        tag_spans.append(
-            f'<span class="px-2.5 py-1 rounded-md border border-{c}-500/20 bg-{c}-500/10 text-{c}-400 text-[10px] font-semibold uppercase tracking-wider">{t_label}</span>'
-        )
-    tags_html = '\n            '.join(tag_spans)
-    
-    return f'''      <!-- Livro: {title} -->
-      <div class="book-card reveal glass bg-black/50 backdrop-blur-2xl rounded-2xl overflow-hidden flex flex-col group hover:scale-[1.02] hover:border-white/20 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(96,165,250,0.15)] cursor-pointer" 
-        data-tags="{tags_str}"
-        data-title="{title}"
-        data-author="{author}"
-        data-link="{amazon_link}"
-        data-desc-full="{desc_full}">
-        <div class="w-full aspect-[2/3] overflow-hidden bg-white/5 relative pointer-events-none">
-          <img src="{cover_image}" alt="{title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-        </div>
-        <div class="p-5 sm:p-6 flex flex-col flex-1 pointer-events-none">
-          <h3 class="text-lg font-bold text-white mb-1 tracking-tight" style="font-family:'Space Grotesk',sans-serif">{title}</h3>
-          <p class="text-sm text-white/50 mb-4" style="font-family:'Manrope',sans-serif">{author}</p>
-          <p class="text-white/60 text-sm leading-relaxed mb-6 line-clamp-3" style="font-family:'Manrope',sans-serif">{short_desc}</p>
-          
-          <div class="flex flex-wrap gap-2 mb-6 mt-auto">
-            {tags_html}
-          </div>
+    tags_html = ''.join(
+        f'<span class="text-xs font-semibold px-2 py-0.5 rounded-md {get_tag_badge_class(t)}">{html.escape(t)}</span>'
+        for t in tags[:2]
+    )
 
-          <div class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/10 text-white/80 text-sm font-medium group-hover:bg-white/10 group-hover:border-white/20 group-hover:text-white transition-all">
-            Ver detalhes
-            <i data-lucide="plus" class="w-4 h-4 text-white/50 group-hover:text-white"></i>
-          </div>
-        </div>
-      </div>'''
+    extra_classes = " w-[85%] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] flex-shrink-0 snap-start" if is_carousel else ""
+
+    return f'''            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item{extra_classes}" data-id="{book_id}" data-category="{cat}">
+              <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
+                <img src="{cover_safe}" alt="{title_safe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" width="190" height="285" loading="lazy" decoding="async">
+              </div>
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="{title_safe}">
+                {title_safe}
+              </h3>
+              <p class="text-xs text-[#656d76] mb-2 font-medium">
+                {author_safe}
+              </p>
+              <p class="text-xs text-[#656d76] line-clamp-5 leading-relaxed mb-3.5">
+                {desc_safe}
+              </p>
+              <div class="flex flex-wrap gap-1 mb-3">
+                {tags_html}
+              </div>
+              <div class="pt-3 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="{amazon_url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
+                    <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M16.9 17.3c1.3-.2 2.4.1 2.6.4.2.3-.1 1.4-.9 2.4" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Amazon</span>
+                  <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
+                </a>
+                <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                  Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
+                </span>
+              </div>
+            </div>'''
 
 def render_home_book_card(book):
     title = html.escape(book.get('title', 'Sem título'), quote=True)
@@ -191,9 +150,9 @@ def render_home_book_card(book):
     cover_image = book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp')
     
     return f'''          <!-- Livro: {title} -->
-          <a href="biblioteca.html" class="flex flex-col group" title="{title}">
+          <a href="/biblioteca" class="flex flex-col group" title="{title}">
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
-              <img src="{cover_image}" alt="{title} - {author}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
+              <img src="{cover_image}" alt="{title} - {author}" class="w-full h-full object-contain" width="190" height="285" loading="lazy" decoding="async" />
             </div>
             <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
               {title}
@@ -203,13 +162,11 @@ def render_home_book_card(book):
 
 def update_home_books(books):
     if not os.path.exists(INDEX_HTML_PATH):
-        print(f'Arquivo {INDEX_HTML_PATH} não encontrado.')
         return False
         
     with open(INDEX_HTML_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    # Priorizar livros marcados como destaque (ou os mais recentes)
     destaques = [b for b in books if b.get('destaque')]
     if len(destaques) < 3:
         for b in books:
@@ -228,65 +185,105 @@ def update_home_books(books):
         s_idx = content.find(start_marker)
         e_idx = content.find(end_marker) + len(end_marker)
         new_content = content[:s_idx] + f"{start_marker}\n\n{cards_html}\n\n          {end_marker}" + content[e_idx:]
-    else:
-        leituras_idx = content.find('Leituras & Repertório')
-        if leituras_idx == -1:
-            leituras_idx = content.find('3 Capas de Livros')
-        if leituras_idx == -1:
-            print("Seção de Leituras não encontrada em index.html")
-            return False
-            
-        grid_start_tag = '<div class="grid grid-cols-3 gap-3.5">'
-        g_start = content.find(grid_start_tag, leituras_idx)
-        if g_start == -1:
-            print("Grid de livros não encontrado em index.html")
-            return False
-            
-        g_end = content.find('</div>', g_start)
-        new_grid = f'{grid_start_tag}\n\n          {start_marker}\n\n{cards_html}\n\n          {end_marker}\n        '
-        new_content = content[:g_start] + new_grid + content[g_end:]
-
-    atomic_write(INDEX_HTML_PATH, new_content)
-    print(f'Home (index.html) atualizada com sucesso! {len(featured_books)} destaques sincronizados.')
-    return True
+        atomic_write(INDEX_HTML_PATH, new_content)
+        print(f"[OK] Home (index.html) sincronizada com {len(featured_books)} destaques de livros.")
+        return True
+    return False
 
 def build_all():
-    books = normalize_books(load_books())
+    books = load_books()
     if not os.path.exists(BIBLIOTECA_HTML_PATH):
-        print(f'Arquivo {BIBLIOTECA_HTML_PATH} não encontrado.')
         return False
         
     with open(BIBLIOTECA_HTML_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    new_content = content
+    # 1. Atualizar EMBEDDED_BOOKS no JS
     books_json_str = json.dumps(books, ensure_ascii=False, indent=2).replace('</script>', '<\\/script>')
-
-    # 1. Atualizar EMBEDDED_BOOKS em biblioteca.html com fatiamento direto (evita re.sub corromper escapes como \n)
-    m = re.search(r'const EMBEDDED_BOOKS\s*=\s*\[.*?\];\s*(?=let allBooks)', new_content, re.DOTALL)
+    m = re.search(r'const EMBEDDED_BOOKS\s*=\s*\[.*?\];\s*(?=let allBooks)', content, re.DOTALL)
     if not m:
-        m = re.search(r'const EMBEDDED_BOOKS\s*=\s*\[.*?\];', new_content, re.DOTALL)
+        m = re.search(r'const EMBEDDED_BOOKS\s*=\s*\[.*?\];', content, re.DOTALL)
     if m:
-        new_content = new_content[:m.start()] + f'const EMBEDDED_BOOKS = {books_json_str};\n      ' + new_content[m.end():]
+        content = content[:m.start()] + f'const EMBEDDED_BOOKS = {books_json_str};\n      ' + content[m.end():]
 
-    # 2. Atualizar marcação estática se existir
-    cards_html = '\n\n'.join(render_book_card(b) for b in books)
-    start_marker = '<!-- BOOKS_GRID_START -->'
-    end_marker = '<!-- BOOKS_GRID_END -->'
-    
-    if start_marker in new_content and end_marker in new_content:
-        pattern = re.compile(f'{re.escape(start_marker)}.*?{re.escape(end_marker)}', re.DOTALL)
-        new_content = pattern.sub(f'{start_marker}\n\n{cards_html}\n\n      {end_marker}', new_content)
-    else:
-        pattern = re.compile(r'(<div[^>]*id=["\']books-grid["\'][^>]*>)(.*?)(</div>\s*</section>\s*<!-- MODAL)', re.DOTALL)
-        if pattern.search(new_content):
-            new_content = pattern.sub(f'\\1\n\n      {start_marker}\n\n{cards_html}\n\n      {end_marker}\n    \\3', new_content)
+    # 2. Pré-renderizar Grid de Destaques
+    destaques = [b for b in books if b.get('destaque')]
+    destaques_cards = '\n'.join(render_primer_book_card(b, is_carousel=True) for b in destaques)
+    content = re.sub(
+        r'(<div\s+id=["\']destaques-grid["\'][^>]*>).*?(</div>\s*<!-- Controles de Navegação)',
+        f'\\1\n{destaques_cards}\n            \\2',
+        content,
+        flags=re.DOTALL
+    )
+
+    # 3. Pré-renderizar Cada Categoria e Atualizar Seções
+    for cat in CATEGORIES:
+        cat_books = [b for b in books if get_effective_category(b) == cat]
+        cat_cards = '\n'.join(render_primer_book_card(b) for b in cat_books)
         
-    atomic_write(BIBLIOTECA_HTML_PATH, new_content)
-    print(f'Biblioteca compilada com sucesso! {len(books)} livros atualizados em {BIBLIOTECA_HTML_PATH}')
-    
-    # 3. Atualizar destaques da biblioteca na Home (index.html)
+        # Injetar cards no grid da categoria
+        pattern_grid = re.compile(rf'(<div\s+id=["\']{cat}-grid["\'][^>]*>).*?(</div>\s*</section>)', re.DOTALL)
+        content = pattern_grid.sub(f'\\1\n{cat_cards}\n            \\2', content)
+
+        # Se tiver 0 livros, adiciona 'hidden' à section da categoria
+        pattern_sec = re.compile(rf'<section\s+id=["\']section-{cat}["\']\s+class=["\']([^"\']*)["\']')
+        def replace_sec(m_sec):
+            cls = m_sec.group(1).split()
+            if len(cat_books) == 0:
+                if 'hidden' not in cls:
+                    cls.append('hidden')
+            else:
+                cls = [c for c in cls if c != 'hidden']
+            return f'<section id="section-{cat}" class="{" ".join(cls)}"'
+        content = pattern_sec.sub(replace_sec, content)
+
+    # 4. Atualizar contadores estáticos
+    total_books = len(books)
+    destaques_count = len(destaques)
+    content = re.sub(r'<span\s+id=["\']results-count["\']>\d+</span>', f'<span id="results-count">{total_books}</span>', content)
+    content = re.sub(r'<span\s+id=["\']destaques-badge-count["\']>\d+</span>', f'<span id="destaques-badge-count">{destaques_count}</span>', content)
+    content = re.sub(r'<span\s+class=["\']text-slate-400 font-mono["\']\s+id=["\']filter-count-cat-all["\']>\d+</span>', f'<span class="text-slate-400 font-mono" id="filter-count-cat-all">{total_books}</span>', content)
+
+    for cat in CATEGORIES:
+        cnt = len([b for b in books if get_effective_category(b) == cat])
+        content = re.sub(rf'<span\s+class=["\']text-slate-400 font-mono["\']\s+id=["\']filter-count-cat-{cat}["\']>\d+</span>', f'<span class="text-slate-400 font-mono" id="filter-count-cat-{cat}">{cnt}</span>', content)
+        content = re.sub(rf'<span\s+id=["\']pill-count-{cat}["\']>\d+</span>', f'<span id="pill-count-{cat}">{cnt}</span>', content)
+
+    # 5. Gerar JSON-LD ItemList
+    itemlist_elements = []
+    for idx, b in enumerate(books, start=1):
+        itemlist_elements.append({
+            "@type": "ListItem",
+            "position": idx,
+            "item": {
+                "@type": "Book",
+                "name": b.get("title", ""),
+                "author": {"@type": "Person", "name": b.get("author", "")},
+                "image": f"https://marcosdataproduct.com/{b.get('cover_image', '')}",
+                "description": b.get("short_desc", ""),
+                "url": b.get("amazon_link", "https://marcosdataproduct.com/biblioteca")
+            }
+        })
+    jsonld_itemlist = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Livros Recomendados de Business Analytics, Estatística e Negócios",
+        "description": "Curadoria de leituras essenciais recomendadas por Marcos Aurélio.",
+        "itemListElement": itemlist_elements
+    }
+    jsonld_str = json.dumps(jsonld_itemlist, ensure_ascii=False, indent=2)
+
+    # Injetar ou substituir script ld+json ItemList
+    if 'id="schema-itemlist"' in content:
+        content = re.sub(r'<script\s+type=["\']application/ld\+json["\']\s+id=["\']schema-itemlist["\']>.*?</script>', f'<script type="application/ld+json" id="schema-itemlist">\n{jsonld_str}\n  </script>', content, flags=re.DOTALL)
+    else:
+        content = content.replace('</head>', f'  <script type="application/ld+json" id="schema-itemlist">\n{jsonld_str}\n  </script>\n</head>')
+
+    atomic_write(BIBLIOTECA_HTML_PATH, content)
+    print(f"[OK] biblioteca.html compilada com {total_books} livros e HTML estático pré-renderizado.")
+
     update_home_books(books)
+    build_sitemap()
     return True
 
 if __name__ == '__main__':

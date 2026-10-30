@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /.agents/
+Disallow: /references/
+
+Sitemap: https://marcosdataproduct.com/sitemap.xml
+

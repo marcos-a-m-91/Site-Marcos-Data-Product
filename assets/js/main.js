@@ -120,21 +120,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    } else {
+        // Fallback gracioso se GSAP não for carregado na página
+        document.querySelectorAll('.reveal').forEach((el) => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
     }
 
-    // 6. Auto-highlight active navigation link
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    // 6. Auto-highlight active navigation link (suporte completo a Clean URLs)
+    const rawPath = window.location.pathname.replace(/^\/+|\/+$/g, '');
+    const currentRoute = (rawPath === '' || rawPath === 'index.html') ? 'home' : rawPath.replace(/\.html$/, '');
     
-    document.querySelectorAll('.nav-link, .mobile-link').forEach(link => {
+    document.querySelectorAll('.nav-link, .mobile-link, nav[aria-label="Navegação Principal"] a').forEach(link => {
         const href = link.getAttribute('href');
-        if (!href || href.startsWith('http')) return;
+        if (!href || href.startsWith('http') || href.startsWith('mailto')) return;
         
-        const cleanHref = href.split('#')[0].split('?')[0];
-        if (cleanHref === currentPath || (currentPath === '' && cleanHref === 'index.html')) {
+        const cleanHref = href.split('#')[0].split('?')[0].replace(/^\/+|\/+$/g, '');
+        const targetRoute = (cleanHref === '' || cleanHref === 'index.html') ? 'home' : cleanHref.replace(/\.html$/, '');
+
+        if (targetRoute === currentRoute) {
             link.classList.add('active');
-            link.classList.remove('text-white');
+            link.classList.add('nav-item-active');
         } else {
-            link.classList.remove('active', 'text-white');
+            link.classList.remove('active');
+            link.classList.remove('nav-item-active');
         }
     });
 
@@ -144,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const cards = hubDeck.querySelectorAll('.hub-card');
         
         cards.forEach(card => {
-            // On mobile / touch device: tap to expand first, second tap or button click navigates
             card.addEventListener('click', (e) => {
                 if (window.innerWidth < 768) {
                     if (!card.classList.contains('active')) {
@@ -178,9 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <i data-lucide="cookie" class="w-4 h-4"></i>
                         </span>
                         <div>
-                            <h4 class="text-xs font-bold text-[#1f2328] uppercase tracking-wider">
+                            <p class="text-xs font-bold text-[#1f2328] uppercase tracking-wider">
                                 Dados & Transparência
-                            </h4>
+                            </p>
                             <p class="text-[11px] text-[#656d76]">Do dado à decisão • Marcos Data Product</p>
                         </div>
                     </div>
@@ -210,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
         }
 
-        // Suave entrada após 800ms
         setTimeout(() => {
             banner.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
         }, 800);
@@ -219,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(CONSENT_KEY, consentValue);
             banner.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
             
-            // Disparar no dataLayer para futuro Google Tag Manager / GA4
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'cookie_consent_update',

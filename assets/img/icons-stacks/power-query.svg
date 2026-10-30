@@ -1,0 +1,62 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- ===== CILINDRO (atrás) ===== -->
+  <!-- Elipse superior (topo aberto) -->
+  <ellipse cx="200" cy="90" rx="130" ry="35" fill="none" stroke="#1f9d3f" stroke-width="10"/>
+  
+  <!-- Linha interna do topo (espessura da borda) -->
+  <path d="M 95 78 Q 200 110 305 78" fill="none" stroke="#1f9d3f" stroke-width="6"/>
+  
+  <!-- Lateral esquerda do cilindro -->
+  <line x1="70" y1="90" x2="70" y2="320" stroke="#1f9d3f" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- Lateral direita do cilindro -->
+  <line x1="330" y1="90" x2="330" y2="320" stroke="#1f9d3f" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- Base do cilindro (apenas curva inferior visível) -->
+  <path d="M 70 320 Q 200 380 330 320" fill="none" stroke="#1f9d3f" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- ===== CUBO HEXAGONAL (frente) ===== -->
+  <!-- Forma hexagonal externa do cubo -->
+  <path d="M 150 170 
+           L 250 130 
+           L 400 170 
+           L 400 380 
+           L 250 430 
+           L 150 380 
+           Z" 
+        fill="black" stroke="#1f9d3f" stroke-width="11" stroke-linejoin="round"/>
+  
+  <!-- Linha vertical central (separa face esquerda da direita) -->
+  <line x1="250" y1="130" x2="250" y2="430" stroke="#1f9d3f" stroke-width="9"/>
+  
+  <!-- ===== GRADE DA FACE ESQUERDA ===== -->
+  <!-- Linha vertical interna (1 divisão) -->
+  <line x1="200" y1="150" x2="200" y2="405" stroke="#1f9d3f" stroke-width="6"/>
+  
+  <!-- Linhas horizontais face esquerda -->
+  <line x1="150" y1="240" x2="250" y2="220" stroke="#1f9d3f" stroke-width="6"/>
+  <line x1="150" y1="310" x2="250" y2="310" stroke="#1f9d3f" stroke-width="6"/>
+  
+  <!-- ===== GRADE DA FACE DIREITA ===== -->
+  <!-- Linhas verticais internas (2 divisões) -->
+  <line x1="300" y1="143" x2="300" y2="416" stroke="#1f9d3f" stroke-width="6"/>
+  <line x1="350" y1="156" x2="350" y2="403" stroke="#1f9d3f" stroke-width="6"/>
+  
+  <!-- Linhas horizontais face direita -->
+  <line x1="250" y1="220" x2="400" y2="240" stroke="#1f9d3f" stroke-width="6"/>
+  <line x1="250" y1="310" x2="400" y2="310" stroke="#1f9d3f" stroke-width="6"/>
+  
+  <!-- ===== SETA EM FORMATO J / FLUXO ===== -->
+  <!-- Linha curva descendente (J) -->
+  <path d="M 240 230 
+           L 240 310 
+           Q 240 340 215 340
+           L 200 340" 
+        fill="none" stroke="#1f9d3f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Ponta da seta superior (apontando para cima) -->
+  <polygon points="240,210 228,235 252,235" fill="#1f9d3f"/>
+  
+  <!-- Ponta da seta esquerda (apontando para esquerda) -->
+  <polygon points="185,340 210,328 210,352" fill="#1f9d3f"/>
+</svg>

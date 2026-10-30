@@ -8,6 +8,8 @@ import time
 import threading
 import webbrowser
 import urllib.parse
+import unicodedata
+import subprocess
 from datetime import datetime
 from flask import Flask, request, jsonify, render_template, send_from_directory
 import yaml
@@ -27,11 +29,14 @@ IMAGES_DIR = os.path.join(SITE_DIR, 'assets', 'img', 'blog')
 TOOLS_DIR = os.path.join(SITE_DIR, 'tools')
 
 os.makedirs(POSTS_DIR, exist_ok=True)
+os.makedirs(IMAGES_DIR, exist_ok=True)
 sys.path.insert(0, APP_DIR)
 if TOOLS_DIR not in sys.path:
     sys.path.append(TOOLS_DIR)
 import build_blog
 import build_biblioteca
+import build_projetos
+from build_sitemap import build_sitemap
 
 BOOK_COVERS_DIR = os.path.join(SITE_DIR, 'assets', 'img', 'Biblioteca page')
 os.makedirs(BOOK_COVERS_DIR, exist_ok=True)
@@ -41,6 +46,24 @@ app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024  # 32 MB max upload
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.jinja_env.auto_reload = True
+
+def slugify(text):
+    text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
+    text = re.sub(r'[^\w\s-]', '', text.lower()).strip()
+    return re.sub(r'[\s_]+', '-', text)
+
+def sanitize_filename(name):
+    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
+    name = re.sub(r'[^\w\.\-\_]', '_', name.strip().lower())
+    return re.sub(r'__+', '_', name)
+
+def recompile_tailwind():
+    build_tailwind_script = os.path.join(TOOLS_DIR, 'build_tailwind.js')
+    if os.path.exists(build_tailwind_script):
+        try:
+            subprocess.run(['node', build_tailwind_script], cwd=SITE_DIR, check=False, capture_output=True)
+        except Exception as e:
+            print(f"[Aviso] Não foi possível executar build_tailwind.js: {e}")
 
 @app.after_request
 def add_no_cache_headers(response):
@@ -60,26 +83,33 @@ def serve_content(filename):
 
 @app.route('/blog/<path:filename>')
 def serve_blog(filename):
+    if not filename.endswith('.html') and not '.' in filename:
+        filename += '.html'
     return send_from_directory(os.path.join(SITE_DIR, 'blog'), filename)
 
+# Rotas de páginas limpas e compatibilidade .html
 @app.route('/index.html')
 @app.route('/home')
 def serve_home_hub():
     return send_from_directory(SITE_DIR, 'index.html')
 
 @app.route('/projetos.html')
+@app.route('/projetos')
 def serve_projetos_hub():
     return send_from_directory(SITE_DIR, 'projetos.html')
 
 @app.route('/sobre.html')
+@app.route('/sobre')
 def serve_sobre_hub():
     return send_from_directory(SITE_DIR, 'sobre.html')
 
 @app.route('/blog.html')
+@app.route('/blog')
 def serve_blog_hub():
     return send_from_directory(SITE_DIR, 'blog.html')
 
 @app.route('/biblioteca.html')
+@app.route('/biblioteca')
 def serve_biblioteca_hub():
     return send_from_directory(SITE_DIR, 'biblioteca.html')
 
@@ -87,64 +117,58 @@ def serve_biblioteca_hub():
 def index():
     return render_template('editor.html')
 
-@app.route('/biblioteca')
-def biblioteca_manager():
-    return render_template('biblioteca_manager.html')
-
 @app.route('/api/posts', methods=['GET'])
 def list_posts():
     files = glob.glob(os.path.join(POSTS_DIR, '*.md'))
     posts = []
     for fp in files:
         try:
-            post = build_blog.parse_post(fp)
+            p = build_blog.parse_post(fp)
             posts.append({
-                'title': post.get('title', 'Sem título'),
-                'slug': post.get('slug', ''),
-                'date': str(post.get('date', '')),
-                'category': post.get('category', 'Artigo'),
-                'category_color': post.get('category_color', 'blue'),
-                'read_time': post.get('read_time', '5 min'),
-                'cover': post.get('cover', ''),
-                'excerpt': post.get('excerpt', ''),
-                'featured': bool(post.get('featured', False)),
-                'tags': post.get('tags', []),
+                'title': p.get('title', 'Sem título'),
+                'slug': p.get('slug', ''),
+                'date': str(p.get('date', '')),
+                'category': p.get('category', ''),
+                'category_color': p.get('category_color', 'blue'),
+                'read_time': p.get('read_time', '5 min'),
+                'author': p.get('author', 'Marcos Aurélio'),
+                'featured': p.get('featured', False),
                 'filename': os.path.basename(fp)
             })
         except Exception as e:
-            print(f'Erro ao ler {fp}: {e}')
-    posts.sort(key=lambda x: str(x.get('date', '')), reverse=True)
+            print(f'Erro ao ler post {fp}: {e}')
+    posts.sort(key=lambda x: str(x['date']), reverse=True)
     return jsonify(posts)
 
-@app.route('/api/post/<slug>', methods=['GET'])
+@app.route('/api/post/<path:slug>', methods=['GET'])
 def get_post(slug):
+    slug_candidates = [
+        slug,
+        slug.lower(),
+        urllib.parse.unquote(slug),
+        urllib.parse.unquote(slug).lower()
+    ]
     files = glob.glob(os.path.join(POSTS_DIR, '*.md'))
     for fp in files:
-        post = build_blog.parse_post(fp)
-        if post.get('slug') == slug or os.path.splitext(os.path.basename(fp))[0] == slug:
-            return jsonify({
-                'title': post.get('title', ''),
-                'slug': post.get('slug', ''),
-                'date': str(post.get('date', '')),
-                'author': post.get('author', 'Marcos Aurélio'),
-                'category': post.get('category', 'Power BI'),
-                'category_color': post.get('category_color', 'amber'),
-                'read_time': post.get('read_time', '5 min'),
-                'excerpt': post.get('excerpt', ''),
-                'cover': post.get('cover', ''),
-                'featured': bool(post.get('featured', False)),
-                'tags': post.get('tags', []),
-                'body': post.get('raw_body', ''),
-                'filename': os.path.basename(fp)
-            })
-    return jsonify({'error': 'Post não encontrado'}), 404
+        try:
+            p = build_blog.parse_post(fp)
+            parsed_slug = str(p.get('slug', '')).strip()
+            base_name = os.path.splitext(os.path.basename(fp))[0]
+            if parsed_slug in slug_candidates or parsed_slug.lower() in slug_candidates or base_name in slug_candidates:
+                return jsonify(p)
+        except Exception as e:
+            print(f'Erro ao ler {fp}: {e}')
+    return jsonify({'error': 'Artigo não encontrado'}), 404
 
-@app.route('/api/post/<slug>', methods=['DELETE'])
-@app.route('/api/post/<slug>/delete', methods=['POST'])
+@app.route('/api/delete-post/<path:slug>', methods=['DELETE', 'POST'])
 def delete_post(slug):
     clean_slug = urllib.parse.unquote(slug).strip()
-    slug_candidates = {slug, clean_slug, slug.lower(), clean_slug.lower()}
-    
+    slug_candidates = set([
+        slug,
+        slug.lower(),
+        clean_slug,
+        clean_slug.lower()
+    ])
     files = glob.glob(os.path.join(POSTS_DIR, '*.md'))
     target_md = None
     target_slug = clean_slug
@@ -156,17 +180,10 @@ def delete_post(slug):
             base_name = os.path.splitext(os.path.basename(fp))[0]
             parsed_slug = str(p.get('slug', '')).strip()
             parsed_title = str(p.get('title', '')).strip()
-            
-            matches = (
-                parsed_slug in slug_candidates or
+            if (parsed_slug in slug_candidates or
                 parsed_slug.lower() in slug_candidates or
                 base_name in slug_candidates or
-                base_name.lower() in slug_candidates or
-                os.path.basename(fp) in slug_candidates or
-                parsed_title in slug_candidates or
-                parsed_title.lower() in slug_candidates
-            )
-            if matches:
+                base_name.lower() in slug_candidates):
                 target_md = fp
                 target_slug = parsed_slug or base_name
                 post_title = parsed_title or target_slug
@@ -175,47 +192,30 @@ def delete_post(slug):
             print(f'Erro ao ler {fp}: {e}')
 
     if not target_md or not os.path.exists(target_md):
-        return jsonify({'error': f'Artigo com identificador "{slug}" não foi encontrado'}), 404
+        return jsonify({'error': f'Artigo "{slug}" não encontrado'}), 404
 
-    # 1. Remover o arquivo Markdown da pasta de posts
     try:
         os.remove(target_md)
-        print(f'Post Markdown removido com sucesso: {target_md}')
     except Exception as e:
-        return jsonify({'error': f'Falha ao remover arquivo Markdown: {e}'}), 500
+        return jsonify({'error': f'Falha ao remover Markdown: {e}'}), 500
 
-    # 2. Remover o HTML compilado da pasta do blog, se existir
-    slugs_to_remove = set([slug, clean_slug, target_slug, target_slug.lower(), os.path.splitext(os.path.basename(target_md))[0]])
-    for s in slugs_to_remove:
-        if not s:
-            continue
-        html_file = os.path.join(SITE_DIR, 'blog', f'{s}.html')
-        if os.path.exists(html_file):
-            try:
-                os.remove(html_file)
-                print(f'HTML compilado removido do blog: {html_file}')
-            except Exception as e:
-                print(f'Aviso: Não foi possível remover {html_file}: {e}')
+    html_file = os.path.join(SITE_DIR, 'blog', f'{target_slug}.html')
+    if os.path.exists(html_file):
+        try:
+            os.remove(html_file)
+        except Exception:
+            pass
 
-    # 3. Recompilar o blog (atualiza blog.html, listas e contadores)
-    build_success = False
-    try:
-        build_blog.build_all()
-        build_success = True
-    except Exception as e:
-        print(f'Erro ao recompilar blog após exclusão: {e}')
+    build_blog.build_all()
+    build_sitemap()
+    recompile_tailwind()
 
     return jsonify({
         'success': True,
         'slug': target_slug,
         'title': post_title,
-        'build_success': build_success,
-        'message': f'Artigo "{post_title}" excluído do blog com sucesso!'
+        'message': f'Artigo "{post_title}" excluído com sucesso!'
     })
-
-def sanitize_filename(name):
-    name = re.sub(r'[^\w\.\-\_]', '_', name.strip().lower())
-    return re.sub(r'__+', '_', name)
 
 @app.route('/api/upload-image', methods=['POST'])
 def upload_image():
@@ -226,12 +226,19 @@ def upload_image():
 
         orig_name = sanitize_filename(file.filename)
         base, ext = os.path.splitext(orig_name)
-        if not ext:
-            ext = '.png'
-
-        filename = f'{base}_{int(time.time())}{ext}'
-        save_path = os.path.join(IMAGES_DIR, filename)
-        file.save(save_path)
+        
+        # Tentar salvar como WebP diretamente se Pillow estiver disponível
+        try:
+            from PIL import Image
+            im = Image.open(file.stream)
+            filename = f'{base}_{int(time.time())}.webp'
+            save_path = os.path.join(IMAGES_DIR, filename)
+            im.save(save_path, 'WEBP', quality=85)
+        except Exception:
+            if not ext: ext = '.png'
+            filename = f'{base}_{int(time.time())}{ext}'
+            save_path = os.path.join(IMAGES_DIR, filename)
+            file.save(save_path)
 
         relative_url = f'assets/img/blog/{filename}'
         return jsonify({
@@ -245,20 +252,20 @@ def upload_image():
     if 'image_data' in data:
         img_data = data['image_data']
         if ',' in img_data:
-            header, encoded = img_data.split(',', 1)
-            ext = '.png'
-            if 'jpeg' in header or 'jpg' in header:
-                ext = '.jpg'
-            elif 'webp' in header:
-                ext = '.webp'
-            elif 'svg' in header:
-                ext = '.svg'
-            
+            _, encoded = img_data.split(',', 1)
             binary = base64.b64decode(encoded)
-            filename = f'clipboard_{int(time.time())}{ext}'
+            filename = f'clipboard_{int(time.time())}.webp'
             save_path = os.path.join(IMAGES_DIR, filename)
-            with open(save_path, 'wb') as f:
-                f.write(binary)
+            try:
+                import io
+                from PIL import Image
+                im = Image.open(io.BytesIO(binary))
+                im.save(save_path, 'WEBP', quality=85)
+            except Exception:
+                filename = f'clipboard_{int(time.time())}.png'
+                save_path = os.path.join(IMAGES_DIR, filename)
+                with open(save_path, 'wb') as f:
+                    f.write(binary)
 
             relative_url = f'assets/img/blog/{filename}'
             return jsonify({
@@ -282,8 +289,9 @@ def publish_post():
 
     slug = data.get('slug', '').strip()
     if not slug:
-        slug = re.sub(r'[^\w\s-]', '', title.lower()).strip()
-        slug = re.sub(r'[\s_]+', '-', slug)
+        slug = slugify(title)
+    else:
+        slug = slugify(slug)
 
     date_val = data.get('date', '').strip() or datetime.now().strftime('%Y-%m-%d')
     author = data.get('author', '').strip() or 'Marcos Aurélio'
@@ -313,41 +321,37 @@ def publish_post():
         'tags': tags
     }
 
-    yaml_header = yaml.dump(frontmatter, allow_unicode=True, sort_keys=False)
-    file_content = f'---\n{yaml_header}---\n\n{raw_body}\n'
+    yaml_str = yaml.dump(frontmatter, allow_unicode=True, default_flow_style=False, sort_keys=False)
+    file_content = f"---\n{yaml_str}---\n\n{raw_body}\n"
 
-    existing_file = None
-    for fp in glob.glob(os.path.join(POSTS_DIR, '*.md')):
-        p = build_blog.parse_post(fp)
-        if p.get('slug') == slug:
-            existing_file = fp
-            break
+    filename = f"{date_val}-{slug}.md"
+    target_path = os.path.join(POSTS_DIR, filename)
 
-    if existing_file:
-        target_path = existing_file
-    else:
-        target_path = os.path.join(POSTS_DIR, f'{date_val}-{slug}.md')
+    existing_files = glob.glob(os.path.join(POSTS_DIR, '*.md'))
+    for ef in existing_files:
+        try:
+            p = build_blog.parse_post(ef)
+            if str(p.get('slug', '')).strip().lower() == slug.lower() and ef != target_path:
+                os.remove(ef)
+                break
+        except Exception:
+            pass
 
     with open(target_path, 'w', encoding='utf-8') as f:
         f.write(file_content)
 
-    print(f'Post salvo em: {target_path}')
-
-    try:
-        build_blog.build_all()
-        build_success = True
-    except Exception as e:
-        print(f'Erro ao compilar blog: {e}')
-        build_success = False
+    build_blog.build_all()
+    build_sitemap()
+    recompile_tailwind()
 
     return jsonify({
         'success': True,
         'slug': slug,
         'target_file': os.path.basename(target_path),
-        'post_url': f'blog/{slug}.html',
-        'hub_url': 'blog.html',
-        'build_success': build_success,
-        'message': f'Artigo \'{title}\' publicado e compilado com sucesso!'
+        'post_url': f'/blog/{slug}',
+        'hub_url': '/blog',
+        'build_success': True,
+        'message': f'Artigo "{title}" publicado com sucesso!'
     })
 
 # -------------------------------------------------------------
@@ -392,23 +396,7 @@ def save_book():
 
     category = data.get('category', '').strip().lower()
     if not category:
-        text = ' ' + ' '.join(t.lower() for t in tags) + ' ' + title.lower() + ' '
-        if any(k in text for k in ['dado', 'estatistica', 'estatística', 'analise', 'análise', 'analytics', 'sql', 'bi ']):
-            category = 'dados'
-        elif any(k in text for k in ['produto', 'ux', 'discovery', 'design thinking']):
-            category = 'produto'
-        elif any(k in text for k in ['habito', 'hábito', 'mentalidade', 'comportamento', 'psicolog', 'mindset']):
-            category = 'mentalidade'
-        elif any(k in text for k in ['negocio', 'negócio', 'estrategia', 'estratégia', 'finan', 'gestao', 'gestão', 'economia']):
-            category = 'negocios'
-        elif any(k in text for k in ['tecno', 'python', 'inteligência artificial', 'inteligencia artificial', 'software', 'dev', 'computa']) or ' ia ' in text or ' ai ' in text:
-            category = 'tecnologia'
-        elif any(k in text for k in ['carreira', 'lideran', 'liderança', 'trabalho']):
-            category = 'carreira'
-        elif any(k in text for k in ['sociedade', 'filosofia', 'etica', 'ética', 'cultura']):
-            category = 'sociedade'
-        else:
-            category = 'dados'
+        category = 'dados'
 
     destaque = bool(data.get('destaque', True))
     try:
@@ -418,153 +406,70 @@ def save_book():
 
     book_id = data.get('id', '').strip()
     if not book_id:
-        slug = re.sub(r'[^\w\s-]', '', title.lower()).strip()
-        slug = re.sub(r'[\s_]+', '-', slug)
-        book_id = f'{slug}-{int(time.time())}'
+        clean_name = slugify(title)
+        book_id = f"{clean_name}-{int(time.time())}"
 
     books = build_biblioteca.load_books()
     existing_index = next((i for i, b in enumerate(books) if b.get('id') == book_id), None)
 
-    book_obj = {
+    book_entry = {
         'id': book_id,
         'title': title,
         'author': author,
+        'category': category,
         'rating': rating,
         'amazon_link': amazon_link,
         'cover_image': cover_image,
         'short_desc': short_desc,
         'desc_full': desc_full,
         'tags': tags,
-        'category': category,
         'destaque': destaque,
         'created_at': data.get('created_at') or datetime.now().strftime('%Y-%m-%d')
     }
 
     if existing_index is not None:
-        books[existing_index] = book_obj
-        action = 'atualizado'
+        books[existing_index] = book_entry
     else:
-        books.insert(0, book_obj)
-        action = 'adicionado'
+        books.insert(0, book_entry)
 
-    try:
-        build_success = build_biblioteca.save_books(books)
-    except Exception as e:
-        print(f'Erro ao compilar biblioteca: {e}')
-        build_success = False
+    with open(build_biblioteca.BOOKS_JSON_PATH, 'w', encoding='utf-8') as f:
+        json.dump(books, f, ensure_ascii=False, indent=2)
+
+    build_biblioteca.build_all()
+    build_sitemap()
+    recompile_tailwind()
 
     return jsonify({
         'success': True,
-        'book': book_obj,
-        'build_success': build_success,
-        'message': f"Livro '{title}' {action} com sucesso e biblioteca sincronizada!"
+        'book': book_entry,
+        'message': f'Livro "{title}" salvo com sucesso!'
     })
 
 @app.route('/api/book/<book_id>', methods=['DELETE'])
-@app.route('/api/book/<book_id>/delete', methods=['POST'])
 def delete_book(book_id):
     books = build_biblioteca.load_books()
-    target_book = next((b for b in books if b.get('id') == book_id), None)
-    
-    if not target_book:
+    filtered = [b for b in books if b.get('id') != book_id]
+    if len(filtered) == len(books):
         return jsonify({'error': 'Livro não encontrado'}), 404
 
-    books = [b for b in books if b.get('id') != book_id]
-    
+    with open(build_biblioteca.BOOKS_JSON_PATH, 'w', encoding='utf-8') as f:
+        json.dump(filtered, f, ensure_ascii=False, indent=2)
+
+    build_biblioteca.build_all()
+    build_sitemap()
+    recompile_tailwind()
+
+    return jsonify({'success': True, 'message': 'Livro removido com sucesso!'})
+
+@app.route('/api/sync-biblioteca', methods=['POST'])
+def sync_biblioteca():
     try:
-        build_success = build_biblioteca.save_books(books)
+        build_biblioteca.build_all()
+        build_sitemap()
+        recompile_tailwind()
+        return jsonify({'success': True, 'message': 'Biblioteca sincronizada!'})
     except Exception as e:
-        print(f'Erro ao compilar biblioteca após exclusão: {e}')
-        build_success = False
-
-    return jsonify({
-        'success': True,
-        'deleted_id': book_id,
-        'build_success': build_success,
-        'message': f"Livro '{target_book.get('title')}' removido com sucesso da biblioteca!"
-    })
-
-@app.route('/api/sync-biblioteca', methods=['POST', 'GET'])
-def sync_biblioteca_endpoint():
-    try:
-        books = build_biblioteca.load_books()
-        books = build_biblioteca.normalize_books(books)
-        build_success = build_biblioteca.save_books(books)
-        return jsonify({
-            'success': True,
-            'count': len(books),
-            'build_success': build_success,
-            'message': f'Biblioteca sincronizada com sucesso! {len(books)} livros atualizados na Biblioteca e destaques sincronizados na Home.'
-        })
-    except Exception as e:
-        print(f'Erro na sincronização manual da biblioteca: {e}')
-        return jsonify({'success': False, 'error': f'Erro ao sincronizar biblioteca: {str(e)}'}), 500
-
-@app.route('/api/upload-book-cover', methods=['POST'])
-def upload_book_cover():
-    file = request.files.get('cover')
-    if file and file.filename:
-        orig_name = sanitize_filename(file.filename)
-        base, ext = os.path.splitext(orig_name)
-        if not ext:
-            ext = '.webp'
-        filename = f'{base}_{int(time.time())}{ext}'
-        save_path = os.path.join(BOOK_COVERS_DIR, filename)
-        file.save(save_path)
-        relative_url = f'assets/img/Biblioteca page/{filename}'
-        return jsonify({
-            'success': True,
-            'url': relative_url,
-            'filename': filename,
-            'message': 'Capa do livro enviada com sucesso!'
-        })
-
-    data = request.get_json(silent=True) or {}
-    if 'image_data' in data:
-        img_data = data['image_data']
-        if ',' in img_data:
-            header, encoded = img_data.split(',', 1)
-            ext = '.webp'
-            if 'jpeg' in header or 'jpg' in header:
-                ext = '.jpg'
-            elif 'png' in header:
-                ext = '.png'
-            binary = base64.b64decode(encoded)
-            filename = f'capa_{int(time.time())}{ext}'
-            save_path = os.path.join(BOOK_COVERS_DIR, filename)
-            with open(save_path, 'wb') as f:
-                f.write(binary)
-            relative_url = f'assets/img/Biblioteca page/{filename}'
-            return jsonify({
-                'success': True,
-                'url': relative_url,
-                'filename': filename,
-                'message': 'Capa salva com sucesso!'
-            })
-
-    return jsonify({'error': 'Nenhuma imagem recebida'}), 400
-
-@app.route('/api/book-covers', methods=['GET'])
-def list_book_covers():
-    images = []
-    # Pasta Biblioteca page (uploads)
-    if os.path.exists(BOOK_COVERS_DIR):
-        for f in os.listdir(BOOK_COVERS_DIR):
-            if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.svg')):
-                images.append({
-                    'filename': f,
-                    'url': f'assets/img/Biblioteca page/{f}'
-                })
-    # Pasta books (capas existentes do catálogo do site)
-    books_dir = os.path.join(SITE_DIR, 'assets', 'img', 'books')
-    if os.path.exists(books_dir):
-        for f in os.listdir(books_dir):
-            if f.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.svg')):
-                images.append({
-                    'filename': f,
-                    'url': f'assets/img/books/{f}'
-                })
-    return jsonify(images)
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 def open_browser():
     time.sleep(1.2)
@@ -572,11 +477,11 @@ def open_browser():
 
 if __name__ == '__main__':
     if '--test' in sys.argv:
-        print('Test mode: App-Editor-Blog Flask app initialized successfully.')
+        print('Test mode: editor.py Flask app initialized successfully.')
         sys.exit(0)
 
     print('════════════════════════════════════════════════════════════')
-    print(' 🚀 Marcos Data Product — Editor de Artigos para o Blog')
+    print(' 🚀 Marcos Data Product — Editor')
     print(' Pasta do Site conectada:', SITE_DIR)
     print(' Servidor local iniciado em: http://localhost:5000')
     print(' Pressione Ctrl+C no terminal para encerrar.')
