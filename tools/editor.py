@@ -137,6 +137,12 @@ def serve_blog_hub():
 def serve_biblioteca_hub():
     return send_from_directory(SITE_DIR, 'biblioteca.html')
 
+@app.route('/404')
+@app.route('/404.html')
+@app.errorhandler(404)
+def serve_404_page(e=None):
+    return send_from_directory(SITE_DIR, '404.html'), 404
+
 @app.route('/')
 def index():
     return render_template('editor.html')

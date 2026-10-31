@@ -1,17 +1,13 @@
 """
-Script de atualização e padronização completa de SEO, acessibilidade,
-Core Web Vitals e links em todas as páginas HTML do site.
+Script de atualização e padronização de SEO, acessibilidade e componentes comuns.
 """
 import os
 import re
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-def update_all_pages():
-    print("=== ATUALIZANDO PÁGINAS HTML (SEO & PERFORMANCE) ===")
-
-    # Componentes padrão reutilizáveis
-    standard_footer = '''<footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+# Componentes padrão reutilizáveis (definidos no nível do módulo para evitar erros de indentação)
+STANDARD_FOOTER = '''<footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       <a href="/" class="flex items-center group" aria-label="Marcos Data Product">
         <img src="/assets/img/logo-escura.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />
@@ -40,9 +36,9 @@ def update_all_pages():
     </div>
   </footer>'''
 
-    standard_search_modal = '''<!-- ═══════════════════════════════════════════════════════
+STANDARD_SEARCH_MODAL = '''<!-- =======================================================
      MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
-  ═══════════════════════════════════════════════════════ -->
+  ======================================================= -->
   <div id="search-modal" class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
     <div class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform" id="search-modal-container">
       
@@ -103,29 +99,30 @@ def update_all_pages():
     </div>
   </div>'''
 
-    footer_re = re.compile(r'<footer class="bg-\[#0b1e3a\].*?</footer>', re.DOTALL)
-    search_modal_re = re.compile(r'(?:<!--\s*[═\?]+\s*MODAL DE BUSCA.*?-->\s*)?<div id=["\']search-modal["\'].*?</div>\s*</div>\s*</div>', re.DOTALL)
+FOOTER_RE = re.compile(r'<footer class="bg-\[#0b1e3a\].*?</footer>', re.DOTALL)
+SEARCH_MODAL_RE = re.compile(r'(?:<!--\s*[═\?=-]+\s*MODAL DE BUSCA.*?-->\s*)?<div id=["\']search-modal["\'].*?</div>\s*</div>\s*</div>(?=\s*(?:<!--|<script|\Z))', re.DOTALL)
 
-    def apply_clean_urls_and_assets(text):
-        text = text.replace('href="index.html"', 'href="/"')
-        text = text.replace('href="blog.html"', 'href="/blog"')
-        text = text.replace('href="projetos.html"', 'href="/projetos"')
-        text = text.replace('href="biblioteca.html"', 'href="/biblioteca"')
-        text = text.replace('href="sobre.html"', 'href="/sobre"')
-        text = text.replace('href="assets/img/favicon.svg"', 'href="/assets/img/favicon.svg"')
-        text = text.replace('href="favicon.ico"', 'href="/favicon.ico"')
-        text = text.replace('href="assets/img/favicon-32x32.png"', 'href="/assets/img/favicon-32x32.png"')
-        text = text.replace('href="assets/img/favicon-16x16.png"', 'href="/assets/img/favicon-16x16.png"')
-        text = text.replace('href="assets/img/apple-touch-icon.png"', 'href="/assets/img/apple-touch-icon.png"')
-        text = text.replace('href="assets/css/main.css"', 'href="/assets/css/main.css"')
-        text = text.replace('<script src="assets/vendor/resource_3fa48481346f.js"></script>', '<link rel="stylesheet" href="/assets/css/tailwind.css">')
-        text = text.replace('<script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>', '<script defer src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>')
-        text = text.replace('<script src="assets/js/main.js"></script>', '<script defer src="/assets/js/main.js"></script>')
-        return text
+def apply_clean_urls_and_assets(text):
+    text = text.replace('href="index.html"', 'href="/"')
+    text = text.replace('href="blog.html"', 'href="/blog"')
+    text = text.replace('href="projetos.html"', 'href="/projetos"')
+    text = text.replace('href="biblioteca.html"', 'href="/biblioteca"')
+    text = text.replace('href="sobre.html"', 'href="/sobre"')
+    text = text.replace('href="assets/img/favicon.svg"', 'href="/assets/img/favicon.svg"')
+    text = text.replace('href="favicon.ico"', 'href="/favicon.ico"')
+    text = text.replace('href="assets/img/favicon-32x32.png"', 'href="/assets/img/favicon-32x32.png"')
+    text = text.replace('href="assets/img/favicon-16x16.png"', 'href="/assets/img/favicon-16x16.png"')
+    text = text.replace('href="assets/img/apple-touch-icon.png"', 'href="/assets/img/apple-touch-icon.png"')
+    text = text.replace('href="assets/css/main.css"', 'href="/assets/css/main.css"')
+    text = text.replace('<script src="assets/vendor/resource_3fa48481346f.js"></script>', '<link rel="stylesheet" href="/assets/css/tailwind.css">')
+    text = text.replace('<script src="assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>', '<script defer src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>')
+    text = text.replace('<script src="assets/js/main.js"></script>', '<script defer src="/assets/js/main.js"></script>')
+    return text
 
-    # ─────────────────────────────────────────────────────────────
+def update_all_pages():
+    print("=== ATUALIZANDO PÁGINAS HTML (SEO & PERFORMANCE) ===")
+
     # 1. INDEX.HTML (HOME)
-    # ─────────────────────────────────────────────────────────────
     home_path = os.path.join(ROOT_DIR, 'index.html')
     with open(home_path, 'r', encoding='utf-8') as f:
         home = f.read()
@@ -184,7 +181,7 @@ def update_all_pages():
   </script>'''
 
     if '<link rel="canonical"' not in home:
-        home = home.replace('<!-- ═══════════════════════════════════════════════\n       DEPENDENCIES', head_home + '\n\n  <!-- ═══════════════════════════════════════════════\n       DEPENDENCIES')
+        home = home.replace('<!-- ===============================================\n       DEPENDENCIES', head_home + '\n\n  <!-- ===============================================\n       DEPENDENCIES')
 
     home = apply_clean_urls_and_assets(home)
     home = home.replace('href="assets/img/hero_section_home.jpg"', 'href="/assets/img/hero-home.webp"')
@@ -192,81 +189,71 @@ def update_all_pages():
     home = home.replace('src="assets/img/logo-clara.png"', 'src="/assets/img/logo-clara.webp" width="180" height="40"')
     home = home.replace('src="assets/img/logo-escura.png"', 'src="/assets/img/logo-escura.webp" width="180" height="40"')
 
-    home = footer_re.sub(standard_footer, home)
-    home = search_modal_re.sub(standard_search_modal, home)
+    home = FOOTER_RE.sub(STANDARD_FOOTER, home)
+    home = SEARCH_MODAL_RE.sub(STANDARD_SEARCH_MODAL, home)
 
     with open(home_path, 'w', encoding='utf-8') as f:
         f.write(home)
     print("[OK] index.html atualizado!")
 
-    # ─────────────────────────────────────────────────────────────
     # 2. SOBRE.HTML
-    # ─────────────────────────────────────────────────────────────
     sobre_path = os.path.join(ROOT_DIR, 'sobre.html')
     with open(sobre_path, 'r', encoding='utf-8') as f:
         sobre = f.read()
 
     sobre = apply_clean_urls_and_assets(sobre)
-    sobre = footer_re.sub(standard_footer, sobre)
-    sobre = search_modal_re.sub(standard_search_modal, sobre)
+    sobre = FOOTER_RE.sub(STANDARD_FOOTER, sobre)
+    sobre = SEARCH_MODAL_RE.sub(STANDARD_SEARCH_MODAL, sobre)
 
     with open(sobre_path, 'w', encoding='utf-8') as f:
         f.write(sobre)
     print("[OK] sobre.html atualizado!")
 
-    # ─────────────────────────────────────────────────────────────
     # 3. BLOG.HTML
-    # ─────────────────────────────────────────────────────────────
     blog_path = os.path.join(ROOT_DIR, 'blog.html')
     with open(blog_path, 'r', encoding='utf-8') as f:
         blog = f.read()
 
     blog = apply_clean_urls_and_assets(blog)
-    blog = footer_re.sub(standard_footer, blog)
-    blog = search_modal_re.sub(standard_search_modal, blog)
+    blog = FOOTER_RE.sub(STANDARD_FOOTER, blog)
+    blog = SEARCH_MODAL_RE.sub(STANDARD_SEARCH_MODAL, blog)
 
     with open(blog_path, 'w', encoding='utf-8') as f:
         f.write(blog)
     print("[OK] blog.html atualizado!")
 
-    # ─────────────────────────────────────────────────────────────
     # 4. PROJETOS.HTML
-    # ─────────────────────────────────────────────────────────────
     proj_path = os.path.join(ROOT_DIR, 'projetos.html')
     with open(proj_path, 'r', encoding='utf-8') as f:
         proj = f.read()
 
     proj = apply_clean_urls_and_assets(proj)
-    proj = footer_re.sub(standard_footer, proj)
-    proj = search_modal_re.sub(standard_search_modal, proj)
+    proj = FOOTER_RE.sub(STANDARD_FOOTER, proj)
+    proj = SEARCH_MODAL_RE.sub(STANDARD_SEARCH_MODAL, proj)
 
     with open(proj_path, 'w', encoding='utf-8') as f:
         f.write(proj)
     print("[OK] projetos.html atualizado!")
 
-    # ─────────────────────────────────────────────────────────────
     # 5. BIBLIOTECA.HTML
-    # ─────────────────────────────────────────────────────────────
     bib_path = os.path.join(ROOT_DIR, 'biblioteca.html')
     with open(bib_path, 'r', encoding='utf-8') as f:
         bib = f.read()
 
     bib = apply_clean_urls_and_assets(bib)
-    bib = footer_re.sub(standard_footer, bib)
+    bib = FOOTER_RE.sub(STANDARD_FOOTER, bib)
 
     with open(bib_path, 'w', encoding='utf-8') as f:
         f.write(bib)
     print("[OK] biblioteca.html atualizado!")
 
-    # ─────────────────────────────────────────────────────────────
     # 6. 404.HTML
-    # ─────────────────────────────────────────────────────────────
     p404_path = os.path.join(ROOT_DIR, '404.html')
     with open(p404_path, 'r', encoding='utf-8') as f:
         p404 = f.read()
 
     p404 = apply_clean_urls_and_assets(p404)
-    p404 = footer_re.sub(standard_footer, p404)
+    p404 = FOOTER_RE.sub(STANDARD_FOOTER, p404)
 
     with open(p404_path, 'w', encoding='utf-8') as f:
         f.write(p404)
