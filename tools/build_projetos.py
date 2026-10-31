@@ -94,13 +94,13 @@ def load_projects():
         return []
 
 def render_home_project_card(p):
-    cat_key = p.get('category', 'analytics').lower()
+    cat_key = html.escape(str(p.get('category', 'analytics')).lower(), quote=True)
     cat_info = CATEGORY_CONFIG.get(cat_key, CATEGORY_CONFIG['analytics'])
-    tag_label = p.get('tag_label') or cat_info['tag_label']
-    title = html.escape(p.get('title', 'Sem título'))
-    excerpt = html.escape(p.get('short_desc', p.get('excerpt', '')))
-    cover = p.get('image', p.get('cover', 'assets/img/projects/project-sales-dashboard.svg'))
-    href = p.get('href', '/projetos')
+    tag_label = html.escape(str(p.get('tag_label') or cat_info['tag_label']), quote=True)
+    title = html.escape(p.get('title', 'Sem título'), quote=True)
+    excerpt = html.escape(p.get('short_desc', p.get('excerpt', '')), quote=False)
+    cover = html.escape(p.get('image', p.get('cover', 'assets/img/projects/project-sales-dashboard.svg')), quote=True)
+    href = html.escape(p.get('href', '/projetos'), quote=True)
 
     return f'''          <!-- Projeto: {title} -->
           <a href="{href}" class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col group">
@@ -123,17 +123,17 @@ def render_home_project_card(p):
           </a>'''
 
 def render_projetos_page_card(p):
-    cat_key = p.get('category', 'analytics').lower()
+    cat_key = html.escape(str(p.get('category', 'analytics')).lower(), quote=True)
     cat_info = CATEGORY_CONFIG.get(cat_key, CATEGORY_CONFIG['analytics'])
-    cat_label = p.get('category_label') or cat_info['label']
-    badge_cls = cat_info['badge_class']
-    title = html.escape(p.get('title', 'Sem título'))
-    excerpt = html.escape(p.get('description', p.get('excerpt', '')))
-    cover = p.get('image', p.get('cover', 'assets/img/projects/project-sales-dashboard.svg'))
-    sector = html.escape(p.get('sector', 'Analytics'))
-    metric = html.escape(p.get('metric', ''))
-    metric_label = html.escape(p.get('metric_label', 'Impacto'))
-    href = p.get('href', '/projetos')
+    cat_label = html.escape(str(p.get('category_label') or cat_info['label']), quote=True)
+    badge_cls = html.escape(str(cat_info['badge_class']), quote=True)
+    title = html.escape(p.get('title', 'Sem título'), quote=True)
+    excerpt = html.escape(p.get('description', p.get('excerpt', '')), quote=False)
+    cover = html.escape(p.get('image', p.get('cover', 'assets/img/projects/project-sales-dashboard.svg')), quote=True)
+    sector = html.escape(p.get('sector', 'Analytics'), quote=True)
+    metric = html.escape(p.get('metric', ''), quote=True)
+    metric_label = html.escape(p.get('metric_label', 'Impacto'), quote=True)
+    href = html.escape(p.get('href', '/projetos'), quote=True)
 
     stack = p.get('stack', [])
     stack_html = '\n'.join(

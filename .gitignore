@@ -25,3 +25,15 @@ ENV/
 temp/
 tmp/
 .gemini/
+
+# Environment and Secrets
+.env
+.env.*
+*.pem
+*.key
+*.cert
+*.crt
+id_rsa
+id_ecdsa
+id_ed25519
+secrets/

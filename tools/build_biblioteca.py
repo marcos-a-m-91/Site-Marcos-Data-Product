@@ -93,11 +93,11 @@ def get_effective_category(b):
     return 'dados'
 
 def render_primer_book_card(book, is_carousel=False):
-    book_id = book.get('id', 'book-id')
-    cat = get_effective_category(book)
+    book_id = html.escape(str(book.get('id', 'book-id')), quote=True)
+    cat = html.escape(str(get_effective_category(book)), quote=True)
     title_safe = html.escape(book.get('title', 'Sem título'), quote=True)
     author_safe = html.escape(book.get('author', 'Autor desconhecido'), quote=True)
-    cover_safe = book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp')
+    cover_safe = html.escape(book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp'), quote=True)
     desc_safe = html.escape(book.get('short_desc', ''), quote=False)
     amazon_url = html.escape(book.get('amazon_link', '#'), quote=True)
 
@@ -147,7 +147,7 @@ def render_primer_book_card(book, is_carousel=False):
 def render_home_book_card(book):
     title = html.escape(book.get('title', 'Sem título'), quote=True)
     author = html.escape(book.get('author', 'Autor desconhecido'), quote=True)
-    cover_image = book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp')
+    cover_image = html.escape(book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp'), quote=True)
     
     return f'''          <!-- Livro: {title} -->
           <a href="/biblioteca" class="flex flex-col group" title="{title}">

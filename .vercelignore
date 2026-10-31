@@ -1,0 +1,17 @@
+# Vercel Ignore - Não publicar arquivos internos de desenvolvimento na CDN pública
+tools/
+.agents/
+.codex/
+.impeccable/
+references/
+drafts/
+*.bat
+*.py
+requirements.txt
+README.md
+PRODUCT.md
+DESIGN.md
+*.log
+temp/
+tmp/
+

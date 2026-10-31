@@ -588,6 +588,21 @@ Dica: você pode colar prints da tela diretamente com Ctrl + V!"
      SCRIPTS & LÓGICA DO EDITOR
   ═══════════════════════════════════════════════════════ -->
   <script>
+    // Interceptor de segurança anti-CSRF para requisições do editor local
+    const _originalFetch = window.fetch;
+    window.fetch = function(url, options = {}) {
+      options = options || {};
+      options.headers = options.headers || {};
+      if (options.headers instanceof Headers) {
+        options.headers.set('X-MDP-Editor', 'true');
+      } else if (Array.isArray(options.headers)) {
+        options.headers.push(['X-MDP-Editor', 'true']);
+      } else {
+        options.headers['X-MDP-Editor'] = 'true';
+      }
+      return _originalFetch(url, options);
+    };
+
     let tagsList = [];
     let isSlugManual = false;
     let allLoadedPosts = [];
@@ -1072,7 +1087,38 @@ Dica: você pode colar prints da tela diretamente com Ctrl + V!"
     }
 
     // ── GAVETA DE POSTS EXISTENTES ────────────────────────────
-    async function openPostsDrawer() {
+    async 
+    // ═════════════════════════════════════════════════════════════════════
+    // Sincronizar Todo o Site via App (Executa build_site.py)
+    // ═════════════════════════════════════════════════════════════════════
+    async function syncSiteFromApp() {
+      const btn = document.getElementById('sync-site-btn');
+      const icon = document.getElementById('sync-site-icon');
+      const label = document.getElementById('sync-site-label');
+
+      if (btn) btn.disabled = true;
+      if (icon) icon.classList.add('animate-spin');
+      if (label) label.textContent = 'Atualizando...';
+
+      try {
+        const res = await fetch('/api/sync-site', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+          showToast('Site atualizado com sucesso! (Blog, Livros, Projetos, Sitemap e CSS sincronizados)', 'success');
+        } else {
+          alert('Aviso na atualização do site:\n' + (data.error || 'Erro desconhecido'));
+        }
+      } catch (err) {
+        alert('Erro de conexão ao atualizar o site: ' + err.message);
+      } finally {
+        if (btn) btn.disabled = false;
+        if (icon) icon.classList.remove('animate-spin');
+        if (label) label.textContent = 'Atualizar Site';
+        if (window.lucide) window.lucide.createIcons();
+      }
+    }
+
+    function openPostsDrawer() {
       document.getElementById('posts-drawer').classList.remove('hidden');
       const list = document.getElementById('drawer-posts-list');
       list.innerHTML = '<div class="text-center py-8 text-xs text-[#656d76]">Carregando artigos...</div>';

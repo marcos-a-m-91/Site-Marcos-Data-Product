@@ -40,7 +40,23 @@ def update_all_pages():
     </div>
   </footer>'''
 
-    standard_search_modal = '''<div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+    standard_search_modal = '''<!-- ═══════════════════════════════════════════════════════
+     MODAL DE BUSCA INTERATIVA (SEARCH MODAL)
+  ═══════════════════════════════════════════════════════ -->
+  <div id="search-modal" class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform" id="search-modal-container">
+      
+      <!-- Input Header -->
+      <div class="p-4 border-b border-[#d0d7de] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#11376e]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..." class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#8c959f] hover:text-[#1f2328] hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Quick Results / Suggestions -->
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
         <div class="text-[11px] font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões de navegação</div>
         <a href="/blog" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
           <div class="flex items-center gap-3">
@@ -82,10 +98,13 @@ def update_all_pages():
           </div>
           <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
         </a>
-      </div>'''
+      </div>
+
+    </div>
+  </div>'''
 
     footer_re = re.compile(r'<footer class="bg-\[#0b1e3a\].*?</footer>', re.DOTALL)
-    search_re = re.compile(r'<div class="p-4 max-h-\[60vh\] overflow-y-auto space-y-2" id="search-results">.*?</div>\s*</div>\s*</div>', re.DOTALL)
+    search_modal_re = re.compile(r'(?:<!--\s*[═\?]+\s*MODAL DE BUSCA.*?-->\s*)?<div id=["\']search-modal["\'].*?</div>\s*</div>\s*</div>', re.DOTALL)
 
     def apply_clean_urls_and_assets(text):
         text = text.replace('href="index.html"', 'href="/"')
@@ -168,27 +187,13 @@ def update_all_pages():
         home = home.replace('<!-- ═══════════════════════════════════════════════\n       DEPENDENCIES', head_home + '\n\n  <!-- ═══════════════════════════════════════════════\n       DEPENDENCIES')
 
     home = apply_clean_urls_and_assets(home)
-
-    # Hero image preload & background
     home = home.replace('href="assets/img/hero_section_home.jpg"', 'href="/assets/img/hero-home.webp"')
     home = home.replace("url('assets/img/hero_section_home.jpg')", "url('/assets/img/hero-home.webp')")
+    home = home.replace('src="assets/img/logo-clara.png"', 'src="/assets/img/logo-clara.webp" width="180" height="40"')
+    home = home.replace('src="assets/img/logo-escura.png"', 'src="/assets/img/logo-escura.webp" width="180" height="40"')
 
-    # Logos e Fotos com width/height
-    home = home.replace('<img src="assets/img/logo-clara.png" alt="Marcos Data Product Logo" class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" />',
-                        '<img src="/assets/img/logo-clara.webp" alt="Marcos Data Product" class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />')
-    home = home.replace('<img src="assets/img/logo-clara.png" alt="Marcos Data Product" class="h-8 w-auto object-contain" />',
-                        '<img src="/assets/img/logo-clara.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain" width="180" height="40" />')
-    home = home.replace('<img src="assets/img/logo-escura.png" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" />',
-                        '<img src="/assets/img/logo-escura.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />')
-    home = home.replace('<img src="assets/img/foto-marcos-aurelio.webp" alt="Marcos Aurélio" class="w-full h-full object-cover object-top" />',
-                        '<img src="/assets/img/foto-marcos-aurelio.webp" alt="Marcos Aurélio" class="w-full h-full object-cover object-top" width="230" height="288" loading="lazy" decoding="async" />')
-
-    # Footer e Busca
     home = footer_re.sub(standard_footer, home)
-    home = search_re.sub(standard_search_modal + '\n    </div>\n  </div>', home)
-
-    # Fix placeholder script image tags in home JS to have width/height
-    home = home.replace('class="w-full h-full object-cover rounded-lg" />', 'class="w-full h-full object-cover rounded-lg" width="380" height="128" />')
+    home = search_modal_re.sub(standard_search_modal, home)
 
     with open(home_path, 'w', encoding='utf-8') as f:
         f.write(home)
@@ -202,17 +207,8 @@ def update_all_pages():
         sobre = f.read()
 
     sobre = apply_clean_urls_and_assets(sobre)
-
-    # Corrigir SVGs da timeline que ainda não têm width/height
-    sobre = sobre.replace('src="assets/img/icons-stacks/sql.svg" alt="" class="w-3.5 h-3.5 object-contain" />',
-                          'src="/assets/img/icons-stacks/sql.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14" height="14" loading="lazy" decoding="async" />')
-    sobre = sobre.replace('src="assets/img/icons-stacks/databricks.svg" alt=""\n                      class="w-3.5 h-3.5 object-contain" />',
-                          'src="/assets/img/icons-stacks/databricks.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14" height="14" loading="lazy" decoding="async" />')
-    sobre = sobre.replace('src="assets/img/icons-stacks/github.svg" alt="" class="w-3.5 h-3.5 object-contain" />',
-                          'src="/assets/img/icons-stacks/github.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14" height="14" loading="lazy" decoding="async" />')
-
     sobre = footer_re.sub(standard_footer, sobre)
-    sobre = search_re.sub(standard_search_modal + '\n    </div>\n  </div>', sobre)
+    sobre = search_modal_re.sub(standard_search_modal, sobre)
 
     with open(sobre_path, 'w', encoding='utf-8') as f:
         f.write(sobre)
@@ -226,19 +222,8 @@ def update_all_pages():
         blog = f.read()
 
     blog = apply_clean_urls_and_assets(blog)
-
-    # Corrigir picos de hierarquia: h4 nos cards flutuantes do hero para p
-    blog = blog.replace('<h4 class="text-[10px] font-bold text-white line-clamp-2 leading-snug">',
-                        '<p class="text-[10px] font-bold text-white line-clamp-2 leading-snug">')
-    blog = blog.replace('</h4>\n                    </div>\n                  </a>',
-                        '</p>\n                    </div>\n                  </a>')
-
-    # Remover links obsoletos com .html
-    blog = blog.replace('href="blog/media-moda-e-mediana.html"', 'href="/blog"')
-    blog = blog.replace('href="blog/modelagem-star-schema-powerbi.html"', 'href="/blog"')
-
     blog = footer_re.sub(standard_footer, blog)
-    blog = search_re.sub(standard_search_modal + '\n    </div>\n  </div>', blog)
+    blog = search_modal_re.sub(standard_search_modal, blog)
 
     with open(blog_path, 'w', encoding='utf-8') as f:
         f.write(blog)
@@ -252,10 +237,8 @@ def update_all_pages():
         proj = f.read()
 
     proj = apply_clean_urls_and_assets(proj)
-    proj = proj.replace('href="blog/media-moda-e-mediana.html"', 'href="/blog"')
-    proj = proj.replace('href="blog/modelagem-star-schema-powerbi.html"', 'href="/blog"')
     proj = footer_re.sub(standard_footer, proj)
-    proj = search_re.sub(standard_search_modal + '\n    </div>\n  </div>', proj)
+    proj = search_modal_re.sub(standard_search_modal, proj)
 
     with open(proj_path, 'w', encoding='utf-8') as f:
         f.write(proj)
@@ -269,15 +252,7 @@ def update_all_pages():
         bib = f.read()
 
     bib = apply_clean_urls_and_assets(bib)
-
-    # Modal dummy img tags: adicionar width e height
-    bib = bib.replace('id="modal-blur" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"',
-                      'id="modal-blur" width="300" height="400" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"')
-    bib = bib.replace('id="modal-cover" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"',
-                      'id="modal-cover" width="185" height="275" src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'%3E%3C/svg%3E"')
-
     bib = footer_re.sub(standard_footer, bib)
-    bib = search_re.sub(standard_search_modal + '\n    </div>\n  </div>', bib)
 
     with open(bib_path, 'w', encoding='utf-8') as f:
         f.write(bib)
@@ -291,12 +266,7 @@ def update_all_pages():
         p404 = f.read()
 
     p404 = apply_clean_urls_and_assets(p404)
-    p404 = p404.replace('href="blog/media-moda-e-mediana.html"', 'href="/blog"')
     p404 = footer_re.sub(standard_footer, p404)
-    p404 = search_re.sub(standard_search_modal + '\n    </div>\n  </div>', p404)
-
-    if '<meta name="robots" content="noindex, nofollow" />' not in p404:
-        p404 = p404.replace('<title>', '<meta name="robots" content="noindex, nofollow" />\n  <title>')
 
     with open(p404_path, 'w', encoding='utf-8') as f:
         f.write(p404)

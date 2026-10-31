@@ -193,10 +193,10 @@ def generate_post_page(post, all_posts):
               <span class="text-xs text-[#656d76]">{r.get('read_time', '5 min')}</span>
             </div>
             <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
-              {r.get('title')}
+              {html.escape(r.get('title', 'Artigo'), quote=True)}
             </h4>
             <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
-              {r.get('excerpt', '')}
+              {html.escape(r.get('excerpt', ''), quote=False)}
             </p>
           </div>
           <span class="text-xs font-semibold text-[#11376e] inline-flex items-center gap-1 mt-4">
@@ -205,15 +205,22 @@ def generate_post_page(post, all_posts):
         </a>
         '''
 
-    tags_html = "".join(f'<span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#{t}</span> ' for t in post.get('tags', []))
+        tags_html = "".join(f'<span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#{html.escape(t, quote=True)}</span> ' for t in post.get('tags', []))
 
-    cover_rel = post.get('cover', 'assets/img/og-default.jpg').lstrip('/')
+    cover_rel = html.escape(post.get('cover', 'assets/img/og-default.jpg').lstrip('/'), quote=True)
     cover_abs = f"https://marcosdataproduct.com/{cover_rel}"
-    post_url = f"https://marcosdataproduct.com/blog/{slug}"
-    title_text = post.get('title', 'Artigo')
-    meta_desc = (post.get('meta_description') or post.get('excerpt', '')).strip()
-    if len(meta_desc) > 155:
-        meta_desc = meta_desc[:152].rsplit(' ', 1)[0] + '...'
+    slug_safe = html.escape(slug, quote=True)
+    post_url = f"https://marcosdataproduct.com/blog/{slug_safe}"
+    title_text = html.escape(post.get('title', 'Artigo'), quote=True)
+    raw_desc = (post.get('meta_description') or post.get('excerpt', '')).strip()
+    if len(raw_desc) > 155:
+        raw_desc = raw_desc[:152].rsplit(' ', 1)[0] + '...'
+    meta_desc = html.escape(raw_desc, quote=True)
+    category_text = html.escape(post.get('category', 'Artigo'), quote=True)
+    author_text = html.escape(post.get('author', 'Marcos Aurélio'), quote=True)
+    read_time_text = html.escape(post.get('read_time', '5 min'), quote=True)
+    formatted_date_text = html.escape(str(post.get('formatted_date', '')), quote=True)
+    excerpt_text = html.escape(post.get('excerpt', ''), quote=False)
 
     # Math check
     has_math = ('$$' in post.get('raw_body', '')) or post.get('math') is True
@@ -458,18 +465,18 @@ def generate_post_page(post, all_posts):
         <span>/</span>
         <a href="/blog" class="hover:text-[#11376e] transition-colors">Blog</a>
         <span>/</span>
-        <span class="text-[#1f2328] font-medium truncate max-w-xs">{post.get('category', 'Artigo')}</span>
+        <span class="text-[#1f2328] font-medium truncate max-w-xs">{category_text}</span>
       </nav>
 
       <!-- Category badge & Read info -->
       <div class="flex flex-wrap items-center gap-3 mb-5">
-        <span class="badge {badge_cls} text-xs">{post.get('category', 'Artigo')}</span>
+        <span class="badge {badge_cls} text-xs">{category_text}</span>
         <span class="text-xs text-[#656d76] flex items-center gap-1.5">
-          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> {post.get('formatted_date')}
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> {formatted_date_text}
         </span>
         <span class="text-[#d0d7de]">•</span>
         <span class="text-xs text-[#656d76] flex items-center gap-1.5">
-          <i data-lucide="clock" class="w-3.5 h-3.5"></i> {post.get('read_time', '5 min')} de leitura
+          <i data-lucide="clock" class="w-3.5 h-3.5"></i> {read_time_text} de leitura
         </span>
       </div>
 
@@ -480,7 +487,7 @@ def generate_post_page(post, all_posts):
 
       <!-- Excerpt -->
       <p class="text-lg sm:text-xl text-[#57606a] leading-relaxed mb-8">
-        {post.get('excerpt', '')}
+        {excerpt_text}
       </p>
 
       <!-- Author Chip -->
@@ -488,7 +495,7 @@ def generate_post_page(post, all_posts):
         <div class="flex items-center gap-3">
           <img src="/assets/img/minha-imagem-notion.webp" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de] bg-[#f6f8fa]" width="48" height="48" loading="lazy" decoding="async" />
           <div>
-            <span class="font-bold text-sm text-[#1f2328] block">{post.get('author', 'Marcos Aurélio')}</span>
+            <span class="font-bold text-sm text-[#1f2328] block">{author_text}</span>
             <span class="text-xs text-[#656d76]">Senior Business Analytics &bull; Autor</span>
           </div>
         </div>
