@@ -1821,9 +1821,6 @@
         lucide.createIcons();
       }
 
-      // Mobile Menu controlado via /assets/js/main.js
-      }
-
       // 3. Search Modal Functionality
       const searchTrigger = document.getElementById('search-modal-trigger');
       const searchModal = document.getElementById('search-modal');
@@ -2005,10 +2002,23 @@
         });
       }
 
-      window.addEventListener('scroll', updateTimelineProgress, { passive: true });
-      window.addEventListener('resize', updateTimelineProgress);
+      let isTicking = false;
+      function onScrollOrResize() {
+        if (!isTicking) {
+          requestAnimationFrame(() => {
+            updateTimelineProgress();
+            isTicking = false;
+          });
+          isTicking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScrollOrResize, { passive: true });
+      window.addEventListener('resize', onScrollOrResize);
       window.addEventListener('load', updateTimelineProgress);
       updateTimelineProgress();
+      setTimeout(updateTimelineProgress, 100);
+      setTimeout(updateTimelineProgress, 400);
     });
   </script>
 
