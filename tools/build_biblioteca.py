@@ -106,30 +106,30 @@ def render_primer_book_card(book, is_carousel=False):
         tags = [t.strip() for t in tags.split(',') if t.strip()]
     
     tags_html = ''.join(
-        f'<span class="text-xs font-semibold px-2 py-0.5 rounded-md {get_tag_badge_class(t)}">{html.escape(t)}</span>'
+        f'<span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md {get_tag_badge_class(t)}">{html.escape(t)}</span>'
         for t in tags[:2]
     )
 
-    extra_classes = " w-[85%] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] flex-shrink-0 snap-start" if is_carousel else ""
+    extra_classes = " w-[78%] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] shrink-0 snap-start" if is_carousel else ""
 
-    return f'''            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item{extra_classes}" data-id="{book_id}" data-category="{cat}">
-              <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
-                <img src="{cover_safe}" alt="{title_safe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" width="190" height="285" loading="lazy" decoding="async">
+    return f'''            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item{extra_classes}" data-id="{book_id}" data-category="{cat}">
+              <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="{cover_safe}" alt="{title_safe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
               </div>
-              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="{title_safe}">
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="{title_safe}">
                 {title_safe}
               </h3>
-              <p class="text-xs text-[#656d76] mb-2 font-medium">
+              <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
                 {author_safe}
               </p>
-              <p class="text-xs text-[#656d76] line-clamp-5 leading-relaxed mb-3.5">
+              <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
                 {desc_safe}
               </p>
-              <div class="flex flex-wrap gap-1 mb-3">
+              <div class="flex flex-wrap gap-1 mb-2.5">
                 {tags_html}
               </div>
-              <div class="pt-3 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
-                <a href="{amazon_url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+              <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="{amazon_url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
                   <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
                     <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
@@ -138,7 +138,7 @@ def render_primer_book_card(book, is_carousel=False):
                   <span>Amazon</span>
                   <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
                 </a>
-                <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
                   Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
                 </span>
               </div>
@@ -209,12 +209,8 @@ def build_all():
     # 2. Pré-renderizar Grid de Destaques
     destaques = [b for b in books if b.get('destaque')]
     destaques_cards = '\n'.join(render_primer_book_card(b, is_carousel=True) for b in destaques)
-    content = re.sub(
-        r'(<div\s+id=["\']destaques-grid["\'][^>]*>).*?(</div>\s*<!-- Controles de Navegação)',
-        f'\\1\n{destaques_cards}\n            \\2',
-        content,
-        flags=re.DOTALL
-    )
+    pattern_destaques = re.compile(r'(<div\s+id=["\']destaques-grid["\'][^>]*>).*?(</div>\s*</div>\s*</section>)', re.DOTALL)
+    content = pattern_destaques.sub(f'\\1\n{destaques_cards}\n        \\2', content)
 
     # 3. Pré-renderizar Cada Categoria e Atualizar Seções
     for cat in CATEGORIES:

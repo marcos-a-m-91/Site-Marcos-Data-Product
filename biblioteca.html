@@ -625,7 +625,135 @@
   <!-- ═══════════════════════════════════════════════════════
      MAIN CONTENT AREA: 2 COLUNAS (CATÁLOGO À ESQUERDA, FILTROS À DIREITA)
   ═══════════════════════════════════════════════════════ -->
-  <main class="max-w-7xl mx-auto px-5 sm:px-8 pt-10 pb-20">
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 pt-8 sm:pt-10 pb-20">
+
+    <!-- ── SEÇÃO 1: DESTAQUES (LARGURA TOTAL max-w-7xl) ── -->
+    <section id="section-destaques" class="category-block mb-10 pb-8 border-b border-[#d0d7de]/70">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <span class="text-amber-500 flex items-center">
+            <i data-lucide="star" class="w-5 h-5 fill-amber-500 text-amber-500"></i>
+          </span>
+          <h3 class="text-lg sm:text-xl font-bold text-[#1f2328] tracking-tight">Destaques</h3>
+          <span id="destaques-badge-count" class="hidden sm:inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200/70 rounded-full">
+            3 recomendações
+          </span>
+        </div>
+
+        <!-- Controles de Navegação do Carrossel -->
+        <div class="flex items-center gap-1.5" id="destaques-carousel-controls">
+          <button id="destaques-carousel-prev" class="w-8 h-8 rounded-full border border-[#d0d7de] bg-white hover:bg-slate-50 text-[#1f2328] flex items-center justify-center transition-all shadow-xs hover:border-[#11376e] hover:text-[#11376e] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#d0d7de] disabled:hover:text-[#1f2328]" aria-label="Livro anterior">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button id="destaques-carousel-next" class="w-8 h-8 rounded-full border border-[#d0d7de] bg-white hover:bg-slate-50 text-[#1f2328] flex items-center justify-center transition-all shadow-xs hover:border-[#11376e] hover:text-[#11376e] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#d0d7de] disabled:hover:text-[#1f2328]" aria-label="Próximo livro">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carrossel de Livros em Destaque -->
+      <div class="relative overflow-hidden py-1">
+        <div id="destaques-grid" class="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory gap-5 pb-2 pt-1 -mx-1 px-1">
+            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item w-[78%] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] shrink-0 snap-start" data-id="habitos-atomicos" data-category="mentalidade">
+              <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="assets/img/books/habitos-atomicos.webp" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
+              </div>
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus">
+                Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus
+              </h3>
+              <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
+                James Clear
+              </p>
+              <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
+                Não importa quais sejam seus objetivos, Hábitos Atômicos oferece um método eficaz para você se aprimorar ― todos os dias. James Clear, um dos mais expoentes especialistas na criação de hábitos, revela as estratégicas práticas que o ensinarão, exatamente, como criar bons hábitos, abandonar os maus e fazer pequenas mudanças de comportamento que levam a resultados impressionantes.
+              </p>
+              <div class="flex flex-wrap gap-1 mb-2.5">
+                <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200/80">Comportamento</span>
+              </div>
+              <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="https://www.amazon.com.br/dp/8550807567" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
+                    <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M16.9 17.3c1.3-.2 2.4.1 2.6.4.2.3-.1 1.4-.9 2.4" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Amazon</span>
+                  <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
+                </a>
+                <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                  Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
+                </span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item w-[78%] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] shrink-0 snap-start" data-id="como-mentir-com-estatistica" data-category="dados">
+              <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="assets/img/books/como-mentir-com-estatistica.webp" alt="Como mentir com estatística" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
+              </div>
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="Como mentir com estatística">
+                Como mentir com estatística
+              </h3>
+              <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
+                Darrell Huff
+              </p>
+              <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
+                Hoje, em tempos de internet e big data, o livro continua genuinamente subversivo e ainda mais relevante. Qual é, afinal, o grau de confiança que devemos depositar nas análises estatísticas?
+              </p>
+              <div class="flex flex-wrap gap-1 mb-2.5">
+                <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Dados</span><span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Visualização</span>
+              </div>
+              <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="https://www.amazon.com.br/dp/858057952X" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
+                    <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M16.9 17.3c1.3-.2 2.4.1 2.6.4.2.3-.1 1.4-.9 2.4" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Amazon</span>
+                  <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
+                </a>
+                <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                  Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
+                </span>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item w-[78%] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-14px)] lg:w-[calc(25%-15px)] shrink-0 snap-start" data-id="estatistica-o-que-e-para-que-serve-como-funciona" data-category="dados">
+              <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="assets/img/books/estatistica-o-que-e.webp" alt="Estatística: O que é, para que serve, como funciona" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
+              </div>
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="Estatística: O que é, para que serve, como funciona">
+                Estatística: O que é, para que serve, como funciona
+              </h3>
+              <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
+                Charles Wheelan
+              </p>
+              <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
+                O livro apresenta a estatística de forma acessível e prática, mostrando como os dados ajudam a compreender fenômenos do cotidiano e a tomar decisões mais informadas. Por meio de exemplos reais, o autor Charles Wheelan explica conceitos como correlação, inferência estatística e análise de dados, abordando aplicações em áreas como saúde, esportes, política e entretenimento.
+              </p>
+              <div class="flex flex-wrap gap-1 mb-2.5">
+                <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Estatística</span><span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Dados</span>
+              </div>
+              <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="https://www.amazon.com.br/dp/8537815128" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+                  <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
+                    <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M16.9 17.3c1.3-.2 2.4.1 2.6.4.2.3-.1 1.4-.9 2.4" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Amazon</span>
+                  <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
+                </a>
+                <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                  Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
+                </span>
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+       CATÁLOGO & FILTROS: 2 COLUNAS (INICIA APÓS DESTAQUES)
+    ═══════════════════════════════════════════════════════ -->
     <div class="flex flex-col lg:flex-row gap-8 items-start">
       
       <!-- ═════════════════════════════════════════════════
@@ -669,37 +797,7 @@
         <!-- CONTAINER DAS SEÇÕES -->
         <div id="catalog-sections" class="space-y-12">
 
-          <!-- ── SEÇÃO 1: DESTAQUES (CARROSSEL) ── -->
-          <section id="section-destaques" class="category-block">
-            <div class="flex items-center justify-between mb-5">
-              <div class="flex items-center gap-2.5">
-                <span class="text-amber-500 flex items-center">
-                  <i data-lucide="star" class="w-5 h-5 fill-amber-500 text-amber-500"></i>
-                </span>
-                <h3 class="text-xl font-bold text-[#1f2328] tracking-tight">Destaques</h3>
-                <span id="destaques-badge-count" class="hidden sm:inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200/70 rounded-full">
-                  3 recomendações
-                </span>
-              </div>
-
-              <!-- Controles de Navegação do Carrossel -->
-              <div class="flex items-center gap-2" id="destaques-carousel-controls">
-                <button id="destaques-carousel-prev" class="w-8 h-8 rounded-full border border-[#d0d7de] bg-white hover:bg-slate-50 text-[#1f2328] flex items-center justify-center transition-all shadow-xs hover:border-[#11376e] hover:text-[#11376e] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#d0d7de] disabled:hover:text-[#1f2328]" aria-label="Livro anterior">
-                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
-                </button>
-                <button id="destaques-carousel-next" class="w-8 h-8 rounded-full border border-[#d0d7de] bg-white hover:bg-slate-50 text-[#1f2328] flex items-center justify-center transition-all shadow-xs hover:border-[#11376e] hover:text-[#11376e] cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-[#d0d7de] disabled:hover:text-[#1f2328]" aria-label="Próximo livro">
-                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Carrossel de Livros em Destaque -->
-            <div class="relative overflow-hidden py-1">
-              <div id="destaques-grid" class="flex overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory gap-6 pb-3 pt-1 -mx-1 px-1">
-                <!-- Renderizado via JS -->
-              </div>
-            </div>
-          </section>
+          
 
 
           <!-- ── SEÇÃO 2: DADOS ── -->
@@ -717,24 +815,24 @@
               </button>
             </div>
             <div id="dados-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item" data-id="como-mentir-com-estatistica" data-category="dados">
-              <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
-                <img src="assets/img/books/como-mentir-com-estatistica.webp" alt="Como mentir com estatística" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" width="190" height="285" loading="lazy" decoding="async">
+            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item" data-id="como-mentir-com-estatistica" data-category="dados">
+              <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="assets/img/books/como-mentir-com-estatistica.webp" alt="Como mentir com estatística" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
               </div>
-              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="Como mentir com estatística">
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="Como mentir com estatística">
                 Como mentir com estatística
               </h3>
-              <p class="text-xs text-[#656d76] mb-2 font-medium">
+              <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
                 Darrell Huff
               </p>
-              <p class="text-xs text-[#656d76] line-clamp-5 leading-relaxed mb-3.5">
+              <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
                 Hoje, em tempos de internet e big data, o livro continua genuinamente subversivo e ainda mais relevante. Qual é, afinal, o grau de confiança que devemos depositar nas análises estatísticas?
               </p>
-              <div class="flex flex-wrap gap-1 mb-3">
-                <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Dados</span><span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Visualização</span>
+              <div class="flex flex-wrap gap-1 mb-2.5">
+                <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Dados</span><span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Visualização</span>
               </div>
-              <div class="pt-3 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
-                <a href="https://www.amazon.com.br/dp/858057952X" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+              <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="https://www.amazon.com.br/dp/858057952X" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
                   <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
                     <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
@@ -743,29 +841,29 @@
                   <span>Amazon</span>
                   <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
                 </a>
-                <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
                   Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
                 </span>
               </div>
             </div>
-            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item" data-id="estatistica-o-que-e-para-que-serve-como-funciona" data-category="dados">
-              <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
-                <img src="assets/img/books/estatistica-o-que-e.webp" alt="Estatística: O que é, para que serve, como funciona" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" width="190" height="285" loading="lazy" decoding="async">
+            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item" data-id="estatistica-o-que-e-para-que-serve-como-funciona" data-category="dados">
+              <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="assets/img/books/estatistica-o-que-e.webp" alt="Estatística: O que é, para que serve, como funciona" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
               </div>
-              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="Estatística: O que é, para que serve, como funciona">
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="Estatística: O que é, para que serve, como funciona">
                 Estatística: O que é, para que serve, como funciona
               </h3>
-              <p class="text-xs text-[#656d76] mb-2 font-medium">
+              <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
                 Charles Wheelan
               </p>
-              <p class="text-xs text-[#656d76] line-clamp-5 leading-relaxed mb-3.5">
+              <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
                 O livro apresenta a estatística de forma acessível e prática, mostrando como os dados ajudam a compreender fenômenos do cotidiano e a tomar decisões mais informadas. Por meio de exemplos reais, o autor Charles Wheelan explica conceitos como correlação, inferência estatística e análise de dados, abordando aplicações em áreas como saúde, esportes, política e entretenimento.
               </p>
-              <div class="flex flex-wrap gap-1 mb-3">
-                <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Estatística</span><span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Dados</span>
+              <div class="flex flex-wrap gap-1 mb-2.5">
+                <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Estatística</span><span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200/80">Dados</span>
               </div>
-              <div class="pt-3 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
-                <a href="https://www.amazon.com.br/dp/8537815128" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+              <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="https://www.amazon.com.br/dp/8537815128" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
                   <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
                     <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
@@ -774,7 +872,7 @@
                   <span>Amazon</span>
                   <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
                 </a>
-                <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
                   Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
                 </span>
               </div>
@@ -878,24 +976,24 @@
               </button>
             </div>
             <div id="mentalidade-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item" data-id="habitos-atomicos" data-category="mentalidade">
-              <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
-                <img src="assets/img/books/habitos-atomicos.webp" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" width="190" height="285" loading="lazy" decoding="async">
+            <div class="bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item" data-id="habitos-atomicos" data-category="mentalidade">
+              <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="assets/img/books/habitos-atomicos.webp" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
               </div>
-              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus">
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus">
                 Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus
               </h3>
-              <p class="text-xs text-[#656d76] mb-2 font-medium">
+              <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
                 James Clear
               </p>
-              <p class="text-xs text-[#656d76] line-clamp-5 leading-relaxed mb-3.5">
+              <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
                 Não importa quais sejam seus objetivos, Hábitos Atômicos oferece um método eficaz para você se aprimorar ― todos os dias. James Clear, um dos mais expoentes especialistas na criação de hábitos, revela as estratégicas práticas que o ensinarão, exatamente, como criar bons hábitos, abandonar os maus e fazer pequenas mudanças de comportamento que levam a resultados impressionantes.
               </p>
-              <div class="flex flex-wrap gap-1 mb-3">
-                <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200/80">Comportamento</span>
+              <div class="flex flex-wrap gap-1 mb-2.5">
+                <span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200/80">Comportamento</span>
               </div>
-              <div class="pt-3 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
-                <a href="https://www.amazon.com.br/dp/8550807567" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+              <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+                <a href="https://www.amazon.com.br/dp/8550807567" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
                   <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
                     <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
@@ -904,7 +1002,7 @@
                   <span>Amazon</span>
                   <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
                 </a>
-                <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+                <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
                   Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
                 </span>
               </div>
@@ -1305,7 +1403,7 @@
         if (!book) return document.createElement('div');
         const bookId = book.id || ('book-' + Math.random().toString(36).substr(2, 9));
         const card = document.createElement('div');
-        card.className = "bg-white rounded-2xl border border-[#d0d7de] p-3.5 sm:p-4 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item";
+        card.className = "bg-white rounded-2xl border border-[#d0d7de] p-3 sm:p-3.5 flex flex-col h-full card-hover-clean relative group cursor-pointer book-card-item";
         card.setAttribute('data-id', bookId);
         card.setAttribute('data-category', getEffectiveCategory(book));
 
@@ -1314,7 +1412,7 @@
         const tagsHtml = rawTags.slice(0, 2).map(tag => {
           const cleanTag = (tag || '').trim();
           const badgeClass = getTagBadgeClass(cleanTag);
-          return `<span class="text-xs font-semibold px-2 py-0.5 rounded-md ${badgeClass}">${cleanTag}</span>`;
+          return `<span class="text-[10px] sm:text-[11px] font-semibold px-2 py-0.5 rounded-md ${badgeClass}">${cleanTag}</span>`;
         }).join('');
 
         const titleSafe = (book.title || 'Sem título').replace(/"/g, '&quot;');
@@ -1324,32 +1422,32 @@
         const amazonUrlSafe = (book.amazon_link || '#').replace(/"/g, '&quot;');
 
         card.innerHTML = `
-          <!-- Capa do Livro -->
-          <div class="aspect-[2/3] w-full max-w-[190px] mx-auto rounded-xl overflow-hidden mb-3.5 bg-[#f6f8fa] flex items-center justify-center p-2 shadow-xs group-hover:shadow-sm transition-shadow">
-            <img src="${coverSafe}" alt="${titleSafe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" loading="lazy" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';">
+          <!-- Capa do Livro (Compacta) -->
+          <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
+            <img src="${coverSafe}" alt="${titleSafe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';">
           </div>
 
-          <!-- Título e Autor (Título inteiro sem truncamento) -->
-          <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="${titleSafe}">
+          <!-- Título e Autor -->
+          <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="${titleSafe}">
             ${titleSafe}
           </h3>
-          <p class="text-xs text-[#656d76] mb-2 font-medium">
+          <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
             ${authorSafe}
           </p>
 
-          <!-- Descrição curta / Subtítulo expandido -->
-          <p class="text-xs text-[#656d76] line-clamp-5 leading-relaxed mb-3.5">
+          <!-- Descrição curta (Compacta e Legível) -->
+          <p class="text-[11px] sm:text-xs text-[#656d76] line-clamp-2 sm:line-clamp-3 leading-relaxed mb-2.5">
             ${descSafe}
           </p>
 
           <!-- Tags -->
-          <div class="flex flex-wrap gap-1 mb-3">
+          <div class="flex flex-wrap gap-1 mb-2.5">
             ${tagsHtml}
           </div>
 
           <!-- Rodapé com Botão de Compra na Amazon + Ver Detalhes -->
-          <div class="pt-3 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
-            <a href="${amazonUrlSafe}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+          <div class="pt-2.5 border-t border-[#d0d7de]/60 flex items-center justify-between gap-2 mt-auto">
+            <a href="${amazonUrlSafe}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#11376e] hover:bg-[#184a91] text-white text-[11px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
               <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
                 <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
@@ -1358,7 +1456,7 @@
               <span>Amazon</span>
               <i data-lucide="external-link" class="w-2.5 h-2.5 opacity-85"></i>
             </a>
-            <span class="text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
+            <span class="text-[11px] sm:text-xs text-[#11376e] group-hover:text-[#184a91] transition-colors flex items-center font-medium shrink-0">
               Ver detalhes <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
             </span>
           </div>
@@ -1370,7 +1468,6 @@
         return card;
       }
 
-      // Função de Salvar/Remover Bookmark (mantida como no-op seguro caso referenciada externamente)
       window.toggleBookmark = function(bookId, btn) {};
 
       // Modal Elements
@@ -1534,7 +1631,7 @@
             try {
               const card = createBookCard(b);
               if (card) {
-                card.classList.add('w-[85%]', 'sm:w-[calc(50%-12px)]', 'md:w-[calc(33.333%-16px)]', 'flex-shrink-0', 'snap-start');
+                card.classList.add('w-[78%]', 'sm:w-[calc(50%-10px)]', 'md:w-[calc(33.333%-14px)]', 'lg:w-[calc(25%-15px)]', 'shrink-0', 'snap-start');
                 containers.destaques.appendChild(card);
               }
             } catch (cardErr) {
@@ -1707,10 +1804,10 @@
           renderCatalog();
 
           // Rolar suavemente até o início das seções
-          const catalogStart = document.getElementById('catalog-sections');
-          if (catalogStart) {
-            const yOffset = -120;
-            const y = catalogStart.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          const targetEl = isDestaquesIsolated ? document.getElementById('section-destaques') : document.getElementById('catalog-sections');
+          if (targetEl) {
+            const yOffset = -90;
+            const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
           }
         });
