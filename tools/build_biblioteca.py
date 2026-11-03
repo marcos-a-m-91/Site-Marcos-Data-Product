@@ -92,6 +92,52 @@ def get_effective_category(b):
         return 'sociedade'
     return 'dados'
 
+def render_destaque_book_card(book):
+    book_id = html.escape(str(book.get('id', 'book-id')), quote=True)
+    cat = html.escape(str(get_effective_category(book)), quote=True)
+    title_safe = html.escape(book.get('title', 'Sem título'), quote=True)
+    author_safe = html.escape(book.get('author', 'Autor desconhecido'), quote=True)
+    cover_safe = html.escape(book.get('cover_image', 'assets/img/books/cover-estatistica-o-que-e.webp'), quote=True)
+    amazon_url = html.escape(book.get('amazon_link', '#'), quote=True)
+
+    tags = book.get('tags', [])
+    if isinstance(tags, str):
+        tags = [t.strip() for t in tags.split(',') if t.strip()]
+    first_tag = html.escape(tags[0]) if tags else 'Recomendado'
+    badge_cls = get_tag_badge_class(first_tag)
+
+    return f'''            <div class="bg-white rounded-xl border border-[#d0d7de] p-3 flex items-start gap-3 sm:gap-3.5 card-hover-clean relative group cursor-pointer book-card-item w-[300px] sm:w-[340px] md:w-[360px] shrink-0 snap-start shadow-2xs hover:border-[#11376e] transition-all" data-id="{book_id}" data-category="{cat}">
+              <div class="w-[72px] sm:w-[78px] aspect-[2/3] shrink-0 rounded-lg overflow-hidden bg-[#f6f8fa] flex items-center justify-center p-1 border border-[#d0d7de]/50 shadow-2xs group-hover:shadow-xs transition-shadow">
+                <img src="{cover_safe}" alt="{title_safe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.12)]" width="78" height="117" loading="lazy" decoding="async">
+              </div>
+              <div class="flex-1 min-w-0 flex flex-col justify-between h-full py-0.5">
+                <div>
+                  <div class="flex items-center gap-1.5 mb-1">
+                    <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md {badge_cls}">{first_tag}</span>
+                  </div>
+                  <h4 class="font-bold text-xs sm:text-[13px] text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1.5" title="{title_safe}">
+                    {title_safe}
+                  </h4>
+                  <p class="text-[11px] text-[#656d76] font-medium mb-2">
+                    {author_safe}
+                  </p>
+                </div>
+                <div class="pt-2 border-t border-[#d0d7de]/50 flex items-center justify-between gap-2 mt-auto">
+                  <a href="{amazon_url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="btn-tactile inline-flex items-center gap-1 px-2 py-1 rounded-md bg-[#11376e] hover:bg-[#184a91] text-white text-[10px] font-semibold transition-all shadow-2xs" title="Comprar na Amazon">
+                    <svg class="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
+                      <path d="M4.2 18.2c3.8 2.5 9.1 2.9 14.3.7" stroke="#FF9900" stroke-width="2.2" stroke-linecap="round"/>
+                      <path d="M16.9 17.3c1.3-.2 2.4.1 2.6.4.2.3-.1 1.4-.9 2.4" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Amazon</span>
+                  </a>
+                  <span class="text-[10px] sm:text-[11px] text-[#11376e] group-hover:text-[#184a91] font-medium flex items-center shrink-0">
+                    Ver mais <i data-lucide="chevron-right" class="w-3 h-3 ml-0.5"></i>
+                  </span>
+                </div>
+              </div>
+            </div>'''
+
 def render_primer_book_card(book, is_carousel=False):
     book_id = html.escape(str(book.get('id', 'book-id')), quote=True)
     cat = html.escape(str(get_effective_category(book)), quote=True)
@@ -116,7 +162,7 @@ def render_primer_book_card(book, is_carousel=False):
               <div class="aspect-[2/3] w-full max-w-[135px] mx-auto rounded-lg overflow-hidden mb-2.5 bg-[#f6f8fa] flex items-center justify-center p-1.5 shadow-2xs group-hover:shadow-xs transition-shadow">
                 <img src="{cover_safe}" alt="{title_safe}" class="object-contain max-h-full max-w-full rounded drop-shadow-[0_2px_4px_rgba(31,35,40,0.10)]" width="135" height="202" loading="lazy" decoding="async">
               </div>
-              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1 line-clamp-2" title="{title_safe}">
+              <h3 class="font-bold text-xs sm:text-sm text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-1" title="{title_safe}">
                 {title_safe}
               </h3>
               <p class="text-[11px] sm:text-xs text-[#656d76] mb-1.5 font-medium line-clamp-1">
@@ -208,7 +254,7 @@ def build_all():
 
     # 2. Pré-renderizar Grid de Destaques
     destaques = [b for b in books if b.get('destaque')]
-    destaques_cards = '\n'.join(render_primer_book_card(b, is_carousel=True) for b in destaques)
+    destaques_cards = '\n'.join(render_destaque_book_card(b) for b in destaques)
     pattern_destaques = re.compile(r'(<div\s+id=["\']destaques-grid["\'][^>]*>).*?(</div>\s*</div>\s*</section>)', re.DOTALL)
     content = pattern_destaques.sub(f'\\1\n{destaques_cards}\n        \\2', content)
 
