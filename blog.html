@@ -1065,16 +1065,36 @@
         <!-- Unified Posts Grid: 3 Artigos por Linha em Desktop -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" id="blog-posts-grid">
           <!-- BLOG_POSTS_START -->
-          <!-- Estado Vazio: Nenhum post -->
-          <div class="col-span-1 md:col-span-2 bg-white rounded-2xl border border-[#d0d7de] p-8 sm:p-12 text-center my-4">
-            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-3">
-              <i data-lucide="newspaper" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-base font-bold text-[#1f2328] mb-1">Novos artigos em breve</h3>
-            <p class="text-xs sm:text-sm text-[#64748b] max-w-md mx-auto leading-relaxed">
-              Estou redigindo novos artigos práticos sobre Business Analytics, Power BI, Engenharia de Dados e Inteligência Artificial. Volte em breve!
-            </p>
-          </div>
+
+          <!-- Post: Média, mediana e moda: por que a média nem sempre conta a história toda? (10 nov 2026) -->
+          <article class="blog-post-card card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full" data-category="analytics" data-date="2026-11-10">
+            <a href="/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda" class="block flex-1 flex flex-col">
+              <div class="h-44 sm:h-48 bg-[#f8fafc] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/imagem1_1794352142.png" alt="Média, mediana e moda: por que a média nem sempre conta a história toda?" class="w-full h-full object-cover rounded-xl" width="400" height="240" loading="lazy" decoding="async" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="badge-theme-analytics inline-block px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider mb-2.5">
+                    Analytics
+                  </span>
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
+                    Média, mediana e moda: por que a média nem sempre conta a história toda?
+                  </h3>
+                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
+                    Uma nota 5,0 é sempre melhor que uma 4,8? Entenda como média, mediana e moda ajudam a interpretar dados e tomar decisões melhores.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-xs text-[#656d76] pt-3 border-t border-[#d0d7de]/50">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
+                    <span class="text-[#656d76]">8 min de leitura</span>
+                  </span>
+                  <span>10 nov 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
           <!-- BLOG_POSTS_END -->
 
         </div>
@@ -1108,7 +1128,20 @@
           </h2>
           <div class="space-y-3.5" id="sidebar-featured-list">
             <!-- FEATURED_POSTS_START -->
-            <p class="text-xs text-[#64748b]">Nenhum artigo em destaque no momento.</p>
+            <!-- Item: Média, mediana e moda: por que a média nem sempre conta a história toda? -->
+            <a href="/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda" class="flex items-center gap-3 group transition-all" data-date="2026-11-10">
+              <img src="assets/img/blog/imagem1_1794352142.png" alt="Média, mediana e moda: por que a média nem sempre conta a história toda?" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" width="56" height="56" loading="lazy" decoding="async" />
+              <div class="flex-1 min-w-0">
+                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
+                  Média, mediana e moda: por que a média nem sempre conta a história toda?
+                </h4>
+                <p class="text-[11px] text-[#64748b] mt-1 flex items-center gap-1 font-medium">
+                  <span>8 min</span>
+                  <span class="text-slate-300">•</span>
+                  <span>10 nov 2026</span>
+                </p>
+              </div>
+            </a>
             <!-- FEATURED_POSTS_END -->
           </div>
         </div>

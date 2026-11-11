@@ -755,15 +755,35 @@
         <!-- 3 Posts Grid (col-span-12 lg:col-span-9) -->
         <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           <!-- HOME_RECENT_POSTS_START -->
-          <div class="col-span-1 sm:col-span-3 bg-white rounded-2xl border border-[#d0d7de] p-8 text-center">
-            <div class="w-12 h-12 rounded-xl bg-[#11376e]/10 text-[#11376e] flex items-center justify-center mx-auto mb-3">
-              <i data-lucide="newspaper" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-sm font-bold text-[#1f2328] mb-1">Novos artigos em produção</h3>
-            <p class="text-xs text-[#656d76] max-w-sm mx-auto leading-relaxed">
-              Artigos práticos sobre Business Analytics, Power BI, Engenharia de Dados e IA estão sendo preparados. Em breve estarão disponíveis aqui e no blog.
-            </p>
-          </div>
+
+          <!-- Post 1: Média, mediana e moda: por que a média nem sempre conta a história toda? -->
+          <article class="card-hover-clean bg-white rounded-2xl border border-[#d0d7de] overflow-hidden flex flex-col justify-between group transition-all h-full">
+            <a href="/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda" class="block flex-1 flex flex-col">
+              <div class="h-44 sm:h-48 bg-[#f6f8fa] border-b border-[#d0d7de] overflow-hidden p-2 flex items-center justify-center">
+                <img src="assets/img/blog/imagem1_1794352142.png" alt="Média, mediana e moda: por que a média nem sempre conta a história toda?" class="w-full h-full object-cover rounded-xl" width="400" height="240" loading="lazy" decoding="async" />
+              </div>
+              <div class="p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="inline-block px-2.5 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider mb-2.5 bg-[#9a6700]/10 text-[#9a6700]">
+                    Business Analytics
+                  </span>
+                  <h3 class="font-bold text-base text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug mb-2.5">
+                    Média, mediana e moda: por que a média nem sempre conta a história toda?
+                  </h3>
+                  <p class="text-xs text-[#656d76] leading-relaxed mb-4">
+                    Uma nota 5,0 é sempre melhor que uma 4,8? Entenda como média, mediana e moda ajudam a interpretar dados e tomar decisões melhores.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-[#8c959f] pt-3 border-t border-[#f1f5f9]">
+                  <span class="flex items-center gap-1">
+                    <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i> 8 min de leitura
+                  </span>
+                  <span>10 nov 2026</span>
+                </div>
+              </div>
+            </a>
+          </article>
+
           <!-- HOME_RECENT_POSTS_END -->
         </div>
 
@@ -859,36 +879,14 @@
           <!-- HOME_BOOKS_START -->
 
           <!-- Livro: Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus -->
-          <a href="/biblioteca" class="flex flex-col group" title="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus">
+          <a href="biblioteca.html" class="flex flex-col group" title="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus">
             <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
-              <img src="assets/img/books/habitos-atomicos.webp" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus - James Clear" class="w-full h-full object-contain" width="190" height="285" loading="lazy" decoding="async" />
+              <img src="assets/img/books/habitos-atomicos.webp" alt="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus - James Clear" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/img/books/cover-estatistica-o-que-e.webp';" />
             </div>
-            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
+            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-tight line-clamp-2">
               Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus
             </h3>
-            <span class="text-[10px] text-[#656d76] mt-1 block">James Clear</span>
-          </a>
-
-          <!-- Livro: Como mentir com estatística -->
-          <a href="/biblioteca" class="flex flex-col group" title="Como mentir com estatística">
-            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
-              <img src="assets/img/books/como-mentir-com-estatistica.webp" alt="Como mentir com estatística - Darrell Huff" class="w-full h-full object-contain" width="190" height="285" loading="lazy" decoding="async" />
-            </div>
-            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
-              Como mentir com estatística
-            </h3>
-            <span class="text-[10px] text-[#656d76] mt-1 block">Darrell Huff</span>
-          </a>
-
-          <!-- Livro: Estatística: O que é, para que serve, como funciona -->
-          <a href="/biblioteca" class="flex flex-col group" title="Estatística: O que é, para que serve, como funciona">
-            <div class="w-full aspect-[2/3] rounded-lg overflow-hidden book-shadow mb-2.5 bg-[#ffffff] p-1 flex items-center justify-center border border-[#d0d7de]">
-              <img src="assets/img/books/estatistica-o-que-e.webp" alt="Estatística: O que é, para que serve, como funciona - Charles Wheelan" class="w-full h-full object-contain" width="190" height="285" loading="lazy" decoding="async" />
-            </div>
-            <h3 class="font-bold text-xs text-[#1f2328] group-hover:text-[#11376e] transition-colors leading-snug">
-              Estatística: O que é, para que serve, como funciona
-            </h3>
-            <span class="text-[10px] text-[#656d76] mt-1 block">Charles Wheelan</span>
+            <span class="text-[10px] text-[#656d76] mt-0.5 line-clamp-1">James Clear</span>
           </a>
 
           <!-- HOME_BOOKS_END -->

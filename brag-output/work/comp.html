@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1e3a;--blue:#1d4ed8;--brand:#11376e;--bg:#f8fafc;--line:#d0d7de;--ink:#1f2328;--sub:#475569}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.bg{position:absolute;inset:0}
+#dots{background-image:radial-gradient(#c3ccd6 2.5px,transparent 2.5px);background-size:48px 48px;opacity:.5}
+#dark{background:radial-gradient(1100px 900px at 85% 8%,#17407f 0,transparent 70%),var(--navy);opacity:0}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden}
+.eyebrow{font-size:30px;font-weight:700;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;display:flex;align-items:center;gap:28px}
+.eyebrow i{display:block;height:4px;width:120px;background:var(--blue);transform-origin:left}
+/* 1 hook */
+#s1 .wrap{position:absolute;left:84px;right:60px;top:300px}
+#s1 h1{font-size:182px;font-weight:800;line-height:1.03;letter-spacing:-.04em;color:var(--navy);margin-top:56px}
+#s1 h1 span{display:block}
+#s1 h1 .accent{color:var(--blue)}
+#chart{position:absolute;left:0;right:0;bottom:190px;width:1080px;height:420px;overflow:visible}
+#chart polyline{fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+/* captions */
+.cap{position:absolute;left:84px;right:84px;top:170px;font-size:58px;line-height:1.16;font-weight:700;letter-spacing:-.025em;color:var(--navy)}
+.cap em{font-style:normal;color:var(--blue)}
+/* device */
+.device{position:absolute;left:90px;width:900px;background:#fff;border:2px solid var(--line);border-radius:44px;overflow:hidden;box-shadow:0 40px 90px rgba(17,55,110,.16),0 4px 12px rgba(31,35,40,.06);transform-origin:50% 0}
+.bar{height:84px;display:flex;align-items:center;gap:12px;padding:0 30px;background:#f6f8fa;border-bottom:2px solid var(--line)}
+.bar b{width:16px;height:16px;border-radius:50%;background:var(--line);display:block}
+.url{margin-left:18px;flex:1;height:50px;border-radius:25px;background:#fff;border:2px solid var(--line);font-size:25px;font-weight:500;color:#656d76;display:flex;align-items:center;justify-content:center}
+.view{position:relative;width:900px;overflow:hidden}
+iframe{position:absolute;left:0;top:0;width:430px;border:0;transform-origin:0 0;transform:scale(2.0930)}
+/* 3 stats */
+#s3 .big{font-size:250px;font-weight:800;letter-spacing:-.045em;line-height:1;color:#fff}
+#s3 .big small{font-size:110px;font-weight:700;letter-spacing:-.03em;margin-left:22px}
+#s3 .lbl{font-size:50px;font-weight:500;color:#a9bdd8;margin-top:18px;letter-spacing:-.01em}
+#s3 .a{position:absolute;left:84px;top:330px}
+#s3 .b{position:absolute;left:84px;top:860px;right:84px}
+#s3 .big2{font-size:130px;font-weight:800;letter-spacing:-.04em;color:#fff;line-height:1}
+#s3 hr{position:absolute;left:84px;top:780px;width:912px;border:0;height:2px;background:rgba(255,255,255,.2);transform-origin:left}
+#logos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+#logos div{height:210px;background:#fff;border-radius:24px;display:flex;align-items:center;justify-content:center;padding:34px}
+#logos img{max-width:100%;max-height:100%;object-fit:contain}
+/* 5 manifesto */
+#s5 .lab{position:absolute;left:84px;top:400px;font-size:30px;font-weight:700;letter-spacing:.22em;color:#38bdf8}
+#s5 .mark{position:absolute;right:70px;top:290px;font-size:420px;line-height:1;font-weight:800;color:rgba(255,255,255,.06)}
+#quote{position:absolute;left:84px;right:84px;top:480px;font-size:92px;line-height:1.17;font-weight:700;letter-spacing:-.03em;color:#fff}
+#quote span{display:inline-block;margin-right:.24em}
+#who{position:absolute;left:84px;top:1400px;display:flex;align-items:center;gap:30px}
+#who img{width:128px;height:128px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:3px solid rgba(255,255,255,.35)}
+#who b{display:block;color:#fff;font-size:42px;font-weight:700;letter-spacing:-.01em}
+#who u{display:block;text-decoration:none;color:#a9bdd8;font-size:34px;margin-top:6px}
+/* 6 outro */
+#s6 img{position:absolute;left:190px;top:600px;width:700px}
+#s6 p{position:absolute;left:84px;right:84px;top:880px;text-align:center;font-size:48px;font-weight:600;letter-spacing:-.02em;color:var(--sub)}
+#s6 .cta{position:absolute;left:50%;top:1040px;height:112px;padding:0 60px;border-radius:56px;background:var(--brand);color:#fff;font-size:46px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;white-space:nowrap;box-shadow:0 18px 40px rgba(17,55,110,.28)}
+</style></head><body>
+<div class="bg" id="dots"></div><div class="bg" id="dark"></div>
+
+<section class="scene" id="s1"><div class="wrap">
+  <div class="eyebrow" id="e1">Marcos Data Product<i></i></div>
+  <h1><span id="w1">Dados,</span><span id="w2">insights e</span><span id="w3" class="accent">melhores</span><span id="w4" class="accent">decisões.</span></h1>
+  </div>
+  <svg id="chart" viewBox="0 0 1080 420"><polyline pathLength="1" stroke="#34d399" points="0,390 177,380 314,365 452,350 589,335 727,310 864,285 1080,240"/><polyline pathLength="1" stroke="#60a5fa" points="0,370 177,350 314,300 452,310 589,270 727,250 864,200 1080,140"/><polyline pathLength="1" stroke="#1d4ed8" points="0,350 177,315 314,330 452,260 589,235 727,180 864,150 1080,40"/></svg>
+</section>
+
+<section class="scene" id="s2">
+  <div class="cap" id="c2">Conteúdo, projetos e aprendizados para transformar conhecimento em <em>aplicação real.</em></div>
+  <div class="device" id="d2" style="top:520px"><div class="bar"><b></b><b></b><b></b><div class="url">marcosdataproduct.com</div></div>
+    <div class="view" style="height:1150px"><iframe id="f2" src="/index.html" style="height:549.5px"></iframe></div></div>
+</section>
+
+<section class="scene" id="s3">
+  <div class="a" id="a3"><div class="big"><span id="n3">+0</span><small>anos</small></div><div class="lbl">em dados, produto e negócios</div></div>
+  <hr id="hr3">
+  <div class="b" id="b3"><div class="big2">6 empresas</div>
+    <div id="logos">
+      <div><img src="/assets/img/companies/ford.webp"></div><div><img src="/assets/img/companies/nubank.webp"></div><div><img src="/assets/img/companies/alelo.webp"></div>
+      <div><img src="/assets/img/companies/cogna.webp"></div><div><img src="/assets/img/companies/neoenergia.webp"></div><div><img src="/assets/img/companies/bauminas.webp"></div>
+    </div></div>
+</section>
+
+<section class="scene" id="s4">
+  <div class="cap" id="c4">Livros que ampliam o olhar sobre <em>dados e tecnologia.</em></div>
+  <div class="device" id="d4" style="top:440px"><div class="bar"><b></b><b></b><b></b><div class="url">marcosdataproduct.com/biblioteca</div></div>
+    <div class="view" style="height:1230px"><iframe id="f4" src="/biblioteca.html" style="height:587.7px"></iframe></div></div>
+</section>
+
+<section class="scene" id="s5">
+  <div class="mark">”</div><div class="lab" id="l5">MANIFESTO</div>
+  <div id="quote"></div>
+  <div id="who"><img src="/assets/img/foto-marcos-aurelio.webp"><div><b>Marcos Aurélio</b><u>Business Analytics</u></div></div>
+</section>
+
+<section class="scene" id="s6">
+  <img id="logo" src="/assets/img/logo-clara.webp">
+  <p id="tag">Dados, insights e melhores decisões.</p>
+  <div class="cta" id="cta">marcosdataproduct.com</div>
+</section>
+
+<script>
+const B=.625, $=id=>document.getElementById(id);
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const out=x=>1-Math.pow(1-clamp(x),4);                         // site's --ease-out feel, no overshoot
+const io=x=>{x=clamp(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const prog=(t,s,d)=>out((t-s)/d);
+function rise(el,t,s,d=.5,y=36){const p=prog(t,s,d);el.style.opacity=p;el.style.transform=`translateY(${(1-p)*y}px)`}
+const SC=[['s1',0,5],['s2',5,11],['s3',11,16],['s4',16,22],['s5',22,29],['s6',29,32]];
+
+const QUOTE='“Mais do que ferramentas, acredito no pensamento crítico para transformar dados em ações que geram impacto.”'.split(' ');
+$('quote').innerHTML=QUOTE.map(w=>`<span>${w}</span>`).join('');
+const words=[...$('quote').children], logos=[...$('logos').children], lines=[...document.querySelectorAll('#chart polyline')];
+
+function frameDoc(f){return f.contentDocument}
+function prepFrame(f){
+  const d=frameDoc(f), s=d.createElement('style');
+  s.textContent='html,body{scroll-behavior:auto!important} [id*="cookie" i],#cookie-banner{display:none!important}';
+  d.head.appendChild(s);
+}
+const QUERY='hábitos';
+let bibInput=null, bibY=0, lastTyped=null;
+function setTyped(n){
+  if(!bibInput||n===lastTyped)return; lastTyped=n;
+  bibInput.value=QUERY.slice(0,n);
+  bibInput.dispatchEvent(new Event('input',{bubbles:true}));
+}
+window.prepare=async()=>{
+  await document.fonts.ready;
+  for(const f of [$('f2'),$('f4')]){
+    prepFrame(f);
+    const w=f.contentWindow,d=f.contentDocument,h=d.documentElement.scrollHeight;
+    for(let y=0;y<h;y+=300){w.scrollTo(0,y);await new Promise(r=>setTimeout(r,90))}
+    w.scrollTo(0,0);
+  }
+  const d=$('f4').contentDocument;
+  bibInput=[...d.querySelectorAll('input')].find(i=>/buscar/i.test(i.placeholder||''));
+  bibY=bibInput.getBoundingClientRect().top+$('f4').contentWindow.scrollY-75;
+  await new Promise(r=>setTimeout(r,2500));
+  await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));
+  return {bibY,ph:bibInput.placeholder};
+};
+
+window.render=t=>{
+  // backgrounds: dip through the page colour between scenes
+  const dark=clamp((t-11*B+.05)/.3)*(1-clamp((t-16*B+.3)/.3))+clamp((t-22*B+.05)/.3)*(1-clamp((t-29*B+.3)/.3));
+  $('dark').style.opacity=dark;
+  for(const [id,a,b] of SC){
+    const s=a*B,e=b*B,el=$(id),last=b===32;
+    const op=clamp((t-s)/.22)*(last?1:1-clamp((t-e+.26)/.26));
+    el.style.opacity=op; el.style.visibility=op>0.001?'visible':'hidden';
+  }
+  // 1 hook: first frame already carries the first word
+  if(t<5*B){
+    rise($('e1'),t,0,.4,16); document.querySelector('#e1 i').style.transform=`scaleX(${prog(t,.1,.7)})`;
+    rise($('w1'),t,-.2,.45); rise($('w2'),t,B,.5); rise($('w3'),t,2*B,.5); rise($('w4'),t,3*B,.5);
+    lines.forEach((l,i)=>{const p=io((t-.1-i*.18)/2.4);l.style.strokeDasharray=`${p} 1`;l.style.opacity=p>0?1:0;});
+    $('chart').style.opacity=clamp(t/.3);
+    $('s1').style.opacity=clamp(1-(t-5*B+.26)/.26);
+    $('s1').style.visibility='visible';
+  }
+  // 2 home
+  if(t>=5*B-.01&&t<11*B){
+    const s=5*B; rise($('c2'),t,s+.05,.5);
+    $('d2').style.opacity=prog(t,s+.2,.5);
+    $('d2').style.transform=`translateY(${(1-prog(t,s+.2,.7))*70}px)`;
+    $('f2').contentWindow.scrollTo(0,io((t-s-.9)/2.6)*640);
+  }
+  // 3 proof
+  if(t>=11*B-.01&&t<16*B){
+    const s=11*B; rise($('a3'),t,s+.03,.45);
+    $('n3').textContent='+'+Math.round(io((t-s)/.85)*10);
+    $('hr3').style.transform=`scaleX(${prog(t,s+.5,.7)})`;
+    rise($('b3'),t,s+B,.45);
+    logos.forEach((l,i)=>rise(l,t,s+B+i*B/2,.4,22));
+  }
+  // 4 library: scroll to the real search box, then type on 16th notes
+  if(t>=16*B-.01&&t<22*B){
+    const s=16*B; rise($('c4'),t,s+.05,.5);
+    $('d4').style.opacity=prog(t,s+.15,.5);
+    $('d4').style.transform=`translateY(${(1-prog(t,s+.15,.7))*70}px)`;
+    $('f4').contentWindow.scrollTo(0,io((t-s-.1)/1.1)*bibY);
+    setTyped(clamp(Math.floor((t-(s+2*B))/(B/4))+1,0,QUERY.length));
+  } else if(t<16*B) setTyped(0);
+  // 5 manifesto
+  if(t>=22*B-.01&&t<29*B){
+    const s=22*B; rise($('l5'),t,s+.03,.4,14);
+    words.forEach((w,i)=>rise(w,t,s+.1+i*B/4,.35,18));
+    rise($('who'),t,s+.1+QUOTE.length*B/4+.1,.45,18);
+  }
+  // 6 outro
+  if(t>=29*B-.01){
+    const s=29*B; rise($('logo'),t,s+.02,.45,22); rise($('tag'),t,s+.25,.4,16);
+    const p=prog(t,s+.45,.4); const c=$('cta'); c.style.opacity=p; c.style.transform=`translate(-50%,${(1-p)*16}px)`;
+  }
+};
+</script></body></html>

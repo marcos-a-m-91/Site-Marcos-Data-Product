@@ -119,6 +119,24 @@ def convert_markdown(body):
     alert_pattern = re.compile(r'>\s*\[!(NOTE|TIP|WARNING|IMPORTANT)\]\s*\n((?:>.*(?:\n|$))+)', re.IGNORECASE)
     body = alert_pattern.sub(alert_sub, body)
 
+    # Proteger fórmulas matemáticas KaTeX ($$...$$ e \(...\))
+    # NUNCA usar delimitador $ individual, pois em português/finanças conflita com valores monetários (R$ 5 mil, R$ 100, etc.)
+    math_stash = []
+    def stash_display_math(match):
+        raw_inner = match.group(1).strip()
+        math_stash.append(('display', f"$${raw_inner}$$"))
+        return f"\n\n%%KATEX_BLOCK_{len(math_stash)-1}%%\n\n"
+
+    def stash_inline_math(match):
+        raw_inner = match.group(1).strip()
+        math_stash.append(('inline', f"\\({raw_inner}\\)"))
+        return f"%%KATEX_BLOCK_{len(math_stash)-1}%%"
+
+    # Display math ($$...$$)
+    body = re.sub(r'\$\$(.*?)\$\$', stash_display_math, body, flags=re.DOTALL)
+    # Inline math seguro padrão LaTeX: \( ... \)
+    body = re.sub(r'\\\((.*?)\\\)', stash_inline_math, body, flags=re.DOTALL)
+
     md = markdown.Markdown(extensions=[
         'extra',
         'tables',
@@ -127,6 +145,16 @@ def convert_markdown(body):
         'nl2br'
     ])
     html_out = md.convert(body)
+
+    # Restaurar blocos de matemática sem interferência de tags <br />
+    for idx, (m_type, clean_math) in enumerate(math_stash):
+        marker = f"%%KATEX_BLOCK_{idx}%%"
+        if m_type == 'display':
+            replacement = f'<div class="katex-display-container my-6 text-center overflow-x-auto text-lg">{clean_math}</div>'
+            html_out = html_out.replace(f"<p>{marker}</p>", replacement)
+            html_out = html_out.replace(marker, replacement)
+        else:
+            html_out = html_out.replace(marker, clean_math)
 
     html_out = html_out.replace('<table>', '<div class="overflow-x-auto my-6"><table class="primer-table w-full text-left border-collapse">')
     html_out = html_out.replace('</table>', '</table></div>')
@@ -205,7 +233,7 @@ def generate_post_page(post, all_posts):
         </a>
         '''
 
-        tags_html = "".join(f'<span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#{html.escape(t, quote=True)}</span> ' for t in post.get('tags', []))
+    tags_html = "".join(f'<span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#{html.escape(t, quote=True)}</span> ' for t in post.get('tags', []))
 
     cover_rel = html.escape(post.get('cover', 'assets/img/og-default.jpg').lstrip('/'), quote=True)
     cover_abs = f"https://marcosdataproduct.com/{cover_rel}"
@@ -222,13 +250,32 @@ def generate_post_page(post, all_posts):
     formatted_date_text = html.escape(str(post.get('formatted_date', '')), quote=True)
     excerpt_text = html.escape(post.get('excerpt', ''), quote=False)
 
-    # Math check
-    has_math = ('$$' in post.get('raw_body', '')) or post.get('math') is True
+    # Math check (apenas $$ ou \( para nunca colidir com moeda R$)
+    has_math = ('$$' in post.get('raw_body', '')) or ('\\(' in post.get('raw_body', '')) or post.get('math') is True
     katex_markup = ""
     if has_math:
-        katex_markup = '''  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+        katex_markup = '''  <!-- KaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>'''
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'function' && document.body) {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\\\(', right: '\\\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } else {
+          setTimeout(renderMath, 60);
+        }
+      }
+      renderMath();
+    });
+  </script>'''
 
     # JSON-LD Schema (BlogPosting + BreadcrumbList)
     schema_data = {

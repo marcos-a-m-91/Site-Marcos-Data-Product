@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KXNS2HLN');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Média, mediana e moda: por que a média nem sempre conta a história toda? | Marcos Aurélio</title>
+  <meta name="description" content="Uma nota 5,0 é sempre melhor que uma 4,8? Entenda como média, mediana e moda ajudam a interpretar dados e tomar decisões melhores." />
+  <link rel="canonical" href="https://marcosdataproduct.com/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda" />
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:site_name" content="Marcos Data Product" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://marcosdataproduct.com/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda" />
+  <meta property="og:title" content="Média, mediana e moda: por que a média nem sempre conta a história toda? | Marcos Aurélio" />
+  <meta property="og:description" content="Uma nota 5,0 é sempre melhor que uma 4,8? Entenda como média, mediana e moda ajudam a interpretar dados e tomar decisões melhores." />
+  <meta property="og:image" content="https://marcosdataproduct.com/assets/img/blog/imagem1_1794352142.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/css/tailwind.css">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <!-- KaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      function renderMath() {
+        if (typeof renderMathInElement === 'function' && document.body) {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            throwOnError: false
+          });
+        } else {
+          setTimeout(renderMath, 60);
+        }
+      }
+      renderMath();
+    });
+  </script>
+
+  <!-- Scripts -->
+  <script defer src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+  <script defer src="/assets/js/main.js"></script>
+
+  <!-- Dados Estruturados JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Média, mediana e moda: por que a média nem sempre conta a história toda?",
+      "description": "Uma nota 5,0 é sempre melhor que uma 4,8? Entenda como média, mediana e moda ajudam a interpretar dados e tomar decisões melhores.",
+      "url": "https://marcosdataproduct.com/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda",
+      "image": "https://marcosdataproduct.com/assets/img/blog/imagem1_1794352142.png",
+      "datePublished": "2026-11-10",
+      "dateModified": "2026-11-10",
+      "author": {
+        "@type": "Person",
+        "name": "Marcos Aurélio",
+        "url": "https://marcosdataproduct.com/sobre",
+        "sameAs": [
+          "https://www.linkedin.com/in/marcos-a-m-m",
+          "https://github.com/marcos-a-m-91"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Marcos Aurélio",
+        "url": "https://marcosdataproduct.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://marcosdataproduct.com/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://marcosdataproduct.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://marcosdataproduct.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Média, mediana e moda: por que a média nem sempre conta a história toda?",
+          "item": "https://marcosdataproduct.com/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+  <style>
+    #reading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #11376e, #1f6feb);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }
+    .nav-item-active {
+      color: #11376e !important;
+      font-weight: 600;
+      position: relative;
+    }
+    .nav-item-active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #11376e;
+      border-radius: 9999px;
+    }
+    .article-prose {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1f2328;
+      font-size: 1.075rem;
+      line-height: 1.8;
+    }
+    .article-prose h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1f2328;
+      letter-spacing: -0.02em;
+    }
+    .article-prose h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: #1f2328;
+      letter-spacing: -0.01em;
+    }
+    .article-prose p {
+      margin-bottom: 1.4rem;
+      color: #24292f;
+    }
+    .article-prose ul, .article-prose ol {
+      margin-bottom: 1.4rem;
+      padding-left: 1.5rem;
+    }
+    .article-prose li {
+      margin-bottom: 0.5rem;
+    }
+    .article-prose blockquote {
+      border-left: 4px solid #d0d7de;
+      padding-left: 1rem;
+      font-style: italic;
+      color: #57606a;
+      margin: 1.5rem 0;
+    }
+    .primer-table th, .primer-table td {
+      padding: 10px 14px;
+      border: 1px solid #d0d7de;
+    }
+    .primer-table th {
+      background: #f6f8fa;
+      font-weight: 600;
+      color: #1f2328;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f8fafc] text-[#1f2328] antialiased selection:bg-[#11376e] selection:text-white">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXNS2HLN"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div id="reading-bar"></div>
+
+  <!-- Header / Navbar -->
+  <header id="navbar"
+    class="sticky top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#d0d7de] px-5 sm:px-8 py-3.5 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="/" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="/assets/img/logo-clara.webp" alt="Marcos Data Product Logo"
+          class="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-[#656d76]" aria-label="Navegação Principal">
+        <a href="/" class="hover:text-[#11376e] font-medium transition-colors">Home</a>
+        <a href="/blog" class="nav-item-active">Blog</a>
+        <a href="/projetos" class="hover:text-[#11376e] font-medium transition-colors">Projetos</a>
+        <a href="/biblioteca" class="hover:text-[#11376e] font-medium transition-colors">Biblioteca</a>
+        <a href="/sobre" class="hover:text-[#11376e] font-medium transition-colors">Sobre</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button id="search-modal-trigger"
+          class="p-2 rounded-full text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] transition-colors cursor-pointer"
+          aria-label="Buscar no site" title="Buscar (Ctrl+K)">
+          <i data-lucide="search" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+        </button>
+        <button class="md:hidden p-2 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer"
+          id="mobile-btn" aria-label="Abrir Menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="absolute top-5 right-5 p-2.5 rounded-xl bg-slate-100 text-[#656d76] hover:text-[#11376e]"
+      id="mobile-close" aria-label="Fechar menu">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+    <a href="/" class="flex items-center mb-8 px-2 py-1" aria-label="Marcos Data Product">
+      <img src="/assets/img/logo-clara.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain" width="180" height="40" />
+    </a>
+    <div class="flex flex-col gap-2">
+      <a href="/" class="mobile-link">Home</a>
+      <a href="/blog" class="mobile-link active font-semibold text-[#11376e]">Blog</a>
+      <a href="/projetos" class="mobile-link">Projetos</a>
+      <a href="/biblioteca" class="mobile-link">Biblioteca</a>
+      <a href="/sobre" class="mobile-link">Sobre</a>
+    </div>
+  </div>
+
+  <!-- Header do Post -->
+  <main class="relative z-10 pt-8 sm:pt-12 pb-20 px-5 sm:px-8">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-[#656d76] mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#11376e] transition-colors">Home</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-[#11376e] transition-colors">Blog</a>
+        <span>/</span>
+        <span class="text-[#1f2328] font-medium truncate max-w-xs">Business Analytics</span>
+      </nav>
+
+      <!-- Category badge & Read info -->
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class="badge badge-blue text-xs">Business Analytics</span>
+        <span class="text-xs text-[#656d76] flex items-center gap-1.5">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 10 de Novembro de 2026
+        </span>
+        <span class="text-[#d0d7de]">•</span>
+        <span class="text-xs text-[#656d76] flex items-center gap-1.5">
+          <i data-lucide="clock" class="w-3.5 h-3.5"></i> 8 min de leitura
+        </span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1f2328] tracking-tight leading-[1.18] mb-6">
+        Média, mediana e moda: por que a média nem sempre conta a história toda?
+      </h1>
+
+      <!-- Excerpt -->
+      <p class="text-lg sm:text-xl text-[#57606a] leading-relaxed mb-8">
+        Uma nota 5,0 é sempre melhor que uma 4,8? Entenda como média, mediana e moda ajudam a interpretar dados e tomar decisões melhores.
+      </p>
+
+      <!-- Author Chip -->
+      <div class="flex items-center justify-between py-4 border-y border-[#d0d7de] mb-10">
+        <div class="flex items-center gap-3">
+          <img src="/assets/img/minha-imagem-notion.webp" alt="Marcos Aurélio" class="w-12 h-12 rounded-full object-cover border border-[#d0d7de] bg-[#f6f8fa]" width="48" height="48" loading="lazy" decoding="async" />
+          <div>
+            <span class="font-bold text-sm text-[#1f2328] block">Marcos Aurélio</span>
+            <span class="text-xs text-[#656d76]">Senior Business Analytics &bull; Autor</span>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <!-- Grid com Artigo e Sidebar -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <article class="lg:col-span-8 article-prose">
+          <p>Imagine que você precisa viajar para São Paulo e está procurando um Airbnb para se hospedar. Depois de analisar localização, preço e comodidades, você chega a duas opções:</p>
+<p><img alt="Imagem4.png" src="/assets/img/blog/media-mediana-e-moda-por-que-a-media-nem-sempre-conta-a-historia-toda_imagem4_1794351968_1.png" /></p>
+<p>Qual delas você escolheria?</p>
+<p>Se sua resposta imediata foi a opção 1, talvez valha a pena olhar os números com um pouco mais de atenção.</p>
+<p>Esse exemplo aparentemente simples esconde algumas das ideias mais importantes da estatística descritiva. Entendê-las pode mudar a forma como interpretamos avaliações, indicadores de desempenho, pesquisas e praticamente qualquer conjunto de dados.</p>
+<p>Inspirado no livro <em>Naked Statistics</em>, de Charles Wheelan, quero explorar três conceitos fundamentais da estatística descritiva: <strong>média, mediana e moda</strong>.</p>
+<p>A proposta é entender não apenas como essas medidas funcionam, mas principalmente o que cada uma revela — e o que pode deixar de mostrar.</p>
+<hr />
+<h2 id="o-problema-dos-numeros-que-mentem-sem-mentir">O problema dos números que “mentem” sem mentir</h2>
+<p>A estatística descritiva tem um objetivo importante: transformar grandes volumes de dados em informações que possamos compreender e interpretar.</p>
+<p>Para isso, utilizamos medidas de resumo, gráficos e outras ferramentas que ajudam a identificar padrões e características de uma distribuição.</p>
+<p>O problema é que toda simplificação tem um custo: parte da informação original fica de fora.</p>
+<p>Uma frase de Charles Wheelan, no livro, resume bem essa ideia:</p>
+<blockquote>
+<p>As estatísticas descritivas podem ser como perfis de namoro online: tecnicamente corretas e ainda assim bem enganosas<br />
+</p>
+</blockquote>
+<p>O ponto central é que um número pode estar matematicamente correto e, mesmo assim, transmitir uma impressão incompleta da realidade.</p>
+<p>É por isso que precisamos entender o que existe por trás das medidas que utilizamos.</p>
+<hr />
+<h2 id="1-media-a-ferramenta-mais-usada-e-a-mais-mal-usada">1. Média: a ferramenta mais usada (e a mais mal usada)</h2>
+<p>A média aritmética é provavelmente a medida estatística mais conhecida. Seu cálculo é simples: somamos todos os valores e dividimos o resultado pela quantidade de observações.</p>
+<p>Em outras palavras:</p>
+<ul>
+<li>Jeito que todo mundo entende</li>
+</ul>
+<div class="katex-display-container my-6 text-center overflow-x-auto text-lg">$$\text{média} = \frac{\text{soma dos valores}}{\text{número de elementos}}$$</div>
+<ul>
+<li>Jeito na linguagem matemática</li>
+</ul>
+<div class="katex-display-container my-6 text-center overflow-x-auto text-lg">$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$</div>
+<p>Mas entender a fórmula não é suficiente. Precisamos observar como ela se comporta diante dos dados.</p>
+<h3 id="quando-um-unico-valor-muda-tudo">Quando um único valor muda tudo</h3>
+<p>Imagine dez pessoas sentadas em um bar. Cada uma recebe R$ 5 mil por mês.</p>
+<p>Nesse cenário, a renda média é de R$ 5 mil.</p>
+<p>Agora imagine que Virginia Fonseca entra no estabelecimento, com uma renda hipotética de R$ 6 milhões mensais (um número ilustrativo, sem compromisso com a realidade).</p>
+<p>A média de renda das onze pessoas passa a ser aproximadamente R$ 550 mil.</p>
+<p>Perceba o que aconteceu: nenhuma das dez pessoas ficou mais rica, mas a média aumentou de R$ 5 mil para aproximadamente R$ 550 mil.</p>
+<p>O responsável por essa distorção é um <strong>outlier</strong>, também chamado de valor atípico: uma observação muito distante das demais.</p>
+<p>Esse fenômeno não acontece apenas em exemplos hipotéticos. Podemos encontrá-lo em diversas situações:</p>
+<ul>
+<li><strong>Renda:</strong> a renda média de uma população pode aumentar significativamente porque uma pequena parcela ficou muito mais rica, mesmo que a renda da maioria permaneça estagnada.</li>
+<li><strong>Educação:</strong> a média de uma turma pode ser elevada por alguns alunos com notas muito altas, mesmo que boa parte tenha dificuldades de aprendizagem.</li>
+<li><strong>Avaliações:</strong> a nota média de um produto pode esconder uma distribuição bastante desigual entre clientes muito satisfeitos e muito insatisfeitos.</li>
+</ul>
+<p>A média não está errada em nenhum desses casos. O problema é interpretá-la sem conhecer a distribuição dos dados.</p>
+<hr />
+<h2 id="2-mediana-o-antidoto-para-os-outliers">2. Mediana: o antídoto para os outliers</h2>
+<p>A mediana é uma medida de tendência central que representa o valor localizado no meio de um conjunto de dados ordenados.</p>
+<p>Para encontrá-la, organizamos os valores do menor para o maior e identificamos a posição central.</p>
+<ul>
+<li>Quando temos uma quantidade ímpar de observações, a mediana é o valor central.</li>
+<li>Quando temos uma quantidade par, calculamos a média dos dois valores centrais.</li>
+</ul>
+<p>Voltando ao exemplo do bar: temos dez pessoas com renda de R$ 5 mil e a Virginia, com renda hipotética de R$ 6 milhões.</p>
+<p>A renda mediana continua sendo R$ 5 mil.</p>
+<p>Isso acontece porque a mediana depende da posição dos valores ordenados, e não da magnitude de todos eles.</p>
+<p>Por essa característica, ela é menos sensível a valores extremos do que a média.</p>
+<p>Se outra pessoa com renda muito elevada entrar no bar, por exemplo, a mediana continuará em R$ 5 mil.</p>
+<h3 id="quando-utilizar-a-mediana">Quando utilizar a mediana?</h3>
+<p>A mediana é especialmente útil quando trabalhamos com distribuições assimétricas ou que apresentam valores extremos.</p>
+<p>Alguns exemplos:</p>
+<ul>
+<li><strong>Renda:</strong> a renda mediana costuma representar melhor a condição econômica de uma pessoa típica do que a renda média.</li>
+<li><strong>Imóveis:</strong> o preço mediano de venda pode ser mais representativo quando existem imóveis de luxo com valores muito superiores aos demais.</li>
+<li><strong>Tempo de atendimento:</strong> a mediana pode representar melhor o tempo de espera habitual quando alguns atendimentos excepcionalmente longos distorcem a média.</li>
+</ul>
+<p>Uma boa prática é analisar média e mediana em conjunto.</p>
+<p>Quando existe uma diferença expressiva entre elas, vale investigar a distribuição dos dados, a presença de valores extremos e possíveis assimetrias.</p>
+<p>Essa diferença não prova, sozinha, que existem outliers, mas é um sinal de que precisamos olhar mais de perto.</p>
+<hr />
+<h2 id="3-moda-o-valor-mais-frequente">3. Moda: o valor mais frequente</h2>
+<p>A moda é a medida de tendência central mais simples de identificar: representa o valor que aparece com maior frequência em um conjunto de dados.</p>
+<p>Diferentemente da média e da mediana, a moda também pode ser utilizada em dados categóricos, nos quais não existe uma operação matemática de soma ou ordenação.</p>
+<div class="overflow-x-auto my-6"><table class="primer-table w-full text-left border-collapse">
+<thead>
+<tr>
+<th>Nota</th>
+<th>Qnt. Avaliações</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>15</td>
+</tr>
+<tr>
+<td>4</td>
+<td>70</td>
+</tr>
+<tr>
+<td>5</td>
+<td>30</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nesse exemplo, a moda é 4, pois essa é a nota que aparece com maior frequência.</p>
+<p>Isso nos permite identificar a avaliação mais comum entre os usuários.</p>
+<p>Mas existe uma diferença importante: a moda não representa necessariamente a maioria absoluta. Ela representa apenas a categoria ou o valor mais frequente.</p>
+<p>Em análises de produtos digitais, por exemplo, essa informação pode ajudar a compreender padrões de satisfação, comportamento e percepção dos usuários.</p>
+<p>A média nos ajuda a entender o resultado agregado. A moda mostra qual avaliação aparece mais frequentemente. Cada medida responde a uma pergunta diferente.</p>
+<hr />
+<h2 id="voltando-ao-casa-do-airbnb">Voltando ao casa do Airbnb</h2>
+<p>Agora que entendemos os três conceitos, podemos voltar à situação inicial.</p>
+<p>Imagine que as duas opções apresentam os seguintes indicadores:</p>
+<div class="overflow-x-auto my-6"><table class="primer-table w-full text-left border-collapse">
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Opção 1</th>
+<th>Opção 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nota Média</td>
+<td>5</td>
+<td>4,8</td>
+</tr>
+<tr>
+<td>Avaliações</td>
+<td>10</td>
+<td>120</td>
+</tr>
+</tbody>
+</table></div>
+<p>A opção 1 possui apenas dez avaliações. A opção 2 possui 120.</p>
+<p>Isso não significa que a segunda opção seja necessariamente melhor, mas indica que temos uma base maior de experiências para avaliar sua reputação.</p>
+<p>Uma média de 5,0 construída sobre dez avaliações pode ser mais sensível a novas observações do que uma média de 4,8 construída sobre 120 avaliações.</p>
+<p>Em outras palavras, a primeira nota possui menos observações sustentando o resultado e, portanto, pode apresentar maior instabilidade.</p>
+<h3 id="o-que-eu-analiso-antes-de-escolher">O que eu analiso antes de escolher?</h3>
+<p>Além da média, existem outras informações que ajudam a construir uma decisão mais consistente:</p>
+<p><strong>1. Quantidade de avaliações</strong></p>
+<p>Além da média, existem outras informações que ajudam a construir uma decisão mais consistente:</p>
+<p><strong>2. Quantidade de avaliações</strong></p>
+<p>Não olharia apenas para a média. Verificaria como as avaliações estão distribuídas entre as notas 1 e 5.</p>
+<p><strong>3. Moda</strong></p>
+<p>Identificaria qual nota aparece com maior frequência. Se a moda for 5, por exemplo, significa que essa é a avaliação mais comum, mesmo que a média seja inferior a 5.</p>
+<p><strong>4. Comentários recentes</strong></p>
+<p>Esse é um ponto especialmente importante para hospedagens.</p>
+<p>Em São Paulo, por exemplo, a existência de obras nas proximidades pode afetar a experiência dos hóspedes. Por isso, procuraria comentários recentes sobre barulho, limpeza, conservação e localização.</p>
+<p>Afinal, uma avaliação de dois anos atrás pode não representar as condições atuais do imóvel.</p>
+<p>A decisão, portanto, não deveria ser baseada exclusivamente na maior média.</p>
+<p>O ideal é combinar diferentes informações para construir uma visão mais completa do cenário.</p>
+<hr />
+<h2 id="o-que-esses-tres-conceitos-nos-ensinam">O que esses três conceitos nos ensinam?</h2>
+<p>Média, mediana e moda são medidas simples, mas respondem a perguntas diferentes:</p>
+<div class="overflow-x-auto my-6"><table class="primer-table w-full text-left border-collapse">
+<thead>
+<tr>
+<th>Medida</th>
+<th>Pergunta que responde?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Média</td>
+<td>Qual é o resultado médio considerando todos os valores?</td>
+</tr>
+<tr>
+<td>Mediana</td>
+<td>Qual é o valor que ocupa a posição central?</td>
+</tr>
+<tr>
+<td>Moda</td>
+<td>Qual é o valor mais frequente?</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nenhuma delas é universalmente melhor.</p>
+<p>A escolha depende da pergunta que queremos responder, da distribuição dos dados e do contexto em que estamos trabalhando.</p>
+<p>Esse é um dos princípios mais importantes da análise de dados: <strong>antes de escolher uma métrica, precisamos entender o problema que queremos investigar.</strong></p>
+<p>Conhecer uma fórmula é importante. Saber quando utilizá-la, interpretar seus resultados e reconhecer suas limitações é o que realmente faz diferença.</p>
+<hr />
+<div class="callout-box my-6 p-4 rounded-r-xl border-l-4 border-blue-500 bg-blue-50/70 text-blue-950"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Leitura recomendada</div><div class="text-sm leading-relaxed callout-content"><p>Se você quer desenvolver sua compreensão sobre estatística sem começar por fórmulas complexas, recomendo <em>Naked Statistics: Stripping the Dread from the Data</em>, de Charles Wheelan.</p>
+<p>O livro apresenta conceitos estatísticos por meio de situações cotidianas, exemplos bem-humorados e explicações acessíveis.</p>
+<p>Uma boa leitura para perceber que estatística não é apenas sobre calcular números. É sobre entender o que eles representam, questionar o que estão mostrando e identificar o que podem estar escondendo.</p></div></div>
+
+          <div class="mt-12 pt-6 border-t border-[#d0d7de] flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Estatística</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Estatística Descritiva</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Média</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Mediana</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Moda</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Análise de dados</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Tomada de Decisão</span> <span class="px-2.5 py-1 text-xs rounded-full bg-[#f6f8fa] border border-[#d0d7de] text-[#656d76]">#Data 101</span> 
+          </div>
+        </article>
+
+        <aside class="hidden lg:block lg:col-span-4">
+          
+          <div class="p-5 rounded-2xl bg-white border border-[#d0d7de] text-center shadow-xs">
+            <h3 class="font-bold text-sm text-[#1f2328] mb-1">Marcos Aurélio</h3>
+            <p class="text-xs text-[#656d76] mb-4 leading-relaxed">
+              Compartilho análises e reflexões sobre dados, analytics, produtos e inteligência artificial.
+            </p>
+            <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[#11376e] text-white text-xs font-semibold hover:bg-[#184a91] transition-all">
+              <i data-lucide="linkedin" class="w-4 h-4"></i> Me acompanhe no LinkedIn
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Artigos Relacionados -->
+      
+
+    </div>
+  </main>
+
+  <!-- Footer Institucional -->
+  <footer class="bg-[#0b1e3a] text-white py-12 px-5 sm:px-8 border-t border-[#1e293b]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <a href="/" class="flex items-center group" aria-label="Marcos Data Product">
+        <img src="/assets/img/logo-escura.webp" alt="Marcos Data Product" class="h-8 w-auto object-contain transition-opacity group-hover:opacity-90" width="180" height="40" />
+      </a>
+      <div class="flex items-center gap-6 text-sm text-[#94a3b8]">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+        <a href="/projetos" class="hover:text-white transition-colors">Projetos</a>
+        <a href="/biblioteca" class="hover:text-white transition-colors">Biblioteca</a>
+        <a href="/sobre" class="hover:text-white transition-colors">Sobre</a>
+      </div>
+      <div class="flex items-center gap-3 text-[#94a3b8]">
+        <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" rel="noopener noreferrer" class="p-2 hover:text-white transition-colors" aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        </a>
+        <a href="https://www.instagram.com/marcos.dataproduct/" target="_blank" rel="noopener noreferrer" class="p-2 hover:text-white transition-colors" aria-label="Instagram">
+          <i data-lucide="instagram" class="w-5 h-5"></i>
+        </a>
+        <a href="https://github.com/marcos-a-m-91" target="_blank" rel="noopener noreferrer" class="p-2 hover:text-white transition-colors" aria-label="GitHub">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+        <a href="mailto:marcos.a.m@live.com" class="p-2 hover:text-white transition-colors" aria-label="E-mail">
+          <i data-lucide="mail" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Search Modal -->
+  <div id="search-modal"
+    class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden items-start justify-center p-4 sm:p-6 pt-20 transition-all opacity-0">
+    <div
+      class="bg-white rounded-2xl max-w-xl w-full border border-[#d0d7de] shadow-2xl overflow-hidden transform scale-95 transition-transform"
+      id="search-modal-container">
+      <div class="p-4 border-b border-[#d0d7de] flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#11376e]"></i>
+        <input type="text" id="site-search-input" placeholder="Buscar artigos, projetos, livros..."
+          class="w-full text-sm outline-none text-[#1f2328] placeholder-[#8c959f]" autofocus />
+        <button id="search-modal-close" class="p-1 rounded-lg text-[#656d76] hover:text-[#11376e] hover:bg-[#f6f8fa] cursor-pointer" aria-label="Fechar busca">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-4 max-h-[60vh] overflow-y-auto space-y-2" id="search-results">
+        <div class="text-[11px] font-bold text-[#656d76] uppercase tracking-wider mb-2">Sugestões de navegação</div>
+        <a href="/blog" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="newspaper" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Blog de Analytics e Dados</div>
+              <div class="text-[10px] text-[#656d76]">Artigos e análises técnicas</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/projetos" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="layers" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Projetos e Casos Reais</div>
+              <div class="text-[10px] text-[#656d76]">Portfólio prático de soluções</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/biblioteca" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="book-open" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Biblioteca Recomendada</div>
+              <div class="text-[10px] text-[#656d76]">Curadoria de livros e referências</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+        <a href="/sobre" class="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f6f8fa] transition-colors group">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-[#11376e] text-white flex items-center justify-center text-xs"><i data-lucide="user" class="w-3.5 h-3.5"></i></span>
+            <div>
+              <div class="text-xs font-semibold text-[#1f2328] group-hover:text-[#11376e]">Sobre Marcos Aurélio</div>
+              <div class="text-[10px] text-[#656d76]">Trajetória, experiências e stack</div>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-[#8c959f] group-hover:translate-x-0.5 transition-transform"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
