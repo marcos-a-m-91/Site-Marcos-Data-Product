@@ -325,26 +325,11 @@
     }
 
     /* ═══════════════════════════════════════════════════════
-       LINHA DO TEMPO VERTICAL: CORES PERSONALIZADAS POR EMPRESA
+       LINHA DO TEMPO HORIZONTAL: CORES POR EMPRESA & SCROLLBAR
     ═══════════════════════════════════════════════════════ */
-    .timeline-item-bauminas {
-      --company-color: #0b3b6f;
-      --company-color-rgb: 11, 59, 111;
-    }
-
-    .timeline-item-kroton {
-      --company-color: #621391;
-      --company-color-rgb: 98, 19, 145;
-    }
-
-    .timeline-item-neoenergia {
-      --company-color: #44681e;
-      --company-color-rgb: 68, 104, 30;
-    }
-
-    .timeline-item-alelo {
-      --company-color: #008542;
-      --company-color-rgb: 0, 133, 66;
+    .timeline-item-ford {
+      --company-color: #002c6c;
+      --company-color-rgb: 0, 44, 108;
     }
 
     .timeline-item-nubank {
@@ -352,113 +337,79 @@
       --company-color-rgb: 130, 10, 209;
     }
 
-    .timeline-item-ford {
-      --company-color: #002c6c;
-      --company-color-rgb: 0, 44, 108;
+    .timeline-item-alelo {
+      --company-color: #008542;
+      --company-color-rgb: 0, 133, 66;
     }
 
-    .timeline-v-item {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    .timeline-item-neoenergia {
+      --company-color: #44681e;
+      --company-color-rgb: 68, 104, 30;
     }
 
-    .timeline-node {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, box-shadow, border-color;
+    .timeline-item-kroton {
+      --company-color: #621391;
+      --company-color-rgb: 98, 19, 145;
     }
 
-    /* Borda limpa com transição suave e física elástica */
-    .timeline-v-item .timeline-card {
+    .timeline-item-bauminas {
+      --company-color: #0b3b6f;
+      --company-color-rgb: 11, 59, 111;
+    }
+
+    /* Barra de rolagem exclusiva do bloco horizontal */
+    .timeline-horizontal-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 #f8fafc;
+      cursor: grab;
+    }
+
+    .timeline-horizontal-scroll:active {
+      cursor: grabbing;
+    }
+
+    .timeline-horizontal-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .timeline-horizontal-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 9999px;
+      margin: 0 0.5rem;
+    }
+
+    .timeline-horizontal-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+      border: 2px solid #f1f5f9;
+      transition: background 0.2s ease;
+    }
+
+    .timeline-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .timeline-h-card {
       border: 1px solid #d0d7de !important;
       padding: 1.5rem !important;
-      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.28s ease !important;
-      transform-origin: center center;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.25s ease !important;
       will-change: transform, box-shadow, border-color;
     }
 
-    .timeline-v-item .timeline-card:hover {
+    .timeline-h-card:hover {
       border-color: rgba(var(--company-color-rgb), 0.55) !important;
-      box-shadow: 0 12px 28px -6px rgba(17, 55, 110, 0.12), 0 4px 10px rgba(31, 35, 40, 0.04) !important;
-      transform: translateY(-2px);
+      box-shadow: 0 14px 30px -8px rgba(17, 55, 110, 0.14), 0 4px 12px rgba(31, 35, 40, 0.04) !important;
+      transform: translateY(-4px);
     }
 
     .timeline-year-badge {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .timeline-year-watermark {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Estado Iluminado Base (Scroll-Driven):
-       Quando a linha alcança a empresa, o ano e o nó assumem a cor da empresa */
-    .timeline-v-item.is-illuminated .timeline-node {
-      border-color: var(--company-color) !important;
-      background-color: #ffffff !important;
-      box-shadow: 0 0 0 3px rgba(var(--company-color-rgb), 0.16) !important;
-      transform: scale(1.05);
-    }
-
-    .timeline-v-item.is-illuminated .timeline-card {
-      border-color: rgba(var(--company-color-rgb), 0.38) !important;
-      box-shadow: 0 6px 18px -4px rgba(17, 55, 110, 0.08) !important;
-      transform: scale(1);
-    }
-
-    .timeline-v-item.is-illuminated .timeline-year-badge {
-      background-color: var(--company-color) !important;
-      color: #ffffff !important;
-      border-color: var(--company-color) !important;
-      box-shadow: 0 2px 8px rgba(var(--company-color-rgb), 0.30) !important;
-    }
-
-    .timeline-v-item.is-illuminated .timeline-year-watermark {
-      color: rgba(var(--company-color-rgb), 0.20) !important;
-    }
-
-    /* ESTADO ATIVO / SPOTLIGHT (Exclusivo da empresa em foco atual):
-       Dá zoom no bloco, intensifica a iluminação e eleva a profundidade;
-       ao rolar para a próxima, o bloco volta ao tamanho normal */
-    .timeline-v-item.is-active {
-      z-index: 25;
-    }
-
-    .timeline-v-item.is-active .timeline-card {
-      border-color: var(--company-color) !important;
-      box-shadow: 0 20px 42px -10px rgba(var(--company-color-rgb), 0.28), 0 4px 16px rgba(11, 30, 58, 0.08) !important;
-      transform: scale(1.035) translateY(-3px) !important;
-    }
-
-    .timeline-v-item.is-active .timeline-card:hover {
-      transform: scale(1.045) translateY(-4px) !important;
-    }
-
-    @media (max-width: 640px) {
-      .timeline-v-item.is-active .timeline-card {
-        transform: scale(1.02) translateY(-2px) !important;
-      }
-
-      .timeline-v-item.is-active .timeline-card:hover {
-        transform: scale(1.025) translateY(-3px) !important;
-      }
-    }
-
-    .timeline-v-item.is-active .timeline-node {
-      border-color: var(--company-color) !important;
-      background-color: #ffffff !important;
-      box-shadow: 0 0 0 6px rgba(var(--company-color-rgb), 0.28), 0 0 16px rgba(var(--company-color-rgb), 0.40) !important;
-      transform: scale(1.22);
-    }
-
-    .timeline-v-item.is-active .timeline-year-watermark {
-      color: rgba(var(--company-color-rgb), 0.38) !important;
-      transform: scale(1.06);
-    }
-
-    .timeline-v-item.is-active .timeline-year-badge {
-      transform: scale(1.06);
-      box-shadow: 0 4px 14px rgba(var(--company-color-rgb), 0.45) !important;
+      transition: all 0.3s ease;
     }
 
     /* CTA Mountains Background */
@@ -774,441 +725,174 @@
 
     </div>
   </section>
-
-
   <!-- ═══════════════════════════════════════════════════════
-     3. TIMELINE VERTICAL ("Minha trajetória")
+     3. TIMELINE HORIZONTAL ("Minha trajetória")
   ═══════════════════════════════════════════════════════ -->
   <section id="trajetoria-section"
     class="max-w-7xl mx-auto px-5 sm:px-8 py-16 sm:py-24 border-t border-slate-200/80 relative">
 
-    <!-- Section Header (Fiel ao padrão da Home: CONTEÚDO RECENTE / Barra Azul) -->
-    <div class="mb-12 sm:mb-16">
-      <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">TRAJETÓRIA PROFISSIONAL</span>
-      <h2 class="text-2xl sm:text-3xl font-bold text-[#0b1e3a] tracking-tight">
-        Minha trajetória
-      </h2>
-      <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5 mb-3"></div>
-      <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed max-w-2xl">
-        Uma seleção das principais empresas que marcaram minha trajetória profissional e contribuíram para a forma como
-        penso e trabalho.
-      </p>
+    <!-- Section Header com Controles de Navegação Horizontal -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10">
+      <div>
+        <span class="text-xs font-bold text-[#2563eb] uppercase tracking-wider block mb-1">TRAJETÓRIA PROFISSIONAL</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#0b1e3a] tracking-tight">
+          Minha trajetória
+        </h2>
+        <div class="w-10 h-[3.75px] bg-[#2563eb] rounded-full mt-2.5 mb-3"></div>
+        <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed max-w-2xl">
+          Uma seleção das principais empresas que marcaram minha trajetória profissional e contribuíram para a forma como
+          penso e trabalho, apresentadas da mais recente para a inicial.
+        </p>
+      </div>
+
+      <!-- Controles de rolagem horizontal (Setas + Dica de navegação) -->
+      <div class="flex items-center gap-2 self-start sm:self-end flex-shrink-0">
+        <span class="text-xs text-slate-400 font-medium hidden md:inline-flex items-center gap-1.5 mr-1 select-none">
+          <i data-lucide="move-horizontal" class="w-3.5 h-3.5 text-slate-400"></i>
+          Arraste ou use as setas
+        </span>
+        <button id="timeline-prev-btn" type="button" aria-label="Rolar para esquerda"
+          class="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all shadow-2xs hover:shadow-xs active:scale-95 disabled:opacity-35 disabled:cursor-not-allowed">
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button id="timeline-next-btn" type="button" aria-label="Rolar para direita"
+          class="w-10 h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all shadow-2xs hover:shadow-xs active:scale-95 disabled:opacity-35 disabled:cursor-not-allowed">
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
     </div>
 
-    <!-- Container da Linha do Tempo Vertical -->
-    <div id="timeline-container" class="relative py-4 max-w-5xl mx-auto">
+    <!-- Bloco com Barra de Rolagem Horizontal Exclusiva -->
+    <div id="timeline-scroll-container" class="timeline-horizontal-scroll relative pb-6 pt-3 -mx-5 px-5 sm:-mx-8 sm:px-8">
 
-      <!-- Linha Vertical de Fundo (Track Cinza Base) -->
-      <div id="timeline-track-line"
-        class="absolute left-8 md:left-1/2 w-[3px] -translate-x-1/2 bg-slate-200/90 rounded-full z-0 pointer-events-none"
-        style="top: 28px; height: calc(100% - 56px);"></div>
+      <!-- Track horizontal conectando todos os cards -->
+      <div class="inline-flex flex-row items-stretch gap-6 min-w-full relative">
 
-      <!-- Linha Vertical Iluminada com Gradiente Luminoso (Scroll-Driven) -->
-      <div id="timeline-progress-line"
-        class="absolute left-8 md:left-1/2 w-[3px] -translate-x-1/2 bg-gradient-to-b from-[#2563eb] via-[#38bdf8] to-[#00f0ff] rounded-full shadow-[0_0_14px_rgba(56,189,248,0.95),0_0_28px_rgba(37,99,235,0.7)] z-10 origin-top pointer-events-none transition-all duration-75"
-        style="top: 28px; height: 0px;"></div>
+        <!-- Linha Guia Horizontal Contínua conectando os nós -->
+        <div class="absolute top-[16px] left-[20px] right-[20px] h-[2px] bg-slate-200 z-0 pointer-events-none"></div>
 
-      <!-- Ponto Luminoso Guia na Ponta da Linha (Glowing Beacon) -->
-      <div id="timeline-progress-bead"
-        class="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-white border-2 border-[#38bdf8] shadow-[0_0_18px_#38bdf8,0_0_30px_#2563eb] -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none transition-opacity duration-150 opacity-0"
-        style="top: 28px;"></div>
+        <!-- Marco 1: Ford (2026-Atual) -->
+        <div class="timeline-h-item timeline-item-ford group relative flex flex-col flex-shrink-0 w-[310px] sm:w-[350px] md:w-[370px] z-10">
+          <!-- Nó Superior & Ano -->
+          <div class="flex items-center gap-3 mb-4 relative z-10">
+            <div
+              class="w-8 h-8 rounded-full bg-white border-2 shadow-xs flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
+              style="border-color: var(--company-color); box-shadow: 0 0 0 4px rgba(var(--company-color-rgb), 0.12);">
+              <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: var(--company-color);"></div>
+            </div>
+            <div class="flex items-center gap-2 bg-[#f8fafc] pr-3 rounded-r-lg">
+              <span class="text-xl sm:text-2xl font-black tracking-tight text-[#0b1e3a]">2026</span>
+              <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-bold rounded-full bg-blue-100 text-blue-700 tracking-wide uppercase">Atual</span>
+            </div>
+          </div>
 
-      <!-- Lista de Marcos (6 Empresas) -->
-      <div class="space-y-12 sm:space-y-16 relative z-10">
-
-        <!-- Marco 1: Bauminas (2015-2018) -->
-        <div
-          class="timeline-v-item timeline-item-bauminas relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
-          <!-- Card (Esquerda no Desktop) -->
-          <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-1">
-            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+          <!-- Card -->
+          <div class="timeline-h-card bg-white rounded-2xl p-6 shadow-xs flex-1 flex flex-col justify-between text-left">
+            <div>
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
                   class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="/assets/img/companies/bauminas.webp" alt="Bauminas" class="w-full h-full object-cover"
-                    width="48" height="48" loading="lazy" decoding="async" />
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-2">
-                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Bauminas</h3>
-                    <span
-                      class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2015-2018
-                    </span>
-                  </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Assistente de
-                    Controladoria Comercial</p>
-                </div>
-              </div>
-
-              <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Foi onde transformei meu interesse por análise em prática profissional.
-                Trabalhando próximo à área comercial, desenvolvi indicadores, dashboards e automações para tornar as
-                informações mais úteis à gestão.
-                O Excel e o VBA, que inicialmente eram ferramentas que eu queria dominar melhor, acabaram se tornando
-                importantes na minha entrada no mundo dos dados.
-              </p>
-
-              <!-- Ferramentas mais utilizadas -->
-              <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
-                <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Ferramentas mais utilizadas
-                </span>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/excel_color.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
-                    Excel Avançado
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/vba.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="VBA" class="w-3.5 h-3.5 object-contain" />
-                    VBA
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
-                    Power BI
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/powerpoint.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
-                    Power Point
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/totvs.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="Totvs" class="w-3.5 h-3.5 object-contain" />
-                    Totvs
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Nó Central -->
-          <div
-            class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
-            <div
-              class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
-                style="background-color: var(--company-color);"></div>
-            </div>
-          </div>
-
-          <!-- Ano de Destaque Decorativo (Direita no Desktop) -->
-          <div class="hidden md:flex w-[calc(50%-44px)] pl-8 justify-start order-3">
-            <span
-              class="timeline-year-watermark text-4xl lg:text-5xl font-black text-slate-200/80 tracking-tight select-none">
-              2015
-            </span>
-          </div>
-        </div>
-
-        <!-- Marco 2: Kroton (2018-2019) -->
-        <div
-          class="timeline-v-item timeline-item-kroton relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
-          <!-- Ano de Destaque Decorativo (Esquerda no Desktop) -->
-          <div class="hidden md:flex w-[calc(50%-44px)] pr-8 justify-end order-1">
-            <span
-              class="timeline-year-watermark text-4xl lg:text-5xl font-black text-slate-200/80 tracking-tight select-none">
-              2018
-            </span>
-          </div>
-
-          <!-- Nó Central -->
-          <div
-            class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
-            <div
-              class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
-                style="background-color: var(--company-color);"></div>
-            </div>
-          </div>
-
-          <!-- Card (Direita no Desktop) -->
-          <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-3">
-            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
-              <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
-              <div class="flex items-center gap-3.5 mb-3.5">
-                <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="/assets/img/companies/cogna.webp" alt="Kroton Cogna" class="w-full h-full object-cover"
-                    width="48" height="48" loading="lazy" decoding="async" />
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-2">
-                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Kroton</h3>
-                    <span
-                      class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2018-2019
-                    </span>
-                  </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista em Gestão
-                    Financeira Orçamentária</p>
-                </div>
-              </div>
-
-              <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Aqui, os dados passaram a ter um papel mais direto no planejamento e nas decisões financeiras. Trabalhei
-                com orçamento, forecasts e indicadores de performance, aprendendo a olhar para os números não apenas
-                como registros do que aconteceu, mas também como instrumentos para acompanhar resultados e apoiar
-                decisões futuras.
-              </p>
-
-              <!-- Ferramentas mais utilizadas -->
-              <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
-                <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Ferramentas mais utilizadas
-                </span>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/excel_color.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
-                    Excel Avançado
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
-                    Power BI
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/qlik.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="Qlik Sense" class="w-3.5 h-3.5 object-contain" />
-                    Qlik Sense
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/totvs.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="Totvs" class="w-3.5 h-3.5 object-contain" />
-                    Totvs
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/powerpoint.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
-                    Power Point
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Marco 3: Neoenergia (2020-2021) -->
-        <div
-          class="timeline-v-item timeline-item-neoenergia relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
-          <!-- Card (Esquerda no Desktop) -->
-          <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-1">
-            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
-              <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
-              <div class="flex items-center gap-3.5 mb-3.5">
-                <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="/assets/img/companies/neoenergia.webp" alt="Neoenergia" class="w-full h-full object-cover"
-                    width="48" height="48" loading="lazy" decoding="async" />
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-2">
-                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Neoenergia</h3>
-                    <span
-                      class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2020-2021
-                    </span>
-                  </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Qualidade
-                    do Atendimento</p>
-                </div>
-              </div>
-
-              <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Transformar dados operacionais em informações estratégicas foi o principal desafio dessa experiência.
-                Trabalhei com indicadores de atendimento, como NPS e FCR, e com o desenvolvimento de um projeto de BI no
-                Power BI para centralizar informações e facilitar o acompanhamento dos resultados. Também atuei com
-                análises de sentimento e dos principais temas das ligações, gerando insumos para a gestão compreender
-                melhor a experiência dos clientes e identificar oportunidades de melhoria.
-              </p>
-
-              <!-- Ferramentas mais utilizadas -->
-              <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
-                <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Ferramentas mais utilizadas
-                </span>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
-                    Power BI
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/sql.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14"
-                      height="14" loading="lazy" decoding="async" />
-                    SQL
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/excel_color.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
-                    Excel Avançado
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Nó Central -->
-          <div
-            class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
-            <div
-              class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
-                style="background-color: var(--company-color);"></div>
-            </div>
-          </div>
-
-          <!-- Ano de Destaque Decorativo (Direita no Desktop) -->
-          <div class="hidden md:flex w-[calc(50%-44px)] pl-8 justify-start order-3">
-            <span
-              class="timeline-year-watermark text-4xl lg:text-5xl font-black text-slate-200/80 tracking-tight select-none">
-              2020
-            </span>
-          </div>
-        </div>
-
-        <!-- Marco 4: Alelo (2022-2024) -->
-        <div
-          class="timeline-v-item timeline-item-alelo relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
-          <!-- Ano de Destaque Decorativo (Esquerda no Desktop) -->
-          <div class="hidden md:flex w-[calc(50%-44px)] pr-8 justify-end order-1">
-            <span
-              class="timeline-year-watermark text-4xl lg:text-5xl font-black text-slate-200/80 tracking-tight select-none">
-              2022
-            </span>
-          </div>
-
-          <!-- Nó Central -->
-          <div
-            class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
-            <div
-              class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
-                style="background-color: var(--company-color);"></div>
-            </div>
-          </div>
-
-          <!-- Card (Direita no Desktop) -->
-          <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-3">
-            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
-              <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
-              <div class="flex items-center gap-3.5 mb-3.5">
-                <div
-                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="/assets/img/companies/alelo.webp" alt="Alelo" class="w-full h-full object-cover" width="48"
+                  <img src="/assets/img/companies/ford.webp" alt="Ford" class="w-full h-full object-cover" width="48"
                     height="48" loading="lazy" decoding="async" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
-                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Alelo</h3>
+                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Ford</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2022-2024
+                      2026-Atual
                     </span>
                   </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Negócios -
-                    Product Operations & Analytics</p>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de BI</p>
                 </div>
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                A conexão entre dados e produto ganhou força nessa etapa da minha trajetória. Trabalhei próximo às
-                squads de produto, com métricas, tracking e experiência do cliente, além de coordenar uma squad de
-                Product Operations. Essa experiência ampliou minha visão sobre o papel dos dados no desenvolvimento de
-                produtos, ajudando a entender como as pessoas interagem com eles, identificar oportunidades de melhoria
-                e orientar decisões a partir do comportamento dos usuários.
+                Na Ford América do Sul, minha atuação combina Business Intelligence, análise de dados e governança da
+                informação. Trabalho no desenvolvimento de dashboards e relatórios gerenciais que facilitam o
+                acompanhamento dos indicadores e dão mais visibilidade ao desempenho do negócio. Essa experiência tem
+                ampliado minha visão sobre como estruturar informações, conectar diferentes necessidades das áreas e
+                transformar dados em ferramentas que apoiam o monitoramento dos resultados e a tomada de decisões.
               </p>
+            </div>
 
-              <!-- Ferramentas mais utilizadas -->
-              <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
-                <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Ferramentas mais utilizadas
+            <!-- Ferramentas mais utilizadas -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                Ferramentas mais utilizadas
+              </span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                  Power BI
                 </span>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
-                    Power BI
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/python_color.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Python" class="w-3.5 h-3.5 object-contain" />
-                    Python
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/ga4.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="GA4" class="w-3.5 h-3.5 object-contain" />
-                    GA4
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/data-studio.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Data Studio" class="w-3.5 h-3.5 object-contain" />
-                    Data Studio
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/miro.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="Miro" class="w-3.5 h-3.5 object-contain" />
-                    Miro
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/powerpoint.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
-                    Power Point
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/athena.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Athena" class="w-3.5 h-3.5 object-contain" />
-                    Athena
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/vs-code.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
-                    VS Code
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/jira.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="Jira" class="w-3.5 h-3.5 object-contain" />
-                    Jira
-                  </span>
-                </div>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/gcp.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="GCP" class="w-3.5 h-3.5 object-contain" />
+                  GCP
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/sharepoint.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Sharepoint" class="w-3.5 h-3.5 object-contain" />
+                  Sharepoint
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/jira.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="Jira" class="w-3.5 h-3.5 object-contain" />
+                  Jira
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/github.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14"
+                    height="14" loading="lazy" decoding="async" />
+                  GitHub
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/vs-code.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
+                  VS Code
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/copilot.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="GitHub Copilot" class="w-3.5 h-3.5 object-contain" />
+                  GitHub Copilot
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/copilot-studio.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Copilot Studio" class="w-3.5 h-3.5 object-contain" />
+                  Copilot Studio
+                </span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Marco 5: Nubank (2024-2026) -->
-        <div
-          class="timeline-v-item timeline-item-nubank relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
-          <!-- Card (Esquerda no Desktop) -->
-          <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-1">
-            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+        <!-- Marco 2: Nubank (2024-2026) -->
+        <div class="timeline-h-item timeline-item-nubank group relative flex flex-col flex-shrink-0 w-[310px] sm:w-[350px] md:w-[370px] z-10">
+          <!-- Nó Superior & Ano -->
+          <div class="flex items-center gap-3 mb-4 relative z-10">
+            <div
+              class="w-8 h-8 rounded-full bg-white border-2 shadow-xs flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
+              style="border-color: var(--company-color); box-shadow: 0 0 0 4px rgba(var(--company-color-rgb), 0.12);">
+              <div class="w-3 h-3 rounded-full" style="background-color: var(--company-color);"></div>
+            </div>
+            <div class="flex items-center gap-2 bg-[#f8fafc] pr-3 rounded-r-lg">
+              <span class="text-xl sm:text-2xl font-black tracking-tight text-[#0b1e3a]">2024</span>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="timeline-h-card bg-white rounded-2xl p-6 shadow-xs flex-1 flex flex-col justify-between text-left">
+            <div>
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
@@ -1237,179 +921,397 @@
                 a identificar oportunidades, compreender diferenças de performance e apoiar decisões estratégicas de
                 crédito.
               </p>
+            </div>
 
-              <!-- Ferramentas mais utilizadas -->
-              <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
-                <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Ferramentas mais utilizadas
+            <!-- Ferramentas mais utilizadas -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                Ferramentas mais utilizadas
+              </span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/databricks.svg" alt="" class="w-3.5 h-3.5 object-contain"
+                    width="14" height="14" loading="lazy" decoding="async" />
+                  Databricks
                 </span>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/databricks.svg" alt="" class="w-3.5 h-3.5 object-contain"
-                      width="14" height="14" loading="lazy" decoding="async" />
-                    Databricks
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/python_color.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Python" class="w-3.5 h-3.5 object-contain" />
-                    Python
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/github.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14"
-                      height="14" loading="lazy" decoding="async" />
-                    GitHub
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/jira.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="Jira" class="w-3.5 h-3.5 object-contain" />
-                    Jira
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/confluence.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Confluence" class="w-3.5 h-3.5 object-contain" />
-                    Confluence
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/cursor.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Cursor" class="w-3.5 h-3.5 object-contain" />
-                    Cursor
-                  </span>
-                </div>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/python_color.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Python" class="w-3.5 h-3.5 object-contain" />
+                  Python
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/github.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14"
+                    height="14" loading="lazy" decoding="async" />
+                  GitHub
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/jira.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="Jira" class="w-3.5 h-3.5 object-contain" />
+                  Jira
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/confluence.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Confluence" class="w-3.5 h-3.5 object-contain" />
+                  Confluence
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/cursor.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Cursor" class="w-3.5 h-3.5 object-contain" />
+                  Cursor
+                </span>
               </div>
             </div>
           </div>
-
-          <!-- Nó Central -->
-          <div
-            class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
-            <div
-              class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
-                style="background-color: var(--company-color);"></div>
-            </div>
-          </div>
-
-          <!-- Ano de Destaque Decorativo (Direita no Desktop) -->
-          <div class="hidden md:flex w-[calc(50%-44px)] pl-8 justify-start order-3">
-            <span
-              class="timeline-year-watermark text-4xl lg:text-5xl font-black text-slate-200/80 tracking-tight select-none">
-              2024
-            </span>
-          </div>
         </div>
 
-        <!-- Marco 6: Ford (2026-Atual) -->
-        <div
-          class="timeline-v-item timeline-item-ford relative flex flex-col md:flex-row items-start md:items-center md:justify-between group">
-          <!-- Ano de Destaque Decorativo (Esquerda no Desktop) -->
-          <div class="hidden md:flex w-[calc(50%-44px)] pr-8 justify-end order-1">
-            <span
-              class="timeline-year-watermark text-4xl lg:text-5xl font-black text-slate-200/80 tracking-tight select-none">
-              2026
-            </span>
-          </div>
-
-          <!-- Nó Central -->
-          <div
-            class="absolute left-8 md:left-1/2 top-6 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 order-1 md:order-2">
+        <!-- Marco 3: Alelo (2022-2024) -->
+        <div class="timeline-h-item timeline-item-alelo group relative flex flex-col flex-shrink-0 w-[310px] sm:w-[350px] md:w-[370px] z-10">
+          <!-- Nó Superior & Ano -->
+          <div class="flex items-center gap-3 mb-4 relative z-10">
             <div
-              class="timeline-node w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border-2 border-slate-300 shadow-sm flex items-center justify-center">
-              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all"
-                style="background-color: var(--company-color);"></div>
+              class="w-8 h-8 rounded-full bg-white border-2 shadow-xs flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
+              style="border-color: var(--company-color); box-shadow: 0 0 0 4px rgba(var(--company-color-rgb), 0.12);">
+              <div class="w-3 h-3 rounded-full" style="background-color: var(--company-color);"></div>
+            </div>
+            <div class="flex items-center gap-2 bg-[#f8fafc] pr-3 rounded-r-lg">
+              <span class="text-xl sm:text-2xl font-black tracking-tight text-[#0b1e3a]">2022</span>
             </div>
           </div>
 
-          <!-- Card (Direita no Desktop) -->
-          <div class="w-full md:w-[calc(50%-44px)] pl-20 md:pl-0 order-2 md:order-3">
-            <div class="timeline-card bg-white rounded-2xl p-6 shadow-xs card-hover-clean text-left">
+          <!-- Card -->
+          <div class="timeline-h-card bg-white rounded-2xl p-6 shadow-xs flex-1 flex flex-col justify-between text-left">
+            <div>
               <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
               <div class="flex items-center gap-3.5 mb-3.5">
                 <div
                   class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <img src="/assets/img/companies/ford.webp" alt="Ford" class="w-full h-full object-cover" width="48"
+                  <img src="/assets/img/companies/alelo.webp" alt="Alelo" class="w-full h-full object-cover" width="48"
                     height="48" loading="lazy" decoding="async" />
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-2">
-                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Ford</h3>
+                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Alelo</h3>
                     <span
                       class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
-                      2026-Atual
+                      2022-2024
                     </span>
                   </div>
-                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de BI</p>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Negócios -
+                    Product Operations & Analytics</p>
                 </div>
               </div>
 
               <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Na Ford América do Sul, minha atuação combina Business Intelligence, análise de dados e governança da
-                informação. Trabalho no desenvolvimento de dashboards e relatórios gerenciais que facilitam o
-                acompanhamento dos indicadores e dão mais visibilidade ao desempenho do negócio. Essa experiência tem
-                ampliado minha visão sobre como estruturar informações, conectar diferentes necessidades das áreas e
-                transformar dados em ferramentas que apoiam o monitoramento dos resultados e a tomada de decisões.
+                A conexão entre dados e produto ganhou força nessa etapa da minha trajetória. Trabalhei próximo às
+                squads de produto, com métricas, tracking e experiência do cliente, além de coordenar uma squad de
+                Product Operations. Essa experiência ampliou minha visão sobre o papel dos dados no desenvolvimento de
+                produtos, ajudando a entender como as pessoas interagem com eles, identificar oportunidades de melhoria
+                e orientar decisões a partir do comportamento dos usuários.
               </p>
+            </div>
 
-              <!-- Ferramentas mais utilizadas -->
-              <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
-                <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Ferramentas mais utilizadas
+            <!-- Ferramentas mais utilizadas -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                Ferramentas mais utilizadas
+              </span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/ga4.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="GA4" class="w-3.5 h-3.5 object-contain" />
+                  GA4
                 </span>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
-                    Power BI
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/gcp.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="GCP" class="w-3.5 h-3.5 object-contain" />
-                    GCP
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/sharepoint.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Sharepoint" class="w-3.5 h-3.5 object-contain" />
-                    Sharepoint
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/jira.svg" width="14" height="14" loading="lazy" decoding="async"
-                      alt="Jira" class="w-3.5 h-3.5 object-contain" />
-                    Jira
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/github.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14"
-                      height="14" loading="lazy" decoding="async" />
-                    GitHub
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/vs-code.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
-                    VS Code
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/copilot.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="GitHub Copilot" class="w-3.5 h-3.5 object-contain" />
-                    GitHub Copilot
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
-                    <img src="/assets/img/icons-stacks/copilot-studio.svg" width="14" height="14" loading="lazy"
-                      decoding="async" alt="Copilot Studio" class="w-3.5 h-3.5 object-contain" />
-                    Copilot Studio
-                  </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/data-studio.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Data Studio" class="w-3.5 h-3.5 object-contain" />
+                  Data Studio
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/miro.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="Miro" class="w-3.5 h-3.5 object-contain" />
+                  Miro
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/powerpoint.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                  Power Point
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/athena.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Athena" class="w-3.5 h-3.5 object-contain" />
+                  Athena
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/vs-code.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="VS Code" class="w-3.5 h-3.5 object-contain" />
+                  VS Code
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/jira.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="Jira" class="w-3.5 h-3.5 object-contain" />
+                  Jira
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marco 4: Neoenergia (2020-2021) -->
+        <div class="timeline-h-item timeline-item-neoenergia group relative flex flex-col flex-shrink-0 w-[310px] sm:w-[350px] md:w-[370px] z-10">
+          <!-- Nó Superior & Ano -->
+          <div class="flex items-center gap-3 mb-4 relative z-10">
+            <div
+              class="w-8 h-8 rounded-full bg-white border-2 shadow-xs flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
+              style="border-color: var(--company-color); box-shadow: 0 0 0 4px rgba(var(--company-color-rgb), 0.12);">
+              <div class="w-3 h-3 rounded-full" style="background-color: var(--company-color);"></div>
+            </div>
+            <div class="flex items-center gap-2 bg-[#f8fafc] pr-3 rounded-r-lg">
+              <span class="text-xl sm:text-2xl font-black tracking-tight text-[#0b1e3a]">2020</span>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="timeline-h-card bg-white rounded-2xl p-6 shadow-xs flex-1 flex flex-col justify-between text-left">
+            <div>
+              <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
+              <div class="flex items-center gap-3.5 mb-3.5">
+                <div
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="/assets/img/companies/neoenergia.webp" alt="Neoenergia" class="w-full h-full object-cover"
+                    width="48" height="48" loading="lazy" decoding="async" />
                 </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-2">
+                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Neoenergia</h3>
+                    <span
+                      class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
+                      2020-2021
+                    </span>
+                  </div>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista de Qualidade
+                    do Atendimento</p>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
+                Transformar dados operacionais em informações estratégicas foi o principal desafio dessa experiência.
+                Trabalhei com indicadores de atendimento, como NPS e FCR, e com o desenvolvimento de um projeto de BI no
+                Power BI para centralizar informações e facilitar o acompanhamento dos resultados. Também atuei com
+                análises de sentimento e dos principais temas das ligações, gerando insumos para a gestão compreender
+                melhor a experiência dos clientes e identificar oportunidades de melhoria.
+              </p>
+            </div>
+
+            <!-- Ferramentas mais utilizadas -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                Ferramentas mais utilizadas
+              </span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                  Power BI
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/sql.svg" alt="" class="w-3.5 h-3.5 object-contain" width="14"
+                    height="14" loading="lazy" decoding="async" />
+                  SQL
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/excel_color.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                  Excel Avançado
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marco 5: Kroton (2018-2019) -->
+        <div class="timeline-h-item timeline-item-kroton group relative flex flex-col flex-shrink-0 w-[310px] sm:w-[350px] md:w-[370px] z-10">
+          <!-- Nó Superior & Ano -->
+          <div class="flex items-center gap-3 mb-4 relative z-10">
+            <div
+              class="w-8 h-8 rounded-full bg-white border-2 shadow-xs flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
+              style="border-color: var(--company-color); box-shadow: 0 0 0 4px rgba(var(--company-color-rgb), 0.12);">
+              <div class="w-3 h-3 rounded-full" style="background-color: var(--company-color);"></div>
+            </div>
+            <div class="flex items-center gap-2 bg-[#f8fafc] pr-3 rounded-r-lg">
+              <span class="text-xl sm:text-2xl font-black tracking-tight text-[#0b1e3a]">2018</span>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="timeline-h-card bg-white rounded-2xl p-6 shadow-xs flex-1 flex flex-col justify-between text-left">
+            <div>
+              <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
+              <div class="flex items-center gap-3.5 mb-3.5">
+                <div
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="/assets/img/companies/cogna.webp" alt="Kroton Cogna" class="w-full h-full object-cover"
+                    width="48" height="48" loading="lazy" decoding="async" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-2">
+                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Kroton</h3>
+                    <span
+                      class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
+                      2018-2019
+                    </span>
+                  </div>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Analista em Gestão
+                    Financeira Orçamentária</p>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
+                Aqui, os dados passaram a ter um papel mais direto no planejamento e nas decisões financeiras. Trabalhei
+                com orçamento, forecasts e indicadores de performance, aprendendo a olhar para os números não apenas
+                como registros do que aconteceu, mas também como instrumentos para acompanhar resultados e apoiar
+                decisões futuras.
+              </p>
+            </div>
+
+            <!-- Ferramentas mais utilizadas -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                Ferramentas mais utilizadas
+              </span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/excel_color.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                  Excel Avançado
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                  Power BI
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/qlik.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="Qlik Sense" class="w-3.5 h-3.5 object-contain" />
+                  Qlik Sense
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/totvs.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="Totvs" class="w-3.5 h-3.5 object-contain" />
+                  Totvs
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/powerpoint.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                  Power Point
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marco 6: Bauminas (2015-2018) -->
+        <div class="timeline-h-item timeline-item-bauminas group relative flex flex-col flex-shrink-0 w-[310px] sm:w-[350px] md:w-[370px] z-10">
+          <!-- Nó Superior & Ano -->
+          <div class="flex items-center gap-3 mb-4 relative z-10">
+            <div
+              class="w-8 h-8 rounded-full bg-white border-2 shadow-xs flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
+              style="border-color: var(--company-color); box-shadow: 0 0 0 4px rgba(var(--company-color-rgb), 0.12);">
+              <div class="w-3 h-3 rounded-full" style="background-color: var(--company-color);"></div>
+            </div>
+            <div class="flex items-center gap-2 bg-[#f8fafc] pr-3 rounded-r-lg">
+              <span class="text-xl sm:text-2xl font-black tracking-tight text-[#0b1e3a]">2015</span>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="timeline-h-card bg-white rounded-2xl p-6 shadow-xs flex-1 flex flex-col justify-between text-left">
+            <div>
+              <!-- Header do Card: Logo + Título/Cargo + Badge do Ano -->
+              <div class="flex items-center gap-3.5 mb-3.5">
+                <div
+                  class="w-12 h-12 rounded-xl bg-white border border-slate-200/80 overflow-hidden flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <img src="/assets/img/companies/bauminas.webp" alt="Bauminas" class="w-full h-full object-cover"
+                    width="48" height="48" loading="lazy" decoding="async" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-2">
+                    <h3 class="font-extrabold text-base sm:text-lg text-[#0b1e3a] truncate">Bauminas</h3>
+                    <span
+                      class="timeline-year-badge text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-slate-100 text-[#475569] border border-slate-200/60 flex-shrink-0">
+                      2015-2018
+                    </span>
+                  </div>
+                  <p class="text-xs font-semibold truncate" style="color: var(--company-color);">Assistente de
+                    Controladoria Comercial</p>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#64748b] leading-relaxed">
+                Foi onde transformei meu interesse por análise em prática profissional.
+                Trabalhando próximo à área comercial, desenvolvi indicadores, dashboards e automações para tornar as
+                informações mais úteis à gestão.
+                O Excel e o VBA, que inicialmente eram ferramentas que eu queria dominar melhor, acabaram se tornando
+                importantes na minha entrada no mundo dos dados.
+              </p>
+            </div>
+
+            <!-- Ferramentas mais utilizadas -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                Ferramentas mais utilizadas
+              </span>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/excel_color.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Excel Avançado" class="w-3.5 h-3.5 object-contain" />
+                  Excel Avançado
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/vba.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="VBA" class="w-3.5 h-3.5 object-contain" />
+                  VBA
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/power-bi.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Power BI" class="w-3.5 h-3.5 object-contain" />
+                  Power BI
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/powerpoint.svg" width="14" height="14" loading="lazy"
+                    decoding="async" alt="Power Point" class="w-3.5 h-3.5 object-contain" />
+                  Power Point
+                </span>
+                <span
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/70 text-[11px] font-medium text-slate-700 hover:border-blue-300 hover:bg-blue-50/40 transition-colors">
+                  <img src="/assets/img/icons-stacks/totvs.svg" width="14" height="14" loading="lazy" decoding="async"
+                    alt="Totvs" class="w-3.5 h-3.5 object-contain" />
+                  Totvs
+                </span>
               </div>
             </div>
           </div>
@@ -1902,134 +1804,81 @@
           marqueeWrapper.classList.remove('is-paused');
         }, { passive: true });
       }
+      // 5. Linha do Tempo Horizontal: Navegação por botões, scroll suave e arraste (drag)
+      const timelineScroll = document.getElementById('timeline-scroll-container');
+      const prevBtn = document.getElementById('timeline-prev-btn');
+      const nextBtn = document.getElementById('timeline-next-btn');
 
-      // 5. Linha do Tempo Vertical Iluminada Dinâmica (Scroll-Driven Glowing Line)
-      const timelineContainer = document.getElementById('timeline-container');
-      const trackLine = document.getElementById('timeline-track-line');
-      const progressLine = document.getElementById('timeline-progress-line');
-      const progressBead = document.getElementById('timeline-progress-bead');
-      const timelineItems = document.querySelectorAll('.timeline-v-item');
+      if (timelineScroll && prevBtn && nextBtn) {
+        const updateNavButtons = () => {
+          const maxScroll = timelineScroll.scrollWidth - timelineScroll.clientWidth;
+          prevBtn.disabled = timelineScroll.scrollLeft <= 5;
+          nextBtn.disabled = timelineScroll.scrollLeft >= maxScroll - 5;
+        };
 
-      function updateTimelineProgress() {
-        if (!timelineContainer || !progressLine || !timelineItems.length) return;
+        const getScrollStep = () => {
+          const firstCard = timelineScroll.querySelector('.timeline-h-item');
+          return firstCard ? firstCard.offsetWidth + 24 : 380;
+        };
 
-        const firstItem = timelineItems[0];
-        const lastItem = timelineItems[timelineItems.length - 1];
-        const firstNode = firstItem ? firstItem.querySelector('.timeline-node') : null;
-        const lastNode = lastItem ? lastItem.querySelector('.timeline-node') : null;
-
-        if (!firstNode || !lastNode) return;
-
-        const containerRect = timelineContainer.getBoundingClientRect();
-        const firstNodeRect = firstNode.getBoundingClientRect();
-        const lastNodeRect = lastNode.getBoundingClientRect();
-
-        const firstNodeCenterY = firstNodeRect.top + firstNodeRect.height / 2;
-        const lastNodeCenterY = lastNodeRect.top + lastNodeRect.height / 2;
-
-        const trackStartY = firstNodeCenterY - containerRect.top;
-        const trackEndY = lastNodeCenterY - containerRect.top;
-        const totalTrackDistance = trackEndY - trackStartY;
-
-        // Posicionar a linha base cinza exatamente entre o primeiro e último nó
-        if (trackLine && totalTrackDistance > 0) {
-          trackLine.style.top = `${trackStartY}px`;
-          trackLine.style.height = `${totalTrackDistance}px`;
-        }
-
-        // Ponto focal de leitura na viewport (60% da altura da tela)
-        const triggerViewportY = window.innerHeight * 0.60;
-
-        // Calcular progresso conforme o usuário rola a página
-        let progress = 0;
-        if (lastNodeCenterY !== firstNodeCenterY) {
-          progress = (triggerViewportY - firstNodeCenterY) / (lastNodeCenterY - firstNodeCenterY);
-        }
-        progress = Math.max(0, Math.min(1, progress));
-
-        const currentLineHeight = totalTrackDistance * progress;
-
-        // Atualizar linha iluminada
-        progressLine.style.top = `${trackStartY}px`;
-        progressLine.style.height = `${currentLineHeight}px`;
-
-        // Atualizar o feixe luminoso (bead) na ponta da linha
-        if (progressBead) {
-          progressBead.style.top = `${trackStartY + currentLineHeight}px`;
-          progressBead.style.opacity = progress > 0.005 ? '1' : '0';
-        }
-
-        // Iluminar marcos alcançados pela linha e destacar com zoom o marco ativo atual
-        const currentBeamScreenY = firstNodeCenterY + currentLineHeight;
-
-        // Coletar as posições de todos os nós
-        const nodePositions = [];
-        timelineItems.forEach((item) => {
-          const node = item.querySelector('.timeline-node');
-          if (node) {
-            const nodeRect = node.getBoundingClientRect();
-            nodePositions.push(nodeRect.top + nodeRect.height / 2);
-          } else {
-            nodePositions.push(0);
-          }
+        prevBtn.addEventListener('click', () => {
+          timelineScroll.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
         });
 
-        // Determinar qual marco está no foco ativo (zoom spotlight)
-        let activeIndex = -1;
-        const isWithinTimeline = progress > 0.01 && containerRect.bottom > window.innerHeight * 0.15;
+        nextBtn.addEventListener('click', () => {
+          timelineScroll.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+        });
 
-        if (isWithinTimeline) {
-          for (let i = 0; i < timelineItems.length; i++) {
-            const currentY = nodePositions[i];
-            const prevMid = i === 0 ? currentY - 50 : (nodePositions[i - 1] + currentY) / 2;
-            const nextMid = i === timelineItems.length - 1 ? currentY + 120 : (currentY + nodePositions[i + 1]) / 2;
+        timelineScroll.addEventListener('scroll', updateNavButtons, { passive: true });
+        window.addEventListener('resize', updateNavButtons);
+        updateNavButtons();
 
-            if (currentBeamScreenY >= prevMid && currentBeamScreenY < nextMid) {
-              activeIndex = i;
-              break;
+        // Rolagem horizontal com roda do mouse sobre o bloco
+        timelineScroll.addEventListener('wheel', (e) => {
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            const maxScroll = timelineScroll.scrollWidth - timelineScroll.clientWidth;
+            if ((e.deltaY > 0 && timelineScroll.scrollLeft < maxScroll - 2) ||
+                (e.deltaY < 0 && timelineScroll.scrollLeft > 2)) {
+              timelineScroll.scrollLeft += e.deltaY;
+              e.preventDefault();
             }
           }
-          if (activeIndex === -1 && currentBeamScreenY >= nodePositions[timelineItems.length - 1]) {
-            activeIndex = timelineItems.length - 1;
-          }
-        }
+        }, { passive: false });
 
-        timelineItems.forEach((item, index) => {
-          const nodeCenterY = nodePositions[index];
+        // Arraste com o mouse (Drag to Scroll)
+        let isDown = false;
+        let startX = 0;
+        let scrollStart = 0;
 
-          // Iluminado (linha alcançou)
-          if (progress > 0 && currentBeamScreenY >= nodeCenterY - 10) {
-            item.classList.add('is-illuminated');
-          } else {
-            item.classList.remove('is-illuminated');
-          }
+        timelineScroll.addEventListener('mousedown', (e) => {
+          isDown = true;
+          timelineScroll.classList.add('cursor-grabbing');
+          startX = e.pageX - timelineScroll.offsetLeft;
+          scrollStart = timelineScroll.scrollLeft;
+        });
 
-          // Ativo / Em foco (Zoom exclusivo no bloco atual)
-          if (index === activeIndex) {
-            item.classList.add('is-active');
-          } else {
-            item.classList.remove('is-active');
+        window.addEventListener('mouseup', () => {
+          if (isDown) {
+            isDown = false;
+            timelineScroll.classList.remove('cursor-grabbing');
           }
         });
-      }
 
-      let isTicking = false;
-      function onScrollOrResize() {
-        if (!isTicking) {
-          requestAnimationFrame(() => {
-            updateTimelineProgress();
-            isTicking = false;
-          });
-          isTicking = true;
-        }
-      }
+        timelineScroll.addEventListener('mouseleave', () => {
+          if (isDown) {
+            isDown = false;
+            timelineScroll.classList.remove('cursor-grabbing');
+          }
+        });
 
-      window.addEventListener('scroll', onScrollOrResize, { passive: true });
-      window.addEventListener('resize', onScrollOrResize);
-      window.addEventListener('load', updateTimelineProgress);
-      updateTimelineProgress();
-      setTimeout(updateTimelineProgress, 100);
-      setTimeout(updateTimelineProgress, 400);
+        timelineScroll.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - timelineScroll.offsetLeft;
+          const walk = (x - startX) * 1.5;
+          timelineScroll.scrollLeft = scrollStart - walk;
+        });
+      }
     });
   </script>
 
