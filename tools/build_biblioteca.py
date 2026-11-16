@@ -111,7 +111,24 @@ def parse_book_md(file_path):
             try:
                 meta = yaml.safe_load(parts[1]) or {}
             except Exception as e:
-                print(f"Erro ao parsear YAML de {file_path}: {e}")
+                print(f"Aviso: yaml.safe_load falhou ({e}) em {file_path}. Usando parser de recuperação...")
+                meta = {}
+                current_k = None
+                for line in parts[1].splitlines():
+                    s = line.strip()
+                    if not s or s.startswith('#'):
+                        continue
+                    if s.startswith('- ') and current_k:
+                        val = s[2:].strip().strip("'\"")
+                        if not isinstance(meta.get(current_k), list):
+                            meta[current_k] = []
+                        meta[current_k].append(val)
+                    elif ':' in line:
+                        kv = line.split(':', 1)
+                        k = kv[0].strip()
+                        v = kv[1].strip().strip("'\"")
+                        current_k = k
+                        meta[k] = v
             body = parts[2].strip()
 
     slug = meta.get('slug') or meta.get('id') or os.path.splitext(os.path.basename(file_path))[0]
@@ -597,6 +614,47 @@ def generate_book_page(book, all_books):
       transform: translateY(-4px) scale(1.02);
       box-shadow: 0 24px 48px -6px rgba(17, 55, 110, 0.28), 0 10px 16px -3px rgba(0, 0, 0, 0.12);
     }}
+    /* Hero layout resiliente independente de compilação CSS externa */
+    .book-hero-layout {{
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: flex-start;
+    }}
+    @media (min-width: 768px) {{
+      .book-hero-layout {{
+        flex-direction: row;
+        gap: 2.5rem;
+      }}
+    }}
+    .book-hero-sidebar {{
+      width: 100%;
+      max-width: 220px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }}
+    @media (min-width: 768px) {{
+      .book-hero-sidebar {{
+        margin-left: 0;
+        margin-right: 0;
+        width: 220px;
+        max-width: 220px;
+      }}
+    }}
+    .book-amazon-btn {{
+      width: 100%;
+      max-width: 220px;
+    }}
+    .book-hero-content {{
+      flex: 1;
+      min-width: 0;
+      width: 100%;
+    }}
     /* Prose styling editorial */
     .article-prose, .prose-editorial {{
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -745,16 +803,16 @@ def generate_book_page(book, all_books):
 
       <!-- HERO DO LIVRO -->
       <section class="bg-white rounded-3xl border border-[#d0d7de] p-6 sm:p-10 mb-10 shadow-sm relative overflow-hidden">
-        <div class="flex flex-col md:flex-row gap-8 lg:gap-10 items-start">
+        <div class="book-hero-layout flex flex-col md:flex-row gap-8 lg:gap-10 items-start">
           
           <!-- Capa do Livro em Destaque 3D -->
-          <div class="w-full sm:w-[200px] md:w-[220px] shrink-0 mx-auto md:mx-0 flex flex-col items-center gap-4">
+          <div class="book-hero-sidebar w-full sm:w-[200px] md:w-[220px] shrink-0 mx-auto md:mx-0 flex flex-col items-center gap-4">
             <div class="w-[170px] sm:w-[200px] aspect-[2/3] rounded-2xl overflow-hidden bg-[#f6f8fa] p-2 border border-[#d0d7de] book-cover-3d">
               <img src="/{cover_image}" alt="{title_safe}" class="w-full h-full object-contain rounded" width="200" height="300" priority>
             </div>
             
             <!-- Botão da Amazon -->
-            <a href="{amazon_link_safe}" target="_blank" rel="noopener noreferrer" class="btn-tactile inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-xs sm:text-sm transition-all shadow-md">
+            <a href="{amazon_link_safe}" target="_blank" rel="noopener noreferrer" class="book-amazon-btn btn-tactile inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-[#11376e] hover:bg-[#184a91] text-white font-semibold text-xs sm:text-sm transition-all shadow-md">
               <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-white/10 shrink-0">
                 <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M15.4 13.8V9.6c0-2.6-1.6-4.1-4.5-4.1-2.2 0-4 1-4.5 3l2.4.4c.3-.9 1-1.4 2-1.4 1.2 0 1.9.6 1.9 1.6v.4l-2.5.3c-2.8.3-4.4 1.5-4.4 3.6 0 2.1 1.6 3.4 3.7 3.4 1.6 0 2.8-.7 3.5-1.7.1.6.3 1.1.5 1.5h2.4c-.3-.5-.5-1.4-.5-2.8zm-2.6-.7c0 1.3-.9 2.2-2.2 2.2-1 0-1.6-.5-1.6-1.3 0-1 .8-1.5 2.2-1.7l1.6-.2v1z" fill="#ffffff"/>
@@ -768,7 +826,7 @@ def generate_book_page(book, all_books):
           </div>
 
           <!-- Metadados & Apresentação -->
-          <div class="flex-1 min-w-0 flex flex-col justify-between">
+          <div class="book-hero-content flex-1 min-w-0 flex flex-col justify-between">
             <div>
               <div class="flex flex-wrap items-center gap-2 mb-3">
                 <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-blue-50 text-[#11376e] border border-blue-200/80">
