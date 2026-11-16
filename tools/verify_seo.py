@@ -30,7 +30,7 @@ if os.path.exists(sitemap_path):
         tree = ET.parse(sitemap_path)
         root = tree.getroot()
         urls = [elem.text for elem in root.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
-        check(len(urls) == 5, "Sitemap tem 5 URLs públicas canônicas", f"Encontradas {len(urls)} URLs: {urls}")
+        check(len(urls) >= 5, "Sitemap tem todas as URLs públicas canônicas (mínimo 5)", f"Encontradas {len(urls)} URLs: {urls}")
         for u in urls:
             check(u.startswith(CANONICAL_DOMAIN), f"URL canônica no sitemap ({u})", f"Não começa com {CANONICAL_DOMAIN}")
             check(not u.endswith(".html"), f"URL limpa sem .html ({u})", "Termina com .html")

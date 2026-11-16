@@ -5,7 +5,10 @@ import yaml
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POSTS_DIR = os.path.join(ROOT_DIR, 'content', 'posts')
+BOOKS_DIR = os.path.join(ROOT_DIR, 'content', 'books')
+BOOKS_JSON = os.path.join(ROOT_DIR, 'content', 'books.json')
 BLOG_OUT_DIR = os.path.join(ROOT_DIR, 'blog')
+BIBLIOTECA_OUT_DIR = os.path.join(ROOT_DIR, 'biblioteca')
 SITEMAP_FILE = os.path.join(ROOT_DIR, 'sitemap.xml')
 SITE_URL = 'https://marcosdataproduct.com'
 
@@ -88,6 +91,20 @@ def build_sitemap():
         for item in post_entries:
             item.pop('_sort_date', None)
             entries.append(item)
+
+    # Páginas de Livros da Biblioteca (/biblioteca/{slug})
+    if os.path.exists(BIBLIOTECA_OUT_DIR):
+        book_html_files = sorted(glob.glob(os.path.join(BIBLIOTECA_OUT_DIR, '*.html')))
+        for b_html in book_html_files:
+            b_slug = os.path.splitext(os.path.basename(b_html))[0]
+            if not b_slug or b_slug == 'index':
+                continue
+            entries.append({
+                'loc': f'{SITE_URL}/biblioteca/{b_slug}',
+                'lastmod': _file_lastmod(b_html),
+                'changefreq': 'monthly',
+                'priority': '0.8',
+            })
 
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',

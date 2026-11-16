@@ -220,9 +220,9 @@ def generate_post_page(post, all_posts):
               <span class="badge {r_badge} text-[11px]">{r.get('category', 'Artigo')}</span>
               <span class="text-xs text-[#656d76]">{r.get('read_time', '5 min')}</span>
             </div>
-            <h4 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
+            <h3 class="text-base font-bold text-[#1f2328] group-hover:text-[#11376e] transition-colors line-clamp-2 mb-2 leading-snug">
               {html.escape(r.get('title', 'Artigo'), quote=True)}
-            </h4>
+            </h3>
             <p class="text-xs text-[#656d76] line-clamp-2 leading-relaxed">
               {html.escape(r.get('excerpt', ''), quote=False)}
             </p>
@@ -843,9 +843,9 @@ def sync_blog_featured_sidebar(posts):
             <a href="/blog/{slug}" class="flex items-center gap-3 group transition-all" data-date="{dt_str}">
               <img src="{cover}" alt="{title}" class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover flex-shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-300" width="56" height="56" loading="lazy" decoding="async" />
               <div class="flex-1 min-w-0">
-                <h4 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
+                <h3 class="font-bold text-xs sm:text-sm text-[#0b1e3a] group-hover:text-[#2563eb] transition-colors leading-snug line-clamp-2">
                   {title}
-                </h4>
+                </h3>
                 <p class="text-[11px] text-[#64748b] mt-1 flex items-center gap-1 font-medium">
                   <span>{read_time}</span>
                   <span class="text-slate-300">•</span>
