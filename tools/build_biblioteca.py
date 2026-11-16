@@ -27,8 +27,9 @@ SITE_URL = 'https://marcosdataproduct.com'
 os.makedirs(BOOKS_DIR, exist_ok=True)
 os.makedirs(BIBLIOTECA_OUT_DIR, exist_ok=True)
 
-# Importar helper de sitemap e convert_markdown de build_blog
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Importar helper de sitemap e markdown parser
+import markdown
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
     from build_sitemap import build_sitemap
 except Exception:
@@ -38,10 +39,23 @@ try:
     from build_blog import convert_markdown
 except Exception:
     def convert_markdown(body):
-        # Fallback simples
-        paragraphs = (body or '').split('\n\n')
-        res = ''.join(f'<p>{p}</p>' for p in paragraphs if p.strip())
-        return res, []
+        type_map = {
+            'NOTE': ('badge-blue', 'info', 'Nota Informativa', 'border-l-4 border-blue-500 bg-blue-50/70 text-blue-950'),
+            'TIP': ('badge-emerald', 'lightbulb', 'Dica Prática', 'border-l-4 border-emerald-500 bg-emerald-50/70 text-emerald-950'),
+            'WARNING': ('badge-amber', 'alert-triangle', 'Atenção', 'border-l-4 border-amber-500 bg-amber-50/70 text-amber-950'),
+            'IMPORTANT': ('badge-purple', 'alert-circle', 'Importante', 'border-l-4 border-purple-500 bg-purple-50/70 text-purple-950')
+        }
+        def alert_sub(match):
+            atype = match.group(1).upper()
+            raw_lines = match.group(2)
+            cleaned = "\n".join(re.sub(r'^>\s?', '', l) for l in raw_lines.splitlines()).strip()
+            inner = markdown.markdown(cleaned, extensions=['extra'])
+            cls, icon, default_label, box_style = type_map.get(atype, type_map['NOTE'])
+            return f'<div class="callout-box my-6 p-4 rounded-r-xl {box_style}"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="{icon}" class="w-4 h-4"></i> {default_label}</div><div class="text-sm leading-relaxed callout-content">{inner}</div></div>\n'
+        
+        parsed = re.sub(r'>\s*\[!(NOTE|TIP|WARNING|IMPORTANT)\]\s*\n((?:>.*(?:\n|$))+)', alert_sub, body or '', flags=re.IGNORECASE)
+        md = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'nl2br'])
+        return md.convert(parsed), []
 
 CATEGORIES = ['dados', 'negocios', 'produto', 'tecnologia', 'carreira', 'mentalidade', 'sociedade']
 
@@ -464,7 +478,8 @@ def generate_book_page(book, all_books):
     read_time = book.get('read_time', '4 min')
     raw_body = book.get('body') or book.get('desc_full', '')
 
-    html_content, headers = convert_markdown(raw_body)
+    body_clean = re.sub(r'(:\s*)\n(-|\*|\d+\.)', r'\1\n\n\2', raw_body or '')
+    html_content, headers = convert_markdown(body_clean)
 
     title_safe = html.escape(title, quote=True)
     author_safe = html.escape(author, quote=True)
@@ -548,7 +563,12 @@ def generate_book_page(book, all_books):
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/css/tailwind.css">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <!-- KaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <script defer src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+  <script defer src="/assets/js/main.js"></script>
 
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -559,6 +579,16 @@ def generate_book_page(book, all_books):
     body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote, label {{
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }}
+    #reading-bar {{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #11376e, #1f6feb);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }}
     .book-cover-3d {{
       box-shadow: 0 16px 36px -4px rgba(17, 55, 110, 0.22), 0 6px 12px -2px rgba(0, 0, 0, 0.08);
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -568,8 +598,14 @@ def generate_book_page(book, all_books):
       box-shadow: 0 24px 48px -6px rgba(17, 55, 110, 0.28), 0 10px 16px -3px rgba(0, 0, 0, 0.12);
     }}
     /* Prose styling editorial */
-    .prose-editorial h2 {{
-      font-size: 1.5rem;
+    .article-prose, .prose-editorial {{
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1f2328;
+      font-size: 1.075rem;
+      line-height: 1.8;
+    }}
+    .article-prose h2, .prose-editorial h2 {{
+      font-size: 1.65rem;
       font-weight: 700;
       color: #1f2328;
       letter-spacing: -0.02em;
@@ -578,7 +614,7 @@ def generate_book_page(book, all_books):
       padding-bottom: 0.4rem;
       border-bottom: 1px solid #e2e8f0;
     }}
-    .prose-editorial h3 {{
+    .article-prose h3, .prose-editorial h3 {{
       font-size: 1.25rem;
       font-weight: 700;
       color: #1f2328;
@@ -586,23 +622,29 @@ def generate_book_page(book, all_books):
       margin-top: 1.75rem;
       margin-bottom: 0.75rem;
     }}
-    .prose-editorial p {{
+    .article-prose p, .prose-editorial p {{
       margin-bottom: 1.35rem;
       line-height: 1.85;
       color: #334155;
       font-size: 1.05rem;
     }}
-    .prose-editorial ul, .prose-editorial ol {{
+    .article-prose ul, .article-prose ol, .prose-editorial ul, .prose-editorial ol {{
       margin-bottom: 1.35rem;
       padding-left: 1.5rem;
       color: #334155;
       line-height: 1.8;
       font-size: 1.05rem;
     }}
-    .prose-editorial li {{
+    .article-prose ul, .prose-editorial ul {{
+      list-style-type: disc;
+    }}
+    .article-prose ol, .prose-editorial ol {{
+      list-style-type: decimal;
+    }}
+    .article-prose li, .prose-editorial li {{
       margin-bottom: 0.5rem;
     }}
-    .prose-editorial blockquote {{
+    .article-prose blockquote, .prose-editorial blockquote {{
       border-left: 4px solid #11376e;
       background: #f8fafc;
       padding: 1rem 1.25rem;
@@ -610,6 +652,26 @@ def generate_book_page(book, all_books):
       font-style: italic;
       color: #1f2328;
       margin: 1.5rem 0;
+    }}
+    .article-prose hr, .prose-editorial hr {{
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 2.5rem 0;
+    }}
+    .article-prose strong, .prose-editorial strong {{
+      font-weight: 700;
+      color: #0f172a;
+    }}
+    .callout-box {{
+      border-radius: 0 0.75rem 0.75rem 0;
+      margin: 1.5rem 0;
+      padding: 1rem 1.25rem;
+    }}
+    .callout-content p {{
+      margin-bottom: 0.5rem;
+    }}
+    .callout-content p:last-child {{
+      margin-bottom: 0;
     }}
   </style>
 
@@ -644,6 +706,7 @@ def generate_book_page(book, all_books):
 </head>
 
 <body class="bg-[#f8fafc] text-[#1f2328] font-sans antialiased min-h-screen flex flex-col selection:bg-[#11376e] selection:text-white">
+  <div id="reading-bar"></div>
 
   <!-- NAVBAR INSTITUCIONAL -->
   <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#d0d7de] transition-all">
@@ -754,7 +817,7 @@ def generate_book_page(book, all_books):
           <span>Curadoria Comentada &amp; Notas de Leitura do Marcos</span>
         </div>
 
-        <article class="prose-editorial">
+        <article class="article-prose prose-editorial">
           {html_content}
         </article>
 

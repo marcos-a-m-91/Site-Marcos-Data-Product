@@ -12,7 +12,7 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus | Notas de Leitura &amp; Resenha | Marcos Aurélio</title>
-  <meta name="description" content="Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias." />
+  <meta name="description" content="Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias. Em Hábitos Atômicos, James Clear mostra que a consistência não apenas gera resultados: ela transforma quem somos." />
   <link rel="canonical" href="https://marcosdataproduct.com/biblioteca/habitos-atomicos" />
 
   <!-- OpenGraph / Social -->
@@ -21,7 +21,7 @@
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://marcosdataproduct.com/biblioteca/habitos-atomicos" />
   <meta property="og:title" content="Hábitos Atômicos: um Método Fácil e Comprovado de Criar Bons Hábitos e se Livrar dos Maus | Curadoria &amp; Resenha" />
-  <meta property="og:description" content="Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias." />
+  <meta property="og:description" content="Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias. Em Hábitos Atômicos, James Clear mostra que a consistência não apenas gera resultados: ela transforma quem somos." />
   <meta property="og:image" content="https://marcosdataproduct.com/assets/img/books/habitos-atomicos.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -37,7 +37,12 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/assets/css/tailwind.css">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <!-- KaTeX Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   <script defer src="/assets/vendor/lucide_latest_2eebd0ebe8c2.js"></script>
+  <script defer src="/assets/js/main.js"></script>
 
   <!-- Google Font: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,6 +53,16 @@
     body, h1, h2, h3, h4, h5, h6, p, a, button, input, span, blockquote, label {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     }
+    #reading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #11376e, #1f6feb);
+      width: 0%;
+      z-index: 9999;
+      transition: width 0.1s ease-out;
+    }
     .book-cover-3d {
       box-shadow: 0 16px 36px -4px rgba(17, 55, 110, 0.22), 0 6px 12px -2px rgba(0, 0, 0, 0.08);
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -57,8 +72,14 @@
       box-shadow: 0 24px 48px -6px rgba(17, 55, 110, 0.28), 0 10px 16px -3px rgba(0, 0, 0, 0.12);
     }
     /* Prose styling editorial */
-    .prose-editorial h2 {
-      font-size: 1.5rem;
+    .article-prose, .prose-editorial {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1f2328;
+      font-size: 1.075rem;
+      line-height: 1.8;
+    }
+    .article-prose h2, .prose-editorial h2 {
+      font-size: 1.65rem;
       font-weight: 700;
       color: #1f2328;
       letter-spacing: -0.02em;
@@ -67,7 +88,7 @@
       padding-bottom: 0.4rem;
       border-bottom: 1px solid #e2e8f0;
     }
-    .prose-editorial h3 {
+    .article-prose h3, .prose-editorial h3 {
       font-size: 1.25rem;
       font-weight: 700;
       color: #1f2328;
@@ -75,23 +96,29 @@
       margin-top: 1.75rem;
       margin-bottom: 0.75rem;
     }
-    .prose-editorial p {
+    .article-prose p, .prose-editorial p {
       margin-bottom: 1.35rem;
       line-height: 1.85;
       color: #334155;
       font-size: 1.05rem;
     }
-    .prose-editorial ul, .prose-editorial ol {
+    .article-prose ul, .article-prose ol, .prose-editorial ul, .prose-editorial ol {
       margin-bottom: 1.35rem;
       padding-left: 1.5rem;
       color: #334155;
       line-height: 1.8;
       font-size: 1.05rem;
     }
-    .prose-editorial li {
+    .article-prose ul, .prose-editorial ul {
+      list-style-type: disc;
+    }
+    .article-prose ol, .prose-editorial ol {
+      list-style-type: decimal;
+    }
+    .article-prose li, .prose-editorial li {
       margin-bottom: 0.5rem;
     }
-    .prose-editorial blockquote {
+    .article-prose blockquote, .prose-editorial blockquote {
       border-left: 4px solid #11376e;
       background: #f8fafc;
       padding: 1rem 1.25rem;
@@ -99,6 +126,26 @@
       font-style: italic;
       color: #1f2328;
       margin: 1.5rem 0;
+    }
+    .article-prose hr, .prose-editorial hr {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 2.5rem 0;
+    }
+    .article-prose strong, .prose-editorial strong {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .callout-box {
+      border-radius: 0 0.75rem 0.75rem 0;
+      margin: 1.5rem 0;
+      padding: 1rem 1.25rem;
+    }
+    .callout-content p {
+      margin-bottom: 0.5rem;
+    }
+    .callout-content p:last-child {
+      margin-bottom: 0;
     }
   </style>
 
@@ -117,14 +164,7 @@
         },
         "image": "https://marcosdataproduct.com/assets/img/books/habitos-atomicos.webp",
         "url": "https://marcosdataproduct.com/biblioteca/habitos-atomicos",
-        "description": "Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias.",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "reviewCount": "1",
-          "bestRating": "5",
-          "worstRating": "1"
-        }
+        "description": "Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias. Em Hábitos Atômicos, James Clear mostra que a consistência não apenas gera resultados: ela transforma quem somos."
       },
       {
         "@type": "BreadcrumbList",
@@ -140,6 +180,7 @@
 </head>
 
 <body class="bg-[#f8fafc] text-[#1f2328] font-sans antialiased min-h-screen flex flex-col selection:bg-[#11376e] selection:text-white">
+  <div id="reading-bar"></div>
 
   <!-- NAVBAR INSTITUCIONAL -->
   <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#d0d7de] transition-all">
@@ -218,15 +259,9 @@
                 Obra por <span class="font-bold text-[#1f2328]">James Clear</span>
               </p>
 
-              <!-- Avaliação & Leitura -->
+              <!-- Leitura e Contexto -->
               <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-[#656d76] pb-5 mb-5 border-b border-[#e2e8f0]">
-                <div class="inline-flex items-center gap-1 font-semibold text-[#1f2328]">
-                  <span class="text-amber-500">★</span>
-                  <span>4.8</span>
-                  <span class="text-[11px] text-[#656d76] font-normal">/ 5.0 (Recomendação pessoal)</span>
-                </div>
-                <span>•</span>
-                <div class="inline-flex items-center gap-1">
+                <div class="inline-flex items-center gap-1.5 font-medium">
                   <i data-lucide="clock" class="w-3.5 h-3.5 text-[#656d76]"></i>
                   <span>4 min de leitura das notas</span>
                 </div>
@@ -239,7 +274,7 @@
                   <span>Por que vale a leitura</span>
                 </div>
                 <p class="text-sm sm:text-[15px] text-[#334155] leading-relaxed italic">
-                  "Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias."
+                  "Você não transforma sua vida com grandes decisões isoladas, mas com pequenas ações repetidas todos os dias. Em Hábitos Atômicos, James Clear mostra que a consistência não apenas gera resultados: ela transforma quem somos."
                 </p>
               </div>
 
@@ -256,8 +291,26 @@
           <span>Curadoria Comentada &amp; Notas de Leitura do Marcos</span>
         </div>
 
-        <article class="prose-editorial">
-          <p>A principal reflexão que está em <em>Hábitos Atômicos</em> e que tento levar comigo é que grandes mudanças não dependem necessariamente de grandes esforços...</p>
+        <article class="article-prose prose-editorial">
+          <p>A principal reflexão que está em <em>Hábitos Atômicos</em> e que tento levar comigo é que grandes mudanças não dependem necessariamente de grandes esforços, mas da consistência de pequenas ações ao longo do tempo. James Clear mostra que, muitas vezes, estamos tão concentrados nos resultados que queremos alcançar que esquecemos de construir os sistemas e hábitos que realmente nos levam até eles.</p>
+<h2 id="metas-vs-identidade">Metas vs. Identidade</h2>
+<p>Uma ideia que me chamou a atenção foi a diferença entre <strong>estabelecer uma meta</strong> e <strong>construir uma identidade</strong>. </p>
+<p>Não basta dizer que quer aprender Python, melhorar a forma de fazer análises ou aprofundar em alguma tecnologia: é preciso incorporar pequenas práticas à rotina. Estudar um pouco todos os dias, testar um código, investigar uma métrica ou buscar entender melhor um problema de negócio. Com o tempo, essas ações deixam de ser tarefas isoladas e passam a fazer parte da maneira como você pensa e trabalha.</p>
+<div class="callout-box my-6 p-4 rounded-r-xl border-l-4 border-emerald-500 bg-emerald-50/70 text-emerald-950"><div class="flex items-center gap-2 font-bold mb-2 text-sm"><i data-lucide="lightbulb" class="w-4 h-4"></i> Dica Prática</div><div class="text-sm leading-relaxed callout-content"><p>Em vez de focar apenas no objetivo final (ex: <em>"entregar um projeto analítico"</em>), concentre-se no sistema diário (ex: <em>"validar a qualidade dos dados e documentar regras de negócio diariamente"</em>). Os resultados são consequência do sistema.</p></div></div>
+
+<h2 id="aplicacao-pratica-no-mundo-dos-dados">Aplicação Prática no Mundo dos Dados</h2>
+<p>Uma aplicação direta disso no mundo dos dados é quando pensamos na maturidade analítica de uma equipe: ela não surge apenas com a implantação de uma ferramenta moderna ou com a criação de dashboards vistosos. </p>
+<p><strong>A maturidade analítica é construída por hábitos cotidianos:</strong></p>
+<ul>
+<li>Questionar a consistência e a origem dos indicadores antes de tomar decisões;</li>
+<li>Validar continuamente a qualidade dos dados na base;</li>
+<li>Documentar regras de negócio e métricas críticas;</li>
+<li>Utilizar evidências empíricas nas discussões de produto.</li>
+</ul>
+<p>São pequenas práticas que, quando incorporadas à cultura do time, transformam a forma como uma organização inteira trabalha com dados.</p>
+<hr />
+<h2 id="conclusao-valorizando-o-processo">Conclusão: Valorizando o Processo</h2>
+<p>Mais do que uma fórmula para criar hábitos, o livro faz refletir sobre a importância de valorizar o processo. Afinal, resultados consistentes são consequência de sistemas bem construídos e pequenas melhorias repetidas ao longo do tempo.</p>
         </article>
 
         <!-- Caixa de Ação / Compartilhamento -->
